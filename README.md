@@ -7,7 +7,7 @@ Playground for my python projects.
 
 In case we want to do this on other hosts, here are the steps I am using, and why.
 
-#### References
+### References
 
 General references, to get us started:
 
@@ -75,13 +75,6 @@ git clone git://github.com/django/django.git
 sudo pip install -e django/
 ```
 
-#### TODO:
-
-Figure out how to use the stable version on branch stable/1.10x:
-
-* https://github.com/django/django/tree/stable/1.10.x
-
-
 ### Verify:
 
 Before entering virtual environment:
@@ -111,14 +104,82 @@ python                       ## skipping output before prompt
 >>> django.__path__
 ['/var/www/learn/django/github/customizations/always_learning_python/django/django']
 >>>
+```
+
+### Setting up the djangostable Environment:
+
+Create new virtual environment that runs the current stable version of django (on branch stable/1.10x).
+
+* https://github.com/django/django/tree/stable/1.10.x
+
+#### Create the environment
 
 ```
+goln                                                              ## cd /var/www/learn/
+cd django/github/customizations/always_learning_python            ## I.e. parent dir of this repo
+virtualenv --python=`which python3` ~/.virtualenvs/djangostable
+cp virtualenvs/enter_djangodev_env.sh virtualenvs/enter_djangostable_env.sh
+vi virtualenvs/enter_djangostable_env.sh
+ga virtualenvs/enter_djangostable_env.sh
+gc 'Adding virtualenvs/enter_djangostable_env.sh .'
+gpom
+. virtualenvs/enter_djangostable_env.sh      ## enter the new djangostable environment
+```
+
+#### Clone and checkout stable version of django
+
+```
+goln                      ## cd /var/www/learn/
+cd django/github/django
+mkdir djangostable
+cd djangostable
+git clone git@github.com:django/django.git
+cd django
+git checkout stable/1.10.x
+```
+
+#### Enter the environment and install stable version of django
+
+```
+goln                                                     ## cd /var/www/learn/
+cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
+. virtualenvs/enter_djangostable_env.sh                  ## enter the new djangostable environment
+goln                      ## cd /var/www/learn/
+cd django/github/django/djangostable
+pip install django
+```
+
+#### Verify
+
+```
+python -V                    ## Python 3.5.2
+python -m django --version   ##  1.10.2a1
+python                       ## (output appearing before prompt omitted)
+>>> import django
+>>> print(django.get_version())
+1.10.2a1
+>>> django.__path__
+['/home/tomh/.virtualenvs/djangostable/lib/python3.5/site-packages/django']
+>>> exit()
+```
+
+Good job!
 
 ## hello_world Project
 
-1. Version from book did not work (book using version 1.8 of django, we are using 1.10)
+1. Version from book does not work - yet (wip)
 2. Got pure_python.py version to work in new virtual environment (see below)
 3. Django version ... (wip - see below)
+
+### hello_world - lightweight_django_book.py version
+
+Unable to get this to work, yet.
+
+#### WIP
+
+Notes:
+* found several other versions of hello world that use startproject (trying one or more of those next)
+* book using version 1.8 of django, we are using 1.10 (maybe set up a virtual env using 1.8 and try that?)
 
 ### hello_world - pure_python.py version
 
@@ -175,7 +236,5 @@ python hello_world/pure_python.py                        ## Access localhost:800
 
 ```
 
-### hello_world - hello_django.py version
-
-WIP
+### hello_world - startproject version
 
