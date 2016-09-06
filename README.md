@@ -20,13 +20,12 @@ what version is included.  Using pip with the virtual tools seems like the best 
 step because I want to try it out before installing all those packages globally.
 Plus we know for sure what version we will be getting; plus see this page:
 
-https://docs.djangoproject.com/en/1.10/topics/install/#install-the-django-code       ## Installing an official release with pip
+* https://docs.djangoproject.com/en/1.10/topics/install/#install-the-django-code       ## Installing an official release with pip
 
 Which points to this (seemingly unlikely) page:
 
-https://docs.djangoproject.com/en/1.10/intro/contributing/
-
-https://docs.djangoproject.com/en/1.10/intro/contributing/#getting-a-copy-of-django-s-development-version
+* https://docs.djangoproject.com/en/1.10/intro/contributing/
+* https://docs.djangoproject.com/en/1.10/intro/contributing/#getting-a-copy-of-django-s-development-version
 
 Which as a side effect of describing how to set up a django patch dev area also
 describes how to use virtualenv, and includes an Ubuntu-specific section
@@ -39,7 +38,7 @@ I.e. NOT running this command
 
 Also found on install the main installation page, under "Install Django," as "Install the latest development version"
 
-https://docs.djangoproject.com/en/1.10/topics/install/#installing-development-version
+* https://docs.djangoproject.com/en/1.10/topics/install/#installing-development-version
 
 INSTEAD:
 
@@ -47,9 +46,8 @@ INSTEAD:
 
 About virtualenv:
 
-https://virtualenv.pypa.io/en/stable/
-
-https://virtualenvwrapper.readthedocs.io/en/latest/
+* https://virtualenv.pypa.io/en/stable/
+* https://virtualenvwrapper.readthedocs.io/en/latest/
 
 ### Installation:
 
@@ -110,6 +108,8 @@ python                       ## skipping output before prompt
 >>> import django
 >>> print(django.get_version())
 1.11.dev20160903160000
+>>> django.__path__
+['/var/www/learn/django/github/customizations/always_learning_python/django/django']
 >>>
 
 ```
