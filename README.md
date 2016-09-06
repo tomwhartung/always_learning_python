@@ -144,8 +144,25 @@ We do not want to always have six installed by default in our environment, so we
 virtualenv --python=`which python` ~/.virtualenvs/six    ## creates the environment
 ```
 
-Tried specifying "--python=`which python3`" but that kept giving me "Network Unreachable" errors (??).
+Note: I tried specifying "--python=`which python3`" but that kept giving me "Network Unreachable" errors (??).
 
+```
+. ~/.virtualenvs/six/bin/activate    ## enter the environment (command saved in enter_six_env.sh for easy reference)
+python
+>>> import six                       ## gives an error because it is not yet installed in this environment
+>>> exit()
+goln                                                     ## cd /var/www/learn/
+cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
+mkdir unpack
+cp downloads/six-1.10.0.tar.gz unpack
+cd unpack
+tar -xvzf six-1.10.0.tar.gz
+rm six-1.10.0.tar.gz
+pip install six-1.10.0
+python
+>>> import six        ## No error means the setup was successful
+>>> exit()
+```
 #### Running the pure_python.py version
 
 Enter the following commands to start the server and serve the greetings:
