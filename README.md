@@ -114,7 +114,51 @@ python                       ## skipping output before prompt
 
 ```
 
-### hello_world Project
+## hello_world Project
 
-hello_world
+1. Version from book did not work (book using version 1.8 of django, we are using 1.10)
+2. Got pure_python.py version to work in new virtual environment (see below)
+3. Django version ... (wip - see below)
+
+### hello_world - pure_python.py version
+
+References:
+
+Where I got the code:
+
+* http://dfpp.readthedocs.io/en/latest/chapter_01.html
+
+Where I got the six library:
+
+* https://pypi.python.org/pypi/six/#downloads
+
+A nice page describing the differences between versions 2 and 3 of python:
+
+* http://python-future.org/compatible_idioms.html
+
+#### Setting up the "six" virtual environment
+
+We do not want to always have six installed by default in our environment, so we set up a new one for it:
+
+```
+virtualenv --python=`which python` ~/.virtualenvs/six    ## creates the environment
+```
+
+Tried specifying "--python=`which python3`" but that kept giving me "Network Unreachable" errors (??).
+
+#### Running the pure_python.py version
+
+Enter the following commands to start the server and serve the greetings:
+
+```
+. ~/.virtualenvs/six/bin/activate                        ## enter the environment (see enter_six_env.sh)
+goln                                                     ## cd /var/www/learn/
+cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
+python hello_world/pure_python.py                        ## Access localhost:8000 in browser for "hello" greetins
+
+```
+
+### hello_world - hello_django.py version
+
+WIP
 
