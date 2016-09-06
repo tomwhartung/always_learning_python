@@ -1,19 +1,19 @@
 
-## always_learning_python
+# always_learning_python
 
 Playground for my python projects.
 
-### Installation
+## Installation: References, Process, Etc.
 
 In case we want to do this on other hosts, here are the steps I am using, and why.
 
 #### References
 
-https://en.wikipedia.org/wiki/Django_(web_framework)
+General references, to get us started:
 
-https://docs.djangoproject.com/en/1.10/topics/install/#                              ## 1.10 is the current version
-
-https://docs.djangoproject.com/en/1.10/topics/install/#install-apache-and-mod-wsgi   ## skipping this and the db steps
+* https://en.wikipedia.org/wiki/Django_(web_framework)
+* https://docs.djangoproject.com/en/1.10/topics/install/#                              ## 1.10 is the current version
+* https://docs.djangoproject.com/en/1.10/topics/install/#install-apache-and-mod-wsgi   ## skipping this and the db steps
 
 Apparently it is included in all versions of Ubuntu but I am having difficulty finding
 what version is included.  Using pip with the virtual tools seems like the best first
@@ -41,10 +41,15 @@ Also found on install the main installation page, under "Install Django," as "In
 
 https://docs.djangoproject.com/en/1.10/topics/install/#installing-development-version
 
-
 INSTEAD:
 
-* Skip down to "For Ubuntu users" section and run the commands below.
+* Skip down to "For Ubuntu users" section and run the commands under "Installation" below.
+
+About virtualenv:
+
+https://virtualenv.pypa.io/en/stable/
+
+https://virtualenvwrapper.readthedocs.io/en/latest/
 
 ### Installation:
 
@@ -63,14 +68,53 @@ INSTEAD:
 
 ### Use:
 
-> Anything you install through pip from now on will be installed in your new virtualenv, isolated from other environments and system-wide packages. Also, the name of the currently activated virtualenv is displayed on the command line to help you keep track of which one you are using. Go ahead and install the previously cloned copy of Django:
+> "Anything you install through pip from now on will be installed in your new virtualenv, isolated from other environments and system-wide packages. Also, the name of the currently activated virtualenv is displayed on the command line to help you keep track of which one you are using. Go ahead and install the previously cloned copy of Django:"
 
 ```
 . ~/.virtualenvs/djangodev/bin/activate
 cd /var/www/learn/django/github/customizations/always_learning_python/
 git clone git://github.com/django/django.git
-pip install -e django/
+sudo pip install -e django/
+```
+
+#### TODO:
+
+Figure out how to use the stable version on branch stable/1.10x:
+
+* https://github.com/django/django/tree/stable/1.10.x
+
+
+### Verify:
+
+Before entering virtual environment:
+
+```
+which python   ## /usr/bin/python
+python -V      ## Python 2.7.12
+python         ## skipping output before prompt
+>>> import django
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ImportError: No module named django
+>>>
+```
+
+After entering virtual environment:
+
+```
+. ~/.virtualenvs/djangodev/bin/activate
+which python                 ## /home/tomh/.virtualenvs/djangodev/bin/python
+python -V                    ## Python 3.5.2
+python -m django --version   ## 1.11.dev20160903160000
+python                       ## skipping output before prompt
+>>> import django
+>>> print(django.get_version())
+1.11.dev20160903160000
+>>>
 
 ```
 
+### hello_world Project
+
+hello_world
 
