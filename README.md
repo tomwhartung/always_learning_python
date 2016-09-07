@@ -167,13 +167,15 @@ Good job!
 
 ## hello_world Project
 
-1. Version from book does not work - yet (wip)
-2. Got pure_python.py version to work in new virtual environment (see below)
-3. Django version ... (wip - see below)
+1. Lightweight Django Book version - does not work - yet (wip)
+2. pure_python.py version - works in new virtual environment (see below)
+3. startproject version - created using startproject: there are a few of these onlin (see below)
 
-### hello_world - lightweight_django_book.py version
+### 1. Lightweight Django Book version
 
-Unable to get this to work, yet.
+See lightweight_django_book.py .
+
+Unable to get this to work, yet (after entering the command, it simply returns).
 
 #### WIP
 
@@ -181,21 +183,13 @@ Notes:
 * found several other versions of hello world that use startproject (trying one or more of those next)
 * book using version 1.8 of django, we are using 1.10 (maybe set up a virtual env using 1.8 and try that?)
 
-### hello_world - pure_python.py version
+### 2. pure_python.py version
 
-References:
+#### References:
 
-Where I got the code:
-
-* http://dfpp.readthedocs.io/en/latest/chapter_01.html
-
-Where I got the six library:
-
-* https://pypi.python.org/pypi/six/#downloads
-
-A nice page describing the differences between versions 2 and 3 of python:
-
-* http://python-future.org/compatible_idioms.html
+* http://dfpp.readthedocs.io/en/latest/chapter_01.html   ## where I got the code
+* https://pypi.python.org/pypi/six/#downloads            ## where I got the six library
+* http://python-future.org/compatible_idioms.html        ## differences between python 2 and 3
 
 #### Setting up the "six" virtual environment
 
@@ -236,15 +230,16 @@ python hello_world/pure_python.py                        ## Access localhost:800
 
 ```
 
-### hello_world - startproject version
+### 3. startproject version
 
-See using_startproject directory.
+See hello_world/startproject directory.
 
 #### References
 
 It seems wise to consult more than one source for this information.
 
-* https://docs.djangoproject.com/en/1.10/intro/tutorial01/
+* https://docs.djangoproject.com/en/1.10/intro/tutorial01/                  ## looks like the best one
+* http://www.bogotobogo.com/python/Django/Python_Django_hello_world.php
 * http://dfpp.readthedocs.io/en/latest/chapter_01.html
 * https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-python-django-web-app/
 
@@ -254,7 +249,7 @@ Not using this one but checking it out as I go, so it's worth saving for possibl
 
 ##### NOTE!
 
-*The djangoproject tutorial says to NOT put this code in a subdirectory of /var/www .*
+**The djangoproject tutorial says to NOT put this code in a subdirectory of /var/www .**
 
 Interestingly, the azure tutorial says to put it in /var/www specifically (not even a subdir!).
 
@@ -277,17 +272,12 @@ cd say_hi
 
 These file names are relative to /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi
 
-* manage.py - for site administration; similar to using ```django-admin``` or ```python -m django``` (see link below)
-
-* say_hi - the python package name for this project; use when importing code, e.g., say_hi/urls
-
-* say_hi/__init__.py - tells Python that this directory should be considered a Python package
-
-* say_hi/settings.py - settings; see link below
-
-* say_hi/urls.py - the "table of contents" for your site; for details, see link below
-
-* say_hi/wsgi.py - Web Server Gateway Interface - enables serving pages via apache
+* `manage.py` - for site administration; similar to using ```django-admin``` or ```python -m django``` (see link below)
+* `say_hi` - the python package name for this project; use when importing code, e.g., say_hi/urls
+* `say_hi/__init__.py` - empty file that tells Python that this directory should be considered a Python package
+* `say_hi/settings.py` - application and database settings; for details, see link below
+* `say_hi/urls.py` - the "table of contents" for your site; for details, see link below
+* `say_hi/wsgi.py` - Web Server Gateway Interface; an entry point that enables handling requests and serving pages via apache
 
 Links:
 
@@ -310,10 +300,16 @@ python manage.py runserver
 
 As the tutorial advises, I am ignoring warnings about unapplied migrations
 
-```
 > You have 13 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
 > Run 'python manage.py migrate' to apply them.
-```
+
+#### Access in Browser:
+
+Getting "It worked!" message
+
+* http://127.0.0.1:8000/
+* http://localhost:8000/
+
 
 
 
