@@ -326,48 +326,82 @@ I want to stick with "hello world," and maybe come back to the polls app in the 
 
 These two tutorials use different methods to accomplish the "hello world" goal.
 
-*1. "rtd" - http://dfpp.readthedocs.io/en/latest/chapter_01.html*
+**1. "dfpp" - http://dfpp.readthedocs.io/en/latest/chapter_01.html**
 
-*2. "bogo" - http://www.bogotobogo.com/python/Django/Python_Django_hello_world.php*
+**2. "bogo" - http://www.bogotobogo.com/python/Django/Python_Django_hello_world.php**
 
 I want to follow both - in parallel - then maybe I will know enough to be able to fix the version from the book.
 
-First generate a default "hello_app" app:
+##### Default 1: hello_dfpp_default
+
+First generate a default "**hello_dfpp_default**" app using the **python** command:
 
 ```
 goln                                                     ## cd /var/www/learn/ ** *BAD but OK for now* **
 cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
 . enter_djangostable_env.sh
 cd hello_world/startproject/say_hi
-python manage.py startapp hello_app                      ## or: django-admin startapp hello_app
+python manage.py startapp hello_dfpp_default
+```
 
+##### Default 2: hello_bogo_default
+
+Now generate a default "**hello_bogo_default**" app using the **django-admin** command:
+
+```
+goln                                                     ## cd /var/www/learn/ ** *BAD but OK for now* **
+cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
+. enter_djangostable_env.sh
+cd hello_world/startproject/say_hi
+django-admin startapp hello_bogo_default
 ```
 
 Keeping this generated code as-is, for easy reference as we follow the tutorials and change code in the other apps.
 
-#### rtd setup
+##### Diffing the defaults
 
-Note the app name (**) and use of the python command
+Note that the class name in apps.py is different for all four generated trees.
+
+Other than that, the hello_bogo_default (django-admin) version contains the following lines not found in the hello_dfpp_default (python tartapp) version:
+
+```
+< # -*- coding: utf-8 -*-
+< from __future__ import unicode_literals
+```
+
+in the following files:
+
+* `admin.py`
+* `apps.py`
+* `models.py`
+* `tests.py` and
+* `views.py`
+
+Not huge differences, but I want to ensure we have the cleanest diff output possible, while still closely following the tutorials.
+
+#### hello_dfpp app setup
+
+Note the app name (*hello_dfpp*) and use of the python (instead of the django-admin) command.
 
 ```
 goln                                                     ## cd /var/www/learn/ ** *BAD but OK for now* **
 cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
 . enter_djangostable_env.sh
 cd hello_world/startproject/say_hi
-python manage.py startapp hello_app                      ## or: django-admin startapp hello_app
+python manage.py startapp hello_dfpp      ## or: django-admin startapp hello_dfpp
 
 ```
 
-#### bogo setup
+#### hello_bogo app setup
 
-Note the app name (**) and use of the python command
+Note the app name (*hello_bogo*) and use of the django-admin (instead of the python) command.
 
 ```
 goln                                                     ## cd /var/www/learn/ ** *BAD but OK for now* **
 cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
 . enter_djangostable_env.sh
 cd hello_world/startproject/say_hi
-python manage.py startapp hello_app                      ## or: django-admin startapp hello_app
+django-admin startapp hello_bogo          ## or: python manage.py startapp hello_bogo
 
 ```
 
