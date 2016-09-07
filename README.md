@@ -258,7 +258,7 @@ Not using this one but checking it out as I go, so it's worth saving for possibl
 
 Interestingly, the azure tutorial says to put it in /var/www specifically (not even a subdir!).
 
-#### Commands Run
+#### Commands Run - Setup
 
 It seems wise to make a note of these commands, in case I like what they do and want to do it again.
 
@@ -285,15 +285,35 @@ These file names are relative to /var/www/learn/django/github/customizations/alw
 
 * say_hi/settings.py - settings; see link below
 
-* say_hi/urls.py - 
+* say_hi/urls.py - the "table of contents" for your site; for details, see link below
 
-* say_hi/wsgi.py - 
+* say_hi/wsgi.py - Web Server Gateway Interface - enables serving pages via apache
 
 Links:
 
 * https://docs.djangoproject.com/en/1.10/ref/django-admin/   ## for using manage.py, django-admin, etc.
 * https://docs.djangoproject.com/en/1.10/topics/settings/    ## django settings reference
+* https://docs.djangoproject.com/en/1.10/topics/http/urls/   ## url dispatcher reference
 
+#### Commands - Running the Server
+
+Let's see if this works!
+
+```
+goln                                                              ## cd /var/www/learn/ ** *BAD but OK for now* **
+cd django/github/customizations/always_learning_python            ## I.e. parent dir of this repo
+cd startproject/say_hi
+python manage.py runserver
+```
+
+##### NOTE!
+
+As the tutorial advises, I am ignoring warnings about unapplied migrations
+
+```
+> You have 13 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+> Run 'python manage.py migrate' to apply them.
+```
 
 
 
