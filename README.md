@@ -238,3 +238,68 @@ python hello_world/pure_python.py                        ## Access localhost:800
 
 ### hello_world - startproject version
 
+See using_startproject directory.
+
+#### References
+
+It seems wise to consult more than one source for this information.
+
+* https://docs.djangoproject.com/en/1.10/intro/tutorial01/
+* http://dfpp.readthedocs.io/en/latest/chapter_01.html
+* https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-python-django-web-app/
+
+Not using this one but checking it out as I go, so it's worth saving for possible future reference:
+
+* https://docs.djangoproject.com/en/dev/intro/tutorial01/   ## covers the current development version
+
+##### NOTE!
+
+*The djangoproject tutorial says to NOT put this code in a subdirectory of /var/www .*
+
+Interestingly, the azure tutorial says to put it in /var/www specifically (not even a subdir!).
+
+#### Commands Run
+
+It seems wise to make a note of these commands, in case I like what they do and want to do it again.
+
+```
+goln                                                              ## cd /var/www/learn/ ** *BAD but OK for now* **
+cd django/github/customizations/always_learning_python            ## I.e. parent dir of this repo
+. ~/.virtualenvs/djangostable/bin/activate
+python -m django --version                  ## 1.10.2a1
+mkdir using_startproject
+cd startproject
+django-admin startproject say_hi
+cd say_hi
+```
+
+#### Files created:
+
+These file names are relative to /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi
+
+* manage.py - for site administration; similar to using ```django-admin``` or ```python -m django``` (see link below)
+
+* say_hi - the python package name for this project; use when importing code, e.g., say_hi/urls
+
+* say_hi/__init__.py - tells Python that this directory should be considered a Python package
+
+* say_hi/settings.py - settings; see link below
+
+* say_hi/urls.py - 
+
+* say_hi/wsgi.py - 
+
+Links:
+
+* https://docs.djangoproject.com/en/1.10/ref/django-admin/   ## for using manage.py, django-admin, etc.
+* https://docs.djangoproject.com/en/1.10/topics/settings/    ## django settings reference
+
+
+
+
+
+
+
+
+
+
