@@ -177,11 +177,11 @@ See lightweight_django_book.py .
 
 Unable to get this to work, yet (after entering the command, it simply returns).
 
-#### WIP
+**WIP (Work in Progress)**
 
 Notes:
-* found several other versions of hello world that use startproject (trying one or more of those next)
-* book using version 1.8 of django, we are using 1.10 (maybe set up a virtual env using 1.8 and try that?)
+* I found several other versions of hello world that use startproject (trying one or more of those next)
+* The book is using version 1.8 of django, we are using 1.10 (maybe set up a virtual env using 1.8 and try that?)
 
 ### 2. pure_python.py version
 
@@ -247,6 +247,10 @@ Not using this one but checking it out as I go, so it's worth saving for possibl
 
 * https://docs.djangoproject.com/en/dev/intro/tutorial01/   ## covers the current development version
 
+Couldn't get this one to work, at least not quickly; saving for possible future reference as well:
+
+* https://github.com/django-ve/helloworld
+
 ##### NOTE!
 
 **The djangoproject tutorial says to NOT put this code in a subdirectory of /var/www .**
@@ -310,7 +314,62 @@ Getting "It worked!" message
 * http://127.0.0.1:8000/
 * http://localhost:8000/
 
+#### Creating the "hello_app" app
 
+Here the "main" tutorial at djangoproject starts in on the polls app ("startapp polls").
+
+Meanwhile a couple of the others show how to run "startapp" and get a hello world app.
+
+I want to stick with "hello world," and maybe come back to the polls app in the "main" tutorial.
+
+#### Two Paths
+
+These two tutorials use different methods to accomplish the "hello world" goal.
+
+*1. "rtd" - http://dfpp.readthedocs.io/en/latest/chapter_01.html*
+
+*2. "bogo" - http://www.bogotobogo.com/python/Django/Python_Django_hello_world.php*
+
+I want to follow both - in parallel - then maybe I will know enough to be able to fix the version from the book.
+
+First generate a default "hello_app" app:
+
+```
+goln                                                     ## cd /var/www/learn/ ** *BAD but OK for now* **
+cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
+. enter_djangostable_env.sh
+cd hello_world/startproject/say_hi
+python manage.py startapp hello_app                      ## or: django-admin startapp hello_app
+
+```
+
+Keeping this generated code as-is, for easy reference as we follow the tutorials and change code in the other apps.
+
+#### rtd setup
+
+Note the app name (**) and use of the python command
+
+```
+goln                                                     ## cd /var/www/learn/ ** *BAD but OK for now* **
+cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
+. enter_djangostable_env.sh
+cd hello_world/startproject/say_hi
+python manage.py startapp hello_app                      ## or: django-admin startapp hello_app
+
+```
+
+#### bogo setup
+
+Note the app name (**) and use of the python command
+
+```
+goln                                                     ## cd /var/www/learn/ ** *BAD but OK for now* **
+cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
+. enter_djangostable_env.sh
+cd hello_world/startproject/say_hi
+python manage.py startapp hello_app                      ## or: django-admin startapp hello_app
+
+```
 
 
 
