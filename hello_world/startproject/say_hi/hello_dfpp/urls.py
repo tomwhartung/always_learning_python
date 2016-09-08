@@ -11,8 +11,6 @@ from django.conf.urls import *
 from hello_dfpp.views import HomePageView
 
 urlpatterns = [
-    '',
-
     url(r'^$', HomePageView.as_view(), name='home'),
 ]
 
