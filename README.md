@@ -296,6 +296,7 @@ Let's see if this works!
 ```
 goln                                                              ## cd /var/www/learn/ ** *BAD but OK for now* **
 cd django/github/customizations/always_learning_python            ## I.e. parent dir of this repo
+. enter_djangostable_env.sh
 cd startproject/say_hi
 python manage.py runserver
 ```
@@ -389,10 +390,46 @@ cd django/github/customizations/always_learning_python   ## I.e. parent dir of t
 . enter_djangostable_env.sh
 cd hello_world/startproject/say_hi
 python manage.py startapp hello_dfpp      ## or: django-admin startapp hello_dfpp
-
 ```
 
+The instructions say to delete these files, because they are not needed:
+
+```
+## In cwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi
+cd hello_dfpp
+rm admin.py models.py
+rm -r migrations
+cd ..
+```
+
+The instructions say to edit the following files (creating them as necessary)
+
+```
+## In cwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi
+vi hello_dfpp/views.py       ## app dir
+vi hello_dfpp/urls.py        ## app dir
+vi say_hi/urls.py            ## project dir
+vi say_hi/settings-dfpp.py   ## project dir - rename to settings.py when running app 
+```
+
+#### Running the hello_dfpp app
+
+Start the server and browse to the app in the browser:
+
+```
+goln                                                     ## cd /var/www/learn/ ** *BAD but OK for now* **
+cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
+. enter_djangostable_env.sh
+cd hello_world/startproject/say_hi
+cp  settings-dfpp.py settings.py      ## HACK!!!
+python manage.py runserver
+```
+
+* http://localhost:8000/hello_bogo
+
 #### hello_bogo app setup
+
+Note that we are using "hello_bogo" instead of "HelloWorldApp" so we must **change all the edits we make accordingly.**
 
 Note the app name (*hello_bogo*) and use of the django-admin (instead of the python) command.
 
@@ -405,6 +442,32 @@ django-admin startapp hello_bogo          ## or: python manage.py startapp hello
 
 ```
 
+The instructions say to edit the following files (creating them as necessary)
+
+```
+## In cwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi
+vi hello_bogo/views.py       ## app dir
+vi hello_bogo/urls.py        ## app dir
+vi say_hi/urls.py            ## project dir
+vi say_hi/settings-bogo.py   ## project dir - rename to settings.py when running app
+```
+
+#### Running the hello_bogo app
+
+Start the server and browse to the app in browser:
+
+```
+goln                                                     ## cd /var/www/learn/ ** *BAD but OK for now* **
+cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
+. enter_djangostable_env.sh
+cd hello_world/startproject/say_hi
+cd say_hi                            ## [sic]
+cp settings-bogo.py settings.py      ## HACK!!!
+cd ..
+python manage.py runserver
+```
+
+* http://localhost:8000/hello_bogo
 
 
 
