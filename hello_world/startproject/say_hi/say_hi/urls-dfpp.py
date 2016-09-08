@@ -34,8 +34,6 @@ Including another URLconf
 from django.conf.urls import *
 
 urlpatterns = [
-    '',
-
     url(r'', include('hello_dfpp.urls')),
 ]
 
