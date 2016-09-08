@@ -406,10 +406,10 @@ The instructions say to edit the following files (creating them as necessary)
 
 ```
 ## In cwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi
-vi hello_dfpp/views.py       ## app dir
-vi hello_dfpp/urls.py        ## app dir
-vi say_hi/urls.py            ## project dir
-vi say_hi/settings-dfpp.py   ## project dir - rename to settings.py when running app 
+vi hello_dfpp/urls.py        ## Note: app dir
+vi hello_dfpp/views.py       ## Note: app dir
+vi say_hi/settings-dfpp.py   ## Note: project dir - and MUST rename to settings.py when running app
+vi say_hi/urls-dfpp.py       ## Note: project dir - and MUST rename to urls.py when running app
 ```
 
 #### Running the hello_dfpp app
@@ -421,11 +421,19 @@ goln                                                     ## cd /var/www/learn/ *
 cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
 . enter_djangostable_env.sh
 cd hello_world/startproject/say_hi
-cp  settings-dfpp.py settings.py      ## HACK!!!
+cd say_hi                            ## [sic]
+cp settings-dfpp.py settings.py      ## HACK - should have made separate projects
+cp urls-dfpp.py urls.py              ## HACK - should have made separate projects
+cd ..
 python manage.py runserver
 ```
 
-* http://localhost:8000/hello_bogo
+Access in browser:
+
+* http://localhost:8000
+* http://127.0.0.1:8000/
+
+This is working as of 2016-09-08.
 
 #### hello_bogo app setup
 
@@ -467,8 +475,11 @@ cd ..
 python manage.py runserver
 ```
 
+Access in browser:
+
 * http://localhost:8000/hello_bogo
 
+(Aaaaaaaaand, rats - it doesn't work.)
 
 
 
