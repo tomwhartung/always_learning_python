@@ -25,14 +25,17 @@ Including another URLconf
 ##
 ## Adding in the code from:
 ##    http://dfpp.readthedocs.io/en/latest/chapter_01.html
-## Note:
-##    Changed "hello.urls" to "hello_dfpp.urls"
+## Notes:
+##    (1) Updated "from..." statement to fix import error ("cannot import name 'patterns'")
+##       Reference: http://stackoverflow.com/questions/8074955/cannot-import-name-patterns
+##    (2) Changed "hello.urls" to "hello_dfpp.urls"
 ##
-from django.conf.urls import patterns, include, url
+## from django.conf.urls import patterns, include, url
+from django.conf.urls import *
 
-urlpatterns = patterns(
+urlpatterns = [
     '',
 
     url(r'', include('hello_dfpp.urls')),
-)
+]
 
