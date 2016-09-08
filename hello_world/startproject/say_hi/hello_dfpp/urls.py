@@ -8,7 +8,7 @@
 ## from django.conf.urls import patterns, url
 from django.conf.urls import *
 
-from hello.views import HomePageView
+from hello_dfpp.views import HomePageView
 
 urlpatterns = [
     '',
