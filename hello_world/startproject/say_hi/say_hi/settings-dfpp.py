@@ -35,12 +35,12 @@ ALLOWED_HOSTS = []
 ##
 ## I.e., commented out the following "INSTALLED_APPS:"
 ##    'django.contrib.admin',
-##    'django.contrib.auth',
-##    'django.contrib.contenttypes',
 ##    'django.contrib.sessions',
 ##
 
 INSTALLED_APPS = [
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'hello_dfpp',
