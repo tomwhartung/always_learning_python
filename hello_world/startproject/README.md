@@ -21,8 +21,8 @@ I see no problem with leaving old versions lying around, as long as there is doc
 
 It seems wise to consult more than one source for this information; I found two that actually work, after a few tries!
 
-* http://www.bogotobogo.com/python/Django/Python_Django_hello_world.php
 * http://dfpp.readthedocs.io/en/latest/chapter_01.html
+* http://www.bogotobogo.com/python/Django/Python_Django_hello_world.php
 
 Not using these, because it's not a "hello world" app, but checking them out as I go, and want to for possible future reference:
 
@@ -47,9 +47,44 @@ Interestingly, the azure tutorial says to put it in /var/www specifically (not e
 
 ## Guide to the Projects
 
-* say_hi-hybrid - the first time through I
+The first time through I tried doing all of the ones listed above in one project area, what is now say_hi-hybrid.
 
-#### Commands Run - Setup
+* say_hi-hybrid - contains my first efforts
+
+As it turned out, only two of the tutorials were really what I was looking for, so once I "finished" I went through those again, individually and much more quickly.
+
+* say_hi-dfpp - from the same site as the ../../pure_python.py version
+* say_hi-bogo - from a site run by a PhD. who seems to know about every programming language ever invented
+
+These two were fairly consistent, but due to naming issues cannot run in the same project environment.
+
+Plus I do not care for some of the names used (e.g., "foo") in the first place.
+
+## say_hi-dfpp
+
+After going through the process successfully twice, this was done starting from scratch, mostly following this process:
+
+* http://dfpp.readthedocs.io/en/latest/chapter_01.html
+
+If any of this is confusing, skip to the section about the say_hi-hybrid version, which contains many more details.
+
+
+## say_hi-bogo
+
+After going through the process successfully twice, this was done starting from scratch, mostly following this process:
+
+* http://www.bogotobogo.com/python/Django/Python_Django_hello_world.php
+
+If any of this is confusing, skip to the section about the say_hi-hybrid version, which contains many more details.
+
+
+## say_hi-hybrid
+
+This contains my first efforts.
+
+These instructions are baby steps and to actually run the apps you need to copy files.  I recommend looking at one of the others.
+
+### Commands Run - Setup
 
 It seems wise to make a note of these commands, in case I like what they do and want to do it again.
 
@@ -64,7 +99,7 @@ django-admin startproject say_hi
 cd say_hi
 ```
 
-#### Files created:
+### Files created:
 
 These file names are relative to /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi
 
@@ -81,7 +116,7 @@ Links:
 * https://docs.djangoproject.com/en/1.10/topics/settings/    ## django settings reference
 * https://docs.djangoproject.com/en/1.10/topics/http/urls/   ## url dispatcher reference
 
-#### Commands - Running the Server
+### Commands - Running the Server
 
 Let's see if this works!
 
@@ -93,21 +128,21 @@ cd startproject/say_hi
 python manage.py runserver
 ```
 
-##### NOTE!
+#### NOTE!
 
 As the tutorial advises, I am ignoring warnings about unapplied migrations
 
 > You have 13 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
 > Run 'python manage.py migrate' to apply them.
 
-#### Access in Browser:
+### Access in Browser:
 
 Getting "It worked!" message
 
 * http://127.0.0.1:8000/
 * http://localhost:8000/
 
-#### Creating the "hello_app" app
+### Creating the "hello_app" app
 
 Here the "main" tutorial at djangoproject starts in on the polls app ("startapp polls").
 
@@ -115,7 +150,7 @@ Meanwhile a couple of the others show how to run "startapp" and get a hello worl
 
 I want to stick with "hello world," and maybe come back to the polls app in the "main" tutorial.
 
-#### Two Paths
+### Two Paths
 
 These two tutorials use different methods to accomplish the "hello world" goal.
 
@@ -125,7 +160,7 @@ These two tutorials use different methods to accomplish the "hello world" goal.
 
 I want to follow both - in parallel - then maybe I will know enough to be able to fix the version from the book.
 
-##### Default 1: hello_dfpp_default
+#### Default 1: hello_dfpp_default
 
 First generate a default "**hello_dfpp_default**" app using the **python** command:
 
@@ -137,7 +172,7 @@ cd hello_world/startproject/say_hi
 python manage.py startapp hello_dfpp_default
 ```
 
-##### Default 2: hello_bogo_default
+#### Default 2: hello_bogo_default
 
 Now generate a default "**hello_bogo_default**" app using the **django-admin** command:
 
@@ -151,7 +186,7 @@ django-admin startapp hello_bogo_default
 
 Keeping this generated code as-is, for easy reference as we follow the tutorials and change code in the other apps.
 
-##### Diffing the defaults
+#### Diffing the defaults
 
 Note that the class name in apps.py is different for all four generated trees.
 
@@ -172,7 +207,7 @@ in the following files:
 
 Not huge differences, but I want to ensure we have the cleanest diff output possible, while still closely following the tutorials.
 
-#### hello_dfpp app setup
+### hello_dfpp app setup
 
 Note the app name (*hello_dfpp*) and use of the python (instead of the django-admin) command.
 
@@ -204,7 +239,7 @@ vi say_hi/settings-dfpp.py   ## Note: project dir - and MUST rename to settings.
 vi say_hi/urls-dfpp.py       ## Note: project dir - and MUST rename to urls.py when running app
 ```
 
-#### Running the hello_dfpp app
+### Running the hello_dfpp app
 
 Start the server and browse to the app in the browser:
 
@@ -227,7 +262,7 @@ Access in browser:
 
 This is working as of 2016-09-08.
 
-#### hello_bogo app setup
+### hello_bogo app setup
 
 Note that we are using "**hello_bogo**" instead of "HelloWorldApp" so we must **change all the edits we make accordingly.**
 
@@ -252,7 +287,7 @@ vi say_hi/urls-bogo.py       ## Note: project dir - and MUST rename to settings.
 vi say_hi/settings-bogo.py   ## Note: project dir - and MUST rename to settings.py when running app
 ```
 
-#### Running the hello_bogo app
+### Running the hello_bogo app
 
 Start the server and browse to the app in browser:
 
