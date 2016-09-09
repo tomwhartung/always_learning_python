@@ -9,13 +9,28 @@ This is the README.md file for the hello_world/startproject directory.
 
 ## Why so many versions?
 
-Right about the time I get it working, I figure out how I should have set it up.
+Right about the time I got two of these actually working, I figure out how I should have set it up.
 
 > "It's complicated"
 
 By running this multiple times, I am homing in how I want to set this up on the live server.
 
 I see no problem with leaving old versions lying around, as long as there is documentation describing them.
+
+## Guide to the Versions
+
+The first time through I tried doing all of the ones listed above in one project area, what is now say_hi_hybrid.
+
+* say_hi_hybrid - contains my first efforts
+
+As it turned out, only two of the tutorials really had what I was looking for, so once I "finished" I went through those again, individually and much more quickly.
+
+* say_hi_dfpp - from the same site as the ../../pure_python.py version
+* say_hi_bogo - from a site run by a PhD. who seems to know about every programming language ever invented
+
+These two were fairly consistent, but due to naming issues cannot run in the same project environment.
+
+Plus I do not care for some of the names used (e.g., "foo") in the first place.
 
 ## References
 
@@ -37,7 +52,7 @@ Couldn't get this one to work, at least not quickly.
 
 * https://github.com/django-ve/helloworld
 
-Want to save for possible future reference as well.
+Want to save it anyway, for possible future reference.
 
 ## NOTE!
 
@@ -45,44 +60,129 @@ Want to save for possible future reference as well.
 
 Interestingly, the azure tutorial says to put it in /var/www specifically (not even a subdir!).
 
-## Guide to the Projects
-
-The first time through I tried doing all of the ones listed above in one project area, what is now say_hi-hybrid.
-
-* say_hi-hybrid - contains my first efforts
-
-As it turned out, only two of the tutorials were really what I was looking for, so once I "finished" I went through those again, individually and much more quickly.
-
-* say_hi-dfpp - from the same site as the ../../pure_python.py version
-* say_hi-bogo - from a site run by a PhD. who seems to know about every programming language ever invented
-
-These two were fairly consistent, but due to naming issues cannot run in the same project environment.
-
-Plus I do not care for some of the names used (e.g., "foo") in the first place.
-
 ## say_hi-dfpp
 
 After going through the process successfully twice, this was done starting from scratch, mostly following this process:
 
 * http://dfpp.readthedocs.io/en/latest/chapter_01.html
 
-If any of this is confusing, skip to the section about the say_hi-hybrid version, which contains many more details.
+If any of this is confusing, skip to the section about the say_hi_hybrid version, which contains many more details.
+
+### Commands Run - Setup
+
+It seems wise to make a note of these commands, in case I like what they do and want to do it again.
+
+```
+cd /var/www/learn/
+cd django/github/customizations/always_learning_python
+. ~/.virtualenvs/djangostable/bin/activate
+python -m django --version                  ## 1.10.2a1
+cd startproject
+django-admin startproject say_hi-dfpp
+cd say_hi-dfpp
+```
 
 
-## say_hi-bogo
+## say_hi_bogo
 
 After going through the process successfully twice, this was done starting from scratch, mostly following this process:
 
 * http://www.bogotobogo.com/python/Django/Python_Django_hello_world.php
 
-If any of this is confusing, skip to the section about the say_hi-hybrid version, which contains many more details.
+If any of this is confusing, skip to the section about the say_hi_hybrid version, which contains many more details.
+
+### Commands Run - Setup
+
+It seems wise to make a note of these commands, in case I like what they do and want to do it again.
+
+```
+cd /var/www/learn/
+cd django/github/customizations/always_learning_python
+. ~/.virtualenvs/djangostable/bin/activate
+python -m django --version                  ## 1.10.2a1
+cd startproject
+django-admin startproject say_hi_bogo
+cd say_hi_bogo
+```
 
 
-## say_hi-hybrid
+## say_hi_hybrid
 
 This contains my first efforts.
 
 These instructions are baby steps and to actually run the apps you need to copy files.  I recommend looking at one of the others.
+
+### Running the apps
+
+These won't run "out of the box," but it's pretty easy to get them running.
+
+First off, we need to get into the correct directory and environment:
+
+```
+cd /var/www/learn/
+cd django/github/customizations/always_learning_python
+. ~/.virtualenvs/djangostable/bin/activate
+python -m django --version                  ## 1.10.2a1
+cd startproject
+cd say_hi_hybrid
+```
+
+#### Running hello_dfpp in say_hi_hybrid
+
+To run the hello_dfpp app, *ensure you are in the djangostable environment* and enter the following commands:
+
+```
+python -m django --version  ## Should display 1.10.2a1
+cd say_hi
+cp settings-dfpp.py settings.py
+cp urls-dfpp.py urls.py
+l
+cd ..
+python manage.py runserver   ## Ctrl-C to stop
+```
+
+And access one or both of these URLs:
+
+* http://localhost:8000/
+* http://127.0.0.1:8000/
+
+Cleanup: run the following commands to return the source tree to its original state:
+
+```
+cd say_hi
+cp urls-save.py urls.py
+cp settings-save.py settings.py
+cd ..
+```
+
+#### Running hello_bogo in say_hi_hybrid
+
+To run the hello_bogo app, *ensure you are in the djangostable environment* and enter the following commands:
+
+```
+python -m django --version  ## Should display 1.10.2a1
+cd say_hi
+cp settings-bogo.py settings.py
+cp urls-bogo.py urls.py
+l
+cd ..
+python manage.py runserver   ## Ctrl-C to stop
+```
+
+And access one or both of these URLs:
+
+* http://localhost:8000/hello_bogo/
+* http://127.0.0.1:8000/hello_bogo/
+
+Cleanup: run the following commands to return the source tree to its original state:
+
+```
+cd say_hi
+cp urls-save.py urls.py
+cp settings-save.py settings.py
+cd ..
+```
+
 
 ### Commands Run - Setup
 
@@ -93,7 +193,7 @@ goln                                                              ## cd /var/www
 cd django/github/customizations/always_learning_python            ## I.e. parent dir of this repo
 . ~/.virtualenvs/djangostable/bin/activate
 python -m django --version                  ## 1.10.2a1
-mkdir using_startproject
+mkdir startproject
 cd startproject
 django-admin startproject say_hi
 cd say_hi
