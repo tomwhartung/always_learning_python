@@ -17,7 +17,7 @@ By running this multiple times, I am homing in how I want to set this up on the 
 
 I see no problem with leaving old versions lying around, as long as there is documentation describing them.
 
-## Guide to the Versions
+## Guide to the versions
 
 The first time through I tried doing all of the ones listed above in one project area, what is now say_hi_hybrid.
 
@@ -64,15 +64,11 @@ Interestingly, the azure tutorial says to put it in /var/www specifically (not e
 
 ## say_hi_dfpp
 
-After going through the process successfully twice, this was done starting from scratch, mostly following this process:
+After getting two hello_world projects running, this was done starting from scratch, mostly following this process:
 
 * http://dfpp.readthedocs.io/en/latest/chapter_01.html
 
 If any of this is confusing, skip to the section about the say_hi_hybrid version, which contains many more details.
-
-==============================================================
-==============================================================
-==============================================================
 
 ### Commands Run - startproject
 
@@ -149,11 +145,9 @@ git add --all .
 git commit -m 'Updated app and project files in directories hello_dfpp_app and say_hi_dfpp, as called for in the tutorial.'
 ```
 
-==============================================================
-
 ## say_hi_bogo
 
-After going through the process successfully twice, this was done starting from scratch, mostly following this process:
+After getting two hello_world projects running, this was done starting from scratch, mostly following this process:
 
 * http://www.bogotobogo.com/python/Django/Python_Django_hello_world.php
 
@@ -193,8 +187,8 @@ The instructions say to edit the following files (creating them as necessary)
 
 ```
 ## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_bogo
-vi hello_bogo_app/views.py      ## Note: app dir
 ## vi hello_bogo_app/urls.py    ## Note: NOT NEEDED for the bogo version
+vi hello_bogo_app/views.py      ## Note: app dir
 vi say_hi_bogo/urls.py          ## Note: project dir
 vi say_hi_bogo/settings.py      ## Note: project dir
 ```
@@ -223,13 +217,9 @@ git add --all .
 git commit -m 'Updated app and project files in directories hello_dfpp_app and say_hi_dfpp, as called for in the tutorial.'
 ```
 
-
-
-==============================================================
-
 ## say_hi_tomh
 
-After going through the process successfully twice, this was done starting from scratch, mostly following this process:
+After getting two hello_world projects running, this was done starting from scratch, mostly following this process:
 
 * http://www.bogotobogo.com/python/Django/Python_Django_hello_world.php
 
@@ -267,9 +257,7 @@ git commit -m 'Initial commit of all generated (default) code for say_hi_tomh an
 
 ### Editing the files
 
-Looking at what we did for the other two working versions, here is how I decided to deal with this step.
-
-The tutorials say to edit the following files, creating them as necessary:
+Looking at output of the other two (now four) working versions, I decided to make slightly different edits in this step.
 
 ```
 ## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_tomh
@@ -304,9 +292,6 @@ If it works, commit the code:
 git add --all .
 git commit -m 'Updated app and project files in directories hello_tomh_app and say_hi_tomh, as I am wont to do.'
 ```
-==============================================================
-==============================================================
-==============================================================
 
 ## say_hi_hybrid
 
@@ -314,7 +299,7 @@ This contains my first efforts.
 
 These instructions are baby steps and to actually run the apps you need to copy files.
 
-I recommend looking at one of the other projects; the tomh one is the last and best.
+I recommend looking at one of the other projects; the `hello_tomh_app` one is the last and best.
 
 ### Running the apps
 
@@ -591,8 +576,8 @@ The instructions say to edit the following files (creating them as necessary)
 
 ```
 ## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_hybrid
-vi hello_bogo/views.py       ## Note: app dir
 ## vi hello_bogo/urls.py     ## Note: NOT NEEDED for bogo version
+vi hello_bogo/views.py       ## Note: app dir
 vi say_hi/urls-bogo.py       ## Note: project dir - and MUST rename to settings.py when running app
 vi say_hi/settings-bogo.py   ## Note: project dir - and MUST rename to settings.py when running app
 ```
