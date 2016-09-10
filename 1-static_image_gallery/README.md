@@ -35,22 +35,25 @@ But seriously, first things first, and that is hosting a minimal django site.
 
 The Static Image Gallery shall contain the following pages, with content as described.
 
-* Home Page: briefly describe what the site is about and include a self-portrait
-* Generic GRoJA Images: the sixteen types with a brief explanation of each
-* Celebrity Personalities: Groups of them (Politicians, TV Shows, etc.)
+* Home Page: static; briefly describe what the site is about and include a self-portrait
+* List of Galleries: driven by JSON data
+* Set of GRoJA Images: driven by JSON data
 * Single Image Page: contains the image, its title and description (and navigation) only
+* About: static; more information, and links to other sites and a Contact Me page
 
 This is the bulk of the project: routes (urls) and views.
 
-### Navigation
+### Navigation and urls
 
-* Home page
-* Generics
-* Celebrities
-  * Politicians
-  * TV Shows
-  * Historical
-* About
+KISS is how we want to play it, through and through.
+
+* Home page: `**home**`
+* Generics: `**generics**`
+* Celebrities: `**celebrities**`
+  * Politicians: `**celebrities/politicians**`
+  * TV Shows: `**celebrities/tv_shows**`
+  * Historical: `**celebrities/historical**`
+* About: `**about**`
 
 ### Page Layouts
 
@@ -76,5 +79,19 @@ Lists of images shall be stored in JSON format.
 
 Have navigation shrink into a hambuger menu icon on small screen sizes.
 
+### Design
+
+Most of the site's design is determined by django.
+
+* Single project: `**static_image_gallery**
+* Single app: `**groja_gallery**`
+
+Views: TBD.
+
+### Masterplan
+
+Be mindful that the masterplan is to do something very similar using Node.js and React.
+
+E.g., be on the lookout for opportunities to share non-react-dependent JavaScript, HTML, or CSS between the two!
 
 
