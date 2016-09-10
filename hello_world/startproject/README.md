@@ -104,29 +104,50 @@ git commit -m 'Initial commit of all generated (default) code for say_hi_dfpp an
 
 ### Removing and editing the files
 
-The instructions say to delete these files, because they are not needed:
+The tutorial says to delete these files, because they are not needed:
 
 ```
-## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_hybrid
-cd hello_dfpp
+## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_dfpp
+cd hello_dfpp_app
 rm admin.py models.py
 rm -r migrations
 cd ..
+git commit -m 'Deleted a few files from directory hello_dfpp_app, as called for in the tutorial.'
 ```
 
-The instructions say to edit the following files (creating them as necessary)
+The tutorial says to edit the following files, creating them as necessary:
 
 ```
-## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_hybrid
-vi hello_dfpp/urls.py        ## Note: app dir
-vi hello_dfpp/views.py       ## Note: app dir
-vi say_hi/settings-dfpp.py   ## Note: project dir - and MUST rename to settings.py when running app
-vi say_hi/urls-dfpp.py       ## Note: project dir - and MUST rename to urls.py when running app
+## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_dfpp
+vi hello_dfpp_app/urls.py      ## Notes: new file in app dir
+vi hello_dfpp_app/views.py     ## Note: app dir
+vi say_hi_dfpp/settings.py     ## Note: project dir
+vi say_hi_dfpp/urls.py         ## Note: project dir
 ```
 
 To see what was changed, diff the original and latest versions.
 
+### Running the app and committing the code
 
+Start the server:
+
+```
+## pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_dfpp
+## virtualenv = djangostable
+python manage.py runserver
+```
+
+Access one or both of these urls in the browser:
+
+* http://127.0.0.1:8000/
+* http://localhost:8000/
+
+If it works, commit the code:
+
+```
+git add --all .
+git commit -m 'Updated app and project files in directories hello_dfpp_app and say_hi_dfpp, as called for in the tutorial.'
+```
 
 ==============================================================
 
@@ -171,7 +192,7 @@ git commit -m 'Initial commit of all generated (default) code for say_hi_bogo an
 The instructions say to edit the following files (creating them as necessary)
 
 ```
-## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_hybrid
+## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_bogo
 vi hello_bogo/views.py       ## Note: app dir
 vi hello_bogo/urls.py        ## Note: app dir
 vi say_hi/urls-bogo.py       ## Note: project dir - and MUST rename to settings.py when running app
@@ -226,15 +247,41 @@ git commit -m 'Initial commit of all generated (default) code for say_hi_tomh an
 
 Looking at what we did for the other two working versions, here is how I decided to deal with this step.
 
-TBD.
-TBD.
-TBD.
-TBD.
-TBD.
-TBD.
+The tutorials say to edit the following files, creating them as necessary:
 
+```
+## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_tomh
+vi hello_tomh_app/urls.py      ## Notes: new file in app dir
+vi hello_tomh_app/views.py     ## Note: app dir
+vi say_hi_tomh/settings.py     ## Note: project dir
+vi say_hi_tomh/urls.py         ## Note: project dir
+git add .
+git commit -m 'Updated app and project files in directories hello_tomh_app and say_hi_tomh, as appropriate for my own needs.'
+```
 
+To see what was changed, diff the original and latest versions.
 
+### Running the app and committing the code
+
+Start the server:
+
+```
+## pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_tomh
+## virtualenv = djangostable
+python manage.py runserver
+```
+
+Access one or both of these urls in the browser:
+
+* http://127.0.0.1:8000/
+* http://localhost:8000/
+
+If it works, commit the code:
+
+```
+git add --all .
+git commit -m 'Updated app and project files in directories hello_tomh_app and say_hi_tomh, as I am wont to do.'
+```
 ==============================================================
 ==============================================================
 ==============================================================
