@@ -28,7 +28,7 @@ Including another URLconf
 ## Notes:
 ##    (1) Updated "from..." statement to fix import error ("cannot import name 'patterns'")
 ##       Reference: http://stackoverflow.com/questions/8074955/cannot-import-name-patterns
-##    (2) Changed "hello.urls" to "hello_dfpp.urls"
+##    (2) Changed "hello.urls" to "hello_dfpp_app.urls"
 ##
 ## from django.conf.urls import patterns, include, url
 from django.conf.urls import *

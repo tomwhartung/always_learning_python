@@ -13,9 +13,27 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
-from django.contrib import admin
+##
+## Commenting out the generated code
+##
+# from django.conf.urls import url
+# from django.contrib import admin
+#
+# urlpatterns = [
+#     url(r'^admin/', admin.site.urls),
+# ]
+##
+## Adding in the code from:
+##    http://dfpp.readthedocs.io/en/latest/chapter_01.html
+## Notes:
+##    (1) Updated "from..." statement to fix import error ("cannot import name 'patterns'")
+##       Reference: http://stackoverflow.com/questions/8074955/cannot-import-name-patterns
+##    (2) Changed "hello.urls" to "hello_tomh_app.urls"
+##
+## from django.conf.urls import patterns, include, url
+from django.conf.urls import *
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'', include('hello_tomh_app.urls')),
 ]
+
