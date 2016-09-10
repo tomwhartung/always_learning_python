@@ -47,13 +47,13 @@ This is the bulk of the project: routes (urls) and views.
 
 KISS is how we want to play it, through and through.
 
-* Home page: `**home**
-* Generics: `**generics**
-* Celebrities: `**celebrities**
-  * Politicians: `**celebrities/politicians**
-  * TV Shows: `**celebrities/tv_shows**
-  * Historical: `**celebrities/historical**
-* About: `**about**
+* Home page: `home`
+* Generics: `generics`
+* Celebrities: `celebrities`
+  * Politicians: `celebrities/politicians`
+  * TV Shows: `celebrities/tv_shows`
+  * Historical: `celebrities/historical`
+* About: `about`
 
 ### Page Layouts
 
@@ -83,8 +83,8 @@ Have navigation shrink into a hambuger menu icon on small screen sizes.
 
 Most of the site's design is determined by django.
 
-* Single project: `**static_image_gallery**
-* Single app: `**groja_gallery**
+* Single project: `static_image_gallery
+* Single app: `groja_gallery`
 
 Views: TBD.
 
