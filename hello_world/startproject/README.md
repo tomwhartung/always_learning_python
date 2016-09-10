@@ -193,13 +193,35 @@ The instructions say to edit the following files (creating them as necessary)
 
 ```
 ## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_bogo
-vi hello_bogo/views.py       ## Note: app dir
-vi hello_bogo/urls.py        ## Note: app dir
-vi say_hi/urls-bogo.py       ## Note: project dir - and MUST rename to settings.py when running app
-vi say_hi/settings-bogo.py   ## Note: project dir - and MUST rename to settings.py when running app
+vi hello_bogo_app/views.py      ## Note: app dir
+## vi hello_bogo_app/urls.py    ## Note: NOT NEEDED for the bogo version
+vi say_hi_bogo/urls.py          ## Note: project dir
+vi say_hi_bogo/settings.py      ## Note: project dir
 ```
 
 To see what was changed, diff the original and latest versions.
+
+### Running the app and committing the code
+
+Start the server:
+
+```
+## pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_bogo
+## virtualenv = djangostable
+python manage.py runserver
+```
+
+Access one or both of these urls in the browser:
+
+* http://127.0.0.1:8000/hello_bogo_app/     ## NOTE: must include the app name for the bogo version!
+* http://localhost:8000/hello_bogo_app/     ## NOTE: must include the app name for the bogo version!
+
+If it works, commit the code:
+
+```
+git add --all .
+git commit -m 'Updated app and project files in directories hello_dfpp_app and say_hi_dfpp, as called for in the tutorial.'
+```
 
 
 
@@ -570,7 +592,7 @@ The instructions say to edit the following files (creating them as necessary)
 ```
 ## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_hybrid
 vi hello_bogo/views.py       ## Note: app dir
-vi hello_bogo/urls.py        ## Note: app dir
+## vi hello_bogo/urls.py     ## Note: NOT NEEDED for bogo version
 vi say_hi/urls-bogo.py       ## Note: project dir - and MUST rename to settings.py when running app
 vi say_hi/settings-bogo.py   ## Note: project dir - and MUST rename to settings.py when running app
 ```
