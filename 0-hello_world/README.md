@@ -68,7 +68,7 @@ Enter the following commands to start the server and serve the greetings:
 . ~/.virtualenvs/six/bin/activate                        ## enter the environment (see enter_six_env.sh)
 goln                                                     ## cd /var/www/learn/
 cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
-python hello_world/pure_python.py                        ## Access localhost:8000 in browser for "hello" greetins
+python 0-hello_world/pure_python.py                        ## Access localhost:8000 in browser for "hello" greetings
 
 ```
 
