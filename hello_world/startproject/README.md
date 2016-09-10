@@ -70,24 +70,61 @@ After going through the process successfully twice, this was done starting from 
 
 If any of this is confusing, skip to the section about the say_hi_hybrid version, which contains many more details.
 
+==============================================================
+==============================================================
+==============================================================
+
 ### Commands Run - startproject
 
 I used the following commands to set up this project:
 
 ```
-cd /var/www/learn/
-cd django/github/customizations/always_learning_python
+cd /var/www/learn/django/github/customizations/always_learning_python
 . ~/.virtualenvs/djangostable/bin/activate
 python -m django --version    ## 1.10.2a1
-cd startproject
+cd hello_world/startproject
 django-admin startproject say_hi_dfpp
 cd say_hi_dfpp
 python manage.py runserver    ## Ctrl-C to exit
 ```
 
-Ignore the migrate warnings; visit http://localhost:8000 or http://127.0.0.1:8000 and you should see django's "It worked!" screen
+Ignore the migrate warnings, visit http://localhost:8000 or http://127.0.0.1:8000, and you should see django's "It worked!" screen
 
-### Commands Run - startapp
+### Running startapp and git commit
+
+Generate a default "**hello_dfpp_app**" app using the **python** command, and commit all generated code:
+
+```
+## pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_dfpp
+## virtualenv = djangostable
+python manage.py startapp hello_dfpp_app
+git add .
+git commit -m 'Initial commit of all generated (default) code for say_hi_dfpp and hello_dfpp_app.'
+```
+
+### Removing and editing the files
+
+The instructions say to delete these files, because they are not needed:
+
+```
+## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_hybrid
+cd hello_dfpp
+rm admin.py models.py
+rm -r migrations
+cd ..
+```
+
+The instructions say to edit the following files (creating them as necessary)
+
+```
+## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_hybrid
+vi hello_dfpp/urls.py        ## Note: app dir
+vi hello_dfpp/views.py       ## Note: app dir
+vi say_hi/settings-dfpp.py   ## Note: project dir - and MUST rename to settings.py when running app
+vi say_hi/urls-dfpp.py       ## Note: project dir - and MUST rename to urls.py when running app
+```
+
+To see what was changed, diff the original and latest versions.
 
 
 
@@ -106,19 +143,42 @@ If any of this is confusing, skip to the section about the say_hi_hybrid version
 I used the following commands to set up this project:
 
 ```
-cd /var/www/learn/
-cd django/github/customizations/always_learning_python
+cd /var/www/learn/django/github/customizations/always_learning_python
 . ~/.virtualenvs/djangostable/bin/activate
 python -m django --version    ## 1.10.2a1
-cd startproject
+cd hello_world/startproject
 django-admin startproject say_hi_bogo
 cd say_hi_bogo
 python manage.py runserver    ## Ctrl-C to exit
 ```
 
-Ignore the migrate warnings; visit http://localhost:8000 or http://127.0.0.1:8000 and you should see django's "It worked!" screen
+Ignore the migrate warnings, visit http://localhost:8000 or http://127.0.0.1:8000, and you should see django's "It worked!" screen
 
-### Commands Run - startapp
+### Running startapp and git commit
+
+Generate a default "**hello_bogo_app**" app using the **django-admin** command (he does it a little differently), and commit the code.
+
+```
+## pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_bogo
+## virtualenv = djangostable
+django-admin startapp hello_bogo_app
+git add .
+git commit -m 'Initial commit of all generated (default) code for say_hi_bogo and hello_bogo_app.'
+```
+
+### Editing the files
+
+The instructions say to edit the following files (creating them as necessary)
+
+```
+## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_hybrid
+vi hello_bogo/views.py       ## Note: app dir
+vi hello_bogo/urls.py        ## Note: app dir
+vi say_hi/urls-bogo.py       ## Note: project dir - and MUST rename to settings.py when running app
+vi say_hi/settings-bogo.py   ## Note: project dir - and MUST rename to settings.py when running app
+```
+
+To see what was changed, diff the original and latest versions.
 
 
 
@@ -137,30 +197,55 @@ If any of this is confusing, skip to the section about the say_hi_hybrid version
 I used the following commands to set up this project:
 
 ```
-cd /var/www/learn/
-cd django/github/customizations/always_learning_python
+cd /var/www/learn/django/github/customizations/always_learning_python
 . ~/.virtualenvs/djangostable/bin/activate
 python -m django --version    ## 1.10.2a1
-cd startproject
+cd hello_world/startproject
 django-admin startproject say_hi_tomh
 cd say_hi_tomh
 python manage.py runserver    ## Ctrl-C to exit
 ```
 
-Ignore the migrate warnings; visit http://localhost:8000 or http://127.0.0.1:8000 and you should see django's "It worked!" screen
+Ignore the migrate warnings, visit http://localhost:8000 or http://127.0.0.1:8000, and you should see django's "It worked!" screen
 
-### Commands Run - startapp
+### Running startapp and git commit
+
+I decided to use the **python** command for this, because it's what the tutorial on djangoproject.com does.
+
+Generate a default "**hello_tomh_app**" app using the **python** command, and commit the generated code.
+
+```
+## pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_tomh
+## virtualenv = djangostable
+python manage.py startapp hello_tomh_app
+git add .
+git commit -m 'Initial commit of all generated (default) code for say_hi_tomh and hello_tomh_app.'
+```
+
+### Editing the files
+
+Looking at what we did for the other two working versions, here is how I decided to deal with this step.
+
+TBD.
+TBD.
+TBD.
+TBD.
+TBD.
+TBD.
 
 
 
-
+==============================================================
+==============================================================
 ==============================================================
 
 ## say_hi_hybrid
 
 This contains my first efforts.
 
-These instructions are baby steps and to actually run the apps you need to copy files.  I recommend looking at one of the others.
+These instructions are baby steps and to actually run the apps you need to copy files.
+
+I recommend looking at one of the other projects; the tomh one is the last and best.
 
 ### Running the apps
 
@@ -232,7 +317,6 @@ cp urls-save.py urls.py
 cp settings-save.py settings.py
 cd ..
 ```
-
 
 ### Commands Run - Setup
 
@@ -370,6 +454,8 @@ cd hello_world/startproject/say_hi_hybrid
 python manage.py startapp hello_dfpp      ## or: django-admin startapp hello_dfpp
 ```
 
+#### Removing and editing the files
+
 The instructions say to delete these files, because they are not needed:
 
 ```
@@ -389,6 +475,8 @@ vi hello_dfpp/views.py       ## Note: app dir
 vi say_hi/settings-dfpp.py   ## Note: project dir - and MUST rename to settings.py when running app
 vi say_hi/urls-dfpp.py       ## Note: project dir - and MUST rename to urls.py when running app
 ```
+
+To see what was changed, diff the original and latest versions.
 
 ### Running the hello_dfpp app
 
@@ -428,6 +516,8 @@ django-admin startapp hello_bogo          ## or: python manage.py startapp hello
 
 ```
 
+#### Editing the files
+
 The instructions say to edit the following files (creating them as necessary)
 
 ```
@@ -437,6 +527,8 @@ vi hello_bogo/urls.py        ## Note: app dir
 vi say_hi/urls-bogo.py       ## Note: project dir - and MUST rename to settings.py when running app
 vi say_hi/settings-bogo.py   ## Note: project dir - and MUST rename to settings.py when running app
 ```
+
+To see what was changed, diff the original and latest versions.
 
 ### Running the hello_bogo app
 
