@@ -13,9 +13,40 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
-from django.contrib import admin
+##
+## Merging in code from the "Edit urls.py" section of the "bogo" tutorial
+## ----------------------------------------------------------------------
+## Reference:
+##    http://www.bogotobogo.com/python/Django/Python_Django_hello_world.php
+##
+## from django.conf.urls import url
+## from django.contrib import admin
+##
+## urlpatterns = [
+##     url(r'^admin/', admin.site.urls),
+## ]
+##
+##
+## From "Edit urls.py" section of the "bogo" tutorial
+##    http://www.bogotobogo.com/python/Django/Python_Django_hello_world.php
+## NOTES:
+##    1) The use of "patterns" will cause an error (as we learned from the "dfpp" tutorial)
+##       -> Keep the import for django.conf.urls above and comment out the one from the tutorial
+##    2) The tutorial named the app "HelloWorldApp" but ours is called "hello_bogo_app"
+##       -> Change our version of the tutorial code as appropriate
+##
+## from django.conf.urls import patterns, include, url
+from django.conf.urls import *
+from hello_bogo_app.views import foo
+
+#from django.contrib import admin
+#admin.autodiscover()
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    # Examples:
+    # url(r'^$', 'HelloWorld.views.home', name='home'),
+    # url(r'^blog/', include('blog.urls')),
+    # url(r'^admin/', include(admin.site.urls)),
+    url(r'hello_bogo_app/$', foo),
 ]
+
