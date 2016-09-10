@@ -1,7 +1,7 @@
 
 # hello_world - startproject versions
 
-This is the README.md file for the hello_world/startproject directory.
+This is the README.md file for the 0-hello_world/startproject directory.
 
 * For information about getting hello_world to work with django, but in a more minimal way, etc. see ../README.md .
 
@@ -78,7 +78,7 @@ I used the following commands to set up this project:
 cd /var/www/learn/django/github/customizations/always_learning_python
 . ~/.virtualenvs/djangostable/bin/activate
 python -m django --version    ## 1.10.2a1
-cd hello_world/startproject
+cd 0-hello_world/startproject
 django-admin startproject say_hi_dfpp
 cd say_hi_dfpp
 python manage.py runserver    ## Ctrl-C to exit
@@ -91,7 +91,7 @@ Ignore the migrate warnings, visit http://localhost:8000 or http://127.0.0.1:800
 Generate a default "**hello_dfpp_app**" app using the **python** command, and commit all generated code:
 
 ```
-## pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_dfpp
+## pwd = /var/www/learn/django/github/customizations/always_learning_python/0-hello_world/startproject/say_hi_dfpp
 ## virtualenv = djangostable
 python manage.py startapp hello_dfpp_app
 git add .
@@ -103,7 +103,7 @@ git commit -m 'Initial commit of all generated (default) code for say_hi_dfpp an
 The tutorial says to delete these files, because they are not needed:
 
 ```
-## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_dfpp
+## In pwd = /var/www/learn/django/github/customizations/always_learning_python/0-hello_world/startproject/say_hi_dfpp
 cd hello_dfpp_app
 rm admin.py models.py
 rm -r migrations
@@ -114,7 +114,7 @@ git commit -m 'Deleted a few files from directory hello_dfpp_app, as called for 
 The tutorial says to edit the following files, creating them as necessary:
 
 ```
-## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_dfpp
+## In pwd = /var/www/learn/django/github/customizations/always_learning_python/0-hello_world/startproject/say_hi_dfpp
 vi hello_dfpp_app/urls.py      ## Notes: new file in app dir
 vi hello_dfpp_app/views.py     ## Note: app dir
 vi say_hi_dfpp/settings.py     ## Note: project dir
@@ -128,7 +128,7 @@ To see what was changed, diff the original and latest versions.
 Start the server:
 
 ```
-## pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_dfpp
+## pwd = /var/www/learn/django/github/customizations/always_learning_python/0-hello_world/startproject/say_hi_dfpp
 ## virtualenv = djangostable
 python manage.py runserver
 ```
@@ -161,7 +161,7 @@ I used the following commands to set up this project:
 cd /var/www/learn/django/github/customizations/always_learning_python
 . ~/.virtualenvs/djangostable/bin/activate
 python -m django --version    ## 1.10.2a1
-cd hello_world/startproject
+cd 0-hello_world/startproject
 django-admin startproject say_hi_bogo
 cd say_hi_bogo
 python manage.py runserver    ## Ctrl-C to exit
@@ -174,7 +174,7 @@ Ignore the migrate warnings, visit http://localhost:8000 or http://127.0.0.1:800
 Generate a default "**hello_bogo_app**" app using the **django-admin** command (he does it a little differently), and commit the code.
 
 ```
-## pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_bogo
+## pwd = /var/www/learn/django/github/customizations/always_learning_python/0-hello_world/startproject/say_hi_bogo
 ## virtualenv = djangostable
 django-admin startapp hello_bogo_app
 git add .
@@ -186,7 +186,7 @@ git commit -m 'Initial commit of all generated (default) code for say_hi_bogo an
 The instructions say to edit the following files (creating them as necessary)
 
 ```
-## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_bogo
+## In pwd = /var/www/learn/django/github/customizations/always_learning_python/0-hello_world/startproject/say_hi_bogo
 ## vi hello_bogo_app/urls.py    ## Note: NOT NEEDED for the bogo version
 vi hello_bogo_app/views.py      ## Note: app dir
 vi say_hi_bogo/urls.py          ## Note: project dir
@@ -200,7 +200,7 @@ To see what was changed, diff the original and latest versions.
 Start the server:
 
 ```
-## pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_bogo
+## pwd = /var/www/learn/django/github/customizations/always_learning_python/0-hello_world/startproject/say_hi_bogo
 ## virtualenv = djangostable
 python manage.py runserver
 ```
@@ -233,7 +233,7 @@ I used the following commands to set up this project:
 cd /var/www/learn/django/github/customizations/always_learning_python
 . ~/.virtualenvs/djangostable/bin/activate
 python -m django --version    ## 1.10.2a1
-cd hello_world/startproject
+cd 0-hello_world/startproject
 django-admin startproject say_hi_tomh
 cd say_hi_tomh
 python manage.py runserver    ## Ctrl-C to exit
@@ -248,7 +248,7 @@ I decided to use the **python** command for this, because it's what the tutorial
 Generate a default "**hello_tomh_app**" app using the **python** command, and commit the generated code.
 
 ```
-## pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_tomh
+## pwd = /var/www/learn/django/github/customizations/always_learning_python/0-hello_world/startproject/say_hi_tomh
 ## virtualenv = djangostable
 python manage.py startapp hello_tomh_app
 git add .
@@ -260,7 +260,7 @@ git commit -m 'Initial commit of all generated (default) code for say_hi_tomh an
 Looking at output of the other two (now four) working versions, I decided to make slightly different edits in this step.
 
 ```
-## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_tomh
+## In pwd = /var/www/learn/django/github/customizations/always_learning_python/0-hello_world/startproject/say_hi_tomh
 vi hello_tomh_app/urls.py      ## Notes: new file in app dir
 vi hello_tomh_app/views.py     ## Note: app dir
 vi say_hi_tomh/settings.py     ## Note: project dir
@@ -276,7 +276,7 @@ To see what was changed, diff the original and latest versions.
 Start the server:
 
 ```
-## pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_tomh
+## pwd = /var/www/learn/django/github/customizations/always_learning_python/0-hello_world/startproject/say_hi_tomh
 ## virtualenv = djangostable
 python manage.py runserver
 ```
@@ -390,7 +390,7 @@ cd say_hi_hybrid
 
 ### Files created:
 
-These file names are relative to /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_hybrid
+These file names are relative to /var/www/learn/django/github/customizations/always_learning_python/0-hello_world/startproject/say_hi_hybrid
 
 * `manage.py` - for site administration; similar to using ```django-admin``` or ```python -m django``` (see link below)
 * `say_hi` - the python package name for this project; use when importing code, e.g., say_hi/urls
@@ -457,7 +457,7 @@ First generate a default "**hello_dfpp_default**" app using the **python** comma
 goln                                                     ## cd /var/www/learn/ ** *BAD but OK for now* **
 cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
 . enter_djangostable_env.sh
-cd hello_world/startproject/say_hi_hybrid
+cd 0-hello_world/startproject/say_hi_hybrid
 python manage.py startapp hello_dfpp_default
 ```
 
@@ -469,7 +469,7 @@ Now generate a default "**hello_bogo_default**" app using the **django-admin** c
 goln                                                     ## cd /var/www/learn/ ** *BAD but OK for now* **
 cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
 . enter_djangostable_env.sh
-cd hello_world/startproject/say_hi_hybrid
+cd 0-hello_world/startproject/say_hi_hybrid
 django-admin startapp hello_bogo_default
 ```
 
@@ -504,7 +504,7 @@ Note the app name (*hello_dfpp*) and use of the python (instead of the django-ad
 goln                                                     ## cd /var/www/learn/ ** *BAD but OK for now* **
 cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
 . enter_djangostable_env.sh
-cd hello_world/startproject/say_hi_hybrid
+cd 0-hello_world/startproject/say_hi_hybrid
 python manage.py startapp hello_dfpp      ## or: django-admin startapp hello_dfpp
 ```
 
@@ -513,7 +513,7 @@ python manage.py startapp hello_dfpp      ## or: django-admin startapp hello_dfp
 The instructions say to delete these files, because they are not needed:
 
 ```
-## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_hybrid
+## In pwd = /var/www/learn/django/github/customizations/always_learning_python/0-hello_world/startproject/say_hi_hybrid
 cd hello_dfpp
 rm admin.py models.py
 rm -r migrations
@@ -523,7 +523,7 @@ cd ..
 The instructions say to edit the following files (creating them as necessary)
 
 ```
-## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_hybrid
+## In pwd = /var/www/learn/django/github/customizations/always_learning_python/0-hello_world/startproject/say_hi_hybrid
 vi hello_dfpp/urls.py        ## Note: app dir
 vi hello_dfpp/views.py       ## Note: app dir
 vi say_hi/settings-dfpp.py   ## Note: project dir - and MUST rename to settings.py when running app
@@ -540,7 +540,7 @@ Start the server and browse to the app in the browser:
 goln                                                     ## cd /var/www/learn/ ** *BAD but OK for now* **
 cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
 . enter_djangostable_env.sh
-cd hello_world/startproject/say_hi_hybrid
+cd 0-hello_world/startproject/say_hi_hybrid
 cd say_hi                            ## [sic]
 cp settings-dfpp.py settings.py      ## HACK - should have made separate projects
 cp urls-dfpp.py urls.py              ## HACK - should have made separate projects
@@ -565,7 +565,7 @@ Note the app name (**hello_bogo**) and use of the `django-admin` (instead of the
 goln                                                     ## cd /var/www/learn/ ** *BAD but OK for now* **
 cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
 . enter_djangostable_env.sh
-cd hello_world/startproject/say_hi_hybrid
+cd 0-hello_world/startproject/say_hi_hybrid
 django-admin startapp hello_bogo          ## or: python manage.py startapp hello_bogo
 
 ```
@@ -575,7 +575,7 @@ django-admin startapp hello_bogo          ## or: python manage.py startapp hello
 The instructions say to edit the following files (creating them as necessary)
 
 ```
-## In pwd = /var/www/learn/django/github/customizations/always_learning_python/hello_world/startproject/say_hi_hybrid
+## In pwd = /var/www/learn/django/github/customizations/always_learning_python/0-hello_world/startproject/say_hi_hybrid
 ## vi hello_bogo/urls.py     ## Note: NOT NEEDED for bogo version
 vi hello_bogo/views.py       ## Note: app dir
 vi say_hi/urls-bogo.py       ## Note: project dir - and MUST rename to settings.py when running app
@@ -592,7 +592,7 @@ Start the server and browse to the app in browser:
 goln                                                     ## cd /var/www/learn/ ** *BAD but OK for now* **
 cd django/github/customizations/always_learning_python   ## I.e. parent dir of this repo
 . enter_djangostable_env.sh
-cd hello_world/startproject/say_hi_hybrid
+cd 0-hello_world/startproject/say_hi_hybrid
 cd say_hi                         ## [sic]
 cp urls-bogo.py urls.py           ## HACK - should have made separate projects
 cp settings-bogo.py settings.py   ## HACK - should have made separate projects
