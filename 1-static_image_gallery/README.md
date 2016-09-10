@@ -42,6 +42,16 @@ The Static Image Gallery shall contain the following pages, with content as desc
 
 This is the bulk of the project: routes (urls) and views.
 
+### Navigation
+
+* Home page
+* Generics
+* Celebrities
+  * Politicians
+  * TV Shows
+  * Historical
+* About
+
 ### Page Layouts
 
 KISS is the key here.  All pages shall contain:
