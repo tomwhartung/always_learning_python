@@ -83,15 +83,17 @@ Have navigation shrink into a hambuger menu icon on small screen sizes.
 
 Most of the site's design is determined by django.
 
-* Single project: `static_image_gallery
+* Single project: `static_image_gallery`
 * Single app: `groja_gallery`
 
 Views: TBD.
 
-### Masterplan
+### MasterPlan
 
-Be mindful that the masterplan is to do something very similar using Node.js and React.
+Be mindful that the MasterPlan is to do something very similar using Node.js and React, to compare the two.
 
-E.g., be on the lookout for opportunities to share non-react-dependent JavaScript, HTML, or CSS between the two!
+For example, be on the lookout for opportunities to share non-react-dependent JavaScript, HTML, or CSS between the two!
+
+**Don't forget the MasterPlan!!**
 
 
