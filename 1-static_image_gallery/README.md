@@ -33,7 +33,7 @@ But seriously, first things first, and that is hosting a minimal django site.
 
 This is part of groja.com , which has its own repository.
 
-For the requirements for this project, see the (https://github.com/tomwhartung/groja.com)[groja.com README.md file].
+For the requirements for this project, see the [groja.com README.md file](https://github.com/tomwhartung/groja.com).
 
 ### Design
 
