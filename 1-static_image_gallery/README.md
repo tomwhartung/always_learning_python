@@ -31,53 +31,9 @@ But seriously, first things first, and that is hosting a minimal django site.
 
 ## Requirements
 
-### Pages
+This is part of groja.com , which has its own repository.
 
-The Static Image Gallery shall contain the following pages, with content as described.
-
-* Home Page: static; briefly describe what the site is about and include a self-portrait
-* List of Galleries: driven by JSON data
-* Set of GRoJA Images: driven by JSON data
-* Single Image Page: contains the image, its title and description (and navigation) only
-* About: static; more information, and links to other sites and a Contact Me page
-
-This is the bulk of the project: routes (urls) and views.
-
-### Navigation and urls
-
-KISS is how we want to play it, through and through.
-
-* Home page: `home`
-* Generics: `generics`
-* Celebrities: `celebrities`
-  * Politicians: `celebrities/politicians`
-  * TV Shows: `celebrities/tv_shows`
-  * Historical: `celebrities/historical`
-* About: `about`
-
-### Page Layouts
-
-KISS is the key here.  All pages shall contain:
-
-* navigation and
-* content
-
-ONLY.
-
-### Data
-
-Lists of images shall be stored in JSON format.
-
-### Devices
-
-* Keep layouts as simple as possible.
-* Use minimal media queries.
-* Probably want to use bootstrap to build columns of images
-* No need for device detection at this time.
-
-#### Bonus Extra Credit!
-
-Have navigation shrink into a hambuger menu icon on small screen sizes.
+For the requirements for this project, see the [https://github.com/tomwhartung/groja.com](groja.com README.md file).
 
 ### Design
 
