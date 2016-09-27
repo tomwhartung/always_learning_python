@@ -9,7 +9,7 @@ This is the README.md file for the 0-hello_world/startproject directory.
 
 ## Why so many versions?
 
-Right about the time I got two of these actually working, I figure out how I should have set it up.
+Right about the time I got two of these actually working, I figured out how I should have set it up.
 
 > "It's complicated"
 
