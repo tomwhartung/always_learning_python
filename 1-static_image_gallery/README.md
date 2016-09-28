@@ -5,6 +5,16 @@ For information about installing django and setting up the required virtual envi
 
 For information about how to use startproject, startapp, etc. see the ../0-hello_world/startproject subdirectory.
 
+## static_image_gallery - on hold for now
+
+So, actually rebuilding groja.com from scratch turned out to be an enlightening and fun exercise.
+
+Using an enhanced version of html5boilerplate from initializr.com, I actually managed to make groja.com a pretty nice marketing site (which still needs a lot of work).
+
+Since groja.com contains a gallery, that has pretty much makes this exercise unnecessary, so this is on hold for now.
+
+"For now...."
+
 ## static_image_gallery - goals
 
 Keep in mind that the main goal is get a django site running on my server, no matter how simplistic, asap.
