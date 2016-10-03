@@ -55,4 +55,15 @@ gc 'Adding the default, generated version of files created running "django-admin
 
 This is where we start merging in the html5boilerplate initializr stuff.
 
+##### Removed one level of directories
+
+When I started on this section, the files were in:
+
+* `2-seeourminds-prototype/Site/seeourminds/*`
+
+where the `*` includes a directory named seeourminds.
+
+So I removed the seeourminds directory at the first level; "hope that's OK."
+
+
 
