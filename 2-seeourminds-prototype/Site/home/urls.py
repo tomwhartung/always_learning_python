@@ -9,8 +9,12 @@
 from django.conf.urls import *
 
 from home.views import HomePageView
+from . import views
 
 urlpatterns = [
+##  url(r'^$', views.index, name='index'),
     url(r'^$', HomePageView.as_view(), name='home'),
+    url(r'^home$', HomePageView.as_view(), name='home'),
+    url(r'^index$', views.index, name='index'),
 ]
 
