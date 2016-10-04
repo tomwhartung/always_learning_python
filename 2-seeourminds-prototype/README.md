@@ -130,6 +130,22 @@ Baby steps:
 3. We are moving away from the say_hi_tomh/dfpp way of doing things towards following the djangoproject.com tutorial more closely
 4. Commiting current changes and carrying on with the djangoproject.com tutorial ...
 
+### Getting the template to work
+
+Moving on to part 3 of the tutorial, skipping the polls-specific stuff to get to the "Write views that actually..." section
+
+* https://docs.djangoproject.com/en/1.10/intro/tutorial03/#write-views-that-actually-do-something
+
+More baby steps:
+
+1. Created file `home/templates/home/index.html` with some markup such that we will know it if we are seeing it
+2. Added import command to views.py: `from django.template import loader`
+3. Updated the index() function in views.py to call the loader on the template and render it with a null context (1)
+4. Commit the baby step changes!
+
+(1) That may sound complicated but see the index function views.py, it is like three lines of code.
+
+
 ### Moving html5boilerplate code to the index template
 
 Current goal....
