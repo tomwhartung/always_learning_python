@@ -165,4 +165,9 @@ References:
 4. Move the css files into the new directory `home/static/home/css`
 5. Update the index.html (template) file with `{% load static %}` and adjust the link tags for the css files
 6. Commit the baby step changes!
+7. Move the js files into the new directory `home/static/home/css`
+8. Update the index.html (template) file with `{% load static %}` and adjust the link tags for the css files
+9. Commit the baby step changes!
+
+
 
