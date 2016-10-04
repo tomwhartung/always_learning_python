@@ -29,6 +29,10 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+##
+## NOT Commenting out ANY of these as described in the tutorial ...
+##  ... because I haven't yet decided whether I want them (and probably will!)
+##
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -69,17 +74,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'seeourminds.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/dev/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
+##
+## Commenting this out as described in the tutorial, here:
+##    http://dfpp.readthedocs.io/en/latest/chapter_01.html
+##
+## # Database
+## # https://docs.djangoproject.com/en/dev/ref/settings/#databases
+##
+## DATABASES = {
+##     'default': {
+##         'ENGINE': 'django.db.backends.sqlite3',
+##         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+##     }
+## }
+##
 
 # Password validation
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
