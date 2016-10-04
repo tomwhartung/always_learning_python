@@ -143,13 +143,26 @@ More baby steps:
 3. Updated the index() function in views.py to call the loader on the template and render it with a null context (1)
 4. Commit the baby step changes!
 
-(1) That may sound complicated but see the index function views.py, it is like three lines of code.
+(1) That may sound complicated but seriously, just look at the index() function in views.py, it is like three lines of code.
 
+**Return to learn the render shortcut and how to do 404 pages**
+
+* https://docs.djangoproject.com/en/1.10/intro/tutorial03/#a-shortcut-render
+* https://docs.djangoproject.com/en/1.10/intro/tutorial03/#raising-a-404-error
 
 ### Moving html5boilerplate code to the index template
 
-Current goal....
+We have the index file where we want it, that just leaves the css and js; Django calls these "static" files.
 
+References:
 
+* https://docs.djangoproject.com/en/1.10/intro/tutorial06/ - how-to for css files
+* https://docs.djangoproject.com/en/1.10/howto/static-files/ - other types: images, etc.
 
+1. Replaced `home/templates/home/index.html` with the html5boilerplate index.html
+2. Added a context variable to both it and home/views.py to test that functionality (it works as expected)
+3. Commit the baby step changes!
+4. Move the css files into the new directory `home/static/home/css`
+5. Update the index.html (template) file with `{% load static %}` and adjust the link tags for the css files
+6. Commit the baby step changes!
 
