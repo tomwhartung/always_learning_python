@@ -20,8 +20,11 @@ from django.template import loader
 ##    http://127.0.0.1:8000/index
 ##
 def index(request):
+    context_var = 'arbitrary greeting text in a context variable'
     template = loader.get_template('home/index.html')
-    context = { }
+    context = {
+        'context_var': context_var,
+    }
     return HttpResponse(template.render(context, request))
 ##  return HttpResponse("Hello from the index function in home/views.py .")
 
