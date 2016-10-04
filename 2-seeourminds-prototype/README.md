@@ -65,5 +65,36 @@ where the `*` includes a directory named seeourminds.
 
 So I removed the seeourminds directory at the first level; "hope that's OK."
 
+#### Files edited
 
+Looking back at ../0-hello_world/startproject , it appears that say_hi_tomh combines the best parts of the various versions there.
+
+* `home/views.py` - added `class HomePageView` etc.
+* `home/urls.py`  - added urlpattern for the home page and replaced call to pattern function with a simple array definition
+* `seeourminds/urls.py` - removed all generated code and added url pattern directing blank urls to the routes in home.urls
+* `seeourminds/settings.py` - added app definition and commented out database stuff
+
+The comments in all edits reference the dfpp tutorial, so you can follow along using this reference:
+
+* http://dfpp.readthedocs.io/en/latest/chapter_01.html#writing-the-code
+
+#### Running the server
+
+Use these commands to run the server:
+
+```
+. ~/.virtualenvs/djangostable/bin/activate
+python manage.py runserver
+```
+
+And access the site in the browser:
+
+* http://127.0.0.1:8000/
+
+#### Check in to git
+
+```
+git add ...
+git commit ...
+```
 
