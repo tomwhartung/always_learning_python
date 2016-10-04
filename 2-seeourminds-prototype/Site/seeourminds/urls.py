@@ -33,7 +33,13 @@ Including another URLconf
 ## from django.conf.urls import patterns, include, url
 from django.conf.urls import *
 
+##
+## Adding more urls, inspired by the "Write your first view" section in:
+##    https://docs.djangoproject.com/en/1.10/intro/tutorial01/
+##
 urlpatterns = [
     url(r'', include('home.urls')),
+    url(r'^home/', include('home.urls')),
+    url(r'^index/', include('home.urls')),
 ]
 
