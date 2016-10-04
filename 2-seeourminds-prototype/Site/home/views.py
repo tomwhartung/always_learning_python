@@ -11,7 +11,20 @@ import textwrap
 from django.http import HttpResponse
 from django.views.generic.base import View
 
+##
+## From part 1 of the polls tutorial; the simplest view:
+## Reference: "Write your first view" section
+##    https://docs.djangoproject.com/en/1.10/intro/tutorial01/
+## Runs when we access:
+##    http://127.0.0.1:8000/index
+##
+def index(request):
+    return HttpResponse("Hello from the index function in home/views.py .")
 
+##
+## From the "dfpp" tutorial, with the html5boilerplate code pasted in:
+## -> Html5boilerplate code loads ok but it cannot find css and js files
+##
 class HomePageView(View):
 
     def dispatch(request, *args, **kwargs):
