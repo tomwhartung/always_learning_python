@@ -10,6 +10,7 @@ import textwrap
 
 from django.http import HttpResponse
 from django.views.generic.base import View
+from django.template import loader
 
 ##
 ## From part 1 of the polls tutorial; the simplest view:
@@ -19,7 +20,10 @@ from django.views.generic.base import View
 ##    http://127.0.0.1:8000/index
 ##
 def index(request):
-    return HttpResponse("Hello from the index function in home/views.py .")
+    template = loader.get_template('home/index.html')
+    context = { }
+    return HttpResponse(template.render(context, request))
+##  return HttpResponse("Hello from the index function in home/views.py .")
 
 ##
 ## From the "dfpp" tutorial, with the html5boilerplate code pasted in:
