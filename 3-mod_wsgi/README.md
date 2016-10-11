@@ -41,3 +41,23 @@ It's bad to put it in home directories as well - but that's where our virtualenv
 
 Famous last words but still....
 
+### The Key:
+
+The key to getting this to work is the WSGIScriptAlias directive.  Here is what works for this example:
+
+```
+WSGIScriptAlias / /var/www/learn/django/github/customizations/always_learning_python/3-mod_wsgi/Site/sample_app.py
+```
+
+It looks like this script is the main routine that runs the rest of the code but most of the site ("the rest of the code") goes under `documents` .
+
+### Observations
+
+It appears that we are supposed to keep the "Site" part - which contains the WSGIScriptAlias's script - as minimal as possible.
+
+It also appears that we are supposed to put as much as possible, especially static files, in the "documents" part - which is the DocumentRoot .
+
+However it may be that we want to keep Django and all our virtualenv stuff outside of both of these?
+
+We will worry about that plenty when it comes time to deploy....
+
