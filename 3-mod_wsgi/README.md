@@ -49,9 +49,50 @@ The key to getting this to work is the WSGIScriptAlias directive.  Here is what 
 WSGIScriptAlias / /var/www/learn/django/github/customizations/always_learning_python/3-mod_wsgi/Site/sample_app.py
 ```
 
-It looks like this script is the main routine that runs the rest of the code but most of the site ("the rest of the code") goes under `documents` .
+We also had to add the following line to our /etc/hosts file - temporarily, only long enough to test the installation and configuration:
+
+```
+127.0.1.1   jane.wsgi.test
+```
+
+### Good to Know:
+
+If we change the "/" to something else, "/wsgi" for example, as follows:
+
+```
+WSGIScriptAlias /wsgi /var/www/learn/django/github/customizations/always_learning_python/3-mod_wsgi/Site/sample_app.py
+```
+
+* Hitting just jane.wsgi.test serves the `documents/index.html` file.
+* In this case we need to hit jane.wsgi.test/wsgi to get the sample_app.py file to run.
+
+### Working Config File:
+
+The working apache virtual host configuration file is on jane in:
+
+* `/etc/apache2/sites-available/150-wsgi.test.conf`
+
+### Daemon Mode
+
+According to the docs, we should use daemon mode to avoid having to restart the server when making changes.
+
+> By default any WSGI application will run in what is called embedded mode....
+> When embedded mode is used, whenever you make changes to your WSGI application code you would generally have to restart the Apache web server.
+
+Tried making changes to the sample_app.py file and they show up without restarting.  Let's give it a try anyway.
+
+This involves adding the following directives to `/etc/apache2/sites-available/150-wsgi.test.conf` :
+
+```
+WSGIDaemonProcess example.com processes=2 threads=15
+WSGIProcessGroup example.com
+```
+
+It appears that adding these does not have any effect, but I am going to leave them in there anyway, at least for now.
 
 ### Observations
+
+It looks like this script is the main routine that runs the rest of the code but most of the site ("the rest of the code") goes under `documents` .
 
 It appears that we are supposed to keep the "Site" part - which contains the WSGIScriptAlias's script - as minimal as possible.
 
