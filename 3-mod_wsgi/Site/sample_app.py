@@ -5,13 +5,17 @@
 # Using this to test our mod_wsgi install
 #
 
+##
+#  This function must be named "application,"
+#  (unless you want to change the wsgi configuration).
+#
 def application(environ, start_response):
-    status = '200 OK'
-    output = 'Hello World!'
+   status = '200 OK'
+   output = b'Hello world from Site/sample_app.py !'
 
-    response_headers = [('Content-type', 'text/plain'),
-                        ('Content-Length', str(len(output)))]
-    start_response(status, response_headers)
+   response_headers = [('Content-type', 'text/plain'),
+                       ('Content-Length', str(len(output)))]
+   start_response(status, response_headers)
 
-    return [output]
+   return [output]
 
