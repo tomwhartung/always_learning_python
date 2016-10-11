@@ -12,8 +12,8 @@ import sys
 #
 def application(environ, start_response):
    status = '200 OK'
-   text  = 'Hello world from Site/sample_app.py , '
-   text += 'where the version of python we are using is: ' + sys.version
+   text  = 'Hi there, world from Site/sample_app.py , '
+   text += 'where the version of python we are using is:\n' + sys.version
    output = text.encode( 'utf-8' )
 
    response_headers = [('Content-type', 'text/plain'),
