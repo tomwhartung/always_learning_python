@@ -4,6 +4,7 @@
 #
 # Using this to test our mod_wsgi install
 #
+import sys
 
 ##
 #  This function must be named "application,"
@@ -11,7 +12,9 @@
 #
 def application(environ, start_response):
    status = '200 OK'
-   output = b'Hello world from Site/sample_app.py !'
+   text  = 'Hello world from Site/sample_app.py , '
+   text += 'where the version of python we are using is: ' + sys.version
+   output = text.encode( 'utf-8' )
 
    response_headers = [('Content-type', 'text/plain'),
                        ('Content-Length', str(len(output)))]
