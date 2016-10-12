@@ -7,13 +7,20 @@
 import sys
 
 ##
-#  This function must be named "application,"
-#  (unless you want to change the wsgi configuration).
+#  This function must be named "application," (unless you want to change the wsgi configuration).
+#  Found some interesting values that we can print on this page:
+#     https://modwsgi.readthedocs.io/en/develop/user-guides/checking-your-installation.html
 #
 def application(environ, start_response):
    status = '200 OK'
-   text  = 'Hi there, world from Site/sample_app.py , '
-   text += 'where the version of python we are using is:\n' + sys.version
+   text  = 'Hi there, world from Site/sample_app.py !\n\n'
+   text += 'The version of python we are using is:\n' + sys.version + '\n\n'
+   text += 'sys.path: %s' % repr(sys.path) + '\n\n'
+   text += 'sys.prefix: ' + sys.prefix + '\n'
+   text += 'wsgi.multithread = %s' % repr(environ['wsgi.multithread']) + '\n'
+   text += 'mod_wsgi.process_group = %s' % repr(environ['mod_wsgi.process_group'])
+   text += '   ## A blank value for the mod_wsgi.process_group means we are running in embedded mode\n'
+
    output = text.encode( 'utf-8' )
 
    response_headers = [('Content-type', 'text/plain'),
