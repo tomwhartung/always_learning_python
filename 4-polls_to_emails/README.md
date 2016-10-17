@@ -3,6 +3,16 @@
 
 Experimenting with parts of djangoproject.com's polls app, attempting to apply the steps to a simple app that stores emails.
 
+### Goal:
+
+Following the steps in the tutorial for the polls app, we want to try making an app that stores emails in a database.
+
+(1) Initially we want to gather the email addresses of people who visit a site and are interested in more information.
+(2) There will not be any sort of online access to these; if and when we use them it will be from behind a firewall.
+(3) If and when we do use them, we will want to provide an interface for unsubscribing from the list.
+
+For this application, we will use SQLite.
+
 ### Main References:
 
 Most of this is based on information on this page:
