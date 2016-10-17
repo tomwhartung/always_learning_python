@@ -3,17 +3,7 @@
 
 Experimenting with parts of djangoproject.com's polls app, attempting to apply the steps to a simple app that stores emails.
 
-### Goal:
-
-Following the steps in the tutorial for the polls app, we want to try making an app that stores emails in a database.
-
-(1) Initially we want to gather the email addresses of people who visit a site and are interested in more information.
-(2) There will not be any sort of online access to these; if and when we use them it will be from behind a firewall.
-(3) If and when we do use them, we will want to provide an interface for unsubscribing from the list.
-
-For this application, we will use SQLite.
-
-### Main References:
+## References:
 
 Most of this is based on information on this page:
 
@@ -24,6 +14,32 @@ If I need a second opinion, I will probably go to the O'Reilly book, Lightweight
 (2) http://shop.oreilly.com/product/0636920032502.do
 
 However, I am learning that the djangoproject site seems to really be the best source of information.
+
+## Goal:
+
+Following the steps in the tutorial for the polls app, we want to try making an app that stores emails in a database.
+
+(1) Initially we want to gather the email addresses of people who visit a site and are interested in more information.
+(2) There will not be any sort of online access to these; if and when we use them it will be from behind a firewall.
+(3) If and when we do use them, we will want to provide an interface for unsubscribing from the list.
+
+## Requirements:
+
+For this application, we will use SQLite.
+
+Based on what I read in the book today, django provides default forms for entering data.
+
+It is perfectly acceptable to use these default forms rather than create our own.
+
+### Values to Store
+
+We need only one table to store the following information:
+
+* Visitor's Name - optional string; prompt for both first and last name
+* Visitor's Email - required string; plan to validate in both front and back end (at least require an "@" and a ".")
+* Site (List Name) - required 2-character site abbreviation: 'g' 'jm' 'sm' 'th' 'tw'; hidden value in email submission form
+
+## Initial setup
 
 ### The `documents` Directory
 
