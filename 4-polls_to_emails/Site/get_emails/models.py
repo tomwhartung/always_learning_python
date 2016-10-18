@@ -12,4 +12,7 @@ class SubscriberEmail( models.Model ) :
    site_code = models.CharField( max_length=2 )
    subscription_date = models.DateTimeField('date subscribed')
 
+   def __str__( self ) :
+      subscriberString = self.email + ' (' + self.name + ')' + self.site_code
+      return self.email
 
