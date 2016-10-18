@@ -37,9 +37,10 @@ It is perfectly acceptable to use these default forms rather than create our own
 
 We need only one table to store the following information:
 
-* Visitor's Name - optional string; prompt for both first and last name
-* Visitor's Email - required string; plan to validate in both front and back end (at least require an "@" and a ".")
+* Subscriber's Name - optional string; prompt for both first and last name
+* Subscriber's Email - required string; plan to validate in both front and back end (at least require an "@" and a ".")
 * Site (List Name) - required 2-character site abbreviation: 'g' 'jm' 'sm' 'th' 'tw'; hidden value in email submission form
+* Subscription Date - timestamp; populated automatically
 
 ## Initial setup
 
@@ -128,4 +129,22 @@ git commit -m 'Version of db.sqlite3 updated by running migrate.'
 ```
 
 We can now run the `python3 manage.py runserver` command without it complaining about needing to run the migrations.
+
+### Step (2.2) Create the Models
+
+Creating only one table: SubscriberEmail
+
+> The name of each Field instance (e.g. question_text or pub_date) is the field’s name, in machine-friendly format. You’ll use this value in your Python code, and your database will use it as the column name.
+
+```
+vi models.py 
+cat models.py
+...
+class SubscriberEmail( models.Model ) :
+   name = models.CharField( max_length=45 )
+   email = models.CharField( max_length=254 )
+   site_code = models.CharField( max_length=2 )
+   subscription_date = models.DateTimeField('date subscribed')
+...
+```
 
