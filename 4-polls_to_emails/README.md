@@ -248,6 +248,56 @@ datetime.datetime(2016, 10, 18, 2, 46, 44, 577331, tzinfo=<UTC>)
 
 It works as it should!
 
+#### More fun with the API
+
+Refining our model, setting default values, etc. and testing the changes....
+
+Some common commands, presented without the prompts and with output as comments:
+
+```
+###
+### Setup - we always want to run these commands:
+###
+python3 manage.py shell
+from get_emails.models import SubscriberEmail
+###
+### Getting data:
+###
+SubscriberEmail.objects.all()
+# <QuerySet [<SubscriberEmail: kitty@cat.com (Zeronimo) th>, <SubscriberEmail: mildred@cats.com (mildred) gr>, <SubscriberEmail: marvin@imissyou.com (marvin) uk>]>
+SubscriberEmail.objects.filter(id=3)
+# <QuerySet [<SubscriberEmail: marvin@imissyou.com (marvin) uk>]>
+###
+### Creating, changing, and storing new objects - don't forget to call .save() :
+###
+from django.utils import timezone
+marvin = SubscriberEmail( name='marvin', email='marvin@imissyou.com', subscription_date=timezone.now() )
+marvin = SubscriberEmail.objects.get( pk=3 )
+marvin.name = "Starvin' Marvin"
+SubscriberEmail.objects.filter( id=3 )
+###
+### Testing defaults - *before* adding them to models.py:
+###
+neonoir = SubscriberEmail( email='neonoir@imissyou.com' )
+neonoir.save()      ## Before adding defaults get: 'sqlite3.IntegrityError: NOT NULL constraint failed: ...'
+###
+### Testing defaults - *after* adding them to models.py:
+###   name - '' (blank)
+###   site_code - 'xx' (for 'Unknown')
+###   subscription_date - timestamp.now()
+### Note:
+###   must exit and re-enter the python3 shell to load the new version of models.py
+###
+exit()
+python3 manage.py shell
+from get_emails.models import SubscriberEmail
+neonoir = SubscriberEmail( email='neonoir@imissyou.com' )
+neonoir.save()     ## After adding defaults, this works OK
+
+```
+
+marvin = SubscriberEmail.objects.get( pk=3 )
+
 For more: https://docs.djangoproject.com/en/1.10/topics/db/queries/
 
 
