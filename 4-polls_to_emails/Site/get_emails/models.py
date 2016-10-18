@@ -32,9 +32,12 @@ class SubscriberEmail( models.Model ) :
       choices=SITE_CODE_CHOICES,
       default=SITE_UNKNOWN,
    )
+   subscribed = models.BooleanField(
+      default=True,
+   )
    subscription_date = models.DateTimeField(
       'date subscribed',
-      default=timezone.now(),
+      default=timezone.now,
    )
 
    ##############################
@@ -87,8 +90,13 @@ class SubscriberEmail( models.Model ) :
       ## site_name += self.getSiteNameSelfVersion( site_code )
       site_name += ' (' + site_code + ')'
 
+      if( self.subscribed ) :
+         subscribed = ' +Y+'
+      else :
+         subscribed = ' -N-'
+
       subscription_date = ' ' + str( self.subscription_date ) + '\n'
 
-      subscriberString = id + email + name + site_name + subscription_date
+      subscriberString = id + email + name + site_name + subscribed + subscription_date
       return subscriberString
 
