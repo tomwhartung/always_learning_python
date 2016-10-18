@@ -73,6 +73,7 @@ class SubscriberEmail( models.Model ) :
    # Creates a string representation of the given object
    #
    def __str__( self ) :
+      id = '\n\t#' + str( self.id )
       email = ': ' + self.email
 
       if( self.name == '' ) :
@@ -81,9 +82,11 @@ class SubscriberEmail( models.Model ) :
          name = ' (' + self.name + ')'
 
       site_code = self.site_code
-      ## site_name = ' ' + SubscriberEmail.getSiteNameSingleArg( site_code )
-      site_name = ' ' + self.getSiteNameSelfVersion( site_code )
+      site_name = ' ' + SubscriberEmail.getSiteNameSingleArg( site_code )
+      ## site_name = ' ' + self.getSiteNameSelfVersion( site_code )
 
-      subscriberString = email + name + site_name
+      subscription_date = ' ' + str( self.subscription_date ) + '\n'
+
+      subscriberString = id + email + name + site_name + subscription_date
       return subscriberString
 
