@@ -38,9 +38,35 @@ class SubscriberEmail( models.Model ) :
    )
 
    ##
+   # Given a site_code, this method returns the corresponding site name
+   #
+   def getSiteName( self, site_code ) :
+      ##
+      ## for( index=0; index < self.SITE_CODE_CHOICES.length; index++ ) :
+      ## site = self.SITE_CODE_CHOICES[self.site_code]
+      ##
+      for site_pair in SubscriberEmail.SITE_CODE_CHOICES :
+         print( site_pair )
+         if( site_pair[0] == site_code ) :
+            return site_pair[1]
+
+   ##
    # Creates a string representation of the given object
    #
    def __str__( self ) :
-      subscriberString = self.email + ' (' + self.name + ') ' + self.site_code
+      if( self.name == '' ) :
+         name = ''
+      else :
+         name = ' (' + self.name + ')'
+
+      site_name = 'wtf'
+      ## site_name = self.getSiteName( self.site_code[0] )
+      site_code = self.site_code
+      print( 'self.site_code[0]: "' + self.site_code[0] )
+      print( 'self.site_code: "' + self.site_code )
+      print( 'site_code: "' + site_code )
+      site_name = self.getSiteName( site_code )
+
+      subscriberString = self.email + name + ' ' + site_name
       return subscriberString
 
