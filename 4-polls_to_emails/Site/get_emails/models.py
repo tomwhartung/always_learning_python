@@ -81,9 +81,11 @@ class SubscriberEmail( models.Model ) :
       else :
          name = ' (' + self.name + ')'
 
+      site_name = ' '
       site_code = self.site_code
-      site_name = ' ' + SubscriberEmail.getSiteNameSingleArg( site_code )
-      ## site_name = ' ' + self.getSiteNameSelfVersion( site_code )
+      site_name += SubscriberEmail.getSiteNameSingleArg( site_code )
+      ## site_name += self.getSiteNameSelfVersion( site_code )
+      site_name += ' (' + site_code + ')'
 
       subscription_date = ' ' + str( self.subscription_date ) + '\n'
 
