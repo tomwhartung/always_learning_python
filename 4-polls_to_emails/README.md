@@ -293,6 +293,51 @@ python3 manage.py shell
 from get_emails.models import SubscriberEmail
 neonoir = SubscriberEmail( email='neonoir@imissyou.com' )
 neonoir.save()     ## After adding defaults, this works OK
+```
+
+For a good time, see the two versions getSiteName in models.py:
+
+```
+site_name = SubscriberEmail.getSiteNameSingleArg( site_code )
+site_name = self.getSiteNameSelfVersion( site_code )
+```
+
+The code has plenty of comments which I will not duplicate here.
+
+#### Data cleanup/play time
+
+Back to showing the '>>>' prompts and all output as-is:
+
+```
+>>> neonoir = SubscriberEmail.objects.get( pk=4 )
+>>> print( neonoir )
+neonoir@imissyou.com site_unknown
+>>> neonoir.name = 'Neo Noir'
+>>> neonoir.site_code = 'sm'
+>>> print( neonoir )
+neonoir@imissyou.com (Neo Noir) seeourminds.com
+>>> neonoir.save()
+>>> SubscriberEmail.objects.all( )
+<QuerySet [<SubscriberEmail: kitty@cat.com (Zeronimo) tomhartung.com>, <SubscriberEmail: mildred@cats.com (mildred) groja.com>, <SubscriberEmail: marvin@imissyou.com (Starvin' Marvin) site_unknown>, <SubscriberEmail: neonoir@imissyou.com (Neo Noir) seeourminds.com>]>
+>>> SubscriberEmail.objects.get( pk=4 )
+<SubscriberEmail: neonoir@imissyou.com (Neo Noir) seeourminds.com>
+>>> mildred = SubscriberEmail.objects.get( pk=2 )
+>>> mildred.name = "Mildred Memah Myrnamyrn"
+>>> SubscriberEmail.objects.get( pk=2 )
+<SubscriberEmail: mildred@cats.com (mildred) groja.com>
+>>> mildred.save
+<bound method Model.save of <SubscriberEmail: mildred@cats.com (Mildred Memah Myrnamyrn) groja.com>>
+>>> mildred.save()
+>>> SubscriberEmail.objects.get( pk=2 )
+<SubscriberEmail: mildred@cats.com (Mildred Memah Myrnamyrn) groja.com>
+>>> marvin = SubscriberEmail.objects.get( pk=3 )
+>>> marvin.site_code = 'tw'
+>>> SubscriberEmail.objects.get( pk=3 )
+<SubscriberEmail: marvin@imissyou.com (Starvin' Marvin) site_unknown>
+>>> marvin.save()
+>>> SubscriberEmail.objects.get( pk=3 )
+<SubscriberEmail: marvin@imissyou.com (Starvin' Marvin) tomwhartung.com>
+>>>
 
 ```
 
