@@ -206,13 +206,27 @@ Running migrations:
   Applying get_emails.0001_initial... OK
 ```
 
-### Process Summary
+### Process Summary and Other Options
 
-Following is the process for making changes to the database:
+Following is the process for making migrations (changes to the database):
 
 1. Update get_emails/models.py with desired changes
-2. Run `python manage.py makemigrations` to create the migrations
-3. Run `python manage.py migrate` to apply the migrations
+2. Run `python3 manage.py makemigrations` to create the migrations
+3. Run `python3 manage.py migrate` to apply the migrations
+
+For full documentation see:
+
+* https://docs.djangoproject.com/en/1.10/topics/migrations/
+
+Other options (in addition to `makemigrations` and `migrate`):
+
+* `python3 manage.py showmigrations` - "shows all the migrations for a project"
+* `python3 manage.py sqlmigrate` - show the sql for a migration
+* `python3 manage.py check` = "Uses the system check framework to inspect the entire Django project for common problems"
+
+There are more (including `startproject` and `startapp` and `shell`)!
+
+* https://docs.djangoproject.com/en/1.10/ref/django-admin/
 
 ### Step (2.5) Exploring the API
 
@@ -341,9 +355,42 @@ neonoir@imissyou.com (Neo Noir) seeourminds.com
 
 ```
 
-marvin = SubscriberEmail.objects.get( pk=3 )
+#### Adding a column
 
-For more: https://docs.djangoproject.com/en/1.10/topics/db/queries/
+Decided to add a `subscribed` column (BooleanField).
+
+Note: After adding it, it did not tell me I had to makemigrations or anything, but complained about the use of "true" .
+
+```
+**vi get_emails/models.py**                 ## Add BooleanField "subscribed"
+**python3 manage.py shell**           ## No complaints (I expected some!)
+**python3 manage.py makemigrations**  ## Created 0002_auto_20161018_1441.py
+### System check identified some issues:
+### 
+### WARNINGS:
+### get_emails.SubscriberEmail.subscription_date: (fields.W161) Fixed default value provided.
+###	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+###Migrations for 'get_emails':
+###  get_emails/migrations/0002_auto_20161018_1441.py:
+###    - Add field subscribed to subscriberemail
+###    - Alter field name on subscriberemail
+###    - Alter field site_code on subscriberemail
+###    - Alter field subscription_date on subscriberemail
+**vi get_emails/models.py             ## Changed `django.utils.timezone.now()` to `django.utils.timezone.now`
+**python3 manage.py makemigrations**  ## Created 0003_auto_20161018_1442.py
+###Migrations for 'get_emails':
+###  get_emails/migrations/0003_auto_20161018_1442.py:
+###    - Alter field subscription_date on subscriberemail
+
+
+```
+
+References:
+
+* https://docs.djangoproject.com/en/1.10/topics/db/queries/
+* https://docs.djangoproject.com/en/1.10/ref/models/fields/#choices
+* https://docs.djangoproject.com/en/1.10/ref/models/fields/#booleanfield
+
 
 
 
