@@ -2,6 +2,7 @@
 # Model definitions for the 4-polls_to_emails project
 #
 from django.db import models
+from django.utils import timezone
 
 #
 # SubscriberEmail model
@@ -19,14 +20,21 @@ class SubscriberEmail( models.Model ) :
       ( TOMHARTUNG_COM, 'tomhartung.com' ),
       ( SITE_UNKNOWN, 'site_unknown' ),
    )
-   name = models.CharField( max_length=45 )
-   email = models.CharField( max_length=254 )
+   name = models.CharField(
+      max_length=45,
+      default='',
+   )
+   email = models.CharField(
+      max_length=254,
+   )
    site_code = models.CharField(
       max_length=2,
       choices=SITE_CODE_CHOICES,
+      default=SITE_UNKNOWN,
    )
    subscription_date = models.DateTimeField(
       'date subscribed',
+      default=timezone.now(),
    )
 
    ##
