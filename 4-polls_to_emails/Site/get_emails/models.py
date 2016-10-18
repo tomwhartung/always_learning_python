@@ -40,7 +40,20 @@ class SubscriberEmail( models.Model ) :
    ##
    # Given a site_code, this method returns the corresponding site name
    #
-   def getSiteName( self, site_code ) :
+   def getSiteName( site_code ) :
+      ##
+      ## for( index=0; index < self.SITE_CODE_CHOICES.length; index++ ) :
+      ## site = self.SITE_CODE_CHOICES[self.site_code]
+      ##
+      for site_pair in SubscriberEmail.SITE_CODE_CHOICES :
+         print( site_pair )
+         if( site_pair[0] == site_code ) :
+            return site_pair[1]
+
+   ##
+   # Given a site_code, this method returns the corresponding site name
+   #
+   def getSiteNameSelfVersion( self, site_code ) :
       ##
       ## for( index=0; index < self.SITE_CODE_CHOICES.length; index++ ) :
       ## site = self.SITE_CODE_CHOICES[self.site_code]
@@ -60,12 +73,14 @@ class SubscriberEmail( models.Model ) :
          name = ' (' + self.name + ')'
 
       site_name = 'wtf'
-      ## site_name = self.getSiteName( self.site_code[0] )
       site_code = self.site_code
-      print( 'self.site_code[0]: "' + self.site_code[0] )
-      print( 'self.site_code: "' + self.site_code )
-      print( 'site_code: "' + site_code )
-      site_name = self.getSiteName( site_code )
+      ## print( 'self.site_code[0]: "' + self.site_code[0] )
+      ## print( 'self.site_code: "' + self.site_code )
+      ## print( 'site_code: "' + site_code )
+      site_name_1 = SubscriberEmail.getSiteName( site_code )
+      site_name_2 = self.getSiteNameSelfVersion( site_code )
+      print( 'site_name_1: "' + site_name_1 )
+      print( 'site_name_2: "' + site_name_2 )
 
       subscriberString = self.email + name + ' ' + site_name
       return subscriberString
