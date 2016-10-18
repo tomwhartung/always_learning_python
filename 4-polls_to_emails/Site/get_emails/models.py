@@ -37,51 +37,53 @@ class SubscriberEmail( models.Model ) :
       default=timezone.now(),
    )
 
-   ##
-   # Given a site_code, this method returns the corresponding site name
+   ##############################
+   # Two versions of getSiteName
+   # ---------------------------
+   # Given a site_code, these methods return the corresponding site name
+   # I am keeping both versions around until I decide which one I think is better
    #
-   def getSiteName( site_code ) :
-      ##
-      ## for( index=0; index < self.SITE_CODE_CHOICES.length; index++ ) :
-      ## site = self.SITE_CODE_CHOICES[self.site_code]
-      ##
-      for site_pair in SubscriberEmail.SITE_CODE_CHOICES :
-         print( site_pair )
+   ###
+   ### TODO:
+   ###   There should be a way to look up the value instead of using a for loop
+   ### Something like:
+   ###   for( index=0; index < self.SITE_CODE_CHOICES.length; index++ ) :
+   ###   site = self.SITE_CODE_CHOICES[self.site_code]
+   ###
+   ##
+   # Note that this version has only one argument, and we call it like this:
+   #   SubscriberEmail.getSiteName( site_code )
+   #
+   def getSiteNameSingleArg( site_code ) :
+      for site_pair in SubscriberEmail.SITE_CODE_CHOICES :   # Note the use of "SubscriberEmail."
          if( site_pair[0] == site_code ) :
             return site_pair[1]
 
    ##
-   # Given a site_code, this method returns the corresponding site name
+   # Note that this version has two arguments, and we call it like this:
+   #   self.getSiteNameSelfVersion( site_code )
    #
    def getSiteNameSelfVersion( self, site_code ) :
-      ##
-      ## for( index=0; index < self.SITE_CODE_CHOICES.length; index++ ) :
-      ## site = self.SITE_CODE_CHOICES[self.site_code]
-      ##
-      for site_pair in SubscriberEmail.SITE_CODE_CHOICES :
-         print( site_pair )
+      for site_pair in self.SITE_CODE_CHOICES :     # Note the use of "self."
          if( site_pair[0] == site_code ) :
             return site_pair[1]
+   ##############################
 
    ##
    # Creates a string representation of the given object
    #
    def __str__( self ) :
+      email = ': ' + self.email
+
       if( self.name == '' ) :
          name = ''
       else :
          name = ' (' + self.name + ')'
 
-      site_name = 'wtf'
       site_code = self.site_code
-      ## print( 'self.site_code[0]: "' + self.site_code[0] )
-      ## print( 'self.site_code: "' + self.site_code )
-      ## print( 'site_code: "' + site_code )
-      site_name_1 = SubscriberEmail.getSiteName( site_code )
-      site_name_2 = self.getSiteNameSelfVersion( site_code )
-      print( 'site_name_1: "' + site_name_1 )
-      print( 'site_name_2: "' + site_name_2 )
+      ## site_name = ' ' + SubscriberEmail.getSiteNameSingleArg( site_code )
+      site_name = ' ' + self.getSiteNameSelfVersion( site_code )
 
-      subscriberString = self.email + name + ' ' + site_name
+      subscriberString = email + name + site_name
       return subscriberString
 
