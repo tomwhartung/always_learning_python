@@ -11,7 +11,7 @@ class SubscriberEmail( models.Model ) :
    SEEOURMINDS_COM = 'sm'
    TOMWHARTUNG_COM = 'tw'
    TOMHARTUNG_COM = 'th'
-   SITE_UNKNOWN = 'uk'
+   SITE_UNKNOWN = 'xx'
    SITE_CODE_CHOICES = (
       ( GROJA_COM, 'groja.com' ),
       ( SEEOURMINDS_COM, 'seeourminds.com' ),
@@ -24,10 +24,14 @@ class SubscriberEmail( models.Model ) :
    site_code = models.CharField(
       max_length=2,
       choices=SITE_CODE_CHOICES,
-      default=SITE_UNKNOWN,
    )
-   subscription_date = models.DateTimeField('date subscribed')
+   subscription_date = models.DateTimeField(
+      'date subscribed',
+   )
 
+   ##
+   # Creates a string representation of the given object
+   #
    def __str__( self ) :
       subscriberString = self.email + ' (' + self.name + ') ' + self.site_code
       return subscriberString
