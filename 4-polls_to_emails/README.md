@@ -362,27 +362,71 @@ Decided to add a `subscribed` column (BooleanField).
 Note: After adding it, it did not tell me I had to makemigrations or anything, but complained about the use of "true" .
 
 ```
-**vi get_emails/models.py**                 ## Add BooleanField "subscribed"
-**python3 manage.py shell**           ## No complaints (I expected some!)
-**python3 manage.py makemigrations**  ## Created 0002_auto_20161018_1441.py
+vi get_emails/models.py            ## Add BooleanField "subscribed"
+python3 manage.py shell            ## No complaints (I expected some!)
+python3 manage.py makemigrations   ## Created 0002_auto_20161018_1441.py
 ### System check identified some issues:
-### 
+###
 ### WARNINGS:
 ### get_emails.SubscriberEmail.subscription_date: (fields.W161) Fixed default value provided.
-###	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
-###Migrations for 'get_emails':
-###  get_emails/migrations/0002_auto_20161018_1441.py:
-###    - Add field subscribed to subscriberemail
-###    - Alter field name on subscriberemail
-###    - Alter field site_code on subscriberemail
-###    - Alter field subscription_date on subscriberemail
-**vi get_emails/models.py             ## Changed `django.utils.timezone.now()` to `django.utils.timezone.now`
-**python3 manage.py makemigrations**  ## Created 0003_auto_20161018_1442.py
-###Migrations for 'get_emails':
-###  get_emails/migrations/0003_auto_20161018_1442.py:
-###    - Alter field subscription_date on subscriberemail
+###         HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+### Migrations for 'get_emails':
+###   get_emails/migrations/0002_auto_20161018_1441.py:
+###     - Add field subscribed to subscriberemail
+###     - Alter field name on subscriberemail
+###     - Alter field site_code on subscriberemail
+###     - Alter field subscription_date on subscriberemail
+vi get_emails/models.py             ## Changed `django.utils.timezone.now()` to `django.utils.timezone.now`
+python3 manage.py makemigrations    ## Created 0003_auto_20161018_1442.py
+### Migrations for 'get_emails':
+###   get_emails/migrations/0003_auto_20161018_1442.py:
+###     - Alter field subscription_date on subscriberemail
+```
 
+We did not apply the migrations, but `check` did not notice that.
 
+Actually trying to access one of our subscriber email records, though, caused an error.
+
+```
+python3 manage.py check
+### System check identified no issues (0 silenced).
+python3 manage.py shell
+Python 3.5.2 (default, Sep 10 2016, 08:21:44)
+[GCC 5.4.0 20160609] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from get_emails.models import SubscriberEmail
+>>> SubscriberEmail.objects.get( pk=1 )
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python3.5/dist-packages/django/db/backends/sqlite3/base.py", line 337, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such column: get_emails_subscriberemail.subscribed
+>>> exit(0)
+```
+
+It was easy enough to fix, just wondering if and when it would complain.
+
+```
+python3 manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, get_emails, sessions
+Running migrations:
+  Applying get_emails.0002_auto_20161018_1441... OK
+  Applying get_emails.0003_auto_20161018_1442... OK
+tomh@barbara: /var/www/learn/django/github/customizations/always_learning_python/4-polls_to_emails/Site
+ $ python3 manage.py shell
+Python 3.5.2 (default, Sep 10 2016, 08:21:44)
+[GCC 5.4.0 20160609] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from get_emails.models import SubscriberEmail
+>>> SubscriberEmail.objects.get( pk=1 )
+<SubscriberEmail:
+	#1: zeronimouser@cats.com (Zeronimo the Zeronimonster!) tomhartung.com (th) 2016-10-18 02:46:44.577331+00:00
+>
+>>> exit(0)
 ```
 
 References:
