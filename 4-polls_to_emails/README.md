@@ -108,4 +108,24 @@ Accessing the following URL displays the "Hi from the get_emails index." message
 
 ## Tutorial (2) - Database Setup
 
+As mentioned in the Requirements section, we are using SQLite and creating only one table, which in turn has only a few columns.
+
+Reference: https://docs.djangoproject.com/en/1.10/intro/tutorial02/
+
+> SQLite is included in Python, so you won’t need to install anything else to support your database.
+
+### Step (2.1) Edit the Settings
+
+Following the reference, edit the values for the TIME_ZONE and INSTALLED_APPS parameters in `settings.py` and run `migrate` .
+
+```
+vi settings.py              ## The list of default apps looks reasonable to me (changed the TIME_ZONE only)
+python3 manage.py migrate   ## Note: use python3!!
+git add settings.py
+git commit -m 'Updated the TIME_ZONE in settings.py (the list of INSTALLED_APPS looks reasonable enough to me).'
+git add db.sqlite3
+git commit -m 'Version of db.sqlite3 updated by running migrate.'
+```
+
+We can now run the `python3 manage.py runserver` command without it complaining about needing to run the migrations.
 
