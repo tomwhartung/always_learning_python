@@ -120,8 +120,8 @@ Reference: https://docs.djangoproject.com/en/1.10/intro/tutorial02/
 Following the reference, edit the values for the TIME_ZONE and INSTALLED_APPS parameters in `settings.py` and run `migrate` .
 
 ```
-vi Site/settings.py              ## The list of default apps looks reasonable to me (changed the TIME_ZONE only)
-python3 manage.py migrate   ## Note: use python3!!
+vi Site/settings.py           ## The list of default apps looks reasonable to me (changed the TIME_ZONE only)
+python3 manage.py migrate     ## Note: use python3!!
 git add settings.py
 git commit -m 'Updated the TIME_ZONE in settings.py (the list of INSTALLED_APPS looks reasonable enough to me).'
 git add db.sqlite3
@@ -205,4 +205,52 @@ Operations to perform:
 Running migrations:
   Applying get_emails.0001_initial... OK
 ```
+
+### Process Summary
+
+Following is the process for making changes to the database:
+
+1. Update get_emails/models.py with desired changes
+2. Run `python manage.py makemigrations` to create the migrations
+3. Run `python manage.py migrate` to apply the migrations
+
+### Step (2.5) Exploring the API
+
+In a python3 shell, run a few simple commands to test the functionality:
+
+```
+ $ python3 manage.py shell
+Python 3.5.2 (default, Sep 10 2016, 08:21:44)
+[GCC 5.4.0 20160609] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from get_emails.models import SubscriberEmail
+>>> SubscriberEmail.objects.all()
+<QuerySet []>
+>>> from django.utils import timezone
+>>> semail = SubscriberEmail( name='Zeronimo', email='kitty@cat.com', site_code='th', subscription_date=timezone.now())
+>>> semail.save()
+>>> semail.id
+1
+>>> semail.name
+'Zeronimo'
+>>> semail.email
+'kitty@cat.com'
+>>> semail.site_code
+'th'
+>>> semail.subscription_date
+datetime.datetime(2016, 10, 18, 2, 46, 44, 577331, tzinfo=<UTC>)
+>>> semail.email = 'zeronimo@tomhartung.com'
+>>> semail.email
+'zeronimo@tomhartung.com'
+>>>
+```
+
+It works as it should!
+
+For more: https://docs.djangoproject.com/en/1.10/topics/db/queries/
+
+
+
+
 
