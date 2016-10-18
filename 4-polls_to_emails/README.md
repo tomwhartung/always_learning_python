@@ -120,7 +120,7 @@ Reference: https://docs.djangoproject.com/en/1.10/intro/tutorial02/
 Following the reference, edit the values for the TIME_ZONE and INSTALLED_APPS parameters in `settings.py` and run `migrate` .
 
 ```
-vi settings.py              ## The list of default apps looks reasonable to me (changed the TIME_ZONE only)
+vi Site/settings.py              ## The list of default apps looks reasonable to me (changed the TIME_ZONE only)
 python3 manage.py migrate   ## Note: use python3!!
 git add settings.py
 git commit -m 'Updated the TIME_ZONE in settings.py (the list of INSTALLED_APPS looks reasonable enough to me).'
@@ -137,8 +137,8 @@ Creating only one table: SubscriberEmail
 > The name of each Field instance (e.g. question_text or pub_date) is the field’s name, in machine-friendly format. You’ll use this value in your Python code, and your database will use it as the column name.
 
 ```
-vi models.py 
-cat models.py
+vi get_emails/models.py
+cat get_emails/models.py
 ...
 class SubscriberEmail( models.Model ) :
    name = models.CharField( max_length=45 )
@@ -146,5 +146,63 @@ class SubscriberEmail( models.Model ) :
    site_code = models.CharField( max_length=2 )
    subscription_date = models.DateTimeField('date subscribed')
 ...
+```
+
+### Step (2.3) Activating the Models
+
+Edit the settings and run makemigrations:
+
+```
+vi Site/settings.py              ## Add get_emails.apps.GetEmailsConfig to INSTALLED_APPS
+python3 manage.py makemigrations get_emails
+```
+
+The output from that command looks good:
+
+```
+Migrations for 'get_emails':
+  get_emails/migrations/0001_initial.py:
+    - Create model SubscriberEmail
+```
+
+> The sqlmigrate command takes migration names and returns their SQL:
+
+```
+python3 manage.py sqlmigrate get_emails 0001
+```
+
+The output from that command also looks good:
+
+```
+BEGIN;
+--
+-- Create model SubscriberEmail
+--
+CREATE TABLE "get_emails_subscriberemail"
+   ( "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+     "name" varchar(45) NOT NULL,
+     "email" varchar(254) NOT NULL,
+     "site_code" varchar(2) NOT NULL,
+     "subscription_date" datetime NOT NULL );
+COMMIT;
+```
+
+> The sqlmigrate command ... is ... useful for checking what Django is going to do ....
+
+> ... you can also run `python manage.py check` ... without making migrations or touching the database.
+
+Run migrate to create the table in the database:
+
+```
+python3 manage.py migrate
+```
+
+The output from that command also looks good:
+
+```
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, get_emails, sessions
+Running migrations:
+  Applying get_emails.0001_initial... OK
 ```
 
