@@ -456,4 +456,35 @@ admin.site.register( SubscriberEmail )
 
 Reload browser for GUI CRUD access!
 
+## Tutorial (3) - Views
+
+For now, we just want to provide a simple form for people to (un)subscribe from a list for a given site.
+
+Each site will have a widget with a form in which the visitor can enter their email address, and
+submitting the form takes them to this view.
+
+### Requirements
+
+The goal is just one simple view with the following elements:
+
+* Text block: "Thank you for subscribing to very occasional email updates from us at `[site_name]`!"
+* Text input for: "Name (optional):" populated from DB; default value is blank
+* Check Box: "Subscribe to emails from `[site_name]`
+* Text block: "To unsubscribe, uncheck the box and press Enter"
+* Button: "Update"
+
+Reference: https://docs.djangoproject.com/en/1.10/intro/tutorial03/
+
+### Step (3.1) Writing More Views
+
+Add a "get_emails/subscribe" route to `urls.py` and corresponding view function to `views.py` .
+
+```
+vi urls.py
+vi views.py
+```
+
+It's always nice when the "hello world" part is a no-brainer - which it is for me, at this point.  Amazing!
+
+
 
