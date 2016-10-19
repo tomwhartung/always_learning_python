@@ -1,29 +1,33 @@
 from django.shortcuts import render
-
 from django.http import HttpResponse
+from django.template import loader
+
 from .models import SubscriberEmail
 
 ##
 # See https://docs.djangoproject.com/en/1.10/intro/tutorial01/#write-your-first-view
 #
 def index(request):
-   ##
-   ## First try, but it could be considered "doing modelly things in the view:"
-   ##
+   ####
+   #### First try, but it could be considered "doing modelly things in the view:"
+   ####
    ## subscribedCount = SubscriberEmail.objects.filter(subscribed=True).count()
    ## unsubscribedCount = SubscriberEmail.objects.filter(subscribed=False).count()
    ## totalCount = SubscriberEmail.objects.all().count()
-   #
-   # A better way, I think, "more pure:"
-   #
+   ##
+   ## Second try: a better way, I think, "more pure:"
+   ##
    subscribedCount = SubscriberEmail.getCountSubscribed()
    unsubscribedCount = SubscriberEmail.getCountUnsubscribed()
    totalCount = SubscriberEmail.getCountAll()
-   response = 'Hi from the get_emails index.  '
-   response += 'Number of subscribed emails: ' + str( subscribedCount ) + '. '
-   response += 'Number of unsubscribed emails: ' + str( unsubscribedCount ) + '. '
-   response += 'Total of all emails: ' + str( totalCount ) + '. '
-   return HttpResponse( response )
+
+   template = loader.get_template('get_emails/index.html')
+   context = {
+      'subscribedCount': subscribedCount,
+      'unsubscribedCount': unsubscribedCount,
+      'totalCount': totalCount,
+   }
+   return HttpResponse( template.render(context,request) )
 
 ##
 # Super-simple (Un)Subscribe form
