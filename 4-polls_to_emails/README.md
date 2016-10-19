@@ -435,8 +435,25 @@ References:
 * https://docs.djangoproject.com/en/1.10/ref/models/fields/#choices
 * https://docs.djangoproject.com/en/1.10/ref/models/fields/#booleanfield
 
+#### Exploring the Admin Interface
 
+Reference: https://docs.djangoproject.com/en/1.10/intro/tutorial02/#introducing-the-django-admin
 
+```
+python3 manage.py createsuperuser   ## play/email@example.com/password
+```
 
+Access in browser:
+
+* http://127.0.0.1:8000/admin/
+
+Add the following lines to get_emails/admin.py :
+
+```
+from .models import SubscriberEmail
+admin.site.register( SubscriberEmail )
+```
+
+Reload browser for GUI CRUD access!
 
 
