@@ -475,8 +475,8 @@ NOTE: the next Tutorial (4) covers forms.
 Add a "get_emails/subscribe" route to `urls.py` and corresponding view function to `views.py` .
 
 ```
-vi urls.py     ## Add "get_emails/subscribe" route 
-vi views.py    ## Add minimal "subscribe" function
+vi get_emails/urls.py     ## Add "get_emails/subscribe" route
+vi get_emails/views.py    ## Add minimal "subscribe" function
 ```
 
 It's always nice when the "hello world" part is a no-brainer - which it is for me, at this point.  Amazing!
@@ -491,11 +491,28 @@ but we would have to mask them for security reasons, and that is ultimately of v
 This took a few tries, but I wound up finding two very similar ways of accomplishing this goal.
 
 ```
-vi models.py   ## Add functions to count all, subscribed, etc. emails
-vi views.py    ## Add output of counts to index function
+vi get_emails/models.py   ## Add functions to count all, subscribed, etc. emails
+vi get_emails/views.py    ## Add output of counts to index function
 ```
 
 Output is still not html but rather plain, unformatted, unstyled text.
+
+#### Change to use a template
+
+Create the template for our counts, and update the view to use it.
+
+```
+mkdir -p get_emails/templates/get_emails
+cd get_emails/templates/get_emails/
+vi index.html             ## Update the template to display the counts
+cd -
+vi get_emails/views.py    ## Update the index function to use the template
+```
+
+Output is now html, nice!
+
+
+
 
 ## Tutorial (4) - Forms
 
