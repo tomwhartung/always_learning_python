@@ -458,33 +458,56 @@ Reload browser for GUI CRUD access!
 
 ## Tutorial (3) - Views
 
-For now, we just want to provide a simple form for people to (un)subscribe from a list for a given site.
-
-Each site will have a widget with a form in which the visitor can enter their email address, and
-submitting the form takes them to this view.
+Reference: https://docs.djangoproject.com/en/1.10/intro/tutorial03/
 
 ### Requirements
 
-The goal is just one simple view with the following elements:
+The goal is just one simple view containing a form.
 
-* Text block: "Thank you for subscribing to very occasional email updates from us at `[site_name]`!"
-* Text input for: "Name (optional):" populated from DB; default value is blank
-* Check Box: "Subscribe to emails from `[site_name]`
-* Text block: "To unsubscribe, uncheck the box and press Enter"
-* Button: "Update"
+Each site will have a widget with a two-element form (text box and button) in which the visitor can enter their email address.
 
-Reference: https://docs.djangoproject.com/en/1.10/intro/tutorial03/
+Submitting the form takes them to this view.
+
+NOTE: the next Tutorial (4) covers forms.
 
 ### Step (3.1) Writing More Views
 
 Add a "get_emails/subscribe" route to `urls.py` and corresponding view function to `views.py` .
 
 ```
-vi urls.py
-vi views.py
+vi urls.py     ## Add "get_emails/subscribe" route 
+vi views.py    ## Add minimal "subscribe" function
 ```
 
 It's always nice when the "hello world" part is a no-brainer - which it is for me, at this point.  Amazing!
 
+### Step (3.2) Write views that actually do something
 
+We could do something similar to what the tutorial does and display the last few email addresses added,
+but we would have to mask them for security reasons, and that is ultimately of very limited value.
+
+#### Update index to display count of emails
+
+This took a few tries, but I wound up finding two very similar ways of accomplishing this goal.
+
+```
+vi models.py   ## Add functions to count all, subscribed, etc. emails
+vi views.py    ## Add output of counts to index function
+```
+
+Output is still not html but rather plain, unformatted, unstyled text.
+
+## Tutorial (4) - Forms
+
+For now, we just want to provide a simple form for people to (un)subscribe from a list for a given site.
+
+### Requirements
+
+The goal is just one simple view containing a form with the following elements:
+
+* Text block: "Thank you for subscribing to very occasional email updates from us at `[site_name]`!"
+* Text input for: "Name (optional):" populated from DB; default value is blank
+* Check Box: "Subscribe to emails from `[site_name]`
+* Text block: "To unsubscribe, uncheck the box and press Enter"
+* Button: "Update"
 
