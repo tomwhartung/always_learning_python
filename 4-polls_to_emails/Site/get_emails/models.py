@@ -40,6 +40,30 @@ class SubscriberEmail( models.Model ) :
       default=timezone.now,
    )
 
+   ########################################
+   # Getting counts (all, subscribed, etc.)
+   # --------------------------------------
+   ##
+   # Return the total number of email addresses in the database
+   #
+   def getCountAll() :
+      countAll = SubscriberEmail.objects.all().count()
+      return countAll
+
+   ##
+   # Return the number of subscribed email addresses in the database
+   #
+   def getCountSubscribed() :
+      subscribedCount = SubscriberEmail.objects.filter( subscribed=True ).count()
+      return subscribedCount
+
+   ##
+   # Return the number of unsubscribed email addresses in the database
+   #
+   def getCountUnsubscribed() :
+      unsubscribedCount = SubscriberEmail.objects.filter( subscribed=False ).count()
+      return unsubscribedCount
+
    ##############################
    # Two versions of getSiteName
    # ---------------------------
