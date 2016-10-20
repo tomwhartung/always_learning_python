@@ -1,3 +1,7 @@
+##
+# views.py: view functions for our get_emails app
+#
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
@@ -22,12 +26,22 @@ def index(request):
 ##
 # Super-simple (Un)Subscribe form
 #
-def subscribe( request ) :
-   subscribed = True
-   email = 'joe@example.com'
-   name = 'Joe'
-   site_name = 'groja.com'
+def subscribe( request, id ) :
+   if( id == '0' ) :
+      subscribed = False
+      email = 'you@email.com'
+      name = ''
+      site_name = 'groja.com'
+   else :
+   ## subscriberEmail = SubscriberEmail.objects.get( pk=id )
+      subscriberEmail = get_object_or_404( SubscriberEmail, pk=id )
+      subscribed = subscriberEmail.subscribed
+      email = subscriberEmail.email
+      name = subscriberEmail.name
+      site_code = subscriberEmail
+      site_name = SubscriberEmail.getSiteName( site_code )
    context = {
+      'id': id,
       'subscribed': subscribed,
       'email': email,
       'name': name,
