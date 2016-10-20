@@ -1,0 +1,26 @@
+
+<h1>Thanks!</h1>
+<p>
+  Thank you for subscribing to very occasional email updates from us at {{ site_name }}!
+</p>
+<form action="{% url 'get_emails:save' subscriberEmail.id %}" method="post">
+  {% csrf_token %}
+  <ul>
+    <li>
+      <input type="checkbox" id="subscribed" name="subscribed" checked="{{ subscribed }}">
+      <label for="subscribed">Subscribed?</label>
+    </li>
+    <li>
+      <input type="email" id="email" name="email" value="{{ email }}">
+      <label for="email">Email Address</label>
+    </li>
+    <li>
+      <input type="text" id="name" name="name" value="{{ name }}">
+      <label for="name">Name (optional)</label>
+    </li>
+  </ul>
+  <input type="submit" value="Update" />
+</form>
+<p>
+  If you subscribed accidentally, or wish to unsubscribe at any time, uncheck the box and click Update or press Enter.
+</p>
