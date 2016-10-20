@@ -7,7 +7,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-##  url(r'^subscribe?(?P<email>[a-z]+@[a-z]+)/$', views.subscribe, name='subscribe'),
+    url(r'^(?P<id>[0-9]+)/subscribe/$', views.subscribe, name='subscribe'),
     url(r'^subscribe/$', views.subscribe, name='subscribe'),
 ]
 
