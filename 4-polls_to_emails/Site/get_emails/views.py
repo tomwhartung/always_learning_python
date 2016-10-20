@@ -23,5 +23,16 @@ def index(request):
 # Super-simple (Un)Subscribe form
 #
 def subscribe( request ) :
-   return HttpResponse( 'TODO: build the get_emails subscribe form.' )
+   subscribed = True
+   email = 'joe@example.com'
+   name = 'Joe'
+   site_name = 'groja.com'
+   context = {
+      'subscribed': subscribed,
+      'email': email,
+      'name': name,
+      'site_name': site_name,
+   }
+   return render( request, 'get_emails/subscribe.html', context )
+## return HttpResponse( 'TODO: build the get_emails subscribe form.' )
 
