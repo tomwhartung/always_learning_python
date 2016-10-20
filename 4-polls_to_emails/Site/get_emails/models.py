@@ -81,7 +81,7 @@ class SubscriberEmail( models.Model ) :
    # Note that this version has only one argument, and we call it like this:
    #   SubscriberEmail.getSiteName( site_code )
    #
-   def getSiteNameSingleArg( site_code ) :
+   def getSiteName( site_code ) :
       for site_pair in SubscriberEmail.SITE_CODE_CHOICES :   # Note the use of "SubscriberEmail."
          if( site_pair[0] == site_code ) :
             return site_pair[1]
@@ -110,7 +110,7 @@ class SubscriberEmail( models.Model ) :
 
       site_name = ' '
       site_code = self.site_code
-      site_name += SubscriberEmail.getSiteNameSingleArg( site_code )
+      site_name += SubscriberEmail.getSiteName( site_code )
       ## site_name += self.getSiteNameSelfVersion( site_code )
       site_name += ' (' + site_code + ')'
 
