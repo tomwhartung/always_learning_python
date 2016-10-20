@@ -3,7 +3,7 @@
 <p>
   Thank you for subscribing to very occasional email updates from us at {{ site_name }}!
 </p>
-<form action="" method="post">
+<form action="{% url 'get_emails:save' id %}" method="post">
   {% csrf_token %}
   <ul>
     <li>
