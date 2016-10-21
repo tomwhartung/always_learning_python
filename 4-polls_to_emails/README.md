@@ -312,8 +312,8 @@ neonoir.save()     ## After adding defaults, this works OK
 For a good time, see the two versions getSiteName in models.py:
 
 ```
-site_name = SubscriberEmail.getSiteNameSingleArg( site_code )
-site_name = self.getSiteNameSelfVersion( site_code )
+site_name = SubscriberEmail.getSiteName( site_code )   # Single arg version
+site_name = self.getSiteNameSelfVersion( site_code )   # Two arg version
 ```
 
 The code has plenty of comments which I will not duplicate here.
@@ -511,9 +511,6 @@ vi get_emails/views.py    ## Update the index function to use the template
 
 Output is now html, nice!
 
-
-
-
 ## Tutorial (4) - Forms
 
 For now, we just want to provide a simple form for people to (un)subscribe from a list for a given site.
@@ -525,6 +522,18 @@ The goal is just one simple view containing a form with the following elements:
 * Text block: "Thank you for subscribing to very occasional email updates from us at `[site_name]`!"
 * Text input for: "Name (optional):" populated from DB; default value is blank
 * Check Box: "Subscribe to emails from `[site_name]`
-* Text block: "To unsubscribe, uncheck the box and press Enter"
 * Button: "Update"
+* Text block: "To unsubscribe, uncheck the box and press Enter"
+
+### The simple form template
+
+
+```
+cd get_emails/templates/get_emails/
+vi subscribe.html
+cd -
+```
+
+
+
 
