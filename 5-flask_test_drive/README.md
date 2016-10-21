@@ -3,7 +3,7 @@
 
 Experimenting with parts of djangoproject.com's polls app, attempting to apply the steps to a simple app that stores emails.
 
-## References:
+## Reference:
 
 Bought a few new books today - Flask, PWAs, React Native - very exciting!
 
@@ -16,7 +16,7 @@ Gasp!  Imagine that - an actual book this time!!
 Determine whether switching groja.com to flask would enable us to keep the navigation,
 and other elements common to all pages, DRY.
 
-### What?
+#### What?
 
 DRY = Don't Repeat Yourself.
 
@@ -27,5 +27,40 @@ but it is the nav that is most likely to change) need to be copy-and-pasted into
 I'm thinking that the templating that flask provides should make it easy to overcome this problem.
 
 Let's try it out, and find out for sure!
+
+## Step (1) Installation
+
+Following the book, grabbing a copy of his code, and using virtualenv (it's a bit too early to commit to a version and all).
+
+```
+cd /var/www/learn/django/github
+mkdir miguelgrinberg
+cd miguelgrinberg
+git clone git@github.com:miguelgrinberg/flasky.git
+virtualenv venv
+```
+
+Create a tiny shell script to allow easy access to the virtual env, run it, and use pip3 and **sudo -H ** to install flask:
+
+```
+cd /var/www/learn/django/github
+cd virtualenvs/
+cat > enter_venv.sh
+cat enter_venv.sh
+. /var/www/learn/django/github/miguelgrinberg/flasky/venv/bin/activate
+. ./enter_vev.sh
+which pip3
+sudo -H pip3 install flask
+```
+
+Check:
+
+```
+python3
+>>> import flask   ## No error message -> success!
+>>>
+deactivate         ## exits the virtual environment
+```
+
 
 
