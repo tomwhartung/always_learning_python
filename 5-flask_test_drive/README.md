@@ -87,5 +87,12 @@ Access in browser:
 
 * http://127.0.0.1:5000/
 
+Add new route and function to hello.py, personalizing its message, and access it in browser again to test.
+
+```
+vi hello.py
+```
+
+Update the index function to get and display the user agent string.
 
 
