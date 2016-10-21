@@ -28,7 +28,7 @@ I'm thinking that the templating that flask provides should make it easy to over
 
 Let's try it out, and find out for sure!
 
-## Step (1) Installation
+## (1) Installation
 
 Following the book, grabbing a copy of his code, and using virtualenv (it's a bit too early to commit to a version and all).
 
@@ -61,6 +61,31 @@ python3
 >>>
 deactivate         ## exits the virtual environment
 ```
+
+## (2) Basics
+
+Hello world app:
+
+```
+cd always_learning_python/5-flask_test_drive/
+mkdir Site
+cd Site
+vi hello.py
+```
+
+Run the app:
+
+```
+cd always_learning_python/virtualenvs/
+. enter_venv.sh
+cd ../5-flask_test_drive/
+cd Site/
+python3 hello.py
+```
+
+Access in browser:
+
+* http://127.0.0.1:5000/
 
 
 
