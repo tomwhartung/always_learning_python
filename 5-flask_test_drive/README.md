@@ -28,16 +28,69 @@ I'm thinking that the templating that flask provides should make it easy to over
 
 Let's try it out, and find out for sure!
 
-## (1) Installation
+## Step (0) Optional: Clone source used in book
 
-Following the book, grabbing a copy of his code, and using virtualenv (it's a bit too early to commit to a version and all).
+Did this on barbara and jane.
+Wound up not use it on barbara, so you could say we did it on jane "just for grins."
+
+Following the book, grabbing a copy of his code, and using virtualenv.
 
 ```
 cd /var/www/learn/django/github
 mkdir miguelgrinberg
 cd miguelgrinberg
 git clone git@github.com:miguelgrinberg/flasky.git
+cd flasky/
+git checkout 1a
 virtualenv venv
+```
+
+The last command creates a venv subdirectory in `/var/www/learn/django/github/miguelgrinberg/flasky/` .
+
+If it is not already there, create a tiny shell script to allow easy access to the virtual env.
+
+```
+cd /var/www/learn/django/github/customizations/always_learning_python/
+cd virtualenvs/
+cat > enter_venv.sh
+cat enter_venv.sh
+. /var/www/learn/django/github/miguelgrinberg/flasky/venv/bin/activate
+```
+
+Run the shell script, and use pip3 and **sudo -H ** to install flask:
+
+```
+. ./enter_venv.sh
+which pip3                 ## /usr/bin/pip3
+sudo -H pip3 install flask
+```
+
+Check:
+
+```
+python3
+>>> import flask        ## No error message -> success!
+>>> flask.__version__   ## '0.11.1'
+>>>
+deactivate         ## exits the virtual environment
+```
+
+Use the venv virtual environment when experimenting with the code from the book.
+So far we have been "doing our own thing," so now we will create our own virtual environment and use that.
+
+### Note:
+
+**Running these steps installs flask 0.11.1 globally as well!**
+
+## (1) Install Flask Globally
+
+As discovered by running the steps above, creating a virtualenv and installing flask in it makes it available globally anyway.
+
+**We can worry about using virtual environments when it comes time to upgrade.**
+
+```
+cd /var/www/learn/django/github/customizations/always_learning_python/
+virtualenv flask_venv
 ```
 
 Create a tiny shell script to allow easy access to the virtual env, run it, and use pip3 and **sudo -H ** to install flask:
@@ -48,7 +101,7 @@ cd virtualenvs/
 cat > enter_venv.sh
 cat enter_venv.sh
 . /var/www/learn/django/github/miguelgrinberg/flasky/venv/bin/activate
-. ./enter_vev.sh
+. ./enter-flask_venv.sh
 which pip3
 sudo -H pip3 install flask
 ```
@@ -57,7 +110,8 @@ Check:
 
 ```
 python3
->>> import flask   ## No error message -> success!
+>>> import flask        ## No error message -> success!
+>>> flask.__version__   ## '0.11.1'
 >>>
 deactivate         ## exits the virtual environment
 ```
