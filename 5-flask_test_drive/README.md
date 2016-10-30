@@ -82,27 +82,13 @@ So far we have been "doing our own thing," so now we will create our own virtual
 
 **Running these steps installs flask 0.11.1 globally as well!**
 
-## (1) Install Flask Globally
+## Step (1) Install Flask Globally
 
 As discovered by running the steps above, creating a virtualenv and installing flask in it makes it available globally anyway.
 
 **We can worry about using virtual environments when it comes time to upgrade.**
 
 ```
-cd /var/www/learn/django/github/customizations/always_learning_python/
-virtualenv flask_venv
-```
-
-Create a tiny shell script to allow easy access to the virtual env, run it, and use pip3 and **sudo -H ** to install flask:
-
-```
-cd /var/www/learn/django/github
-cd virtualenvs/
-cat > enter_venv.sh
-cat enter_venv.sh
-. /var/www/learn/django/github/miguelgrinberg/flasky/venv/bin/activate
-. ./enter-flask_venv.sh
-which pip3
 sudo -H pip3 install flask
 ```
 
@@ -116,9 +102,11 @@ python3
 deactivate         ## exits the virtual environment
 ```
 
-## (2) Basics
+Fwiw, it is also present in the virtual environment (even though we uninstalled it from there!).
 
-Hello world app:
+## Step (2) Basics
+
+Create a hello world app, and play with it a bit.
 
 ```
 cd always_learning_python/5-flask_test_drive/
@@ -127,12 +115,12 @@ cd Site
 vi hello.py
 ```
 
-Run the app:
+#### Basic Hello World
+
+Update hello.py with code from the book, then run the app:
 
 ```
-cd always_learning_python/virtualenvs/
-. enter_venv.sh
-cd ../5-flask_test_drive/
+cd always_learning_python/5-flask_test_drive/
 cd Site/
 python3 hello.py
 ```
@@ -140,6 +128,8 @@ python3 hello.py
 Access in browser:
 
 * http://127.0.0.1:5000/
+
+#### Going Beyond Hello World
 
 Add new route and function to hello.py, personalizing its message, and access it in browser again to test.
 
