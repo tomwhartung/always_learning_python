@@ -1,11 +1,11 @@
 
 # 5-flask_test_drive project
 
-Experimenting with parts of djangoproject.com's polls app, attempting to apply the steps to a simple app that stores emails.
+Experimenting with flask, taking it out for a test drive, so to speak.
 
 ## Reference:
 
-Bought a few new books today - Flask, PWAs, React Native - very exciting!
+Going through some examples in Chapter 2 of the "Flask Web Development" book.
 
 Reference: http://shop.oreilly.com/product/0636920031116.do
 
