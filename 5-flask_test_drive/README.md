@@ -175,3 +175,10 @@ python3 script.py runserver -h 10.0.0.113 -p 6001
 
 These options seem to work ok, and the -h option makes it the site available from other hosts - good to know!
 
+## Conclusion - NOT
+
+We have not yet accomplished the goal we set out to accomplish, but I want to leave this directory as-is for now.
+
+## To Be Continued
+
+For more experiments and their results, see directory ../6-flask_templates_exp .
