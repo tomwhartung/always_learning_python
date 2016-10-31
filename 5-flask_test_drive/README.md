@@ -128,6 +128,7 @@ python3 hello.py
 Access in browser:
 
 * http://127.0.0.1:5000/
+* http://localhost:5000/
 
 #### Going Beyond Hello World
 
@@ -139,4 +140,38 @@ vi hello.py
 
 Update the index function to get and display the user agent string.
 
+## Step (3) Flask-Script
+
+Copy hello.py to script.py, add in flask script, and play with it a bit.
+
+```
+cp hello.py script.py
+vi script.py
+```
+
+```
+sudo -H pip3 install flask-script
+```
+
+See text near the end of chapter 2.
+
+Interesting - got this warning:
+
+```
+/usr/local/lib/python3.5/dist-packages/flask/exthook.py:71: ExtDeprecationWarning: Importing flask.ext.script is deprecated, use flask_script instead.
+```
+
+Easy enough to fix.
+
+Need to run it like this:
+
+```
+python3 script.py --help         ## not very much help
+python3 script.py runserver -?   ## that's more like it
+python3 script.py runserver
+python3 script.py runserver -h 10.0.0.113
+python3 script.py runserver -h 10.0.0.113 -p 6001
+```
+
+These options seem to work ok, and the -h option makes it the site available from other hosts - good to know!
 
