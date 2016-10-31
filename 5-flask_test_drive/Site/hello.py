@@ -1,7 +1,9 @@
 
 ##
-# From Chapter 2 of Flas Web Development
-# --------------------------------------
+# From Chapter 2 of the "Flask Web Development" book
+# --------------------------------------------------
+#
+# Trying out a few things in the beginning of the chapter
 #
 from flask import Flask
 app = Flask( __name__ )
