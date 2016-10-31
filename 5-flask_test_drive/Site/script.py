@@ -6,8 +6,13 @@
 # Using hello.py as a starting point, add in Flask-Script and
 # test drive that.
 #
+# Notes:
+# 1) We now create a Manager object and use it to run the app
+#    -> See last lines in this file
+# 2) We get the host and port from the request object
+#
 from flask import Flask
-from flask.ext.script import Manager
+from flask_script import Manager
 
 app = Flask( __name__ )
 manager = Manager( app )
@@ -21,21 +26,18 @@ def user( name ) :
    return '<h3>Hi there, %s!</h3><p>Who\'s in charge around here?</p>' % name
 
 ##
-# Can we accesss the host or port or both?
-# Surely we can, but how?
+# Display the host and port
 #
+from flask import request
 @app.route( '/' )
 def index() :
-   ## host = manager.host
-   host = ''
-
-   if( host == '' ) :
-      host = '???'
-   return '<h3>Hi</h3><p>The host is "%s" .</p>' % host
+   host = request.host
+   return '<h3>Hi</h3><p>The request.host is "%s" .</p>' % request.host
 
 ##
 # Run the app!
 #
 if __name__ == '__main__' :
-   app.run( debug=True )
+   ## app.run( debug=True )
+   manager.run()
 
