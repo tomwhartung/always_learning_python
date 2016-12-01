@@ -3,6 +3,13 @@
 
 Experimenting with flask, taking it out for a test drive, so to speak.
 
+## Setting up jane:
+
+This is the process we used to set up flask on jane.
+It may contain some steps and meanderings not essential to the task.
+
+For the process used to set up flask on bette, which may be a bit more focused and less wordy, see README.md in this directory.
+
 ## Reference:
 
 Going through some examples in Chapter 2 of the "Flask Web Development" book.
@@ -31,7 +38,7 @@ Let's try it out, and find out for sure!
 ## Step (0) Optional: Clone source used in book
 
 Did this on barbara and jane.
-Wound up not use it on barbara, so you could say we did it on jane "just for grins."
+Wound up not using it on barbara, so you could say we did it on jane "just for grins."
 
 Following the book, grabbing a copy of his code, and using virtualenv.
 
