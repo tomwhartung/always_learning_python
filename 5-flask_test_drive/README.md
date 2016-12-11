@@ -3,64 +3,49 @@
 
 Experimenting with flask, taking it out for a test drive, so to speak.
 
+## Setting Up bette
+
+We are starting the process from scratch, on bette.
+
+For the process we used to get jane going, see README-jane.md in this directory.
+(We may skip a step, delete some meanderings about the process, etc. in this version.)
+
 ## Reference:
 
 Going through some examples in Chapter 2 of the "Flask Web Development" book.
 
 Reference: http://shop.oreilly.com/product/0636920031116.do
 
-Gasp!  Imagine that - an actual book this time!!
-
 ## Goal:
 
 Determine whether switching groja.com to flask would enable us to keep the navigation,
 and other elements common to all pages, DRY.
 
-#### What?
+## Step (1): Install virtualenv, pip3, and flask
 
-DRY = Don't Repeat Yourself.
-
-Currently groja.com is nice and simple, but any changes to the navigation
-(or many other aspects of a page, such as link tags, favicon, title, etc. -
-but it is the nav that is most likely to change) need to be copy-and-pasted into all pages.
-
-I'm thinking that the templating that flask provides should make it easy to overcome this problem.
-
-Let's try it out, and find out for sure!
-
-## Step (0) Optional: Clone source used in book
-
-Did this on barbara and jane.
-Wound up not use it on barbara, so you could say we did it on jane "just for grins."
-
-Following the book, grabbing a copy of his code, and using virtualenv.
+For consistency with the other hosts, install virtualenv.
+We wound up not using it on barbara or jane, so you could say we are doing it "just for grins."
+However, I am sure it will come in handy in the future.
 
 ```
-cd /var/www/learn/django/github
-mkdir miguelgrinberg
-cd miguelgrinberg
-git clone git@github.com:miguelgrinberg/flasky.git
-cd flasky/
-git checkout 1a
-virtualenv venv
+dpkg-query --list '*virtualenv*'
+sudo apt-get install virtualenv
 ```
 
-The last command creates a venv subdirectory in `/var/www/learn/django/github/miguelgrinberg/flasky/` .
-
-If it is not already there, create a tiny shell script to allow easy access to the virtual env.
-
 ```
-cd /var/www/learn/django/github/customizations/always_learning_python/
+cd /var/www/learn/github/customizations/always_learning_python/
 cd virtualenvs/
-cat > enter_venv.sh
-cat enter_venv.sh
-. /var/www/learn/django/github/miguelgrinberg/flasky/venv/bin/activate
+virtualenv flask_bette
+cat > flask_bette_env.sh
+cat flask_bette_env.sh
+. /var/www/learn/github/customizations/virtualenvs/flask_bette/bin/activate
 ```
+
 
 Run the shell script, and use pip3 and **sudo -H ** to install flask:
 
 ```
-. ./enter_venv.sh
+. ./flask_bette_env.sh
 which pip3                 ## /usr/bin/pip3
 sudo -H pip3 install flask
 ```
