@@ -32,15 +32,23 @@ dpkg-query --list '*virtualenv*'
 sudo apt-get install virtualenv
 ```
 
+That should install pip3, if it doesn't install it like so:
+
+```
+sudo apt-get -y install python3-pip
+sudo apt-get -s install python-pip
+```
+
+I see no reason to install pip for python2, but if it's needed it can be installed by changing the -s (for simulate) to -y.
+
 ```
 cd /var/www/learn/github/customizations/always_learning_python/
 cd virtualenvs/
 virtualenv flask_bette
 cat > flask_bette_env.sh
 cat flask_bette_env.sh
-. /var/www/learn/github/customizations/virtualenvs/flask_bette/bin/activate
+. /var/www/always_learning/github/customizations/always_learning_python/virtualenvs/flask_bette/bin/activate
 ```
-
 
 Run the shell script, and use pip3 and **sudo -H ** to install flask:
 
@@ -55,39 +63,15 @@ Check:
 ```
 python3
 >>> import flask        ## No error message -> success!
->>> flask.__version__   ## '0.11.1'
+>>> flask.__version__   ## '0.12'
 >>>
 deactivate         ## exits the virtual environment
 ```
 
-Use the venv virtual environment when experimenting with the code from the book.
-So far we have been "doing our own thing," so now we will create our own virtual environment and use that.
-
-### Note:
-
-**Running these steps installs flask 0.11.1 globally as well!**
-
-## Step (1) Install Flask Globally
-
-As discovered by running the steps above, creating a virtualenv and installing flask in it makes it available globally anyway.
+We should use the venv virtual environment when experimenting with the code from the book.
+However, I can find pip3 (did not try running it) and import flask outside of the environment.
 
 **We can worry about using virtual environments when it comes time to upgrade.**
-
-```
-sudo -H pip3 install flask
-```
-
-Check:
-
-```
-python3
->>> import flask        ## No error message -> success!
->>> flask.__version__   ## '0.11.1'
->>>
-deactivate         ## exits the virtual environment
-```
-
-Fwiw, it is also present in the virtual environment (even though we uninstalled it from there!).
 
 ## Step (2) Basics
 
