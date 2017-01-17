@@ -138,8 +138,8 @@ Need to run it like this:
 python3 script.py --help         ## not very much help
 python3 script.py runserver -?   ## that's more like it
 python3 script.py runserver
-python3 script.py runserver -h 10.0.0.113
-python3 script.py runserver -h 10.0.0.113 -p 6001
+python3 script.py runserver -h 10.0.0.112          # http://10.0.0.112:6001/
+python3 script.py runserver -h 10.0.0.112 -p 6001  # http://10.0.0.112:6001/
 ```
 
 These options seem to work ok, and the -h option makes it the site available from other hosts - good to know!
