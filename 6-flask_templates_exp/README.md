@@ -33,21 +33,6 @@ Access in browser:
 
 ## Flask Bootstrap
 
-Experiment with the following goal in mind:
+Compare this version to what we have in ../7-flask_bootstrap_exp .
 
-* Decide whether we want to use flask bootstrap, or just include a link tag as we do in the current version of groja.com .
-
-**Try both options, examine the source, and decide.**
-
-## Flask and Handlebars
-
-I am confident that the templates can help keep groja.com's navigation, footer, etc. more DRY.
-
-However, Jinga2's templating syntax resembles that of handlebars, so I wonder whether I can combine them.
-I actually think I can, by sending the handlebars code to the template in a variable,
-rather than including handlebars code in the template itself.
-
-* Determine whether we can use flask with handlebars.
-
-**Note that we are moving the gallery pages to seeourminds.com .**
-
+I'm fairly certain we will go with flask-boostrap but I am just starting out and want to play and experiment a bit.
