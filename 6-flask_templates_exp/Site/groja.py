@@ -9,10 +9,10 @@ from flask import Flask, render_template
 app = Flask( __name__ )
 
 ##
-# Use a template to show a Home page
+# Show the Home page:
 #
 @app.route( '/' )
-def index() :
+def home() :
    return render_template( 'home.html' )
 
 ##
