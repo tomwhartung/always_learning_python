@@ -27,14 +27,12 @@
   {% endblock %}
 </head>
 <body>
-  <p>Hi from 6-flask_templates_exp/Site/templates/base.html.</p>
+  {% block navbar %}
+    <h1>The navbar goes here</h1>
+  {% endblock %}
 
-    {% block content %}
-      <p>Experimental content in the content block in base.html</p>
-    {% endblock %}
-
+  {% block content %}
     <hr>
-
     <footer>
       Copyright &copy; 2016
       <a href="http://www.TomWHartung.com" target="_blank" title"TomWHartung.com home page">Tom W. Hartung</a>
@@ -42,6 +40,7 @@
       <a href="http://www.joomoowebsites.com" target="_blank" title"JooMooWebSites.com home page">JooMooWebSites.com</a>.
       All Rights Reserved.
     </footer>
+  {% endblock %}
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="static/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
