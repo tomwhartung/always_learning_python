@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Flask Templates - Home{% endblock %}
 {% block head %}
-    {{ super() }}
-    <style>
-    </style>
+   {{ super() }}
+   <style>
+   </style>
 {% endblock %}
-{% block body %}
-<h1>flask_templates_exp - home</h1>
-<p>GRoJAs are Graphical Representations of Jungian Archetypes....</p>
-<p>This is the flask_templates_exp version of the home page.</p>
-<p>Inspired by the work of....</p>
+{% block content %}
+   {{ super() }}
+   <h1>flask_templates_exp - home</h1>
+   <p>GRoJAs are Graphical Representations of Jungian Archetypes....</p>
+   <p>This is the flask_templates_exp version of the home page.</p>
+   <p>Inspired by the work of....</p>
 {% endblock %}
