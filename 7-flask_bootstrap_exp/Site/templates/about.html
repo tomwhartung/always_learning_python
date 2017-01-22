@@ -7,6 +7,8 @@
 {% endblock %}
 
 {% block content %}
+  <main>
+    <div class="container">
       <div class="row">
         <div class="col-md-12">
           <section id="about">
@@ -111,5 +113,9 @@
           </section><!-- #versions -->
         </div><!-- .col-md-12 -->
       </div><!-- .row -->
+
     {{ super() }}
+
+    </div> <!-- .container -->
+  </main>
 {% endblock %}
