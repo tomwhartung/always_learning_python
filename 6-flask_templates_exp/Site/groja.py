@@ -23,6 +23,20 @@ def about() :
    return render_template( 'about.html' )
 
 ##
+# Show the Books and Sites page:
+#
+@app.route( '/booksandsites' )
+def booksandsites() :
+   return render_template( 'booksandsites.html' )
+
+##
+# Show the Your Portrait page:
+#
+@app.route( '/yourportrait' )
+def yourportrait() :
+   return render_template( 'yourportrait.html' )
+
+##
 # Run the app!
 #
 if __name__ == '__main__' :
