@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Flask Bootstrap - About{% endblock %}
+{% block title %}Books and Sites{% endblock %}
 {% block head %}
     {{ super() }}
     <style>
@@ -56,7 +56,8 @@
               <figure>
                 <a href="http://psychclassics.yorku.ca/Jung/types.htm" target="_blank"
                    title="Link to Jung's book available for free online at at psychclassics.yorku.ca">
-                  <img src="../images/site/Carl_Jung-General_Description_of_the_Types.jpg" class="sidebox-img"></a>
+                  <img src="{{ url_for('static', filename='images/site/Carl_Jung-General_Description_of_the_Types.jpg') }}"
+                       class="sidebox-img"></a>
                 <figcaption>
                   General Description of the Types</figcaption>
               </figure>
