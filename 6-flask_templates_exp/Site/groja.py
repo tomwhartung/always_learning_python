@@ -13,28 +13,28 @@ app = Flask( __name__ )
 #
 @app.route( '/' )
 def home() :
-   return render_template( 'home.html' )
+   return render_template( 'home.html', homeSelected='selected' )
 
 ##
 # Show the About page:
 #
 @app.route( '/about' )
 def about() :
-   return render_template( 'about.html' )
+   return render_template( 'about.html', aboutSelected='selected' )
 
 ##
 # Show the Books and Sites page:
 #
 @app.route( '/booksandsites' )
 def booksandsites() :
-   return render_template( 'booksandsites.html' )
+   return render_template( 'booksandsites.html', booksandsitesSelected='selected' )
 
 ##
 # Show the Your Portrait page:
 #
 @app.route( '/yourportrait' )
 def yourportrait() :
-   return render_template( 'yourportrait.html' )
+   return render_template( 'yourportrait.html', yourportraitSelected='selected' )
 
 ##
 # Run the app!
