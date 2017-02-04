@@ -1,0 +1,60 @@
+
+0. Introduction
+---------------
+Email chris@chrisluiz.io for slack invitation
+Homework:
+1. Complete the flask quick start
+2. Complete the flask tutorial
+
+Client side tech: HTML, CSS, JS, jQuery
+Server side tech: DB, python
+What is a web framework? Boiler plate, basics to get you going
+Pandas - do not want to recreate them every time
+Flask - includes routing, that's about it.
+  Can add on libraries, and eventually will get django
+
+Functionality commonly found on websites
+- Authentication - who you are (login/logout)
+- Authorization - what you can do
+- Templating - for dynamic content between a common header and footer
+- REST API
+- DB interface - ORM
+- Session management - cookies
+- Email
+- Chat window
+- Testing
+- Web blog (portal) with comments
+- Administrative interface
+- A lot of functionality is moving to the client
+
+1. Lesson 1
+-----------
+MVC - design pattern
+Model - Data and how you access it
+  DB, SqLite, something in memory (Redis), API calls
+View - Representation of data on the client side
+Controller - the glue between model and view
+Django (and more so Ruby on Rails) use MVC
+Django - calls it MTV (Model, Template, View):
+- Model (Model)
+- Template (View)
+- View (Controller)
+
+Virtual Environments
+- Isolated environment
+- We will be using requirements.txt to manage dependencies
+Example:
+Global: Flask v.12 installed
+Local project 1: Uses Flask v.12
+Local project 2: Uses Flask v.11
+Without virtual environments, would have to uninstall
+and re-install flask to switch betwen project 1 and project 2
+
+There are many other tools to help manage virtual envs
+Anaconda - alternative to virtualenv
+- Several people in the class are using it instead of virtualenv
+Autoenv - disagreement!
+
+mkdir pydata    - using this for this project only
+python3.6 -m venv env   - didn't work for me
+
