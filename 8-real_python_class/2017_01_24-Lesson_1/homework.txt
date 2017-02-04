@@ -11,6 +11,48 @@ Assigned:
 ---------------
 Re-try virtualenv setup.
 
+Goal: To be able to enter a virtual env where python3.6 is the default version of python.
+
+Note: Python3.6 is already installed
+
+As tomh:
+python3.6 -m venv flask_python3_6_bette
+
+- gives error:
+  The virtual environment was not created successfully because ensurepip is not
+  available.  On Debian/Ubuntu systems, you need to install the python3-venv
+  package using the following command.
+      apt-get install python3-venv
+
+As root:
+apt-get install python3-venv
+
+- Still did not work.
+- Reference:
+  http://stackoverflow.com/questions/39539110/pyvenv-not-working-because-ensurepip-is-not-available
+
+As root:
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+dpkg-reconfigure locales        # OK -> OK -> OK
+
+- Still did not work.
+
+As root:
+apt-get install python3.6-venv -y
+
+As tomh:
+python3.6 -m venv flask_python3_6_bette
+echo '. flask_python3_6_bette/bin/activate' > flask_python3_6_bette.sh
+chmod +x flask_python3_6_bette.sh
+. flask_python3_6_bette.sh
+python
+Python 3.6.0+ (default, Feb  4 2017, 11:11:46)
+[GCC 5.4.1 20161202] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+$
+
 1. Complete the Flask Quick Start
 ---------------------------------
 
