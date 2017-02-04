@@ -1,0 +1,21 @@
+
+ Homework
+==========
+
+Assigned:
+---------
+1. Complete the Flask Quick Start
+2. Complete the Flask Tutorial
+
+0. Preparation:
+---------------
+Re-try virtualenv setup.
+
+1. Complete the Flask Quick Start
+---------------------------------
+
+2. Complete the Flask Tutorial
+------------------------------
+
+
+
