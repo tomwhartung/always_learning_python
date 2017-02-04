@@ -15,6 +15,8 @@ Goal: To be able to enter a virtual env where python3.6 is the default version o
 
 Note: Python3.6 is already installed
 
+0.1 First Try - Unsuccessful but Making Progress
+
 As tomh:
 python3.6 -m venv flask_python3_6_bette
 
@@ -52,6 +54,85 @@ Python 3.6.0+ (default, Feb  4 2017, 11:11:46)
 Type "help", "copyright", "credits" or "license" for more information.
 >>>
 $
+
+pip install Flask==0.12
+  bash: /var/www/always_learning/github/customizations/always_learning_python/8-real_python_class/2017_01_24-Lesson_1/pydata/virtualenvs/flask_python3_6_bette/bin/pip: /var/www/always_learning/github/customizations/always_learning_python/8-real_: bad interpreter: No such file or directory
+
+Sheesh wtf....  It looks like the virtual env is corrupted somehow.
+
+0.2 Trying again
+Install pip (in addition to pip3)
+
+As root:
+apt-get install python-pip
+
+Unhelpful.
+
+Now thinking that maybe the issue looks like it may be the "-" in the directory name (i.e. in "8-real_")
+
+0.3 Trying again
+
+As tomh:
+cd /var/www/always_learning/github/customizations/always_learning_python/virtualenvs
+python3.6 -m venv rp_1_python3_6_flask_bette
+. rp_1_python3_6_flask_bette/bin/activate
+pip install Flask==0.12
+
+This worked much better, but got these errors:
+
+  error: invalid command 'bdist_wheel'
+  ----------------------------------------
+  Failed building wheel for itsdangerous
+  Running setup.py clean for itsdangerous
+  Running setup.py bdist_wheel for MarkupSafe ... error
+  Complete output from command /var/www/always_learning/github/customizations/always_learning_python/virtualenvs/rp_1_python3_6_flask_bette/bin/python3.6 -u -c "import setuptools, tokenize;__file__='/tmp/pip-build-s_howo5m/MarkupSafe/setup.py';exec(compile(getattr(tokenize, 'open', open)(__file__).read().replace('\r\n', '\n'), __file__, 'exec'))" bdist_wheel -d /tmp/tmpfo_vzw_4pip-wheel- --python-tag cp36:
+  usage: -c [global_opts] cmd1 [cmd1_opts] [cmd2 [cmd2_opts] ...]
+     or: -c --help [cmd1 cmd2 ...]
+     or: -c --help-commands
+     or: -c cmd --help
+  error: invalid command 'bdist_wheel'
+  ----------------------------------------
+  Failed building wheel for MarkupSafe
+
+-> Try using pip3 instead of pip:
+
+As tomh:
+pip3 install Flask==0.12
+
+Apparently we are good.  Output:
+  Requirement already satisfied ... (repeatedly)
+
+As tomh:
+python
+>>> import flask
+>>>
+
+No errors - we are good!
+
+0.4 Summary:
+
+- virtualenv is outdated, use python3.6 -m venv instead
+- Dashes in directory names cause errors in the virtual environments
+- Be sure to use pip3 not pip
+
+To enter the virtual environment we are using for this exercise, run:
+
+As tomh:
+cd /var/www/always_learning/github/customizations/always_learning_python/8-real_python_class/2017_01_24-Lesson_1/pydata/virtualenvs
+. ./rp_1_python3_6_flask_bette.sh    # changes to directory as in the command below
+
+OR:
+As tomh:
+golpy   # cd /var/www/always_learning/github/customizations/always_learning_python
+cd virtualenvs
+. ./rp_1_python3_6_flask_bette.sh    # changes to directory as in the command below
+
+As tomh:
+cd /var/www/always_learning/github/customizations/always_learning_python/8-real_python_class/2017_01_24-Lesson_1/pydata/virtualenvs
+. ./rp_1_python3_6_flask_bette.sh    # changes to directory as in the command below
+
+As tomh:
+pip3 freeze > ./rp_1_python3_6_flask_bette-requirements.txt
 
 1. Complete the Flask Quick Start
 ---------------------------------
