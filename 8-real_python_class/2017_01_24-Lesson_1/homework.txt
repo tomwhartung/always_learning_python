@@ -109,33 +109,42 @@ python
 
 No errors - we are good!
 
-0.4 Summary:
+0.4 To Use the Final Working Virtual Env:
+
+To enter the virtual environment we are using for this exercise, run:
+
+As tomh:
+  cd /var/www/always_learning/github/customizations/always_learning_python/8-real_python_class/2017_01_24-Lesson_1/virtualenvs
+  . ./rp_1_python3_6_flask_bette.sh    # changes to directory as in the command below
+
+OR:
+As tomh:
+  golpy   # cd /var/www/always_learning/github/customizations/always_learning_python
+  cd virtualenvs
+  . ./rp_1_python3_6_flask_bette.sh    # changes to directory as in the command below
+
+As tomh:
+  cd /var/www/always_learning/github/customizations/always_learning_python/8-real_python_class/2017_01_24-Lesson_1/virtualenvs
+  . ./rp_1_python3_6_flask_bette.sh    # changes to directory as in the command below
+
+As tomh:
+  pip3 freeze > ./rp_1_python3_6_flask_bette-requirements.txt
+
+0.5 Summary:
 
 - virtualenv is outdated, use python3.6 -m venv instead
 - Dashes in directory names cause errors in the virtual environments
 - Be sure to use pip3 not pip
 
-To enter the virtual environment we are using for this exercise, run:
-
-As tomh:
-cd /var/www/always_learning/github/customizations/always_learning_python/8-real_python_class/2017_01_24-Lesson_1/pydata/virtualenvs
-. ./rp_1_python3_6_flask_bette.sh    # changes to directory as in the command below
-
-OR:
-As tomh:
-golpy   # cd /var/www/always_learning/github/customizations/always_learning_python
-cd virtualenvs
-. ./rp_1_python3_6_flask_bette.sh    # changes to directory as in the command below
-
-As tomh:
-cd /var/www/always_learning/github/customizations/always_learning_python/8-real_python_class/2017_01_24-Lesson_1/pydata/virtualenvs
-. ./rp_1_python3_6_flask_bette.sh    # changes to directory as in the command below
-
-As tomh:
-pip3 freeze > ./rp_1_python3_6_flask_bette-requirements.txt
-
 1. Complete the Flask Quick Start
 ---------------------------------
+As tomh:
+  cd /var/www/always_learning/github/customizations/always_learning_python/8-real_python_class/2017_01_24-Lesson_1/virtualenvs
+  . rp_1_python3_6_flask_bette.sh
+  cd /var/www/always_learning/github/customizations/always_learning_python/8-real_python_class/2017_01_24-Lesson_1/homework/1-flask_quickstart
+  export FLASK_APP=hello.py
+  python -m flask run
+
 
 2. Complete the Flask Tutorial
 ------------------------------
