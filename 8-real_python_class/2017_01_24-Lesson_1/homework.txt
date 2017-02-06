@@ -141,8 +141,8 @@ As tomh:
 - Dashes in directory names cause errors in the virtual environments
 - Be sure to use pip3 not pip
 
-1. Complete the Flask Quick Start
----------------------------------
+1. Flask Quick Start
+--------------------
 Reference:
 
 1.1 Hello world program
@@ -288,18 +288,24 @@ If a tuple is returned:
 - (response, headers) or
 - (response, status, headers)
 
+make_response
+- use to create a response object in the view, for processing before returning it from the view
+- for an example, see 3-cookies/application.py
 
+1.13 Sessions
 
-1.13
+Require a secret key which it uses to create an encrypted cookie used to save session data.
 
+There are limits to the amount of data that can be saved in this manner, and it will fail silently.
 
-1.1X
-1.1X Message flashing
+There are extensions available for storing session information on the client-side.
+
+1.14 Message flashing
 
 Reference:
   http://flask.pocoo.org/docs/0.12/patterns/flashing/#message-flashing-pattern
 
-1.1X Logging
+1.15 Logging
 
 Functions available:
   app.logger.debug('A value for debugging')
@@ -309,8 +315,8 @@ Functions available:
 For an example using app.logger.debug(), see 1-basics/url_building.py
 
 
-2. Complete the Flask Tutorial
-------------------------------
+2. Flask Tutorial
+-----------------
 
 
 
