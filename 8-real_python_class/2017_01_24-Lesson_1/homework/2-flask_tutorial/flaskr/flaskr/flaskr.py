@@ -29,14 +29,32 @@ app.config.update(dict(
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
 #
-# Connect to the db
+# Connect to the specific database.
 # From Step 2 in the tutorial
 #
 def connect_db():
-    """Connects to the specific database."""
     rv = sqlite3.connect(app.config['DATABASE'])
     rv.row_factory = sqlite3.Row
     return rv
+
+#
+# Function to initialize the database.
+# From Step 5 in the tutorial
+#
+def init_db():
+    db = get_db()
+    with app.open_resource('schema.sql', mode='r') as f:
+        db.cursor().executescript(f.read())
+    db.commit()
+
+#
+# Command-line command to initialize the database.
+# From Step 5 in the tutorial
+#
+@app.cli.command('initdb')
+def initdb_command():
+    init_db()
+    print('Initialized the database.')
 
 #
 # Opens a new database connection if there is none yet for the current application context.
