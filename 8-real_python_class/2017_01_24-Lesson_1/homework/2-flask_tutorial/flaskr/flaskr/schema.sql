@@ -1,6 +1,6 @@
-##
-# DB Schema for flaskr app
-#
+--
+-- DB Schema for flaskr app
+--
 drop table if exists entries;
 create table entries (
   id integer primary key autoincrement,
