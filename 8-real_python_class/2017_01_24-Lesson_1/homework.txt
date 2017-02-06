@@ -320,11 +320,6 @@ For an example using app.logger.debug(), see 1-basics/url_building.py
 Reference:
   http://flask.pocoo.org/docs/0.12/tutorial/introduction/
 
-As tomh:
-  cd /var/www/always_learning/github/customizations/always_learning_python/8-real_python_class/2017_01_24-Lesson_1/virtualenvs
-  . rp_1_python3_6_flask_bette.sh
-  cd /var/www/always_learning/github/customizations/always_learning_python/8-real_python_class/2017_01_24-Lesson_1/
-
 2.0 Creating the folders
 
 As tomh:
@@ -349,6 +344,37 @@ As tomh:
   vi flaskr.sql
 
 2.3 Installing flaskr as a package
+
+As tomh:
+  # still in /var/.../8-real_python_class/2017_01_24-Lesson_1/2-flask_tutorial/flaskr/flaskr/
+  vi __init__.py
+  cd ..
+  # now in /var/.../8-real_python_class/2017_01_24-Lesson_1/2-flask_tutorial/flaskr/
+  vi setup.py
+  vi MANIFEST.in
+
+Enter the virtual environment:
+
+As tomh:
+  cd /var/www/always_learning/github/customizations/always_learning_python/8-real_python_class/2017_01_24-Lesson_1/virtualenvs
+  . rp_1_python3_6_flask_bette.sh
+  cd /var/www/always_learning/github/customizations/always_learning_python/8-real_python_class/2017_01_24-Lesson_1/
+
+Install the app:
+
+As tomh:
+  cd 2-flask_tutorial/flaskr/   # back in /var/.../8-real_python_class/2017_01_24-Lesson_1/2-flask_tutorial/flaskr/
+  pip3 install --editable .     # "... Successfully installed flaskr ..."
+
+Run it:
+
+As tomh:
+  export FLASK_APP=flaskr
+  export FLASK_DEBUG=true
+  flask run
+
+Visiting the URL gives a 404 error, because we do not yet have any views:
+- http://127.0.0.1:5000/joe
 
 2.4
 
