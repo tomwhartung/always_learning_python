@@ -317,6 +317,47 @@ For an example using app.logger.debug(), see 1-basics/url_building.py
 
 2. Flask Tutorial
 -----------------
+Reference:
+  http://flask.pocoo.org/docs/0.12/tutorial/introduction/
 
+As tomh:
+  cd /var/www/always_learning/github/customizations/always_learning_python/8-real_python_class/2017_01_24-Lesson_1/virtualenvs
+  . rp_1_python3_6_flask_bette.sh
+  cd /var/www/always_learning/github/customizations/always_learning_python/8-real_python_class/2017_01_24-Lesson_1/
 
+2.0 Creating the folders
+
+As tomh:
+  mkdir 2-flask_tutorial
+  cd 2-flask_tutorial
+  mkdir flaskr
+  mkdir flaskr/flaskr
+  mkdir flaskr/flaskr/static
+  mkdir flaskr/flaskr/templates
+
+2.1 DB Schema
+
+As tomh:
+  cd flaskr       # /var/.../8-real_python_class/2017_01_24-Lesson_1/2-flask_tutorial/flaskr/
+  cd flaskr       # /var/.../8-real_python_class/2017_01_24-Lesson_1/2-flask_tutorial/flaskr/flaskr/
+  vi schema.sql
+
+2.2 Application setup code
+
+As tomh:
+  # still in /var/.../8-real_python_class/2017_01_24-Lesson_1/2-flask_tutorial/flaskr/flaskr/
+  vi flaskr.sql
+
+2.3 Installing flaskr as a package
+
+2.4
+
+2.5
+
+2.6
+
+As tomh:
+  export FLASK_APP=xx.py
+  export FLASK_DEBUG=1
+  flask run
 
