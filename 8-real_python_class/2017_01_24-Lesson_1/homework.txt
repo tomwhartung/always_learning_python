@@ -376,14 +376,47 @@ As tomh:
 Visiting the URL gives a 404 error, because we do not yet have any views:
 - http://127.0.0.1:5000/joe
 
-2.4
+2.4 Database connection
 
-2.5
+Flask provides two contexts:
+- request object variable - request context
+- g object variable - application context
 
-2.6
+It is save to store information about the database connection in the g object variable.
 
-As tomh:
-  export FLASK_APP=xx.py
-  export FLASK_DEBUG=1
-  flask run
+Code snippets:
+  def get_db():   # gets the connection, creating one only if necessary
+     . . . .
+  @app.teardown_appcontext
+  def close_db(error):   # Closes the database again at the end of the request.
+     . . . .
+
+Full code appears in the tutorial and has been added to flaskr/flaskr/flaskr.py .
+
+2.5 Creating the DB
+
+Method 1: Use the command line
+  Example command:
+    sqlite3 /tmp/flaskr.db < schema.sql
+  Drawbacks:
+  - need to install sqlite3 command
+  - need to specify a path (error prone)
+
+Method 2: Use internal functions
+  Code snippets:
+    def init_db():              # function that actually does the work
+      . . . .
+    @app.cli.command('initdb')  # registers a new command with this script
+    def initdb_command():
+      . . . .
+
+Full code appears in the tutorial and has been added to flaskr/flaskr/flaskr.py .
+
+We are going with Method 2.
+As tomh in the virtual env:
+  flask initdb    # "Initialized the database."
+
+Running this created a flask.db file in the directory, cool!
+
+2.6 View functions
 
