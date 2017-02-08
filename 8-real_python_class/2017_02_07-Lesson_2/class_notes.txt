@@ -1,0 +1,28 @@
+
+Reviewing Flask
+---------------
+Reference:
+  https://github.com/realpython/web-dev-for-data-scientists/blob/master/lessons/02-flask.md
+
+Flask: a microweb framework written in python
+
+Flask considered "more pythonic" than django, very low level.
+Scales well, strong community, can learn a lot by reading source code.
+Perfect for microservices and RESTful APIs.
+
+Class Projects
+--------------
+1. Variable URLs
+   See class_projects/flask-hello-world/app.py
+2. Calculator
+   See class_projects/calculator/app.py
+
+Moving on to Sql
+----------------
+See class_projects/sql/db.py
+Create db:
+  python db.py
+To see contents of db, install sqlitebrowser
+
+Copy over to class_projects/calculator directory
+
