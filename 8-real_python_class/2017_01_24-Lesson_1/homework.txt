@@ -420,3 +420,32 @@ Running this created a flask.db file in the directory, cool!
 
 2.6 View functions
 
+Code snippets (routes and view function headers):
+  @app.route('/')
+  def show_entries():
+    . . . .
+  @app.route('/add', methods=['POST'])
+  def add_entry():
+    . . . .
+  @app.route('/login', methods=['GET', 'POST'])
+  def login():
+    . . . .
+  @app.route('/logout')
+  def logout():
+    . . . .
+
+2.7 The templates
+
+As tomh:
+  cd templates/
+  vi layout.html
+  vi show_entries.html
+
+2.8 Adding style
+
+As tomh:
+  vi login.html
+  grep html ../flaskr.py
+  cd ../static/
+  vi style.css
+
