@@ -17,3 +17,34 @@ To enter this virtual environment, enter the following command:
 
 ## Homework Notes:
 
+References:
+
+Link to the assignment:
+
+- https://github.com/realpython/web-dev-for-data-scientists/blob/master/lessons/02-flask.md#homework
+
+Bokeh Links:
+
+- https://www.blog.pythonlibrary.org/2016/07/27/python-visualization-with-bokeh/
+-- Python: Visualization with Bokeh
+-- for homework part 2
+
+- http://bokeh.pydata.org/en/latest/docs/user_guide/quickstart.html#userguide-quickstart
+-- Bokek Quickstart
+-- for homework part 3
+
+- https://github.com/realpython/flask-bokeh-example/blob/master/tutorial.md
+-- Flask Bokeh Basics
+-- for homework part 4
+
+### 1. Review
+
+I am actively working on two sites that I am running at home:
+
+- groja.com: a flask site
+- seeourminds.com: a django site
+
+So I am going to forego the review at this time.
+
+
+
