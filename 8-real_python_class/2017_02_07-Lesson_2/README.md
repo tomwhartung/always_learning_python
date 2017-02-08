@@ -30,7 +30,7 @@ Bokeh Links:
 -- for homework part 2
 
 - http://bokeh.pydata.org/en/latest/docs/user_guide/quickstart.html#userguide-quickstart
--- Bokek Quickstart
+-- Bokeh Quickstart
 -- for homework part 3
 
 - https://github.com/realpython/flask-bokeh-example/blob/master/tutorial.md
@@ -46,5 +46,35 @@ I am actively working on two sites that I am running at home:
 
 So I am going to forego the review at this time.
 
+### 2. Python: Visualization with Bokeh
+
+Reference:
+
+- https://www.blog.pythonlibrary.org/2016/07/27/python-visualization-with-bokeh/
+
+#### Notes?
+
+### 3. Bokeh Quickstart
+
+Reference:
+
+- http://bokeh.pydata.org/en/latest/docs/user_guide/quickstart.html#userguide-quickstart
+
+#### Notes?
+
+### 4. Flask Bokeh Basics
+
+Reference: https://github.com/realpython/flask-bokeh-example/blob/master/tutorial.md
+
+#### Notes?
+
+### 5. Optional: Learn Html and Css
+
+Relying on previous experience and foregoing this for now.
+
+
+### 6. Optional: Learn SQL
+
+Relying on previous experience and foregoing this for now.
 
 
