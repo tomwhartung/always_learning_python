@@ -37,13 +37,14 @@ cd 10-flask_save_emails_exp/Site
 . env.sh
 ```
 
-## Environment
+## Installation
 
-Need to install flask-wtf.
+Need to install flask-wtf and flask-bootstrap.
 Sqlite3 is already included in python3.
 
 ```
 pip3 install flask-wtf
+pip3 install flask-bootstrap
 ```
 
 ## Starting the app
