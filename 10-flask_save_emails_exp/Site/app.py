@@ -1,6 +1,10 @@
 ##
 # Save contact me email addresses in an sqlite3 db
 # ------------------------------------------------
+# This is kind of an amalgamation of two tutorials.
+# References:
+#   https://www.tutorialspoint.com/flask/flask_wtf.htm
+#   http://flask.pocoo.org/docs/0.12/patterns/wtforms/
 #
 from flask import Flask, render_template, request
 from flask_bootstrap import Bootstrap
@@ -32,12 +36,19 @@ def index() :
    name = None
    email = None
    form = MyNameEmailForm()
-   if request.method == 'POST' and form.validate_on_submit():
+   if request.method == 'POST':
+      if form.validate_on_submit():
+         return render_template('thanks.html', name=name, email=email)
+      else:
+         name = form.name.data
+         email = form.email.data
+         return render_template('index.html', form=form, name=name, email=email)
+   else:
       name = form.name.data
       form.name.data = ''
       email = form.email.data
       form.email.data = ''
-   return render_template('index.html', form=form, name=name, email=email)
+      return render_template('index.html', form=form, name=name, email=email)
 
 ##
 # Display the contactme form
