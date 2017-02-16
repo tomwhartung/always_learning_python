@@ -2,14 +2,21 @@
 
 {% block title %}Flasky{% endblock %}
 
-{% block page_content %}
-<div class="page-header">
+{% block content %}
+  <div class="page-header">
     <p>Hi
       {% if name %}
         {{ name }}
       {% else %}
         Anonymous
       {% endif %}!</p>
-</div>
-
+  </div>
+  {% from "_formhelpers.html" import render_field %}
+  <form method=post>
+    <dl>
+      {{ render_field(form.name) }}
+      {{ render_field(form.email) }}
+    </dl>
+    <p><input type="submit" value="Submit">
+  </form>
 {% endblock %}
