@@ -17,7 +17,7 @@ from wtforms.validators import Required
 
 class NameEmailForm(Form):
     name = StringField( 'Name', validators=[Required()] )
-    email = StringField( 'Email', validators=[Required(), Email()] )
+    email = StringField( 'Email', validators=[Required()] )
     submit = SubmitField( 'Get Your Portrait' )
 
 ##
