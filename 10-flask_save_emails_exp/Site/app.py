@@ -13,11 +13,14 @@ app.config['SECRET_KEY'] = 'AbcdefGhijklmNopqrstuVwxyz'
 #
 from flask_wtf import Form
 from wtforms import StringField, SubmitField
-from wtforms.validators import Required
+from wtforms import validators, ValidationError
+from wtforms.validators import Required, Email
 
 class NameEmailForm(Form):
     name = StringField( 'Name', validators=[Required()] )
-    email = StringField( 'Email', validators=[Required()] )
+    email = StringField( 'Email',
+       [ validators.Required("Please share your email address so that we can contact you."),
+         validators.Email("Please enter a valid email address.")] )
     submit = SubmitField( 'Get Your Portrait' )
 
 ##
@@ -45,4 +48,3 @@ def contactme() :
 #
 if __name__ == '__main__' :
    app.run( debug=True )
-
