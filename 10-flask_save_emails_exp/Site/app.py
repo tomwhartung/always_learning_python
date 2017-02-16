@@ -11,12 +11,12 @@ app.config['SECRET_KEY'] = 'AbcdefGhijklmNopqrstuVwxyz'
 ##
 # Define the form
 #
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms import validators, ValidationError
 from wtforms.validators import Required, Email
 
-class NameEmailForm(Form):
+class MyNameEmailForm(FlaskForm):
     name = StringField( 'Name', validators=[Required()] )
     email = StringField( 'Email',
        [ validators.Required("Please share your email address so that we can contact you."),
@@ -30,11 +30,13 @@ class NameEmailForm(Form):
 def index() :
    name = None
    email = None
-   form = NameEmailForm()
+   form = MyNameEmailForm()
    if form.validate_on_submit():
       name = form.name.data
       form.name.data = ''
-   return render_template('index.html', form=form, name=name)
+      email = form.email.data
+      form.email.data = ''
+   return render_template('index.html', form=form, name=name, email=email)
 
 ##
 # Display the contactme form
