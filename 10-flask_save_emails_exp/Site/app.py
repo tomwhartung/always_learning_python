@@ -3,21 +3,42 @@
 # ------------------------------------------------
 #
 from flask import Flask, render_template
+from flask_bootstrap import Bootstrap
+
 app = Flask( __name__ )
+app.config['SECRET_KEY'] = 'AbcdefGhijklmNopqrstuVwxyz'
 
 ##
-# Display the form
+# Define the form
 #
-@app.route( '/' )
+from flask_wtf import Form
+from wtforms import StringField, SubmitField
+from wtforms.validators import Required
+
+class NameEmailForm(Form):
+    name = StringField( 'Name', validators=[Required()] )
+    email = StringField( 'Email', validators=[Required(), Email()] )
+    submit = SubmitField( 'Get Your Portrait' )
+
+##
+# Display the wtf index form
+#
+@app.route( '/', methods=['GET', 'POST'] )
 def index() :
-   return render_template( 'contactme.html' )
+   name = None
+   email = None
+   form = NameEmailForm()
+   if form.validate_on_submit():
+      name = form.name.data
+      form.name.data = ''
+   return render_template('index.html', form=form, name=name)
 
 ##
-# Process the form
+# Display the contactme form
 #
-@app.route( '/save_email' )
-def save_email() :
-   return '<h3>Success</h3><p>email address saved ok</p>'
+@app.route( '/contactme' )
+def contactme() :
+   return render_template( 'contactme.html' )
 
 ##
 # Run the app!
