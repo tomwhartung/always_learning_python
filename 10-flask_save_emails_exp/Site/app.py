@@ -2,10 +2,11 @@
 # Save contact me email addresses in an sqlite3 db
 # ------------------------------------------------
 #
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_bootstrap import Bootstrap
 
 app = Flask( __name__ )
+app.config['WTF_CSRF_ENABLED'] = True
 app.config['SECRET_KEY'] = 'AbcdefGhijklmNopqrstuVwxyz'
 
 ##
@@ -31,7 +32,7 @@ def index() :
    name = None
    email = None
    form = MyNameEmailForm()
-   if form.validate_on_submit():
+   if request.method == 'POST' and form.validate_on_submit():
       name = form.name.data
       form.name.data = ''
       email = form.email.data
