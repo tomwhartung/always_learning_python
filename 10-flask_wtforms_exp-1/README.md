@@ -1,15 +1,30 @@
 
-# 10-flask_save_emails_exp
+# flask_wtforms_exp-1
 
 Get something working here that we can use on groja.com to save email addresses.
 
+This is a first try.
+
+I think that by amalgamating too many sources, I kind of confused myself.
+
 ## References:
+
+I think that by amalgamating too many sources, I kind of confused myself.
+
+### Starting references
 
 Combining ideas from Chapters 3 & 4 of the "Flask Web Development" book.
 
 Reference: http://shop.oreilly.com/product/0636920031116.do
 
-Using some db code from ../08-real_python_class/2017_02_07-Lesson_2/class_projects/calculator .
+Using the db design from ../08-real_python_class/2017_02_07-Lesson_2/class_projects/calculator .
+
+### Additional references
+
+When the first attempt didn't work very well, I went searching for additional information, and added some ideas found in these:
+
+* https://www.tutorialspoint.com/flask/flask_wtf.htm
+* http://flask.pocoo.org/docs/0.12/patterns/wtforms/
 
 ## Goal:
 
