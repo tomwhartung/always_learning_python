@@ -48,7 +48,7 @@ Run the env.sh script to enter the environment in
 
 ```
 golpy  # /var/www/always_learning/github/customizations/always_learning_python/
-cd 10-flask_save_emails_exp/Site
+cd 10-flask_wtforms_exp-1/Site
 . env.sh
 ```
 
