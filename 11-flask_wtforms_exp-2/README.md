@@ -7,7 +7,10 @@ This is a second try.
 
 ## References:
 
-Using only one reference this time.
+Using only one (2-part) reference this time.
+
+* https://code.tutsplus.com/tutorials/an-introduction-to-pythons-flask-framework--net-28822
+* https://code.tutsplus.com/tutorials/intro-to-flask-adding-a-contact-page--net-28982
 
 ## Goals:
 
@@ -49,6 +52,6 @@ Re-using virtual envirnoment created for 10-flask_wtforms_exp-1 , so there shoul
 Lazy typists use the run script.
 
 ```
-hello-run.sh    # sanity check
 run.sh          # run the app (app.py)
 ```
+
