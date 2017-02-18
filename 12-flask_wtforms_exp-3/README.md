@@ -37,17 +37,27 @@ Using schema from the not-quite-finished django version in ../04-polls_to_emails
 
 ## Environment
 
+**NOTE: This tutorial uses python2 (the print statement in the hello() function throws an error in python3).**
+
 Run the env.sh script to enter the environment in
 
 ```
 golpy  # /var/www/always_learning/github/customizations/always_learning_python/
-cd 12-flask_wtforms_exp-3/Site
+cd 12-flask_wtforms_exp-3/1-name/Site
 . env.sh
 ```
 
 ## Installation
 
-Re-using virtual envirnoment created for 10-flask_wtforms_exp-1 , so there should be nothing to install.
+**NOTE: Use the `pip` command instead of `pip3` to install these modules because this tutorial uses python2.**
+
+Need to install flask-wtf and flask-bootstrap.
+Sqlite3 is already included in python3.
+
+```
+pip install flask
+pip install flask-wtf
+```
 
 ## Starting the app
 
