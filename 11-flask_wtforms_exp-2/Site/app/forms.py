@@ -8,11 +8,11 @@
 from wtforms import Form, TextField, TextAreaField, SubmitField, validators, ValidationError
 
 class ContactForm(Form):
+  name = TextField( "Name" )   # (temporarily) demonstrate that the (other) validators are executing
   ## name = TextField( "Name",  [validators.Required("Please enter your name.")] )
-  name = TextField( "Name" )
   email = TextField( "Email",
     [ validators.Required("Please enter your email address."),
-      validators.Email("Please enter your email address") ] )
+      validators.Email("Please enter a valid email address") ] )
   subject = TextField("Subject",  [validators.Required("Please enter a subject line.")])
   message = TextAreaField( "Message",  [validators.Required("Please enter a message.")] )
   submit = SubmitField( "Send" )
