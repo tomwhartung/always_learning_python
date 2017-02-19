@@ -52,13 +52,35 @@ Reference:
 
 - https://www.blog.pythonlibrary.org/2016/07/27/python-visualization-with-bokeh/
 
-#### Notes?
+#### Installation
+
+Create a virtual environment based on python3.6 , and add flask and bokeh.
+```
+golpy    # /var/www/always_learning/github/customizations/always_learning_python/
+cd virtualenvs
+virtualenv -p /usr/bin/python3.6  rp-2-python3_6_flask_bokeh
+pip3 install flask
+pip3 install bokeh
+```
+
+#### Running the demos
+
+```
+golpy    # /var/www/always_learning/github/customizations/always_learning_python/
+cd 08-real_python_class/2017_02_07-Lesson_2/homework/2-visualization_with_bokeh
+python 1-plot.py
+python 2-gridplot.py
+```
+
+Running the demos opens the graph in firefox.
 
 ### 3. Bokeh Quickstart
 
 Reference:
 
 - http://bokeh.pydata.org/en/latest/docs/user_guide/quickstart.html#userguide-quickstart
+
+#### Installation
 
 #### Notes?
 
