@@ -15,7 +15,7 @@ y1 = np.cos(x)
 y2 = np.sin(x) + np.cos(x)
 
 # output to static HTML file
-output_file( "4-linked_panning_and_brushing.html" )
+output_file( "4-linked_panning.html" )
 
 # create a new plot
 s1 = figure(width=250, plot_height=250, title=None)
