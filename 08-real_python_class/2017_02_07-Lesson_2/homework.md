@@ -59,6 +59,7 @@ Create a virtual environment based on python3.6 , and add flask and bokeh.
 golpy    # /var/www/always_learning/github/customizations/always_learning_python/
 cd virtualenvs
 virtualenv -p /usr/bin/python3.6  rp-2-python3_6_flask_bokeh
+cat '. /var/www/always_learning/github/customizations/always_learning_python/virtualenvs/rp-2-python3_6_flask_bokeh/bin/activate' > rp-2-python3_6_flask_bokeh.sh
 pip3 install flask
 pip3 install bokeh
 ```
@@ -68,6 +69,7 @@ pip3 install bokeh
 ```
 golpy    # /var/www/always_learning/github/customizations/always_learning_python/
 cd 08-real_python_class/2017_02_07-Lesson_2/homework/2-visualization_with_bokeh
+. env.sh
 python 1-plot.py
 python 2-gridplot.py
 ```
@@ -81,6 +83,25 @@ Reference:
 - http://bokeh.pydata.org/en/latest/docs/user_guide/quickstart.html#userguide-quickstart
 
 #### Installation
+
+Reuse virtual environment created for 2-visualization_with_bokeh .
+
+```
+golpy    # /var/www/always_learning/github/customizations/always_learning_python/
+cd 08-real_python_class/2017_02_07-Lesson_2/homework/3-bokeh_quickstart
+. env.sh
+```
+
+#### Running the demos
+
+```
+golpy    # /var/www/always_learning/github/customizations/always_learning_python/
+cd 08-real_python_class/2017_02_07-Lesson_2/homework/3-bokeh_quickstart
+. env.sh
+python 1-figure_line.py
+python 2-plotting.py
+python 3-vectorized.py
+```
 
 #### Notes?
 
