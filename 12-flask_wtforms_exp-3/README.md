@@ -63,7 +63,27 @@ pip install flask-wtf
 
 Lazy typists use the run script.
 
+### (1) Form with only the name field
+
 ```
+golpy  # /var/www/always_learning/github/customizations/always_learning_python/
+cd 12-flask_wtforms_exp-3/1-name/Site
+run.sh          # run the app (app.py)
+```
+
+### (2) Form with only the name field and bootstrap styles
+
+```
+golpy  # /var/www/always_learning/github/customizations/always_learning_python/
+cd 12-flask_wtforms_exp-3/2-name_bootstrap/Site
+run.sh          # run the app (app.py)
+```
+
+### (3) Registration form
+
+```
+golpy  # /var/www/always_learning/github/customizations/always_learning_python/
+cd 12-flask_wtforms_exp-3/3-registration_form/Site
 run.sh          # run the app (app.py)
 ```
 
