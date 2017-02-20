@@ -36,7 +36,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/var/www/always_learning/github/customizations/always_learning_python/virtualenvs/rp-2-python3_6_flask_bokeh"
+set -gx VIRTUAL_ENV "/var/www/always_learning/github/customizations/always_learning_python/virtualenvs/rp-2-python3_6_flask_bokeh_bette"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

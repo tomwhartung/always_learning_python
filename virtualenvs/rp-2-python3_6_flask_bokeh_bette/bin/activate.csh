@@ -7,7 +7,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV "/var/www/always_learning/github/customizations/always_learning_python/virtualenvs/rp-2-python3_6_flask_bokeh"
+setenv VIRTUAL_ENV "/var/www/always_learning/github/customizations/always_learning_python/virtualenvs/rp-2-python3_6_flask_bokeh_bette"
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"
