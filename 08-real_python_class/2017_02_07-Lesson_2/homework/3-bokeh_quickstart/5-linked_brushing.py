@@ -3,34 +3,33 @@
 #     http://bokeh.pydata.org/en/latest/docs/user_guide/quickstart.html#userguide-quickstart
 #
 import numpy as np
+from bokeh.plotting import *
+from bokeh.models import ColumnDataSource
 
-from bokeh.layouts import gridplot
-from bokeh.plotting import figure, output_file, show
-
-# prepare some data
-N = 100
+# prepare some date
+N = 300
 x = np.linspace(0, 4*np.pi, N)
 y0 = np.sin(x)
 y1 = np.cos(x)
-y2 = np.sin(x) + np.cos(x)
 
 # output to static HTML file
-output_file( "5-linked_brushing.html" )
+output_file("5-linked_brushing.html")
 
-# create a new plot
-s1 = figure(width=250, plot_height=250, title=None)
-s1.circle(x, y0, size=10, color="navy", alpha=0.5)
+# NEW: create a column data source for the plots to share
+source = ColumnDataSource(data=dict(x=x, y0=y0, y1=y1))
 
-# NEW: create a new plot and share both ranges
-s2 = figure(width=250, height=250, x_range=s1.x_range, y_range=s1.y_range, title=None)
-s2.triangle(x, y1, size=10, color="firebrick", alpha=0.5)
+TOOLS = "pan,wheel_zoom,box_zoom,reset,save,box_select,lasso_select"
 
-# NEW: create a new plot and share only one range
-s3 = figure(width=250, height=250, x_range=s1.x_range, title=None)
-s3.square(x, y2, size=10, color="olive", alpha=0.5)
+# create a new plot and add a renderer
+left = figure(tools=TOOLS, width=350, height=350, title=None)
+left.circle('x', 'y0', source=source)
 
-# NEW: put the subplots in a gridplot
-p = gridplot([[s1, s2, s3]], toolbar_location=None)
+# create another new plot and add a renderer
+right = figure(tools=TOOLS, width=350, height=350, title=None)
+right.circle('x', 'y1', source=source)
+
+# put the subplots in a gridplot
+p = gridplot([[left, right]])
 
 # show the results
 show(p)
