@@ -58,8 +58,9 @@ Create a virtual environment based on python3.6 , and add flask and bokeh.
 ```
 golpy    # /var/www/always_learning/github/customizations/always_learning_python/
 cd virtualenvs
-virtualenv -p /usr/bin/python3.6  rp-2-python3_6_flask_bokeh
-cat '. /var/www/always_learning/github/customizations/always_learning_python/virtualenvs/rp-2-python3_6_flask_bokeh/bin/activate' > rp-2-python3_6_flask_bokeh.sh
+virtualenv -p /usr/bin/python3.6  rp-2-python3_6_flask_bokeh_bette
+cat '. /var/www/always_learning/github/customizations/always_learning_python/virtualenvs/rp-2-python3_6_flask_bokeh_bette/bin/activate' > \
+   rp-2-python3_6_flask_bokeh_bette.sh
 pip3 install flask
 pip3 install bokeh
 ```
@@ -101,9 +102,11 @@ cd 08-real_python_class/2017_02_07-Lesson_2/homework/3-bokeh_quickstart
 python 1-figure_line.py
 python 2-plotting.py
 python 3-vectorized.py
+python 4-linked_panning.py
+python 5-linked_brushing.py
+python 6a-datetime_axis.py
+python 6b-datetime_axis.py
 ```
-
-#### Notes?
 
 ### 4. Flask Bokeh Basics
 
