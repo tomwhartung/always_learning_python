@@ -3,7 +3,8 @@
 #  Reference:
 #     https://pythonspot.com/flask-web-forms/
 #
-from flask import Flask, flash, redirect, render_template, request, url_for
+from flask import Flask, flash
+from flask import redirect, render_template, request, session, url_for
 from form import NameEmailForm
 
 #  App config.
@@ -32,7 +33,8 @@ def contactme():
       print( "name: ", name, "email: ", email )
 
       if form.validate():
-         flash( 'Thanks, we will be in touch with you soon, ' + name + '!' )
+         session['name'] = name
+         flash( 'Thanks, we will be in touch with you soon!' )
          return redirect( url_for('thanks') )
       else:
          print( "form.errors:", form.errors )
@@ -47,7 +49,8 @@ def contactme():
 #
 @app.route( "/thanks" )
 def thanks():
-   return render_template( 'thanks.html' )
+   name = session.get( 'name' )
+   return render_template( 'thanks.html', name=name )
 
 
 if __name__ == "__main__":
