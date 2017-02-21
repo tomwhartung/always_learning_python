@@ -4,8 +4,10 @@
 
 {% block content %}
   <div class="container">
-    {{ super() }}
+    <h3>Frankenform Project</h3>
+    <p>Hi, and welcome to the Frankenform project.  Please share your details!</p>
     <h2>Name Email Form</h2>
+    {{ super() }}
     <form  action="" method="post" role="form">
       {{ form.csrf }}
       <div class="form-group">
@@ -17,14 +19,5 @@
       </div>
       <button type="submit" class="btn btn-success">Sign Up</button>
     </form>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for message in messages %}
-          <div class="alert alert-warning">
-            {{ message[1] }}
-          </div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
   </div><!-- .container -->
 {% endblock %}
