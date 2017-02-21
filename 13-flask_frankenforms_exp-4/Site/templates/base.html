@@ -16,8 +16,21 @@
 </head>
 <body>
   {% block content %}
-    <h3>Frankenform Project</h3>
-    <p>Hi, and welcome to the Frankenform project.  Please share your details!</p>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for message in messages %}
+          {% if "Thanks" in message[1]: %}
+            <div class="alert alert-info">
+              {{ message[1] }}
+            </div>
+          {% else %}
+            <div class="alert alert-warning">
+              {{ message[1] }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
   {% endblock %}
 </body>
 </html>
