@@ -38,9 +38,13 @@ def contactme():
          return redirect( url_for('thanks') )
       else:
          print( "form.errors:", form.errors )
-         ## for error_field in form.errors:
-         ##    flash( error_field.key, ":", error_field.value )
-         flash( form.errors )
+         #
+         #  key = 'email', values = list of error messages
+         ## flash( form.errors )
+         #
+         for key, value in form.errors.items():
+            for message in value:
+               flash( message )
 
    return render_template( 'contactme.html', form=form )
 
