@@ -3,7 +3,7 @@
 #  Reference:
 #     https://pythonspot.com/flask-web-forms/
 #
-from flask import Flask, render_template, flash, request
+from flask import Flask, flash, redirect, render_template, request, url_for
 from form import NameEmailForm
 
 #  App config.
@@ -13,8 +13,12 @@ app.config.from_object(__name__)
 app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 
 
-@app.route("/", methods=['GET', 'POST'])
-def hello():
+@app.route( "/" )
+def index():
+   return redirect( url_for('contactme') )
+
+@app.route("/contactme", methods=['GET', 'POST'])
+def contactme():
    form = NameEmailForm( request.form )
 
    if request.method == 'POST':
@@ -30,7 +34,7 @@ def hello():
          ##    flash( error_field.key, ":", error_field.value )
          flash( form.errors )
 
-   return render_template( 'hello.html', form=form )
+   return render_template( 'contactme.html', form=form )
 
 if __name__ == "__main__":
     app.run()
