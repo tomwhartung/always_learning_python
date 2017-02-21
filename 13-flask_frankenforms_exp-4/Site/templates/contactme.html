@@ -12,10 +12,22 @@
       {{ form.csrf }}
       <div class="form-group">
         <label for="name">Name:</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="What's your name?">
+        <input type="text" class="form-control" id="name" name="name"
+          {% if form.name.data %}
+            value="{{ form.name.data }}"
+          {% else %}
+            placeholder="What's your name?"
+          {% endif %}
+          id="name" name="name">
         <br>
         <label for="email">Email:</label>
-        <input type="text" class="form-control" id="email" name="email" placeholder="Your email will be used to contact you.">
+        <input type="text" class="form-control"
+          {% if form.email.data %}
+            value="{{ form.email.data }}"
+          {% else %}
+            placeholder="Your email will be used to contact you."
+          {% endif %}
+          id="email" name="email">
       </div>
       <button type="submit" class="btn btn-success">Sign Up</button>
     </form>
