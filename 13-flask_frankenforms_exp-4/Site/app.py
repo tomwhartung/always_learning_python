@@ -12,11 +12,16 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 
-
+##
+# Route for home page redirects to the form, making testing easier
+#
 @app.route( "/" )
 def index():
    return redirect( url_for('contactme') )
 
+##
+# Display contactme page with the form, and process it when it comes back
+#
 @app.route("/contactme", methods=['GET', 'POST'])
 def contactme():
    form = NameEmailForm( request.form )
@@ -28,6 +33,7 @@ def contactme():
 
       if form.validate():
          flash( 'Thanks, we will be in touch with you soon, ' + name + '!' )
+         return redirect( url_for('thanks') )
       else:
          print( "form.errors:", form.errors )
          ## for error_field in form.errors:
@@ -35,6 +41,14 @@ def contactme():
          flash( form.errors )
 
    return render_template( 'contactme.html', form=form )
+
+##
+# Thank the visitor for sharing their email address
+#
+@app.route( "/thanks" )
+def thanks():
+   return render_template( 'thanks.html' )
+
 
 if __name__ == "__main__":
     app.run()
