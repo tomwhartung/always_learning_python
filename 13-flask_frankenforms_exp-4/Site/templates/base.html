@@ -10,12 +10,14 @@
     <title>{% block title %}{% endblock %}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}">
   {% endblock %}
 </head>
 <body>
-  <h3>WTForm exp-1</h3>
-  <p>WTForm experimental project 1</p>
   {% block content %}
+    <h3>Frankenform Project</h3>
+    <p>Hi, and welcome to the Frankenform project.  Please share your details!</p>
   {% endblock %}
 </body>
 </html>
