@@ -5,12 +5,13 @@
 {% block content %}
   <div class="container">
     <div class="page-header">
-      <p>Thanks
+      <h3>Thanks
         {% if name %}
-          {{ name }}
+          {{ name }}!
         {% else %}
-          Friend
-        {% endif %}!</p>
+          Friend!
+        {% endif %}</h3>
     </div><!-- .page-header -->
+    {{ super() }}
   </div><!-- .container -->
 {% endblock %}
