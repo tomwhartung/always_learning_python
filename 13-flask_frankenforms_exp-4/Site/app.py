@@ -4,7 +4,9 @@
 #     https://pythonspot.com/flask-web-forms/
 #
 from flask import Flask, render_template, flash, request
-from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
+from wtforms import Form
+from wtforms import StringField, SubmitField
+from wtforms.validators import Required, Email
 
 #  App config.
 DEBUG = True
@@ -13,8 +15,11 @@ app.config.from_object(__name__)
 app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 
 class NameEmailForm( Form ):
-   name = TextField( 'Name:', validators=[validators.required()] )
-   email = TextField( 'Email:', validators=[validators.required(), validators.Length(min=6, max=35)] )
+   name = StringField( 'Name:' )
+   email = StringField( 'Email:',
+      [Required("Please share your email address so that we can contact you."),
+       Email("Please enter a valid email address.")] )
+   submit = SubmitField( 'Get Your Portrait' )
 
    def reset(self):
       blankData = MultiDict([ ('csrf', self.reset_csrf() ) ])
@@ -27,9 +32,9 @@ def hello():
 
    print( "form.errors:", form.errors )
    if request.method == 'POST':
-      name=request.form['name']
-      email=request.form['email']
-      print( "name", name, "email", email )
+      name = request.form['name']
+      email = request.form['email']
+      print( "name: ", name, "email: ", email )
 
       if form.validate():
          flash( 'Thanks, we will be in touch with you soon, ' + name + '!' )
