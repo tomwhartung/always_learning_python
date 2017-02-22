@@ -37,14 +37,16 @@ def contactme():
          flash( 'Thanks, we will be in touch with you soon!' )
          return redirect( url_for('thanks') )
       else:
-         print( "form.errors:", form.errors )
+         ## print( "form.errors:", form.errors )
          #
-         #  key = 'email', values = list of error messages
-         ## flash( form.errors )
+         #  key = 'email', values = [] (list of error messages)
          #
          for key, value in form.errors.items():
             for message in value:
                flash( message )
+   else:
+      form.name.data = ''
+      form.email.data = ''
 
    return render_template( 'contactme.html', form=form )
 
