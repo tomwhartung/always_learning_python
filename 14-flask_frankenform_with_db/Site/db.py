@@ -49,20 +49,39 @@ def seed_table():
    return True
 
 ##
-# For possible future reference
+#  Print all rows in the table to stdout
 #
-import csv
-def foobar_unused():
-   # open db, open datafile, iterate through datafile, running INSERT
-   with sqlite3.connect('greenhouse.db') as connection:
-      curs = connection.cursor()
-      with open( 'DataTemp1.dat' ) as data:
-         reader = csv.reader( data )
-         for row in reader:
-            print( 'Inserting row:', row )   # to see the data
-            curs.execute( "INSERT INTO greenhouse VALUES (?, ?)", row )
+def print_table():
+   rows = get_data()
+   see_data( rows )
+   return True
 
+##
+#  Get the data
+#
+def get_data():
+   rows = []
+   with sqlite3.connect( NameEmailDbName ) as connection:
+      curs = connection.cursor()
+      curs.execute( 'SELECT * from NameEmail')
+      rows = curs.fetchall()
+      ## print( 'Calling see_data 1' )
+      ## see_data( rows )
+   return rows
+
+##
+#  Print the data
+#
+def see_data( rows ):
+   for row in rows:
+      print( "row:", row )
+   return True
+
+##
+# Mainline code to drop, create, seed and print the table
+#
 if __name__ == '__main__':
    drop_table()
    create_table()
    seed_table()
+   print_table()
