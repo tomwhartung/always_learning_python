@@ -9,7 +9,7 @@
     <h2>Name Email Form</h2>
     {{ super() }}
     <form  action="" method="post" role="form">
-      {{ form.csrf }}
+      {{ form.hidden_tag() }}
       <div class="form-group">
         <label for="name">{{ form.name.label }}</label>
         {{ form.name( class="form-control", value=form.name.data ) }}
