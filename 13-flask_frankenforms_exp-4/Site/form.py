@@ -3,7 +3,8 @@
 #  For references, see the README.md file:
 #     https://github.com/tomwhartung/always_learning_python/tree/master/13-flask_frankenforms_exp-4
 #
-from wtforms import Form
+## from wtforms import Form
+from flask_wtf import Form
 from wtforms import StringField, SubmitField
 from wtforms.validators import Optional, Required, Email
 
@@ -20,4 +21,3 @@ class NameEmailForm( Form ):
    def reset(self):
       blankData = MultiDict([ ('csrf', self.reset_csrf() ) ])
       self.process(blankData)
-
