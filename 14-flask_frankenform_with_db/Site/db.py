@@ -3,13 +3,14 @@
 #  Create db, create table, read in data
 #
 import sqlite3
+NameEmailDbName = '../db/NameEmail.db'
 
 ##
 #  If the table exists, drop it
 #  Makes it easy to start fresh
 #
 def drop_table():
-   with sqlite3.connect('NameEmail.db') as connection:
+   with sqlite3.connect( NameEmailDbName ) as connection:
       curs = connection.cursor()
       curs.execute( 'DROP TABLE IF EXISTS NameEmail' )
    return True
@@ -23,7 +24,7 @@ def drop_table():
 #
 def create_table():
    ## with sqlite3.connect( '../db/NameEmail.db' ) as connection:
-   with sqlite3.connect( 'NameEmail.db' ) as connection:
+   with sqlite3.connect( NameEmailDbName ) as connection:
       curs = connection.cursor()
       curs.execute(
          """CREATE TABLE NameEmail
@@ -40,7 +41,7 @@ def create_table():
 #  Insert a row (or two) in the table, as a sanity check
 #
 def seed_table():
-   with sqlite3.connect('NameEmail.db') as connection:
+   with sqlite3.connect( NameEmailDbName ) as connection:
       curs = connection.cursor()
       curs.execute(
          """INSERT INTO NameEmail VALUES
