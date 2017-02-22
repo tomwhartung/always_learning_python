@@ -24,11 +24,12 @@ We may want to use this for gathering emails for more than one site.
 
 Using schema from the not-quite-finished django version in ../04-polls_to_emails .
 
-* name - char, 45
-* email - char, 254
-* site_code - char, 2
-* subscribed - boolean
-* subscription_date - date
+* name - TEXT
+* email - TEXT
+* site - TEXT
+* active - INTEGER
+* date_added - INTEGER
+* date_changed - INTEGER
 
 ## Environment
 
@@ -48,6 +49,20 @@ Sqlite3 is already included in python3.
 ```
 pip install flask       # needed only if using this code in a new project
 pip install flask-wtf   # needed only if using this code in a new project
+```
+
+## Creating the db
+
+Running db.py:
+
+1. if the db is pressent, drops the db and table
+2. creates the db and table
+3. inserts a sample row into the table
+
+```
+golpy  # /var/www/always_learning/github/customizations/always_learning_python/
+cd 14-flask_frankenform_with_db/Site
+python -m db
 ```
 
 ## Starting the app
