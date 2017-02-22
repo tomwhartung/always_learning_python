@@ -1,0 +1,59 @@
+
+Flask and Bokeh
+---------------
+Reference:
+  https://github.com/realpython/web-dev-for-data-scientists/blob/master/lessons/02-flask.md
+
+Notes:
+------
+"->" indicates topics to look up
+
+Flask: a microweb framework written in python
+Bokeh: powerful framework for drawing graphs
+
+Homework review
+Why use Bokeh
+  Bokeh - web-ready and all python
+  D3 - Javascript heavy
+  Mathplotlib
+  Pandas (large), Seaborn (like Mathplotlib but better), ggplot, pygal, plotly
+Continuum: manages some of these, does a good job
+-> Look this up!!
+
+Linters:
+1. Install linter framework
+2. Others, Michael recommends:
+   linter-pep8
+   linter-pylinte
+-> Look these up!!
+
+Class Projects
+--------------
+1. Setup Flask
+  Make directory
+  Virtual Env
+  Install dependencies
+  Create app.py
+  Hello world sanity check
+2. Setup SQLite
+  Create database - many ways to do it
+  Michael prefers to:
+    create it in a db.py file
+    create table in db.py
+    seed some data
+  cool tool: sqlite database browser
+3. Get Bokeh to print a simple graph
+4. Get app to plot data in db
+
+Homework
+--------
+Create a multi-line chart
+Add a field to the database (e.g., type)
+Use another datafile, set type to
+
+Next week:
+Use API calls to grab data, "Socrata is awesome!"
+- twitter API
+-> gnip, firehose
+
+
