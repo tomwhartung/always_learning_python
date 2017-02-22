@@ -31,22 +31,17 @@ Using schema from the not-quite-finished django version in ../04-polls_to_emails
 
 ## Environment
 
-**NOTE: This tutorial uses python2 (the print statement in the hello() function throws an error in python3).**
-
 Run the env.sh script to enter the environment in
 
 ```
 golpy  # /var/www/always_learning/github/customizations/always_learning_python/
-cd 12-flask_wtforms_exp-3/1-name/Site
+cd 13-flask_frankenforms_exp-4/Site
 . env.sh
 ```
 
 ## Installation
 
-**NOTE: Use the `pip` command instead of `pip3` to install these modules because this tutorial uses python2.**
-
 Need to install flask-wtf and flask-bootstrap.
-Sqlite3 is already included in python3.
 
 ```
 pip install flask
@@ -57,27 +52,9 @@ pip install flask-wtf
 
 Lazy typists use the run script.
 
-### (1) Form with only the name field
-
 ```
 golpy  # /var/www/always_learning/github/customizations/always_learning_python/
-cd 12-flask_wtforms_exp-3/1-name/Site
-run.sh          # run the app (app.py)
-```
-
-### (2) Form with only the name field and bootstrap styles
-
-```
-golpy  # /var/www/always_learning/github/customizations/always_learning_python/
-cd 12-flask_wtforms_exp-3/2-name_bootstrap/Site
-run.sh          # run the app (app.py)
-```
-
-### (3) Registration form
-
-```
-golpy  # /var/www/always_learning/github/customizations/always_learning_python/
-cd 12-flask_wtforms_exp-3/3-registration_form/Site
+cd 13-flask_frankenforms_exp-4/Site
 run.sh          # run the app (app.py)
 ```
 
