@@ -6,6 +6,7 @@
 from flask import Flask, flash
 from flask import redirect, render_template, request, session, url_for
 from form import NameEmailForm
+from db_access import insert_name_email
 
 #  App config.
 DEBUG = True
@@ -34,6 +35,7 @@ def contactme():
 
       if form.validate():
          session['name'] = name
+         insert_name_email( name, email, portrait=1 )
          flash( 'Thanks, we will be in touch with you soon!' )
          return redirect( url_for('thanks') )
       else:
