@@ -6,6 +6,14 @@ import sqlite3
 DB_DIRECTORY = '../db/'
 NAME_EMAIL_TABLE = DB_DIRECTORY + 'NameEmail.db'
 
+#
+#  Note: we know, this file has no routes!
+#  However, we import and declare app so we can use it to call open_resource
+#  (and maybe more later)
+#
+from flask import Flask
+app = Flask(__name__)
+
 ##
 #  If the table exists, drop it
 #  Makes it easy to start fresh
@@ -24,21 +32,10 @@ def drop_table():
 #     "INTEGER as Unix Time, the number of seconds since 1970-01-01 00:00:00 UTC"
 #
 def create_table():
-   ## with sqlite3.connect( '../db/NameEmail.db' ) as connection:
    with sqlite3.connect( NAME_EMAIL_TABLE ) as connection:
-      curs = connection.cursor()
-      curs.execute(
-         """CREATE TABLE NameEmail
-            ( name TEXT,
-              email TEXT,
-              site TEXT,
-              active INTEGER,
-              date_added INTEGER,
-              date_changed INTEGER,
-              consulting INTEGER DEFAULT 0,
-              newsletter INTEGER DEFAULT 0,
-              portrait INTEGER DEFAULT 0
-            )""")
+      with app.open_resource( DB_DIRECTORY + 'NameEmailSchema.sql', mode='r' ) as nameEmailSchema:
+         connection.executescript( nameEmailSchema.read() )
+         connection.commit()
    return True
 
 ##
