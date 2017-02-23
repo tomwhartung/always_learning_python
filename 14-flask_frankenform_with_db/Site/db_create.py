@@ -1,10 +1,13 @@
 ##
-#  Class project 1 part 2: sqlite3
-#  Create db, create table, read in data
+#  Create a sqlite3 table (db) named NameEmail
+#  Create the db, create the table, seed in one row of data
+#  Reference for Flask DB patterns:
+#     http://flask.pocoo.org/docs/0.12/patterns/sqlite3/
 #
 import sqlite3
 DB_DIRECTORY = '../db/'
 NAME_EMAIL_TABLE = DB_DIRECTORY + 'NameEmail.db'
+from db_access import print_table
 
 #
 #  Note: we know, this file has no routes!
@@ -14,9 +17,12 @@ NAME_EMAIL_TABLE = DB_DIRECTORY + 'NameEmail.db'
 from flask import Flask
 app = Flask(__name__)
 
+################################################################################
+#  Functions
+#  ---------
 ##
 #  If the table exists, drop it
-#  Makes it easy to start fresh
+#  Makes it easy to start fresh (e.g., when changing the schema)
 #
 def drop_table():
    with sqlite3.connect( NAME_EMAIL_TABLE ) as connection:
@@ -51,37 +57,9 @@ def seed_table():
          """)
    return True
 
+################################################################################
 ##
-#  Print all rows in the table to stdout
-#
-def print_table():
-   rows = get_data()
-   see_data( rows )
-   return True
-
-##
-#  Get the data
-#
-def get_data():
-   rows = []
-   with sqlite3.connect( NAME_EMAIL_TABLE ) as connection:
-      curs = connection.cursor()
-      curs.execute( 'SELECT * from NameEmail')
-      rows = curs.fetchall()
-      ## print( 'Calling see_data 1' )
-      ## see_data( rows )
-   return rows
-
-##
-#  Print the data
-#
-def see_data( rows ):
-   for row in rows:
-      print( "row:", row )
-   return True
-
-##
-# Mainline code to drop, create, seed and print the table
+# Mainline code to drop, create, seed, and print the table
 #
 if __name__ == '__main__':
    drop_table()
