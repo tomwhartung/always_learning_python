@@ -15,6 +15,10 @@ app.config.from_object(__name__)
 app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 
 ##
+## Could not figure out how to password-protect the db, the way we do with mysql.
+## app.config['USERNAME] = 'admin',
+## app.config['PASSWORD] = 'default'
+##
 # Route for home page redirects to the form, making testing easier
 #
 @app.route( "/" )
