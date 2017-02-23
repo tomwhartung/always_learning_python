@@ -66,8 +66,24 @@ Running `db.py`:
 golpy  # /var/www/always_learning/github/customizations/always_learning_python/
 cd 14-flask_frankenform_with_db/Site
 . env.sh
-python -m db
+python -m db_create
 ```
+
+## Testing the db
+
+To test the db, e.g., after changing the schema or something else:
+
+```
+. env.sh
+python
+>>> from db_access import test_insert_functions
+>>> test_insert_functions()
+```
+
+We are currently only using insert functionality in the programs.
+To see all rows, run print.sh (see below).  Currently that's all the functionality we need!
+
+I tried to find a way to password-protect the db, the way we do oure mysql dbs, but was unable to.
 
 ## Printing all rows in the db
 
@@ -75,7 +91,8 @@ To print out all rows in the db:
 
 ```
 . env.sh
-./print.sh
+./print.sh             # one way
+python -m db_access    # another way - but with more typing!
 ```
 
 ## Starting the app
