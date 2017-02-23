@@ -30,6 +30,9 @@ Using schema from the not-quite-finished django version in ../04-polls_to_emails
 * active - INTEGER
 * date_added - INTEGER
 * date_changed - INTEGER
+* consulting - INTEGER
+* newsletter - INTEGER
+* portrait - INTEGER
 
 ## Environment
 
@@ -51,9 +54,9 @@ pip install flask       # needed only if using this code in a new project
 pip install flask-wtf   # needed only if using this code in a new project
 ```
 
-## Creating the db
+## Creating the db and table
 
-Running db.py:
+Running `db.py`:
 
 1. if the db is pressent, drops the db and table
 2. creates the db and table
@@ -62,7 +65,17 @@ Running db.py:
 ```
 golpy  # /var/www/always_learning/github/customizations/always_learning_python/
 cd 14-flask_frankenform_with_db/Site
+. env.sh
 python -m db
+```
+
+## Printing all rows in the db
+
+To print out all rows in the db:
+
+```
+. env.sh
+./print.sh
 ```
 
 ## Starting the app
