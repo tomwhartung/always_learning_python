@@ -3,14 +3,15 @@
 #  Create db, create table, read in data
 #
 import sqlite3
-NameEmailDbName = '../db/NameEmail.db'
+DB_DIRECTORY = '../db/'
+NAME_EMAIL_TABLE = DB_DIRECTORY + 'NameEmail.db'
 
 ##
 #  If the table exists, drop it
 #  Makes it easy to start fresh
 #
 def drop_table():
-   with sqlite3.connect( NameEmailDbName ) as connection:
+   with sqlite3.connect( NAME_EMAIL_TABLE ) as connection:
       curs = connection.cursor()
       curs.execute( 'DROP TABLE IF EXISTS NameEmail' )
    return True
@@ -24,7 +25,7 @@ def drop_table():
 #
 def create_table():
    ## with sqlite3.connect( '../db/NameEmail.db' ) as connection:
-   with sqlite3.connect( NameEmailDbName ) as connection:
+   with sqlite3.connect( NAME_EMAIL_TABLE ) as connection:
       curs = connection.cursor()
       curs.execute(
          """CREATE TABLE NameEmail
@@ -33,7 +34,11 @@ def create_table():
               site TEXT,
               active INTEGER,
               date_added INTEGER,
-              date_changed INTEGER )""")
+              date_changed INTEGER,
+              consulting INTEGER DEFAULT 0,
+              newsletter INTEGER DEFAULT 0,
+              portrait INTEGER DEFAULT 0
+            )""")
    return True
 
 ##
@@ -41,11 +46,12 @@ def create_table():
 #  Insert a row (or two) in the table, as a sanity check
 #
 def seed_table():
-   with sqlite3.connect( NameEmailDbName ) as connection:
+   with sqlite3.connect( NAME_EMAIL_TABLE ) as connection:
       curs = connection.cursor()
       curs.execute(
          """INSERT INTO NameEmail VALUES
-            ( 'Joe', 'joe@joe.com', 'groja.com', 1, 1487799078, 1487799078 )""")
+            ( 'Joe', 'joe@joe.com', 'groja.com', 1, 1487799078, 1487799078, 0, 0, 0 )
+         """)
    return True
 
 ##
@@ -61,7 +67,7 @@ def print_table():
 #
 def get_data():
    rows = []
-   with sqlite3.connect( NameEmailDbName ) as connection:
+   with sqlite3.connect( NAME_EMAIL_TABLE ) as connection:
       curs = connection.cursor()
       curs.execute( 'SELECT * from NameEmail')
       rows = curs.fetchall()
