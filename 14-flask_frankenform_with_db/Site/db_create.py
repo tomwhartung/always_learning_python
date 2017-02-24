@@ -52,9 +52,8 @@ def seed_table():
    with sqlite3.connect( NAME_EMAIL_TABLE ) as connection:
       curs = connection.cursor()
       curs.execute(
-         """INSERT INTO NameEmail VALUES
-            ( 'Joe', 'joe@joe.com', 'groja.com', 1, 1487799078, 1487799078, 0, 0, 0 )
-         """)
+         "INSERT INTO NameEmail (name,email,date_added,date_changed) VALUES (?,?,?,?)",
+            ( 'Joe', 'joe@joe.com', 1487799078, 1487799078 ) )
    return True
 
 ################################################################################
