@@ -89,6 +89,42 @@ def see_data( rows, line_prefix="" ):
    return True
 
 ##
+#  Test our insert* Functions
+#  Usage:
+#     $ . ./env.sh
+#     $ python
+#     from db_access import test_insert_functions
+#     >>> test_insert_functions()
+#  Or, use these commands to test on the command line:
+#     $ . ./env.sh
+#     $ python
+#     from db_access import insert_hard_coded_name_email
+#     >>> insert_hard_coded_name_email()
+#     >>> from db_access import insert_name_email
+#     >>> insert_name_email( 'june', 'june@may.com' )
+#     >>> insert_name_email( 'april', 'april@may.com', portrait=1 )
+#     >>> insert_name_email( 'pete', 'pete@example.com', consulting=1 )
+#     >>> insert_name_email( 'mia', 'mia@example.com', newsletter=1 )
+#
+def test_insert_functions():
+   print_table( "1:" )
+   insert_hard_coded_name_email()
+   print( '' )
+   print_table( "2:" )
+   insert_name_email( 'june', 'june@may.com' )
+   print( '' )
+   print_table( "3:" )
+   insert_name_email( 'april', 'april@may.com', portrait=1 )
+   print( '' )
+   print_table( "4:" )
+   insert_name_email( 'pete', 'pete@example.com', consulting=1 )
+   print( '' )
+   print_table( "5:" )
+   insert_name_email( 'mia', 'mia@example.com', newsletter=1 )
+   print( '' )
+   print_table( "6:" )
+
+##
 # Mainline code to drop, create, seed and print the table
 #
 if __name__ == '__main__':
