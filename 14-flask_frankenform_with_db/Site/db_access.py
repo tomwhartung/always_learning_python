@@ -11,18 +11,9 @@ DB_DIRECTORY = '../db/'
 NAME_EMAIL_TABLE = DB_DIRECTORY + 'NameEmail.db'
 
 ################################################################################
-## #
-## #  Note: we know, this file has no routes!
-## #  However, we import and declare app so we can use it to call open_resource
-## #  (and maybe more later)
-## #
-## from flask import Flask
-## app = Flask(__name__)
-
-################################################################################
+#
 #  Functions:
 #  ----------
-#  The idea is to import only the functions you need to get the job done
 #
 ##
 #  Insert a row into the table
@@ -93,7 +84,7 @@ def see_data( rows, line_prefix="" ):
 #  Usage:
 #     $ . ./env.sh
 #     $ python
-#     from db_access import test_insert_functions
+#     >>> from db_access import test_insert_functions
 #     >>> test_insert_functions()
 #  Or, use these commands to test on the command line:
 #     $ . ./env.sh
@@ -125,7 +116,7 @@ def test_insert_functions():
    print_table( "6:" )
 
 ##
-# Mainline code to drop, create, seed and print the table
+# Mainline code to print the table
 #
 if __name__ == '__main__':
    print_table()
