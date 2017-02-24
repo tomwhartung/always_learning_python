@@ -7,7 +7,8 @@
 --     "INTEGER as Unix Time, the number of seconds since 1970-01-01 00:00:00 UTC"
 --
 CREATE TABLE NameEmail
-   ( name TEXT,
+   ( id INTEGER PRIMARY KEY AUTOINCREMENT,
+     name TEXT,
      email TEXT,
      site TEXT DEFAULT 'groja.com',
      active INTEGER DEFAULT 1,
