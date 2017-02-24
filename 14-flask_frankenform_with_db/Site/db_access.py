@@ -25,13 +25,27 @@ NAME_EMAIL_TABLE = DB_DIRECTORY + 'NameEmail.db'
 ##
 #  Insert a row into the table
 #
-def insert_name_email():
+def insert_name_email( name, email, consulting=0, newsletter=0, portrait=0 ):
+   with sqlite3.connect( NAME_EMAIL_TABLE ) as connection:
+      curs = connection.cursor()
+      ## cur.execute("INSERT INTO account_holder (email,username,phone,password) VALUES (?,?,?,?)", (email,username,phone,password))
+      curs.execute(
+         "INSERT INTO NameEmail (name,email,consulting,newsletter,portrait) VALUES (?,?,?,?,?)",
+            ( name, email, consulting, newsletter, portrait ) )
+   return True
+
+##
+#  Insert a row of hard-coded values into the table
+#  We wrote this before the above (general) function and are keeping it (for now)
+#     because it might come in handy for debugging the general function someday.
+#  Absolutely this is cruft and can be deleted, if desired!
+#
+def insert_hard_coded_name_email():
    with sqlite3.connect( NAME_EMAIL_TABLE ) as connection:
       curs = connection.cursor()
       curs.execute(
-         """INSERT INTO NameEmail VALUES
-            ( 'Sam', 'sam@sam.com', 'groja.com', 1, 1487880321, 1487880321, 0, 0, 0 )
-         """)
+         "INSERT INTO NameEmail (name,email,date_added,date_changed) VALUES (?,?,?,?)",
+            ( 'Sam', 'sam@sam.com', 1487894885, 1487894885 ) )
    return True
 
 ##
