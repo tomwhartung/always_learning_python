@@ -5,6 +5,8 @@
 #     http://flask.pocoo.org/docs/0.12/patterns/sqlite3/
 #
 import sqlite3
+import datetime
+
 DB_DIRECTORY = '../db/'
 NAME_EMAIL_TABLE = DB_DIRECTORY + 'NameEmail.db'
 
@@ -45,15 +47,26 @@ def insert_hard_coded_name_email():
       curs = connection.cursor()
       curs.execute(
          "INSERT INTO NameEmail (name,email,date_added,date_changed) VALUES (?,?,?,?)",
-            ( 'Sam', 'sam@sam.com', 1487894885, 1487894885 ) )
+            ( 'Sam', 'sam@sam.com', my_current_timestamp(), my_current_timestamp() ) )
    return True
+
+##
+#  Return a string containing the date and the time formatted the same as the
+#  Sqlite3 CURRENT_TIMESTAMP used in the schema, i.e.,
+#     CURRENT_TIMESTAMP returns dates in the format "1970-01-01 00:00:00"
+#
+def my_current_timestamp():
+   my_time = datetime.time(1, 2, 3)
+   my_date = datetime.date.today()
+   my_current_timestamp = datetime.datetime.combine( my_date, my_time )
+   return my_current_timestamp
 
 ##
 #  Print all rows in the table to stdout
 #
-def print_table():
+def print_table( line_prefix="" ):
    rows = get_data()
-   see_data( rows )
+   see_data( rows, line_prefix )
    return True
 
 ##
@@ -70,9 +83,9 @@ def get_data():
 ##
 #  Print the data
 #
-def see_data( rows ):
+def see_data( rows, line_prefix="" ):
    for row in rows:
-      print( "row:", row )
+      print( line_prefix, "row:", row )
    return True
 
 ##
