@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Name Email Form{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h3>Frankenform Project</h3>
+    <p>Hi, and welcome to the Frankenform project.  Please share your details!</p>
+    <h2>Name Email Form</h2>
+    {{ super() }}
+    <form  action="" method="post" role="form">
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+        <label for="name">{{ form.name.label }}</label>
+        {{ form.name( class="form-control", value=form.name.data ) }}
+        <label for="email">{{ form.email.label }}</label>
+        {{ form.email( class="form-control", value=form.email.data ) }}
+      </div>
+      <button type="submit" class="btn btn-success">Sign Up</button>
+    </form>
+  </div><!-- .container -->
+{% endblock %}
