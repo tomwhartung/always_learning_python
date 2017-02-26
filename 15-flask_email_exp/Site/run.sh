@@ -8,7 +8,7 @@ export FLASK_DEBUG=1
 ##    "/usr/lib/python3.6/runpy.py:125: RuntimeWarning: 'flask.cli' found in sys.modules
 ##      after import of package 'flask', but prior to execution of 'flask.cli';
 ##       this may result in unpredictable behaviour"
-## export FLASK_APP=app.py
+## export FLASK_APP=groja.py
 ## python -m flask run
 ## python3 -m flask run
 ## ** Seriously wtf! **
