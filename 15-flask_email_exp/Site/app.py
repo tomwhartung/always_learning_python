@@ -5,7 +5,7 @@
 #
 from flask import Flask, flash
 from flask import redirect, render_template, request, session, url_for
-from form import NameEmailForm
+from groja_form import NameEmailForm
 from db_access import insert_name_email
 
 #  App config.
