@@ -54,8 +54,6 @@ def contactme():
 ##
 # Thank the visitor for sharing their email address
 #
-app.config['MAIL_FROM'] = 'no_reply@tomhartung.com'
-app.config['MAIL_TO'] = 'tomh@tomhartung.com'
 @app.route( "/thanks" )
 def thanks():
    name = session.get( 'name' )
@@ -66,11 +64,28 @@ def thanks():
 ##
 #  First: send a simple test email
 #
+import os
 from flask_mail import Mail
 from flask_mail import Message
+app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+app.config['MAIL_FROM'] = 'no_reply@tomhartung.com'
+app.config['MAIL_TO'] = 'tomwhartung@tmail.com'
 mail = Mail(app)
-def send_test_email( message ):
-   print( 'In the send_test_email() in groja.py, message =', message )
+def send_test_email( message_text ):
+   print( 'In the send_test_email() in groja.py, message_text =', message_text )
+   message = Message(
+      'Interest in a spiritual portrait',
+      sender=app.config['MAIL_FROM'],
+      recipients=[app.config['MAIL_TO']] )
+   message.body = message_text
+   message.html = ''
+   mail.send( message )
    return True
 
 ##
@@ -78,4 +93,3 @@ def send_test_email( message ):
 #
 if __name__ == "__main__":
     app.run()
-
