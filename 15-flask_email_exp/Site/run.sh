@@ -13,4 +13,4 @@ export FLASK_DEBUG=1
 ## python3 -m flask run
 ## ** Seriously wtf! **
 ##
-python app.py
+python groja.py
