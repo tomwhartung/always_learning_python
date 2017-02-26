@@ -5,6 +5,17 @@ Get app to send an email when someone shares their name and email address.
 
 Starting point for this project is all the files in ../14-flask_frankenform_with_db .
 
+## Status:
+
+This project does not work, and we are abandoning it for the following reasons:
+
+* Had to "jump through a lot of hoops" to get the example in the book to work
+* It wants to use my gmail account, and set the account and password in environment variables
+* Possibly the worst one of these hoops was I had to allow "less secure access" (1) to my gmail account
+* Even after all that, the email went into my spam folder, probably due to being sent through "less secure" means
+
+(1) For details about "less secure access," see: https://support.google.com/accounts/answer/6010255
+
 ## References:
 
 See:
