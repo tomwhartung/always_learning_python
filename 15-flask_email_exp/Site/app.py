@@ -38,6 +38,7 @@ def contactme():
 
       if form.validate():
          session['name'] = name
+         session['email'] = email
          insert_name_email( name, email, portrait=1 )
          flash( 'Thanks, we will be in touch with you soon!' )
          return redirect( url_for('thanks') )
@@ -58,11 +59,18 @@ def contactme():
 ##
 # Thank the visitor for sharing their email address
 #
+from groja_email import send_test_email
+app.config['MAIL_FROM'] = 'no_reply@tomhartung.com'
+app.config['MAIL_TO'] = 'tomh@tomhartung.com'
 @app.route( "/thanks" )
 def thanks():
    name = session.get( 'name' )
+   email = session.get( 'email' )
+   send_test_email( name + ' (' + email + ') has expressed an interest in buying a spiritual portrait!' )
    return render_template( 'thanks.html', name=name )
 
-
+##
+#  Run the app!
+#
 if __name__ == "__main__":
     app.run()
