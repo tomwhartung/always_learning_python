@@ -36,7 +36,7 @@ Using schema from the not-quite-finished django version in ../04-polls_to_emails
 
 ## Environment
 
-Run the env.sh script to enter the environment in
+Run the env.sh script to enter the environment in virtualenvs/p3_flask_bootstrap_wtf_bette .
 
 ```
 golpy  # /var/www/always_learning/github/customizations/always_learning_python/
@@ -56,7 +56,7 @@ pip install flask-wtf   # needed only if using this code in a new project
 
 ## Creating the db and table
 
-Running `db.py`:
+Running `db_create.py`:
 
 1. if the db is pressent, drops the db and table
 2. creates the db and table
