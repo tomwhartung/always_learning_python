@@ -5,7 +5,7 @@
 #
 from flask import Flask, flash
 from flask import redirect, render_template, request, session, url_for
-from groja_form import NameEmailForm
+from form import NameEmailForm
 from db_access import insert_name_email
 
 #  App config.
@@ -13,10 +13,6 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 
-##
-## Could not figure out how to password-protect the db, the way we do with mysql.
-## app.config['USERNAME] = 'admin',
-## app.config['PASSWORD] = 'default'
 ##
 # Route for home page redirects to the form, making testing easier
 #
@@ -34,7 +30,6 @@ def contactme():
    if request.method == 'POST':
       name = form.name.data
       email = form.email.data
-      print( "name: ", name, "email: ", email )
 
       if form.validate():
          session['name'] = name
@@ -59,7 +54,6 @@ def contactme():
 ##
 # Thank the visitor for sharing their email address
 #
-from groja_email import send_test_email
 app.config['MAIL_FROM'] = 'no_reply@tomhartung.com'
 app.config['MAIL_TO'] = 'tomh@tomhartung.com'
 @app.route( "/thanks" )
@@ -70,7 +64,18 @@ def thanks():
    return render_template( 'thanks.html', name=name )
 
 ##
+#  First: send a simple test email
+#
+from flask_mail import Mail
+from flask_mail import Message
+mail = Mail(app)
+def send_test_email( message ):
+   print( 'In the send_test_email() in groja.py, message =', message )
+   return True
+
+##
 #  Run the app!
 #
 if __name__ == "__main__":
     app.run()
+
