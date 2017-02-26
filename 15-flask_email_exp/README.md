@@ -1,72 +1,54 @@
 
-# 14-flask_frankenform_with_db
+# 15-flask_email_exp
 
-Get something working here that we can use on groja.com to save email addresses.
+Get app to send an email when someone shares their name and email address.
 
-This is the most recent version of the form, which we like ok, with code to save the entered values in a sqlite database.
+Starting point for this project is all the files in ../14-flask_frankenform_with_db .
 
 ## References:
 
 See:
 
-* ../10-flask_wtforms_exp-1
-* ../11-flask_wtforms_exp-2
-* ../12-flask_wtforms_exp-3
-* ../13-flask_frankenforms_exp-4
+* ../14-flask_frankenform_with_db
 
-## Goals:
+## Goal:
 
-Create a simple form to save email addresses in an SqlLite database.
-
-### Goal: Use the form to save rows in the db
-
-We may want to use this for gathering emails for more than one site.
-
-Using schema from the not-quite-finished django version in ../04-polls_to_emails .
-
-* name - TEXT
-* email - TEXT
-* site - TEXT
-* active - INTEGER
-* date_added - INTEGER
-* date_changed - INTEGER
-* consulting - INTEGER
-* newsletter - INTEGER
-* portrait - INTEGER
+Update ../14-flask_frankenform_with_db to send an email when someone shares their email address.
 
 ## Environment
 
-Run the env.sh script to enter the environment in
+Run the env.sh script to enter the environment in virtualenvs/p3_flask_mail_etc
 
 ```
 golpy  # /var/www/always_learning/github/customizations/always_learning_python/
-cd 14-flask_frankenform_with_db/Site
+cd 15-flask_email_exp/Site
 . env.sh
 ```
 
 ## Installation
 
-The virtual environment we are using has flask-wtf and flask-bootstrap already installed.
+Starting a new virtual environment.  We need flask-wtf, flask-bootstrap, and flask-mail.
 Sqlite3 is already included in python3.
 
 ```
-pip install flask       # needed only if using this code in a new project
-pip install flask-wtf   # needed only if using this code in a new project
+pip3 install flask==0.12    # needed for code copied from ../14-flask_frankenform_with_db
+pip3 install flask-wtf      # needed for code copied from ../14-flask_frankenform_with_db
+pip3 install flask-mail     # using this module for the first time
 ```
 
 ## Creating the db and table
 
-Running `db.py`:
+Running `db_create.py`:
 
-1. if the db is pressent, drops the db and table
+1. if the db is present, drops the db and table
 2. creates the db and table
 3. inserts a sample row into the table
 
 ```
 golpy  # /var/www/always_learning/github/customizations/always_learning_python/
-cd 14-flask_frankenform_with_db/Site
+cd 15-flask_email_exp/Site
 . env.sh
-python -m db_create
+python3 -m db_create
 ```
 
 ## Testing the db
@@ -101,7 +83,7 @@ Lazy typists use the run script.
 
 ```
 golpy  # /var/www/always_learning/github/customizations/always_learning_python/
-cd 14-flask_frankenform_with_db/Site
+cd 15-flask_email_exp/Site
 run.sh          # run the app (app.py)
 ```
 
