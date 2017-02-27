@@ -74,8 +74,8 @@ app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
-app.config['MAIL_FROM'] = 'no_reply@tomhartung.com'
-app.config['MAIL_TO'] = 'tomwhartung@tmail.com'
+app.config['MAIL_FROM'] = os.environ.get('MAIL_FROM')
+app.config['MAIL_TO'] = os.environ.get('MAIL_TO')
 mail = Mail(app)
 def send_test_email( message_text ):
    print( 'In the send_test_email() in groja.py, message_text =', message_text )
