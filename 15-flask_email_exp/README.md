@@ -16,6 +16,14 @@ This project does not work, and we are abandoning it for the following reasons:
 
 (1) For details about "less secure access," see: https://support.google.com/accounts/answer/6010255
 
+## NOTE:
+
+We may want to Use Flask-mail after all.
+
+Installing sendmail may fix the error message we got before trying the gmail address.
+
+If we want to send emails based on templates, flask-mail may be the best way to go.
+
 ## References:
 
 See:
