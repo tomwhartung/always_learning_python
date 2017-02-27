@@ -20,9 +20,27 @@ This project does not work, and we are abandoning it for the following reasons:
 
 We may want to Use Flask-mail after all.
 
+Specifically, if we want to send emails based on templates, flask-mail may be the best way to go.
+
+### Connection Refused Error
+
 Installing sendmail may fix the error message we got before trying the gmail address.
 
-If we want to send emails based on templates, flask-mail may be the best way to go.
+I'm fairly certain this is the error we were getting, before trying to route the message through my gmail acccount:
+
+* "socket.error: [Errno 111] Connection refused"
+
+If that is the case, installing sendmail as follows should fix it:
+
+As root:
+
+```
+apt-get install sendmail
+```
+
+Reference: http://stackoverflow.com/questions/20349170/socket-error-errno-111-connection-refused
+
+(See the comment on one of the answers.)
 
 ## References:
 
