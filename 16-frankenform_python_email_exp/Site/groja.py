@@ -7,6 +7,7 @@ from flask import Flask, flash
 from flask import redirect, render_template, request, session, url_for
 from form import NameEmailForm
 from db_access import insert_name_email
+from send_email import send_interest_email
 
 #  App config.
 app = Flask(__name__)
@@ -58,35 +59,8 @@ def contactme():
 def thanks():
    name = session.get( 'name' )
    email = session.get( 'email' )
-   send_test_email( name + ' (' + email + ') has expressed an interest in buying a spiritual portrait!' )
+   send_interest_email( name + ' (' + email + ') has expressed an interest in buying a spiritual portrait!' )
    return render_template( 'thanks.html', name=name )
-
-##
-#  Send a simple test email
-#
-#  Reference:
-#     https://docs.python.org/3/library/email-examples.html
-#
-# Import smtplib for the actual sending function
-import smtplib
-# Import the email modules we'll need
-from email.mime.text import MIMEText
-import os
-GROJA_MAIL_FROM = os.environ.get( 'GROJA_MAIL_FROM' )
-GROJA_MAIL_TO = os.environ.get( 'GROJA_MAIL_TO' )
-def send_test_email( message_text ):
-   ## print( 'In the send_test_email() in groja.py, message_text =', message_text )
-   print( 'GROJA_MAIL_FROM:', GROJA_MAIL_FROM )
-   print( 'GROJA_MAIL_TO:', GROJA_MAIL_TO )
-   msg = MIMEText( message_text )
-   msg['Subject'] = 'Test Email (Subject)'
-   msg['From'] = GROJA_MAIL_FROM
-   msg['To'] = GROJA_MAIL_TO
-   server = smtplib.SMTP('localhost')
-   server.send_message(msg)
-   server.quit()
-   print( 'Message sent!' )
-   return True
 
 ##
 #  Run the app!
