@@ -64,8 +64,26 @@ def thanks():
 ##
 #  Send a simple test email
 #
+#  Reference:
+#     https://docs.python.org/3/library/email-examples.html
+#
+# Import smtplib for the actual sending function
+import smtplib
+# Import the email modules we'll need
+from email.mime.text import MIMEText
+import os
 def send_test_email( message_text ):
    print( 'In the send_test_email() in groja.py, message_text =', message_text )
+   print( 'GROJA_MAIL_FROM', os.environ.get('GROJA_MAIL_FROM') )
+   print( 'GROJA_MAIL_TO', os.environ.get('GROJA_MAIL_TO') )
+   msg = MIMEText( message_text )
+   msg['Subject'] = 'Test Email (Subject)'
+   msg['From'] = os.environ.get('GROJA_MAIL_FROM')
+   msg['To'] = os.environ.get('GROJA_MAIL_TO')
+   s = smtplib.SMTP('localhost')
+   s.send_message(msg)
+   s.quit()
+   print( 'Message sent!' )
    return True
 
 ##
