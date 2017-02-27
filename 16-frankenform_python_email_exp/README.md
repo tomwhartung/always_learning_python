@@ -32,6 +32,8 @@ Smtplib is already included in python.
 
 ### Install sendmail
 
+Reference: http://stackoverflow.com/questions/20349170/socket-error-errno-111-connection-refused
+
 As root:
 
 ```
