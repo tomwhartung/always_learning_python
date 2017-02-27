@@ -1,7 +1,7 @@
 ##
-#  Create a form to get the visitor's name and email address
+#  When the visitor submits the form, send an email notification
 #  Reference:
-#     https://pythonspot.com/flask-web-forms/
+#     https://docs.python.org/3/library/email-examples.html
 #
 from flask import Flask, flash
 from flask import redirect, render_template, request, session, url_for
@@ -9,24 +9,19 @@ from form import NameEmailForm
 from db_access import insert_name_email
 
 #  App config.
-DEBUG = True
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 
 ##
-## Could not figure out how to password-protect the db, the way we do with mysql.
-## app.config['USERNAME] = 'admin',
-## app.config['PASSWORD] = 'default'
-##
-# Route for home page redirects to the form, making testing easier
+#  Route for home page redirects to the form, making testing easier
 #
 @app.route( "/" )
 def index():
    return redirect( url_for('contactme') )
 
 ##
-# Display contactme page with the form, and process it when it comes back
+#  Display contactme page with the form, and process it when it comes back
 #
 @app.route("/contactme", methods=['GET', 'POST'])
 def contactme():
@@ -35,10 +30,10 @@ def contactme():
    if request.method == 'POST':
       name = form.name.data
       email = form.email.data
-      print( "name: ", name, "email: ", email )
 
       if form.validate():
          session['name'] = name
+         session['email'] = email
          insert_name_email( name, email, portrait=1 )
          flash( 'Thanks, we will be in touch with you soon!' )
          return redirect( url_for('thanks') )
@@ -57,13 +52,24 @@ def contactme():
    return render_template( 'contactme.html', form=form )
 
 ##
-# Thank the visitor for sharing their email address
+#  Thank the visitor for sharing their email address
 #
 @app.route( "/thanks" )
 def thanks():
    name = session.get( 'name' )
+   email = session.get( 'email' )
+   send_test_email( name + ' (' + email + ') has expressed an interest in buying a spiritual portrait!' )
    return render_template( 'thanks.html', name=name )
 
+##
+#  Send a simple test email
+#
+def send_test_email( message_text ):
+   print( 'In the send_test_email() in groja.py, message_text =', message_text )
+   return True
 
+##
+#  Run the app!
+#
 if __name__ == "__main__":
     app.run()
