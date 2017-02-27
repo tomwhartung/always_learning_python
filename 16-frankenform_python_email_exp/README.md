@@ -27,12 +27,15 @@ cd 15-flask_email_exp/Site
 
 ## Installation
 
-Starting a new virtual environment.  We need flask-wtf, flask-bootstrap, and flask-mail.
-Sqlite3 is already included in python3.
+Using the virtual environment we used in ../14-flask_frankenform_with_db .
+Smtplib is already included in python.
+
+### Install sendmail
+
+As root:
 
 ```
-pip3 install flask==0.12    # needed for code copied from ../14-flask_frankenform_with_db
-pip3 install flask-wtf      # needed for code copied from ../14-flask_frankenform_with_db
+apt-get install sendmail
 ```
 
 ## Creating the db and table
@@ -48,6 +51,16 @@ golpy  # /var/www/always_learning/github/customizations/always_learning_python/
 cd 15-flask_email_exp/Site
 . env.sh
 python3 -m db_create
+```
+
+## Starting the app
+
+Lazy typists use the run script.
+
+```
+golpy  # /var/www/always_learning/github/customizations/always_learning_python/
+cd 16-frankenform_python_email_exp/Site
+run.sh          # run the app (app.py)
 ```
 
 ## Testing the db
@@ -74,15 +87,5 @@ To print out all rows in the db:
 . env.sh
 ./print.sh             # one way
 python -m db_access    # another way - but with more typing!
-```
-
-## Starting the app
-
-Lazy typists use the run script.
-
-```
-golpy  # /var/www/always_learning/github/customizations/always_learning_python/
-cd 15-flask_email_exp/Site
-run.sh          # run the app (app.py)
 ```
 
