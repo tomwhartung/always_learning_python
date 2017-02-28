@@ -19,15 +19,21 @@ NAME_EMAIL_TABLE = DB_DIRECTORY + 'NameEmail.db'
 ##
 #  Update an old or insert a new row into the table, as appropriate
 #
-def update_or_insert_name_email( name, email, id=0, consulting=0, newsletter=0, portrait=0 ):
+def update_or_insert_name_email( name, email, id=0, consulting=-1, newsletter=-1, portrait=-1 ):
    if id == 0:
       result = email_already_in_db( email )
       if result:
          id = result[0]
          print( 'Updating the email that is already in the db, id =', id )
          with sqlite3.connect( NAME_EMAIL_TABLE ) as connection:
-            query = 'UPDATE NameEmail SET name = "' + name + '"' + \
-               'WHERE id = "' + str(id) + '"'
+            query = 'UPDATE NameEmail SET name = "' + name + '"'
+            if consulting != -1:
+               query += ', consulting = "' + str(consulting) + '"'
+            if newsletter != -1:
+               query += ', newsletter = "' + str(newsletter) + '"'
+            if portrait != -1:
+               query += ', portrait = "' + str(portrait) + '"'
+            query += 'WHERE id = "' + str(id) + '"'
             curs = connection.cursor()
             curs.execute( query )
       else:
