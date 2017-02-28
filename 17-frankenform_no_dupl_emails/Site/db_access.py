@@ -23,9 +23,15 @@ def update_or_insert_name_email( name, email, id=0, consulting=0, newsletter=0, 
    if id == 0:
       result = email_already_in_db( email )
       if result:
-         print( 'email_already_in_db returned a positive result:', result )
+         id = result[0]
+         print( 'Updating the email that is already in the db, id =', id )
+         with sqlite3.connect( NAME_EMAIL_TABLE ) as connection:
+            query = 'UPDATE NameEmail SET name = "' + name + '"' + \
+               'WHERE id = "' + str(id) + '"'
+            curs = connection.cursor()
+            curs.execute( query )
       else:
-         print( 'email_already_in_db returned a falsey value:', result )
+         insert_name_email( name, email, consulting, newsletter, portrait )
    else:
       print( 'We got an id passed in, and we are not yet prepared to handle it:', id )
 
@@ -40,6 +46,7 @@ def update_or_insert_name_email( name, email, id=0, consulting=0, newsletter=0, 
 ##
 #  Check for existing email address
 #  If it's there, return the row, else return False
+#
 def email_already_in_db( email ):
    result = False
    with sqlite3.connect( NAME_EMAIL_TABLE ) as connection:
