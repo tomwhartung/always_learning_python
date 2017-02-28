@@ -21,7 +21,7 @@ Run the env.sh script to enter the environment in virtualenvs/p3_flask_bootstrap
 
 ```
 golpy  # /var/www/always_learning/github/customizations/always_learning_python/
-cd 15-flask_email_exp/Site
+cd 16-frankenform_python_email_exp
 . env.sh
 ```
 
@@ -50,7 +50,7 @@ Running `db_create.py`:
 
 ```
 golpy  # /var/www/always_learning/github/customizations/always_learning_python/
-cd 15-flask_email_exp/Site
+cd 16-frankenform_python_email_exp/Site
 . env.sh
 python3 -m db_create
 ```
