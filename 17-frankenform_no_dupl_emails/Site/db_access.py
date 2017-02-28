@@ -37,6 +37,13 @@ def update_or_insert_name_email( name, email, id=0, consulting=-1, newsletter=-1
             curs = connection.cursor()
             curs.execute( query )
       else:
+         # default ("-1") means not specified means "0" when inserting
+         if consulting == -1:
+            consulting = 0
+         if newsletter == -1:
+            newsletter = 0
+         if portrait == -1:
+            portrait = 0
          insert_name_email( name, email, consulting, newsletter, portrait )
    else:
       print( 'We got an id passed in, and we are not yet prepared to handle it:', id )
