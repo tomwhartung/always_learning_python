@@ -2,6 +2,7 @@
 #
 # Run the flask development server
 #
+rm -f *.pyc 2>/dev/null
 ## #
 ## #  We'd like to be able to run it like we run groja.com ...
 ## #
