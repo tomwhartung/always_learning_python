@@ -6,7 +6,7 @@
 from flask import Flask, flash
 from flask import redirect, render_template, request, session, url_for
 from form import NameEmailForm
-from db_access import insert_name_email
+from db_access import update_or_insert_name_email
 from send_email import send_interest_email
 
 #  App config.
@@ -35,7 +35,8 @@ def contactme():
       if form.validate():
          session['name'] = name
          session['email'] = email
-         insert_name_email( name, email, portrait=1 )
+         ## insert_name_email( name, email, portrait=1 )
+         update_or_insert_name_email( name, email, portrait=1 )
          flash( 'Thanks, we will be in touch with you soon!' )
          return redirect( url_for('thanks') )
       else:
@@ -59,7 +60,7 @@ def contactme():
 def thanks():
    name = session.get( 'name' )
    email = session.get( 'email' )
-   send_interest_email( name + ' (' + email + ') has expressed an interest in buying a spiritual portrait!' )
+   ## send_interest_email( name + ' (' + email + ') has expressed an interest in buying a spiritual portrait!' )
    return render_template( 'thanks.html', name=name )
 
 ##
