@@ -1,5 +1,5 @@
 
-# 16-frankenform_python_email_exp
+# 17-frankenform_no_dupl_emails
 
 Get app to send an email when someone shares their name and email address.
 
@@ -13,7 +13,7 @@ See:
 
 ## Goal:
 
-Update ../14-flask_frankenform_with_db to send an email when someone shares their email address.
+Update ../16-frankenform_python_email_exp to not allow duplicate email addresses (update existing record instead).
 
 ## Environment
 
@@ -21,24 +21,13 @@ Run the env.sh script to enter the environment in virtualenvs/p3_flask_bootstrap
 
 ```
 golpy  # /var/www/always_learning/github/customizations/always_learning_python/
-cd 15-flask_email_exp/Site
+cd 17-frankenform_no_dupl_emails
 . env.sh
 ```
 
 ## Installation
 
-Using the virtual environment we used in ../14-flask_frankenform_with_db .
-Smtplib is already included in python.
-
-### Install sendmail
-
-Reference: http://stackoverflow.com/questions/20349170/socket-error-errno-111-connection-refused
-
-As root:
-
-```
-apt-get install sendmail
-```
+We are re-using the virtual environment we used in ../14-flask_frankenform_with_db , so no installation is required.
 
 ## Creating the db and table
 
@@ -50,14 +39,16 @@ Running `db_create.py`:
 
 ```
 golpy  # /var/www/always_learning/github/customizations/always_learning_python/
-cd 15-flask_email_exp/Site
+cd 17-frankenform_no_dupl_emails
 . env.sh
 python3 -m db_create
 ```
 
 ## Starting the app
 
-Lazy typists use the run script.
+NOTE: app.py has been renamed to groja.py , for consistency with the site.
+
+Use the run script to run the app (i.e., groja.py).
 
 ```
 golpy  # /var/www/always_learning/github/customizations/always_learning_python/
@@ -75,11 +66,6 @@ python
 >>> from db_access import test_insert_functions
 >>> test_insert_functions()
 ```
-
-We are currently only using insert functionality in the programs.
-To see all rows, run print.sh (see below).  Currently that's all the functionality we need!
-
-I tried to find a way to password-protect the db, the way we do oure mysql dbs, but was unable to.
 
 ## Printing all rows in the db
 
