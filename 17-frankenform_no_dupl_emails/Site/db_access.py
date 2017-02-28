@@ -28,12 +28,12 @@ def update_or_insert_name_email( name, email, id=0, consulting=-1, newsletter=-1
          with sqlite3.connect( NAME_EMAIL_TABLE ) as connection:
             query = 'UPDATE NameEmail SET name = "' + name + '"'
             if consulting != -1:
-               query += ', consulting = "' + str(consulting) + '"'
+               query += ', consulting = ' + str(consulting)
             if newsletter != -1:
-               query += ', newsletter = "' + str(newsletter) + '"'
+               query += ', newsletter = ' + str(newsletter)
             if portrait != -1:
-               query += ', portrait = "' + str(portrait) + '"'
-            query += 'WHERE id = "' + str(id) + '"'
+               query += ', portrait = ' + str(portrait)
+            query += ' WHERE id = ' + str(id)
             curs = connection.cursor()
             curs.execute( query )
       else:
