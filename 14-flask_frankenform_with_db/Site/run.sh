@@ -2,4 +2,4 @@
 #
 # Run the flask development server
 #
-python app.py
+python3 app.py
