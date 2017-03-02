@@ -11,4 +11,4 @@ rm -f *.pyc 2>/dev/null
 ## python3 -m flask run
 ##
 export FLASK_DEBUG=1
-python groja.py
+python3 groja.py
