@@ -1,19 +1,17 @@
 
-# Lesson 2
+# Lesson 3 - Homework
 
-Some things to note from the second class, on Tues. Feb. 7, 2017.
+Some things to note from the second class, on Tues. Feb. 21, 2017.
 
 ## Setup Notes:
 
-Michael likes to create a separate virtual env for each project.
-This seems wasteful (of diskspace) and moreover unnecessary to me at this time so I am sticking with using just the one.
-
-Currently - as of finishing the class, but before starting the homework - we are using the one we created for the first lesson's homework.
-To enter this virtual environment, enter the following command:
+Most recently we have been using this virtual environment:
 
 ```
-. virtualenvs/rp_1_python3_6_flask_bette.sh
+. virtualenvs/rp-3-python3_6_flask_bokeh_bette.sh
 ```
+
+We should be able to re-use it for this assignment.
 
 ## Homework Notes:
 
@@ -21,36 +19,17 @@ References:
 
 Link to the assignment:
 
-- https://github.com/realpython/web-dev-for-data-scientists/blob/master/lessons/02-flask.md#homework
+- https://github.com/realpython/web-dev-for-data-scientists/blob/master/lessons/03-visualization.md
 
-Bokeh Links:
+### 1. Review Visualization Lesson
 
-- https://www.blog.pythonlibrary.org/2016/07/27/python-visualization-with-bokeh/
--- Python: Visualization with Bokeh
--- for homework part 2
 
-- http://bokeh.pydata.org/en/latest/docs/user_guide/quickstart.html#userguide-quickstart
--- Bokeh Quickstart
--- for homework part 3
 
-- https://github.com/realpython/flask-bokeh-example/blob/master/tutorial.md
--- Flask Bokeh Basics
--- for homework part 4
-
-### 1. Review
-
-I am actively working on two sites that I am running at home:
-
-- groja.com: a flask site
-- seeourminds.com: a django site
-
-So I am going to forego the review at this time.
-
-### 2. Python: Visualization with Bokeh
+### 2. Add drop_table() Function
 
 Reference:
 
-- https://www.blog.pythonlibrary.org/2016/07/27/python-visualization-with-bokeh/
+
 
 #### Installation
 
@@ -65,62 +44,37 @@ pip3 install flask
 pip3 install bokeh
 ```
 
-#### Running the demos
-
-```
-golpy    # /var/www/always_learning/github/customizations/always_learning_python/
-cd 08-real_python_class/2017_02_07-Lesson_2/homework/2-visualization_with_bokeh
-. env.sh
-python 1-plot.py
-python 2-gridplot.py
-```
-
-Running the demos opens the graph in firefox.
-
-### 3. Bokeh Quickstart
+### 3. Add air temperature data to the chart
 
 Reference:
 
-- http://bokeh.pydata.org/en/latest/docs/user_guide/quickstart.html#userguide-quickstart
+
 
 #### Installation
 
-Reuse virtual environment created for 2-visualization_with_bokeh .
-
-```
-golpy    # /var/www/always_learning/github/customizations/always_learning_python/
-cd 08-real_python_class/2017_02_07-Lesson_2/homework/3-bokeh_quickstart
-. env.sh
-```
-
-#### Running the demos
-
-```
-golpy    # /var/www/always_learning/github/customizations/always_learning_python/
-cd 08-real_python_class/2017_02_07-Lesson_2/homework/3-bokeh_quickstart
-. env.sh
-python 1-figure_line.py
-python 2-plotting.py
-python 3-vectorized.py
-python 4-linked_panning.py
-python 5-linked_brushing.py
-python 6a-datetime_axis.py
-python 6b-datetime_axis.py
-```
-
-### 4. Flask Bokeh Basics
-
-Reference: https://github.com/realpython/flask-bokeh-example/blob/master/tutorial.md
-
-#### Notes?
-
-### 5. Optional: Learn Html and Css
-
-Relying on previous experience and foregoing this for now.
+####### Reuse virtual environment created for 2-visualization_with_bokeh .
+#######
+####### ```
+####### golpy    # /var/www/always_learning/github/customizations/always_learning_python/
+####### cd 08-real_python_class/2017_02_07-Lesson_2/homework/3-bokeh_quickstart
+####### . env.sh
+####### ```
 
 
-### 6. Optional: Learn SQL
+### 4. Make the Graph Smoother
 
-Relying on previous experience and foregoing this for now.
+Reference:
+
+
+
+### 5. Call OMDb API From Flask
+
+
+
+
+### 6. Where can I get more data?
+
+Reference:  https://dev.socrata.com/
+
 
 
