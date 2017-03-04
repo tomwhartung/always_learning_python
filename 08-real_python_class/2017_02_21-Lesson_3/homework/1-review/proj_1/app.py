@@ -29,7 +29,10 @@ def chart():
    ## plot.line( [2,5,4,6,7,9], [3,7,4,6,7,8], line_width=4 )
    x = []
    y = []
-   rows = get_data()
+   try:
+      rows = get_data()
+   except:
+      return 'Unable to open db. Run db_create.sh to create it and try again.'
    ## print( 'Calling see_data 2' )
    ## see_data( rows )
    for row in rows:
