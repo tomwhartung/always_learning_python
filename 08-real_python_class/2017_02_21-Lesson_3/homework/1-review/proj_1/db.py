@@ -4,15 +4,16 @@
 #
 import sqlite3
 import csv
+GREENHOUSE_DB = '../db/greenhouse.db'
 
 def drop_table():
-   with sqlite3.connect('greenhouse.db') as connection:
+   with sqlite3.connect( GREENHOUSE_DB ) as connection:
       curs = connection.cursor()
       curs.execute( 'DROP TABLE IF EXISTS greenhouse' )
    return True
 
 def create_db():
-   with sqlite3.connect('greenhouse.db') as connection:
+   with sqlite3.connect( GREENHOUSE_DB ) as connection:
       curs = connection.cursor()
       curs.execute("""CREATE TABLE greenhouse
          (time REAL, temp REAL)""")
@@ -21,7 +22,7 @@ def create_db():
 
 def seed_data():
    # open db, open datafile, iterate through datafile, running INSERT
-   with sqlite3.connect('greenhouse.db') as connection:
+   with sqlite3.connect( GREENHOUSE_DB ) as connection:
       curs = connection.cursor()
       with open( 'DataTemp1.dat' ) as data:
          reader = csv.reader( data )
