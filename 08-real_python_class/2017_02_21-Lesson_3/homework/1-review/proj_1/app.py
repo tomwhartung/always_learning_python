@@ -8,6 +8,7 @@ from bokeh.resources import INLINE
 from bokeh.util.string import encode_utf8
 import datetime
 import sqlite3
+from db import GREENHOUSE_DB
 
 
 #  App config.
@@ -53,7 +54,7 @@ def chart():
 
 def get_data():
    rows = []
-   with sqlite3.connect( 'greenhouse.db' ) as connection:
+   with sqlite3.connect( GREENHOUSE_DB ) as connection:
       curs = connection.cursor()
       curs.execute( 'SELECT * from greenhouse')
       rows = curs.fetchall()
