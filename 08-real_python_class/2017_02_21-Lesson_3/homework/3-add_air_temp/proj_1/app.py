@@ -56,7 +56,7 @@ def chart():
 @app.route("/twolines")
 def twolines():
    # create a chart
-   plot = figure( plot_width=400, plot_height=400, x_axis_type='datetime' )
+   plot = figure( plot_width=1000, plot_height=700, x_axis_type='datetime' )
    # add a line renderer
    ## plot.line( [1,2,4,6,7,9], [2,7,4,9,7,3], line_width=2 )
    ## plot.line( [7,5,4,6,7,9], [3,7,4,8,7,8], line_width=4 )
@@ -82,7 +82,7 @@ def twolines():
    ## plot.line( unix_time_1, temp_1 )
    ## plot.line( unix_time_3, temp_3 )
    plot.multi_line( [unix_time_1,unix_time_3], [temp_1,temp_3],
-        color=["firebrick", "navy"], alpha=[0.8, 0.3], line_width=4)
+        color=["firebrick", "navy"], alpha=[0.8, 0.3], line_width=1 )
    js_resources = INLINE.render_js()
    css_resources = INLINE.render_css()
    script, div = components( plot )
