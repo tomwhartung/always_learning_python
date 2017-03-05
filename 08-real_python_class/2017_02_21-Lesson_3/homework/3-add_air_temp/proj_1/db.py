@@ -17,7 +17,8 @@ def drop_table():
 def create_db():
    with sqlite3.connect( GREENHOUSE_DB ) as connection:
       curs = connection.cursor()
-      schema = 'CREATE TABLE greenhouse (time REAL, temp_1 REAL, temp_3 REAL)'
+      schema = 'CREATE TABLE greenhouse ( '
+      schema += 'unix_time REAL, temp_1 REAL DEFAULT 0, temp_3 REAL DEFAULT 0)'
       curs.execute( schema )
    return True
 
@@ -29,12 +30,14 @@ def seed_data():
          reader = csv.reader( data )
          for row in reader:
             print( 'Inserting row:', row )   # to see the data
-            curs.execute( "INSERT INTO greenhouse(time,temp_1) VALUES (?, ?)", row )
+            insert = "INSERT INTO greenhouse(unix_time,temp_1) VALUES (?, ?)"
+            curs.execute( insert, row )
       with open( DATA_TEMP_3 ) as data:
          reader = csv.reader( data )
          for row in reader:
             print( 'Inserting row:', row )   # to see the data
-            curs.execute( "INSERT INTO greenhouse(time,temp_3) VALUES (?, ?)", row )
+            insert = "INSERT INTO greenhouse(unix_time,temp_3) VALUES (?, ?)"
+            curs.execute( insert, row )
 
 if __name__ == '__main__':
    drop_table()
