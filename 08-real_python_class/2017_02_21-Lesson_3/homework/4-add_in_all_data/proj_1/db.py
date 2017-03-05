@@ -28,18 +28,9 @@ def create_db():
       curs = connection.cursor()
       schema = 'CREATE TABLE greenhouse ( '
       schema += 'unix_time REAL'
-      schema += ', temp_1 REAL DEFAULT 0'
-      schema += ', temp_3 REAL DEFAULT 0'
-      schema += ', temp_4 REAL DEFAULT 0'
-      schema += ', temp_5 REAL DEFAULT 0'
-      schema += ', temp_6 REAL DEFAULT 0'
-      schema += ', temp_7 REAL DEFAULT 0'
-      schema += ', temp_8 REAL DEFAULT 0'
-      schema += ', temp_9 REAL DEFAULT 0'
-      schema += ', temp_10 REAL DEFAULT 0'
-      schema += ', temp_11 REAL DEFAULT 0'
-      schema += ', temp_12 REAL DEFAULT 0'
-      schema += ', temp_13 REAL DEFAULT 0)'
+      for data_file_number in DATA_FILE_NUMBERS:
+         schema += ', temp_' + data_file_number + ' REAL DEFAULT 0'
+      schema += ' )'
       curs.execute( schema )
    return True
 
@@ -52,7 +43,12 @@ def seed_data():
       for data_file_number in DATA_FILE_NUMBERS:
          data_file_name = DATA_FILE_BASE + data_file_number + DATA_FILE_EXTENSION
          rows = read_data_from_a_file( data_file_name )
-         print( 'read data from datafile', data_file_name )
+         for row in rows:
+            temp_column_name = 'temp_' + data_file_number
+            print( 'Inserting row', row, 'from datafile', data_file_name )
+            insert = "INSERT INTO greenhouse(unix_time," + temp_column_name + ")"
+            insert += " VALUES (?, ?)"
+            curs.execute( insert, row )
    return True
 
 def save_this_code_for_a_second():
@@ -70,10 +66,11 @@ def save_this_code_for_a_second():
 #  Read and return the data in a single .csv file
 #
 def read_data_from_a_file( data_file_name ):
-   print( 'read_data_from_a_file: reading data file "', data_file_name + '"')
+   rows = []
    with open( data_file_name ) as data:
-       ## reader = csv.reader( data )
-       rows = csv.reader( data )
+      reader = csv.reader( data )
+      for row in reader:
+         rows.append( row )
    return rows
 
 ##
