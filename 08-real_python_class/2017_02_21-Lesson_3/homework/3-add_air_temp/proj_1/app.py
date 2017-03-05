@@ -61,8 +61,9 @@ def twolines():
    ## plot.line( [1,2,4,6,7,9], [2,7,4,9,7,3], line_width=2 )
    ## plot.line( [7,5,4,6,7,9], [3,7,4,8,7,8], line_width=4 )
    ## plot.line( [2,5,4,6,7,9], [3,7,4,6,7,8], line_width=4 )
-   unix_time = []
+   unix_time_1 = []
    temp_1 = []
+   unix_time_3 = []
    temp_3 = []
    try:
       rows = get_data()
@@ -72,12 +73,16 @@ def twolines():
    ## see_data( rows )
    for row in rows:
       date = datetime.datetime.fromtimestamp( row[0] )
-      unix_time.append( date )
-      temp_1.append( row[1] )
-      temp_3.append( row[2] )
-   ## plot.line( unix_time,temp_1 )
-   plot.multi_line( [unix_time,temp_1], [unix_time,temp_3],
-             color=["firebrick", "navy"], alpha=[0.8, 0.3], line_width=4)
+      if row[1] != 0.0:
+         unix_time_1.append( date )
+         temp_1.append( row[1] )
+      if row[2] != 0.0:
+         unix_time_3.append( date )
+         temp_3.append( row[2] )
+   ## plot.line( unix_time_1, temp_1 )
+   ## plot.line( unix_time_3, temp_3 )
+   plot.multi_line( [unix_time_1,unix_time_3], [temp_1,temp_3],
+        color=["firebrick", "navy"], alpha=[0.8, 0.3], line_width=4)
    js_resources = INLINE.render_js()
    css_resources = INLINE.render_css()
    script, div = components( plot )
