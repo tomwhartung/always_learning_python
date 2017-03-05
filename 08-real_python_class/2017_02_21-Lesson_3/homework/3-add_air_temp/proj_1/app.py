@@ -37,10 +37,47 @@ def chart():
    ## print( 'Calling see_data 2' )
    ## see_data( rows )
    for row in rows:
-      date = datetime.datetime.fromtimestamp( row[0] )
-      x.append( date )
-      y.append( row[1] )
+      if row[1] != 0.0:
+         date = datetime.datetime.fromtimestamp( row[0] )
+         x.append( date )
+         y.append( row[1] )
    plot.line( x,y )
+   js_resources = INLINE.render_js()
+   css_resources = INLINE.render_css()
+   script, div = components( plot )
+   return render_template(
+      'chart.html',
+      plot_script=script,
+      plot_div=div,
+      js_resources=js_resources,
+      css_resources=css_resources
+   )
+
+@app.route("/twolines")
+def twolines():
+   # create a chart
+   plot = figure( plot_width=400, plot_height=400, x_axis_type='datetime' )
+   # add a line renderer
+   ## plot.line( [1,2,4,6,7,9], [2,7,4,9,7,3], line_width=2 )
+   ## plot.line( [7,5,4,6,7,9], [3,7,4,8,7,8], line_width=4 )
+   ## plot.line( [2,5,4,6,7,9], [3,7,4,6,7,8], line_width=4 )
+   unix_time = []
+   temp_1 = []
+   temp_3 = []
+   try:
+      rows = get_data()
+   except:
+      return 'Unable to open db. Run db_create.sh to create it and try again.'
+   ## print( 'Calling see_data 2' )
+   ## see_data( rows )
+   for row in rows:
+      date = datetime.datetime.fromtimestamp( row[0] )
+      unix_time.append( date )
+      temp_1.append( row[1] )
+      temp_3.append( row[2] )
+   ## plot.line( unix_time,temp_1 )
+   plot.multi_line( [unix_time,temp_1], [unix_time,temp_3],
+             color=["firebrick", "navy"], alpha=[0.8, 0.3], line_width=4)
    js_resources = INLINE.render_js()
    css_resources = INLINE.render_css()
    script, div = components( plot )
