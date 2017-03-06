@@ -78,6 +78,62 @@ def twolines():
       elif row[2] != 0.0:
          unix_time_3.append( date )
          temperature_3.append( row[2] )
+   plot.multi_line( [unix_time_1,unix_time_3], [temperature_1,temperature_3],
+        color=["firebrick", "navy"], alpha=[0.8, 0.3], line_width=1 )
+   js_resources = INLINE.render_js()
+   css_resources = INLINE.render_css()
+   script, div = components( plot )
+   return render_template(
+      'chart.html',
+      plot_script=script,
+      plot_div=div,
+      js_resources=js_resources,
+      css_resources=css_resources
+   )
+
+##
+#  Draw a chart using all of the datasets
+#
+@app.route("/all")
+def all():
+   # create a chart
+   plot = figure( plot_width=1000, plot_height=700, x_axis_type='datetime' )
+   unix_time_1 = []
+   temperature_1 = []
+   unix_time_3 = []
+   temperature_3 = []
+   unix_time_4 = []
+   temperature_4 = []
+   unix_time_5 = []
+   temperature_5 = []
+   unix_time_6 = []
+   temperature_6 = []
+   unix_time_7 = []
+   temperature_7 = []
+   unix_time_8 = []
+   temperature_8 = []
+   unix_time_9 = []
+   temperature_9 = []
+   unix_time_10 = []
+   temperature_10 = []
+   unix_time_11 = []
+   temperature_11 = []
+   unix_time_12 = []
+   temperature_12 = []
+   unix_time_13 = []
+   temperature_13 = []
+   try:
+      rows = get_data()
+   except:
+      return 'Unable to open db. Run db_create.sh to create it and try again.'
+   for row in rows:
+      date = datetime.datetime.fromtimestamp( row[0] )
+      if row[1] != 0.0:
+         unix_time_1.append( date )
+         temperature_1.append( row[1] )
+      elif row[2] != 0.0:
+         unix_time_3.append( date )
+         temperature_3.append( row[2] )
       elif row[3] != 0.0:
          unix_time_4.append( date )
          temperature_4.append( row[2] )
@@ -108,70 +164,13 @@ def twolines():
       elif row[12] != 0.0:
          unix_time_13.append( date )
          temperature_13.append( row[2] )
+   ## plot.multi_line( [unix_time_1,unix_time_3], [temperature_1,temperature_3],
+   ##     color=["firebrick", "navy"], alpha=[0.8, 0.3], line_width=1 )
    plot.multi_line(
       [unix_time_1,unix_time_3,unix_time_4,unix_time_5,unix_time_6,unix_time_7,unix_time_8,unix_time_9,unix_time_10,unix_time_11,unix_time_12,unix_time_13],
       [temperature_1,temperature_3,temperature_4,temperature_5,temperature_6,temperature_7,temperature_8,temperature_9,temperature_10,temperature_11,temperature_12,temperature_13],
       color=[ "firebrick", "red", "yellow", "orange", "brown", "magenta", "green", "cyan", "lightskyblue", "blue", "navy", "purple"],
       alpha=[0.1, 0.2, 0.3, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.8, 0.9], line_width=1 )
-   js_resources = INLINE.render_js()
-   css_resources = INLINE.render_css()
-   script, div = components( plot )
-   return render_template(
-      'chart.html',
-      plot_script=script,
-      plot_div=div,
-      js_resources=js_resources,
-      css_resources=css_resources
-   )
-
-##
-#  Draw a chart using all of the datasets
-#
-@app.route("/all")
-def all():
-   # create a chart
-   plot = figure( plot_width=1000, plot_height=700, x_axis_type='datetime' )
-   unix_time_1 = []
-   temperature_1 = []
-   unix_time_3 = []
-   temperature_3 = []
-   unix_time_3 = []
-   temperature_3 = []
-   unix_time_3 = []
-   temperature_3 = []
-   unix_time_3 = []
-   temperature_3 = []
-   unix_time_3 = []
-   temperature_3 = []
-   unix_time_3 = []
-   temperature_3 = []
-   unix_time_3 = []
-   temperature_3 = []
-   unix_time_10 = []
-   temperature_10 = []
-   unix_time_11 = []
-   temperature_11 = []
-   unix_time_12 = []
-   temperature_12 = []
-   unix_time_13 = []
-   temperature_13 = []
-   try:
-      rows = get_data()
-   except:
-      return 'Unable to open db. Run db_create.sh to create it and try again.'
-   for row in rows:
-      date = datetime.datetime.fromtimestamp( row[0] )
-      if row[1] != 0.0:
-         unix_time_1.append( date )
-         temperature_1.append( row[1] )
-      elif row[2] != 0.0:
-         unix_time_3.append( date )
-         temperature_3.append( row[2] )
-      elif row[2] != 0.0:
-         unix_time_3.append( date )
-         temperature_3.append( row[2] )
-   plot.multi_line( [unix_time_1,unix_time_3], [temperature_1,temperature_3],
-        color=["firebrick", "navy"], alpha=[0.8, 0.3], line_width=1 )
    js_resources = INLINE.render_js()
    css_resources = INLINE.render_css()
    script, div = components( plot )
@@ -192,8 +191,8 @@ def get_data():
       curs = connection.cursor()
       curs.execute( 'SELECT * from greenhouse')
       rows = curs.fetchall()
-      ## print( 'Calling see_data 1' )
-      ## see_data( rows )
+      print( 'Calling see_data 1' )
+      see_data( rows )
    return rows
 
 ##
