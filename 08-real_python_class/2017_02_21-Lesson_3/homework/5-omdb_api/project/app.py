@@ -7,6 +7,10 @@
 from flask import Flask, render_template
 import requests
 
+BASE = 'http://www.omdbapi.com/?t={0}&y=&plot=short&r=json'
+
+app = Flask(__name__)
+
 #  App config.
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -18,6 +22,32 @@ app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 @app.route("/")
 def hello():
    return 'Hello'
+
+##
+#  "fm" is lazy-typists speak for Find Movie
+#
+@app.route( '/fm' )
+def fm_default():
+   movie_name = 'silence of the lambs'
+   return find_movie( movie_name )
+
+@app.route( '/fm/<movie_name>' )
+def fm( movie_name ):
+   if movie_name == '':
+      movie_name = 'american gangster'
+   ## return find_movie( movie_name )
+   url = BASE.format(movie_name)
+   response = requests.get(url)
+   json_response = response.json()
+   print(json_response)
+   return render_template( 'json.html', json_response=json_response )
+
+def find_movie( movie_name='american gangster' ):
+   url = BASE.format(movie_name)
+   response = requests.get(url)
+   json_response = response.json()
+   print(json_response)
+   return render_template( 'json.html', json_response=json_response )
 
 ##
 #  Run the app!
