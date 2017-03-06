@@ -35,7 +35,8 @@ def create_db():
    return True
 
 ##
-#  Open db, get data from datafile, iterate through data running INSERT
+#  Open db and get data from each of the datafiles
+#  Iterate through the data running INSERT for each row
 #
 def seed_data():
    with sqlite3.connect( GREENHOUSE_DB ) as connection:
@@ -51,17 +52,6 @@ def seed_data():
             curs.execute( insert, row )
    return True
 
-def save_this_code_for_a_second():
-   for row in reader:
-      print( 'Inserting row:', row )   # to see the data
-      insert = "INSERT INTO greenhouse(unix_time,temp_1) VALUES (?, ?)"
-      curs.execute( insert, row )
-   with open( DATA_TEMP_3 ) as data:
-      reader = csv.reader( data )
-      for row in reader:
-         print( 'Inserting row:', row )   # to see the data
-         insert = "INSERT INTO greenhouse(unix_time,temp_3) VALUES (?, ?)"
-         curs.execute( insert, row )
 ##
 #  Read and return the data in a single .csv file
 #
@@ -76,6 +66,7 @@ def read_data_from_a_file( data_file_name ):
 ##
 #  In addition to being a small library of reusable functions,
 #     this program can be run on the command line to drop and recreate the db
+#  -> This is easily and quickly accomplished by running db_create.sh
 #
 if __name__ == '__main__':
    drop_table()
