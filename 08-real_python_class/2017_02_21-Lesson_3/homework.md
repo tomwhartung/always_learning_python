@@ -30,7 +30,7 @@ Made a few updates:
 - added GREENHOUSE_DB constant to contain the db name, and moved the db into ../db
 - added DATA_TEMP_1 constant to contain the data file name, and moved the file into ../data
 
-Result is in 1-review
+Result is in 1-review .
 
 ### 2. Add drop_table() Function
 
@@ -60,16 +60,48 @@ Adding data in data/DataTemp3.dat (realpython web-dev-for-data-scientists repo).
 - New route is: http://127.0.0.1:5000/twolines
 - The two batches of data are very similar, so I increased the size of graph and decreased the widths of the lines
 
-Result is in 3-add_air_temp
-
+Result is in 3-add_air_temp .
 
 ### 4. Make the Graph Smoother
 
-Reference:
+Note that for some reason we are missing a file named DataTemp2.dat , otherwise the names are continuous.
 
+Here is a list of the files with their line counts:
 
+```
+$ wc -l *
+  11786 DataTemp1.dat
+  11786 DataTemp3.dat
+  11780 DataTemp4.dat
+  11786 DataTemp5.dat
+  11786 DataTemp6.dat
+  11786 DataTemp7.dat
+  11786 DataTemp8.dat
+  11786 DataTemp9.dat
+  11786 DataTemp10.dat
+  11767 DataTemp11.dat
+  11779 DataTemp12.dat
+  11787 DataTemp13.dat
+```
+
+Preliminary examination (using grep -n, head, and tail) makes it appear that all files contain data covering the same time period.
+
+Added two routes:
+
+- http://127.0.0.1:5000/all
+- http://127.0.0.1:5000/each
+
+It's difficult to determine whether these are accurate and correct without digging into the data.
+
+TODO: dig into the data and ensure these are accurate and correct.
+
+Result is in 4-add_in_all_data .
 
 ### 5. Call OMDb API From Flask
+
+
+
+Reference:
 
 
 
