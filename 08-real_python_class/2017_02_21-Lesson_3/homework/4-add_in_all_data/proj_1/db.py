@@ -4,12 +4,11 @@
 #
 import sqlite3
 import csv
-## DATA_TEMP_1 = '../data/DataTemp1.dat'
-## DATA_TEMP_3 = '../data/DataTemp3.dat'
 DATA_FILE_BASE = '../data/DataTemp'
 DATA_FILE_NUMBERS = ["1", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"]
 DATA_FILE_EXTENSION = '.dat'
 GREENHOUSE_DB = '../db/greenhouse.db'
+TEMP_COL_NAME_PREFIX = 'temperature_'
 
 ##
 #  Our schema always changes and we are always needing to drop this db
@@ -29,7 +28,7 @@ def create_db():
       schema = 'CREATE TABLE greenhouse ( '
       schema += 'unix_time REAL'
       for data_file_number in DATA_FILE_NUMBERS:
-         schema += ', temp_' + data_file_number + ' REAL DEFAULT 0'
+         schema += ', ' + TEMP_COL_NAME_PREFIX + data_file_number + ' REAL DEFAULT 0'
       schema += ' )'
       curs.execute( schema )
    return True
@@ -45,7 +44,7 @@ def seed_data():
          data_file_name = DATA_FILE_BASE + data_file_number + DATA_FILE_EXTENSION
          rows = read_data_from_a_file( data_file_name )
          for row in rows:
-            temp_column_name = 'temp_' + data_file_number
+            temp_column_name = TEMP_COL_NAME_PREFIX + data_file_number
             print( 'Inserting row', row, 'from datafile', data_file_name )
             insert = "INSERT INTO greenhouse(unix_time," + temp_column_name + ")"
             insert += " VALUES (?, ?)"
