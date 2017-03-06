@@ -235,37 +235,37 @@ def each():
       if row[1] != 0.0:
          unix_time_1.append( date )
          temperature_1.append( row[1] )
-      elif row[2] != 0.0:
+      if row[2] != 0.0:
          unix_time_3.append( date )
          temperature_3.append( row[2] )
-      elif row[3] != 0.0:
+      if row[3] != 0.0:
          unix_time_4.append( date )
          temperature_4.append( row[2] )
-      elif row[4] != 0.0:
+      if row[4] != 0.0:
          unix_time_5.append( date )
          temperature_5.append( row[2] )
-      elif row[5] != 0.0:
+      if row[5] != 0.0:
          unix_time_6.append( date )
          temperature_6.append( row[2] )
-      elif row[6] != 0.0:
+      if row[6] != 0.0:
          unix_time_7.append( date )
          temperature_7.append( row[2] )
-      elif row[7] != 0.0:
+      if row[7] != 0.0:
          unix_time_8.append( date )
          temperature_8.append( row[2] )
-      elif row[8] != 0.0:
+      if row[8] != 0.0:
          unix_time_9.append( date )
          temperature_9.append( row[2] )
-      elif row[9] != 0.0:
+      if row[9] != 0.0:
          unix_time_10.append( date )
          temperature_10.append( row[2] )
-      elif row[10] != 0.0:
+      if row[10] != 0.0:
          unix_time_11.append( date )
          temperature_11.append( row[2] )
-      elif row[11] != 0.0:
+      if row[11] != 0.0:
          unix_time_12.append( date )
          temperature_12.append( row[2] )
-      elif row[12] != 0.0:
+      if row[12] != 0.0:
          unix_time_13.append( date )
          temperature_13.append( row[2] )
    plot1.line( unix_time_1, temperature_1 )
