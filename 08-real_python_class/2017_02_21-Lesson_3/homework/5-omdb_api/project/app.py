@@ -5,16 +5,12 @@
 #     So I am removing all bokeh- and database-related code
 #
 from flask import Flask, render_template
+from flask import jsonify
 import requests
 
 BASE = 'http://www.omdbapi.com/?t={0}&y=&plot=short&r=json'
 
 app = Flask(__name__)
-
-#  App config.
-app = Flask(__name__)
-app.config.from_object(__name__)
-app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 
 ##
 #  Hello world sanity check
@@ -22,6 +18,19 @@ app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 @app.route("/")
 def hello():
    return 'Hello'
+
+##
+#  Code copy-and-pasted from the Real Python version in rp_app.py
+#  Except: I am adding a route....
+#
+@app.route('/find_movie')
+def index():
+    movie_name = 'star wars'
+    url = BASE.format(movie_name)
+    r = requests.get(url)
+    json_response = r.json()
+    print(json_response)
+    return jsonify(json_response)
 
 ##
 #  "fm" is lazy-typists speak for Find Movie
