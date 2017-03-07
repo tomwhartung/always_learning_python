@@ -5,8 +5,17 @@
     <title>Movie json</title>
   </head>
   <body>
-    Yikes.
-    {{ json_response|indent(4)|safe }}
-
+    <div style="margin=30px;">
+      <h3>Raw json</h3>
+      {{ json_response }}
+    </div>
+    <div style="margin=30px;">
+      <h3>Pipe through safe</h3>
+      {{ json_response|safe }}
+    </div>
+    <div style="margin=30px;">
+      <h3>Pipe through tojson</h3>
+      {{ json_response|tojson }}
+   </div>
   </body>
 </html>
