@@ -37,30 +37,21 @@ def index():
 #
 @app.route( '/fm' )
 def fm():
-   movie_name = 'silence of the lambs'
+   movie_name = 'silence%20of%20the%20lambs'
    return find_movie( movie_name )
-   ## return myfunc( movie_name )
 
-def myfunc( movie_name ):
-   url = BASE.format(movie_name)
-   response = requests.get(url)
-   json_response = response.json()
-   print(json_response)
-   return jsonify(json_response)
-
+##
+#  Version of "fm" route that accepts a movie_name
+#
 @app.route( '/fm/<movie_name>' )
 def fm_param( movie_name ):
-   if movie_name == '':
-      movie_name = 'american gangster'
+   if movie_name == '':                  ## I believe this is unnecessary
+      movie_name = 'american gangster'   ## and perhaps overly-paranoid
    return find_movie( movie_name )
 
-def unsure_about_this_code():
-   url = BASE.format(movie_name)
-   response = requests.get(url)
-   json_response = response.json()
-   print(json_response)
-   return render_template( 'json.html', json_response=json_response )
-
+##
+#  Shared subroutine to find the movie
+#
 def find_movie( movie_name ):
    url = BASE.format(movie_name)
    response = requests.get(url)
@@ -68,6 +59,18 @@ def find_movie( movie_name ):
    print(json_response)
    ## return render_template( 'json.html', json_response=json_response )
    return jsonify(json_response)
+
+##
+#  CRUFT ALERT!!!  UNUSED FUNCTION!!!
+#  Save in case we want to call render_template
+#  THIS MEANS OUR TEMPLATES ARE CRUFT AS WELL!!!
+#
+def using_render_template():
+   url = BASE.format(movie_name)
+   response = requests.get(url)
+   json_response = response.json()
+   print(json_response)
+   return render_template( 'json.html', json_response=json_response )
 
 ##
 #  Run the app!
