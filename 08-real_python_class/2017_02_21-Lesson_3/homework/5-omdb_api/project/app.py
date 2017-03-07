@@ -54,25 +54,19 @@ def fm_param( movie_name ):
 ##
 #  Shared subroutine to find the movie
 #
+FORMAT_THE_JSON = False
+## FORMAT_THE_JSON = True
 def find_movie( movie_name ):
    url = BASE.format(movie_name)
    response = requests.get(url)
    json_response = response.json()
-   print(json_response)
-   ## return render_template( 'json.html', json_response=json_response )
-   return jsonify(json_response)
-
-##
-#  CRUFT ALERT!!!  UNUSED FUNCTION!!!
-#  Save in case we want to call render_template
-#  THIS MEANS OUR TEMPLATES ARE CRUFT AS WELL!!!
-#
-def using_render_template():
-   url = BASE.format(movie_name)
-   response = requests.get(url)
-   json_response = response.json()
-   print(json_response)
-   return render_template( 'json.html', json_response=json_response )
+   jsonified_response = jsonify(json_response)
+   print( 'json_response:', json_response )
+   print( 'jsonified_response:', jsonified_response )
+   if FORMAT_THE_JSON :
+      return jsonified_response
+   else:
+      return render_template( 'json.html', json_response=json_response )
 
 ##
 #  Run the app!
