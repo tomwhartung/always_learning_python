@@ -37,6 +37,7 @@ def index():
 #
 @app.route( '/fm' )
 def fm():
+   print( 'No movie_name specified (in the "/fm" route)')
    movie_name = 'silence%20of%20the%20lambs'
    return find_movie( movie_name )
 
@@ -45,6 +46,7 @@ def fm():
 #
 @app.route( '/fm/<movie_name>' )
 def fm_param( movie_name ):
+   print( 'movie_name:', movie_name )
    if movie_name == '':                  ## I believe this is unnecessary
       movie_name = 'american gangster'   ## and perhaps overly-paranoid
    return find_movie( movie_name )
