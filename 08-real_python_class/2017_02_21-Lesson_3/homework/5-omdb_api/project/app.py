@@ -36,12 +36,20 @@ def index():
 #  "fm" is lazy-typists speak for Find Movie
 #
 @app.route( '/fm' )
-def fm_default():
+def fm():
    movie_name = 'silence of the lambs'
    return find_movie( movie_name )
+   ## return myfunc( movie_name )
+
+def myfunc( movie_name ):
+   url = BASE.format(movie_name)
+   response = requests.get(url)
+   json_response = response.json()
+   print(json_response)
+   return jsonify(json_response)
 
 @app.route( '/fm/<movie_name>' )
-def fm( movie_name ):
+def fm_param( movie_name ):
    if movie_name == '':
       movie_name = 'american gangster'
    ## return find_movie( movie_name )
@@ -51,12 +59,13 @@ def fm( movie_name ):
    print(json_response)
    return render_template( 'json.html', json_response=json_response )
 
-def find_movie( movie_name='american gangster' ):
+def find_movie( movie_name ):
    url = BASE.format(movie_name)
    response = requests.get(url)
    json_response = response.json()
    print(json_response)
-   return render_template( 'json.html', json_response=json_response )
+   ## return render_template( 'json.html', json_response=json_response )
+   return jsonify(json_response)
 
 ##
 #  Run the app!
