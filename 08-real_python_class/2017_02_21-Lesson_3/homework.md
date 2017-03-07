@@ -99,26 +99,53 @@ Result is in 4-add_in_all_data .
 
 ### 5. Call OMDb API From Flask
 
-
-
-Reference:
-
-
-
 #### Installation
 
-####### Reuse virtual environment created for 2-visualization_with_bokeh .
-#######
-####### ```
-####### golpy    # /var/www/always_learning/github/customizations/always_learning_python/
-####### cd 08-real_python_class/2017_02_07-Lesson_2/homework/3-bokeh_quickstart
-####### . env.sh
-####### ```
+Using a new virtual environment: rp_4_bette
 
+```
+golpy    # /var/www/always_learning/github/customizations/always_learning_python/
+cd 08-real_python_class/2017_02_07-Lesson_2/homework/3-bokeh_quickstart
+. env.sh
+pip3 freeze > requirements.txt
+```
+
+Here is what requirements.txt looks like:
+
+```
+$ cat requirements.txt
+appdirs==1.4.3
+click==6.7
+Flask==0.12
+itsdangerous==0.24
+Jinja2==2.9.5
+MarkupSafe==1.0
+packaging==16.8
+pkg-resources==0.0.0
+pyparsing==2.2.0
+requests==2.13.0
+six==1.10.0
+Werkzeug==0.11.15
+$
+```
+
+Note that we can recreate this environment by running this command:
+
+```
+pip3 install -r requirements.txt
+```
+
+#### TODO
+
+TODO: Test this technique on jane, to ensure it works.
 
 ### 6. Where can I get more data?
 
 Reference:  https://dev.socrata.com/
 
+Holding off on this for now.  (Thinking about the government makes me all twitter-brained these days....)
 
+#### TODO
+
+TODO: Complete this step.
 
