@@ -52,7 +52,9 @@ def myfunc( movie_name ):
 def fm_param( movie_name ):
    if movie_name == '':
       movie_name = 'american gangster'
-   ## return find_movie( movie_name )
+   return find_movie( movie_name )
+
+def unsure_about_this_code():
    url = BASE.format(movie_name)
    response = requests.get(url)
    json_response = response.json()
