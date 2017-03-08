@@ -1,0 +1,103 @@
+
+ Data Retrieval
+================
+Reference:
+   https://github.com/realpython/web-dev-for-data-scientists/blob/master/lessons/04-retrieval.md
+
+Notes:
+------
+Project for the next couple of classes:
+Build graph to display value (exchange rates) of crypto currencies bit coins on different markets.
+Goal is to determine which is the best, so we can buy low and sell high.
+Services: Bitstamp, Kraken, Bittrex
+See steps outined on the page referenced above
+
+Scheduler:
+  pip3 install schedule (use instead of crontab)
+
+Get data, e.g.:
+- bitstamp.net
+- https://www.bitstamp.net/api/
+
+Environment
+-----------
+Created a new environment, including only flask and requests:
+
+- rp_5_class_4_bette
+
+Heroku
+------
+Run on heroku (!)
+Installation instructions:
+   https://devcenter.heroku.com/articles/heroku-cli
+Heroku works using git
+   Set up a different remote
+git remote -v   # to see what the current remote is
+heroku create   # sets up an app on heroku
+                # sets up a remote - a link to a repository
+Each individual project should be in its own github repository
+Created this in /var/www/always_learning/heroku/realpythonclass/class_4
+1. copied current version of code to this dir
+2. Ran commands in above directory:
+   git init
+   heroku create
+   git remote -v   ## heroku	https://git.heroku.com/tranquil-fortress-44073.git (fetch)
+                   ## heroku	https://git.heroku.com/tranquil-fortress-44073.git (push)
+   ## For contrast, run `git remote -v` in another repository
+3. .gitignore lesson
+-  dependencies
+-  system files
+-  sensitive security info (passwords, api keys, etc.)
+4. Ran commands
+   git add -A
+   git commit -m 'Init'
+   git push heroku master     ## NOTE: "heroku" NOT "origin"
+5. Got error:
+   To https://git.heroku.com/tranquil-fortress-44073.git
+    ! [remote rejected] master -> master (pre-receive hook declined)
+   error: failed to push some refs to 'https://git.heroku.com/tranquil-fortress-44073.git'
+6. URL results (https://git.heroku.com/tranquil-fortress-44073.git)
+   redirects to:
+7. Create a proc file:
+   Reference: https://devcenter.heroku.com/articles/procfile
+   vi Procfile:
+   web: python app.py
+   DO NOT RUN IT IN PRODUCTION LIKE THIS
+8. Running heroku commands, e.g., to look at the log files
+   heroku logs
+   heroku logs --tail   ## Ctrl-C to exit
+   heroku help
+   heroku restart
+   heroku ps:scale web=1
+   heroku open
+   heroku run ls
+9. Troubleshooting
+   Flask runs on port 5000 by default
+   Heroku exposes a random port, we have to bind to that within 60 secs.
+   Must find out which port this is ... (heroku help)
+   heroku config   ## https://devcenter.heroku.com/articles/config-vars
+10. Need two apps running at the same time: web and data gathering
+   Using a shell script
+   vi Procfile
+   web: sh build.sh
+   vi build.sh
+
+Suggestions:
+------------
+-> Cookie-cutter: use to generate a project
+   There is a cookie-cutter for flask
+-> Json prettify - chrome plugin to make json look good in browser
+   Will mess it up if you try to copy and paste it (turn off plugin)
+-> When preparing for interviews or before talks, etc.
+   Talk it through out loud, it will help you find errors, etc.
+-> pip3 freeze > requirements.txt
+   To keep track of what we have installed in our virtual env
+-> pip3 install -r requirements.txt
+   To install dependencies used in a virtualenv
+-> Do NOT run dev server in production
+   Use (install) gunicorn instead
+-> heroku free tier can be slow
+   They want you to upgrade to $7/month plan
+-> If you gitignore the db, need to create the db on heroku
+   heroku run python db.py
+
