@@ -20,6 +20,7 @@ i.fa-2x {
 i.fa-2x:hover {
   font-size: 2.5em;
   margin: 0px;
+  text-shadow: 4px 4px lightgrey;
 }
 .fa-facebook, .fa-facebook-square {
   color: #3b5998;
