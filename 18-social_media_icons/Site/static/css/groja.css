@@ -14,8 +14,12 @@
  *    http://ksloan.net/css-color-definitions-for-font-awesome-social-icons/
  *    http://www.kodingmadesimple.com/2014/11/create-stylish-bootstrap-3-social-media-icons.html
  */
-i:hover {
+i.fa-2x {
+   margin: 3px;
+}
+i.fa-2x:hover {
   font-size: 2.5em;
+  margin: 0px;
 }
 .fa-facebook, .fa-facebook-square {
   color: #3b5998;
