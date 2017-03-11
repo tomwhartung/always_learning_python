@@ -9,13 +9,11 @@
 {% block toprowcontent %}
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <article class="jumbotron">
-    <section id="contactme">
-    </section><!-- #intro -->
-    <section id="enter-email">
+    <section id="name-email-form">
       <p>
-        Enter your email address below and we will contact you with
-         details about how you can get your personalized
-         Spiritual Portrait!
+        For details about how you can get your personalized
+         Spiritual Portrait, enter your name and email address and
+         we will contact you within 24 hours!
       </p>
       <form  action="" method="post" role="form">
         {{ form.hidden_tag() }}
@@ -27,7 +25,35 @@
         </div>
         <button type="submit" class="btn btn-success">Sign Up</button>
       </form>
-    </section><!-- #enter-email -->
+    </section><!-- #name-email-form -->
+    <hr>
+    <section id="social-media">
+      <p>
+        OR - send us a message at one of these sites:
+      </p>
+      <ul class="social-list">
+          <li><a class="icons-sm fb-ic"><i class="fa fa-2x fa-facebook"></i> Facebook</a></li>
+          <li><a class="icons-sm tw-ic"><i class="fa fa-2x fa-twitter"></i> Twitter</a></li>
+          <li><a class="icons-sm gplus-ic"><i class="fa fa-2x fa-google-plus"></i> Google +</a></li>
+          <li><a class="icons-sm li-ic"><i class="fa fa-2x fa-linkedin"> </i> LinkedIn</a></li>
+          <li><a class="icons-sm ins-ic"><i class="fa fa-2x fa-instagram"> </i> Instagram</a></li>
+          <li><a class="icons-sm pin-ic"><i class="fa fa-2x fa-pinterest"> </i> Pinterest</a></li>
+          <li><a class="icons-sm git-ic"><i class="fa fa-2x fa-github"> </i> Github</a></li>
+      </ul>
+    </section><!-- #social-media -->
+    <hr>
+    <section id="keep-it-old-school">
+    <p>
+     OR - keep it <span class="air-quotes">old school</span> and:
+    </p>
+    <ul>
+      <li>Call me at 303-863-1757.</li>
+      <li>Send me a letter at P. O. Box 18216, Denver, CO 80218.</li>
+    </ul>
+    <p>
+      Thanks and we look forward to hearing from you soon!
+    </p>
+    </section><!-- #keep-it-old-school -->
   </article>
 {% endblock %}
 {% block toprowsidebox %}
