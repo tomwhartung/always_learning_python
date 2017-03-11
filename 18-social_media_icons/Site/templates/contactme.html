@@ -31,23 +31,22 @@
     <section id="social-media">
       <h3>Or, if you prefer &mdash; send a message:</h3>
       <ul class="social-list">
-          <li><a class="icons-sm fb-ic"><i class="fa fa-2x fa-facebook"></i>&nbsp;Message us on facebook</a></li>
-          <li><a class="icons-sm tw-ic"><i class="fa fa-2x fa-twitter"></i>&nbsp;Message us on twitter</a></li>
-          <li><a class="icons-sm li-ic"><i class="fa fa-2x fa-linkedin"> </i>&nbsp;Message us on linkedin</a></li>
-          <li><a class="icons-sm git-ic"><i class="fa fa-2x fa-github"> </i>&nbsp;Message us on github</a></li>
-          <li><a class="icons-sm gplus-ic"><i class="fa fa-2x fa-google-plus"></i> Google +</a></li>
-          <li><a class="icons-sm ins-ic"><i class="fa fa-2x fa-instagram"> </i> Instagram</a></li>
-          <li><a class="icons-sm pin-ic"><i class="fa fa-2x fa-pinterest"> </i> Pinterest</a></li>
+        <li class="social-list"><a class="icons-sm fb-ic"><i class="fa fa-2x fa-facebook"></i>&nbsp;Message us on facebook</a></li>
+        <li class="social-list"><a class="icons-sm tw-ic"><i class="fa fa-2x fa-twitter"></i>&nbsp;Message us on twitter</a></li>
+        <li class="social-list"><a class="icons-sm li-ic"><i class="fa fa-2x fa-linkedin"> </i>&nbsp;Message us on linkedin</a></li>
+        <li class="social-list"><a class="icons-sm git-ic"><i class="fa fa-2x fa-github"> </i>&nbsp;Message us on github</a></li>
+        <li class="social-list"><a class="icons-sm gplus-ic"><i class="fa fa-2x fa-google-plus"></i> Google +</a></li>
+        <li class="social-list"><a class="icons-sm ins-ic"><i class="fa fa-2x fa-instagram"> </i> Instagram</a></li>
+        <li class="social-list"><a class="icons-sm pin-ic"><i class="fa fa-2x fa-pinterest"> </i> Pinterest</a></li>
       </ul>
     </section><!-- #social-media -->
     <hr>
     <section id="keep-it-old-school">
-    <h3>Or, if you prefer &mdash; keep it old school:</h3>
-    <ul>
-      <li>Call us at 303-863-1757.</li>
-      <li>Send us a letter at 2075 Emerson Street, Denver, CO 80218.</li>
-    </ul>
-    <h2>Thanks &mdash; and we look forward to hearing from you soon!</h2>
+      <h3>Or, if you prefer &mdash; keep it old school:</h3>
+      <ul class="old-school-list">
+        <li class="old-school-list">Call us at 303-863-1757.</li>
+        <li class="old-school-list">Send us a letter at 2075 Emerson Street, Denver, CO 80218.</li>
+      </ul>
     </section><!-- #keep-it-old-school -->
   </article><!-- .other-options -->
 {% endblock %}
@@ -57,7 +56,7 @@
     <div class="sidebox">
       <h3>Process</h3>
       <p>
-        Here is the process.</p>
+        What to expect:</p>
       <ol>
         <li>a</li>
         <li>b</li>
@@ -71,19 +70,9 @@
 {% block remainder %}
   <div class="row">
     <div class="col-md-8">
-      <section id="old-school">
-        <h3>Want to keep it <span class="air-quotes">Old School?</span></h3>
-        <p>
-         If you want to keep it <span class="air-quotes">old school:</span>
-        </p>
-        <ul>
-          <li>Call me at 303-863-1757.</li>
-          <li>Send me a letter at P. O. Box 18216, Denver, CO 80218.</li>
-        </ul>
-        <p>
-          Thanks and we look forward to hearing from you soon!
-        </p>
-      </section><!-- #old-school -->
+      <section id="thanks">
+         <h3>Thanks &mdash; and we look forward to hearing from you soon!</h3>
+      </section><!-- #thanks -->
     </div><!-- .col-md-8 -->
   </div><!-- .row -->
 {% endblock %}
