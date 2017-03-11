@@ -10,6 +10,7 @@
 }
 
 /*
+ * For the "... follow us ..." sidebox
  * Inspired by code on these pages:
  *    http://ksloan.net/css-color-definitions-for-font-awesome-social-icons/
  *    http://www.kodingmadesimple.com/2014/11/create-stylish-bootstrap-3-social-media-icons.html
@@ -42,4 +43,22 @@ i.fa-2x:hover {
 }
 .fa-linkedin, .fa-linkedin-square {
   color: #007bb6;
+}
+/*
+ * For the Contact Me page:
+ * List of hex codes for html entities:
+ *    https://www.w3schools.com/charsets/ref_html_entities_r.asp
+ */
+ul.social-list,
+ul.old-school-list {
+   list-style: none;
+}
+li.social-list:before,
+li.old-school-list:before {
+   content: '\021AA';   /* &rarrhk; */
+   padding: .3em;
+}
+li.step-title {
+   font-weight: bold;
+   text-decoration: underline;
 }
