@@ -29,45 +29,36 @@
   </article><!-- .jumbotron -->
   <article class="other-options">
     <section id="social-media">
-      <h3>Or, if you prefer &mdash; send a message:</h3>
+      <h3>Or if you'd rather &mdash; use social networking:</h3>
       <ul class="social-list">
         <li class="social-list">
           <a href="https://www.facebook.com/seeourminds/" target="_blank"
-             title="Link to send us a message on facebook" class="icons-sm fb-ic">
+             title="Link to send us a message on facebook" class="icons-sm">
             <i class="fa fa-2x fa-facebook"></i>
             Message us on facebook</a></li>
         <li class="social-list">
-          <a href="" target="_blank"
-             title="Link to send us a message on twitter" class="icons-sm tw-ic">
+          <a href="https://twitter.com/getyourgroja" target="_blank"
+             title="Link to tweet to our page on twitter" class="icons-sm">
             <i class="fa fa-2x fa-twitter"></i>
-            Message us on twitter</a></li>
+            Tweet to our page on twitter</a></li>
         <li class="social-list">
           <a href="" target="_blank"
-             title="Link to send us a message on linkedin" class="icons-sm li-ic">
-            <i class="fa fa-2x fa-linkedin"> </i>
-            Message us on linkedin</a></li>
-        <li class="social-list">
-          <a href="" target="_blank"
-             title="Link to send us a message on github" class="icons-sm git-ic">
-            <i class="fa fa-2x fa-github"> </i>
-            Message us on github</a></li>
-        <li class="social-list">
-          <a href="" target="_blank"
-             title="Link to send us a message on google plus" class="icons-sm gplus-ic">
+             title="Link to send us a message on google plus" class="icons-sm">
             <i class="fa fa-2x fa-google-plus"></i> Google + (link tbd)</a></li>
         <li class="social-list">
-          <a href="" target="_blank"
-             title="Link to send us a message on instagram" class="icons-sm ins-ic">
-            <i class="fa fa-2x fa-instagram"> </i> Instagram< (link tbd)</a></li>
-        <li class="social-list">
-          <a href="" target="_blank"
-             title="Link to send us a message on pinterest" class="icons-sm pin-ic">
-            <i class="fa fa-2x fa-pinterest"> </i> Pinterest< (link tbd)</a></li>
+          <a href="#social-media-sidebox"
+             title="Scroll to the social media sidebox" class="icons-sm">
+            <i class="fa fa-2x fa-hand-o-right"></i> </a>
+          Use one of the links in the side box to follow and contact us
+          <a href="#social-media-sidebox"
+             title="Scroll to the social media sidebox" class="icons-sm">
+            <i class="fa fa-2x fa-hand-o-right"></i> </a>
+        </li>
       </ul>
     </section><!-- #social-media -->
     <hr>
     <section id="keep-it-old-school">
-      <h3>Or, if you prefer &mdash; keep it old school:</h3>
+      <h3>Or if you'd rather &mdash; keep it old school:</h3>
       <ul class="old-school-list">
         <li class="old-school-list">Call us at 303-863-1757.</li>
         <li class="old-school-list">Send us a letter at Groja.com, 2075 Emerson Street, Denver, CO 80218.</li>
@@ -101,6 +92,7 @@
       </ol>
       <p>Thanks!</p>
     </div><!-- .sidebox -->
+    {{ super() }}
   </section><!-- #process -->
 {% endblock %}
 {% block remainder %}
