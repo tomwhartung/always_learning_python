@@ -8,15 +8,15 @@
       <p>The SeeOurMinds Quiz is a work in progress,
         so please check back later.</p>
     </header>
-    <h3>NameForm:</h3>
-    <form action="quiz/nameform" method="POST">
+    <h3>ContactForm:</h3>
+    <form action="quiz/contact_form" method="POST">
       {% csrf_token %}
       <p>plain "form" fields below?</p>
       {{ form }}
       <p>"form" fields above?</p>
       <input type="submit" value="Submit" />
     </form>
-    <form action="quiz/nameform" method="POST">
+    <form action="quiz/contact_form" method="POST">
       {% csrf_token %}
       <ul>
          <li>form.as_ul below:</li>
@@ -25,13 +25,42 @@
       </ul>
       <input type="submit" value="Submit" />
     </form>
-    <form action="quiz/nameform" method="POST">
+    <form action="quiz/contact_form" method="POST">
       {% csrf_token %}
       <p>form.as_p below:</p>
       {{ form.as_p }}
       <p>form.as_p above?</p>
       <input type="submit" value="Submit" />
     </form>
+    <hr />
+    <hr />
+    <h3>NameForm:</h3>
+    <form action="quiz/name_form" method="POST">
+      {% csrf_token %}
+      <p>plain "form" fields below?</p>
+      {{ form }}
+      <p>"form" fields above?</p>
+      <input type="submit" value="Submit" />
+    </form>
+    <form action="quiz/name_form" method="POST">
+      {% csrf_token %}
+      <ul>
+         <li>form.as_ul below:</li>
+         {{ form.as_ul }}
+         <li>form.as_ul above?</li>
+      </ul>
+      <input type="submit" value="Submit" />
+    </form>
+    <form action="quiz/name_form" method="POST">
+      {% csrf_token %}
+      <p>form.as_p below:</p>
+      {{ form.as_p }}
+      <p>form.as_p above?</p>
+      <input type="submit" value="Submit" />
+    </form>
+    <hr />
+    <hr />
+    <hr />
     <hr />
     <p>&sup1; The SeeOurMinds Quiz is also known as the Graphical Representations of Jungian Archetypes
        or "Groja" Quiz.</p>
