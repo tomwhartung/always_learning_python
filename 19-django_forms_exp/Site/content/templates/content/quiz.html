@@ -8,10 +8,16 @@
       <p>The SeeOurMinds Quiz is a work in progress,
         so please check back later.</p>
     </header>
-    <p>Form 1 below?</p>
+    <h3>NameForm:</h3>
     <form action="quiz/nameform" method="POST">
       {% csrf_token %}
+      <p>plain "form" fields below?</p>
       {{ form }}
+      <p>"form" fields above?</p>
+      <input type="submit" value="Submit" />
+    </form>
+    <form action="quiz/nameform" method="POST">
+      {% csrf_token %}
       <ul>
          <li>form.as_ul below:</li>
          {{ form.as_ul }}
@@ -19,17 +25,13 @@
       </ul>
       <input type="submit" value="Submit" />
     </form>
-    <p>Form 1 above?</p>
-    <p>Form 2 below?</p>
     <form action="quiz/nameform" method="POST">
       {% csrf_token %}
-      {{ form }}
-         <li>form.as_p below:</li>
-         {{ form.as_p }}
-         <li>form.as_p above?</li>
+      <p>form.as_p below:</p>
+      {{ form.as_p }}
+      <p>form.as_p above?</p>
       <input type="submit" value="Submit" />
     </form>
-    <p>Form 2 above?</p>
     <hr />
     <p>&sup1; The SeeOurMinds Quiz is also known as the Graphical Representations of Jungian Archetypes
        or "Groja" Quiz.</p>
