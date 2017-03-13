@@ -1,12 +1,12 @@
 from django.shortcuts import render
-
-# Create your views here.
-
 import textwrap
 
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.views.generic.base import View
 from django.template import loader
+import json
+import os
 
 ##
 # load and render the Home page template
@@ -34,8 +34,6 @@ def galleries(request):
 # load and render the template for a single Gallery page
 #
 def gallery(request, gallery_name='all'):
-  import json
-  import os
   context_gallery_name = gallery_name
   site_content_dir = os.path.abspath(os.path.dirname(__file__))
   data_file_name = gallery_name + '.json'
@@ -83,3 +81,23 @@ def google_verification(request):
   template = loader.get_template('content/google428ef5aab2bc0870.html')
   context = { }
   return HttpResponse(template.render(context, request))
+
+##
+#  Using the Quiz page template to experiment with django forms
+#  Reference:
+#     https://docs.djangoproject.com/en/1.10/topics/forms/
+#
+from .forms import NameForm
+def quiz_nameform( request ):
+    if request.method == 'POST':
+        form = NameForm( request.POST )
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            your_name = form.cleaned_data['your_name']
+            print( 'Got your_name:', your_name )
+            # redirect to a new URL:
+            return HttpResponseRedirect('/quiz/')
+    else:
+        form = NameForm()
+
+    return render(request, 'quiz.html', {'form': form})
