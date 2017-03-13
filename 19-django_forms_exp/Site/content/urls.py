@@ -13,4 +13,8 @@ urlpatterns = [
     url(r'^quiz$', views.quiz, name='quiz'),
     url(r'^google428ef5aab2bc0870.html$',
       views.google_verification, name='google_verification'),
+    #
+    # Urls for experimenting with forms
+    #
+    url(r'^quiz/nameform$', views.quiz, name='quiz_nameform'),
 ]
