@@ -88,7 +88,7 @@ def google_verification(request):
 #     https://docs.djangoproject.com/en/1.10/topics/forms/
 #
 from .forms import NameForm
-def quiz_nameform( request ):
+def quiz_name_form( request ):
     if request.method == 'POST':
         form = NameForm( request.POST )
         if form.is_valid():
@@ -99,5 +99,23 @@ def quiz_nameform( request ):
             return HttpResponseRedirect('/quiz/')
     else:
         form = NameForm()
+
+    return render(request, 'quiz.html', {'form': form})
+
+##
+#  Experimenting with ContactForm, same reference as above
+#
+from .forms import ContactForm
+def quiz_contact_form( request ):
+    if request.method == 'POST':
+        form = ContactForm( request.POST )
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            your_name = form.cleaned_data['your_name']
+            print( 'Got your_name:', your_name )
+            # redirect to a new URL:
+            return HttpResponseRedirect('/quiz/')
+    else:
+        form = ContactForm()
 
     return render(request, 'quiz.html', {'form': form})
