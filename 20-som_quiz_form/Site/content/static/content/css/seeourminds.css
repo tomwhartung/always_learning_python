@@ -1,0 +1,138 @@
+/*
+ * According to comments in main.css, we are "supposed" to 
+ * add our custom styles into the middle of that file.
+ * I decided to put them here, instead.
+ */
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+
+/*
+ * Adding styles for the header, to get the look and feel I want
+ */
+h1.site-name {
+    text-align: left;
+}
+h1 {
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+.title {
+    display: block;
+    text-align: left;
+}
+.tagline {
+    color: white;
+    display: block;
+    font-style: italic;
+    font-weight: normal;
+    margin-top: 0;
+}
+nav {
+    margin-top: 2.2em;
+}
+img.site-header {
+    float: left;
+    margin: .6em;
+}
+@media only screen and (max-width: 479px) {
+    img.site-header {
+        display: block;
+        float: none;
+        margin: .5em auto;
+    }
+    h1.site-name,
+    .tagline {
+        text-align: center;
+    }
+}
+
+/*
+ * Right now, all of our links are in the aside and footer, which have backgrounds.
+ */
+a {
+    color: lightskyblue;
+    text-decoration: none;
+}
+a:hover {
+    color: lightgrey;
+    text-decoration: underline;
+}
+/*
+ * Styles for footer (also see the .footer-container class below)
+ */
+footer {
+    color: white;
+    margin: 3em auto;
+    padding: 1em;
+    text-align: center;
+    width: 80%;
+}
+
+/*
+ * ==========================
+ *  Overriding styles in the
+ *   "ALL: Orange Theme"
+ *  section of main.css .
+ * ==========================
+ */
+
+.header-container {
+    border: 12px solid maroon;  /* was: #e44d26; */
+    border-width: 12px 0;
+}
+
+.footer-container,
+.main aside {
+    border: 12px solid maroon;  /* was: #e44d26; */
+    border-radius: 6px;
+    border-width: 12px 0;
+}
+
+.header-container,
+.footer-container,
+.main aside {
+    background: firebrick;   /* was: #f16529; */
+}
+
+.title {
+    color: white;
+}
+
+/*
+ * ==========================
+ *  Overriding styles in the
+ *   "MOBILE: Menu"
+ *  section of main.css .
+ * ==========================
+ */
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+nav a {
+    display: block;
+    margin-bottom: 0;
+    padding: 15px 0;
+
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+
+    color: white;
+    background: maroon;   /* was: #e44d26; */
+}
+
+nav a:hover,
+nav a:visited {
+    color: white;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
