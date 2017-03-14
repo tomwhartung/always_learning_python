@@ -22,3 +22,11 @@ class ContactForm(forms.Form):
     message = forms.CharField(widget=forms.Textarea)
     sender = forms.EmailField()
     cc_myself = forms.BooleanField(required=False)
+
+##
+#  RenewBookForm: try a different form...
+#  Reference:
+#     https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms
+#
+class RenewBookForm(forms.Form):
+    renewal_date = forms.DateField(help_text="Enter a date between now and 4 weeks (default 3).")
