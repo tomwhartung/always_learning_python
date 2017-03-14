@@ -18,6 +18,32 @@
     </form>
     <form action="quiz/contact_form" method="POST">
       {% csrf_token %}
+      <p>list of fields below:</p>
+      <div class="fieldWrapper">
+        {{ form.subject.errors }}
+        {{ form.subject.label_tag }}
+        {{ form.subject }}
+      </div>
+      <div class="fieldWrapper">
+        {{ form.message.errors }}
+        {{ form.message.label_tag }}
+        {{ form.message }}
+      </div>
+      <div class="fieldWrapper">
+        {{ form.sender.errors }}
+        {{ form.sender.label_tag }}
+        {{ form.sender }}
+      </div>
+      <div class="fieldWrapper">
+        {{ form.cc_myself.errors }}
+        {{ form.cc_myself.label_tag }}
+        {{ form.cc_myself }}
+      </div>
+      <p>list of fields above?</p>
+      <input type="submit" value="Submit" />
+    </form>
+    <form action="quiz/contact_form" method="POST">
+      {% csrf_token %}
       <ul>
          <li>form.as_ul below:</li>
          {{ form.as_ul }}
@@ -41,6 +67,16 @@
       {{ form }}
       <p>"form" fields above?</p>
       <input type="submit" value="Submit" />
+    </form>
+    <form action="quiz/name_form" method="POST">
+    {% csrf_token %}
+       <p>list of fields below:</p>
+       <div class="fieldWrapper">
+        {{ form.your_name.errors }}
+        {{ form.your_name.label_tag }}
+        {{ form.your_name }}
+       </div>
+       <p>list of fields above?</p>
     </form>
     <form action="quiz/name_form" method="POST">
       {% csrf_token %}
