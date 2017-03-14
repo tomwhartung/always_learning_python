@@ -136,9 +136,10 @@ def quiz_contact_form( request ):
 #  Reference:
 #     https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms
 #
+import datetime
 from .forms import RenewBookForm
-def renew_book_librarian(request, pk):
-   book_inst=get_object_or_404(BookInstance, pk = pk)
+def renew_book_librarian(request):
+   ## book_inst=get_object_or_404(BookInstance, pk = pk)
 
    # If this is a POST request then process the Form data
    if request.method == 'POST':
