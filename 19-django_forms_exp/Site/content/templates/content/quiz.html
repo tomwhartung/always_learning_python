@@ -11,73 +11,73 @@
     <h3>ContactForm:</h3>
     <form action="quiz/contact_form" method="POST">
       {% csrf_token %}
-      <p>plain "form" fields below?</p>
-      {{ form }}
-      <p>"form" fields above?</p>
+      <p>plain "contact_form" fields below?</p>
+      {{ contact_form }}
+      <p>"contact_form" fields above?</p>
       <input type="submit" value="Submit" />
     </form>
     <form action="quiz/contact_form" method="POST">
-      <form action="quiz/name_form" method="POST">
-         {% csrf_token %}
-         <p>fields found in for loop below:</p>
-         {% for field in form %}
-           <div class="fieldWrapper">
-             {{ field.errors }}
-             {{ field.label_tag }} {{ field }}
-             {% if field.help_text %}
-             <p class="help">{{ field.help_text|safe }}</p>
-             {% endif %}
-           </div>
-         {% endfor %}
-         <p>any fields found in for loop above?</p>
-         <input type="submit" value="Submit" />
-      </form>
+      {% csrf_token %}
+      <p>fields found in for loop below:</p>
+      {% for field in contact_form %}
+        <div class="fieldWrapper">
+          {{ field.errors }}
+          {{ field.label_tag }} {{ field }}
+          {% if field.help_text %}
+          <p class="help">{{ field.help_text|safe }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+      <p>any fields found in for loop above?</p>
+      <input type="submit" value="Submit" />
+    </form>
+    <form action="quiz/contact_form" method="POST">
       <p>DIY labels for each field below:</p>
-       {{ form.non_field_errors }}
-       <div class="fieldWrapper">
-           {{ form.subject.errors }}
-           <label for="{{ form.subject.id_for_label }}">Email subject:</label>
-           {{ form.subject }}
-       </div>
-       <div class="fieldWrapper">
-           {{ form.message.errors }}
-           <label for="{{ form.message.id_for_label }}">Your message:</label>
-           {{ form.message }}
-       </div>
-       <div class="fieldWrapper">
-           {{ form.sender.errors }}
-           <label for="{{ form.sender.id_for_label }}">Your email address:</label>
-           {{ form.sender }}
-       </div>
-       <div class="fieldWrapper">
-           {{ form.cc_myself.errors }}
-           <label for="{{ form.cc_myself.id_for_label }}">CC yourself?</label>
-           {{ form.cc_myself }}
-       </div>
-       <p>DIY labels for each field above?</p>
+      {{ contact_form.non_field_errors }}
+      <div class="fieldWrapper">
+        {{ contact_form.subject.errors }}
+        <label for="{{ contact_form.subject.id_for_label }}">Email subject:</label>
+        {{ contact_form.subject }}
+      </div>
+      <div class="fieldWrapper">
+        {{ contact_form.message.errors }}
+        <label for="{{ contact_form.message.id_for_label }}">Your message:</label>
+        {{ contact_form.message }}
+      </div>
+      <div class="fieldWrapper">
+        {{ contact_form.sender.errors }}
+        <label for="{{ contact_form.sender.id_for_label }}">Your email address:</label>
+        {{ contact_form.sender }}
+      </div>
+      <div class="fieldWrapper">
+        {{ contact_form.cc_myself.errors }}
+        <label for="{{ contact_form.cc_myself.id_for_label }}">CC yourself?</label>
+        {{ contact_form.cc_myself }}
+      </div>
+      <p>DIY labels for each field above?</p>
     </form>
     <form action="quiz/contact_form" method="POST">
       {% csrf_token %}
       <p>list of fields below:</p>
       <div class="fieldWrapper">
-        {{ form.subject.errors }}
-        {{ form.subject.label_tag }}
-        {{ form.subject }}
+        {{ contact_form.subject.errors }}
+        {{ contact_form.subject.label_tag }}
+        {{ contact_form.subject }}
       </div>
       <div class="fieldWrapper">
-        {{ form.message.errors }}
-        {{ form.message.label_tag }}
-        {{ form.message }}
+        {{ contact_form.message.errors }}
+        {{ contact_form.message.label_tag }}
+        {{ contact_form.message }}
       </div>
       <div class="fieldWrapper">
-        {{ form.sender.errors }}
-        {{ form.sender.label_tag }}
-        {{ form.sender }}
+        {{ contact_form.sender.errors }}
+        {{ contact_form.sender.label_tag }}
+        {{ contact_form.sender }}
       </div>
       <div class="fieldWrapper">
-        {{ form.cc_myself.errors }}
-        {{ form.cc_myself.label_tag }}
-        {{ form.cc_myself }}
+        {{ contact_form.cc_myself.errors }}
+        {{ contact_form.cc_myself.label_tag }}
+        {{ contact_form.cc_myself }}
       </div>
       <p>list of fields above?</p>
       <input type="submit" value="Submit" />
@@ -85,17 +85,17 @@
     <form action="quiz/contact_form" method="POST">
       {% csrf_token %}
       <ul>
-         <li>form.as_ul below:</li>
-         {{ form.as_ul }}
-         <li>form.as_ul above?</li>
+         <li>contact_form.as_ul below:</li>
+         {{ contact_form.as_ul }}
+         <li>contact_form.as_ul above?</li>
       </ul>
       <input type="submit" value="Submit" />
     </form>
     <form action="quiz/contact_form" method="POST">
       {% csrf_token %}
-      <p>form.as_p below:</p>
-      {{ form.as_p }}
-      <p>form.as_p above?</p>
+      <p>contact_form.as_p below:</p>
+      {{ contact_form.as_p }}
+      <p>contact_form.as_p above?</p>
       <input type="submit" value="Submit" />
     </form>
     <hr />
@@ -103,15 +103,15 @@
     <h3>NameForm:</h3>
     <form action="quiz/name_form" method="POST">
       {% csrf_token %}
-      <p>plain "form" fields below?</p>
-      {{ form }}
-      <p>"form" fields above?</p>
+      <p>plain "name_form" fields below?</p>
+      {{ name_form }}
+      <p>"name_form" fields above?</p>
       <input type="submit" value="Submit" />
     </form>
     <form action="quiz/name_form" method="POST">
        {% csrf_token %}
        <p>fields found in for loop below:</p>
-       {% for field in form %}
+       {% for field in name_form %}
          <div class="fieldWrapper">
            {{ field.errors }}
            {{ field.label_tag }} {{ field }}
@@ -127,9 +127,9 @@
        {% csrf_token %}
        <p>DIY labels for  the your_name field below:</p>
        <div class="fieldWrapper">
-          {{ form.your_name.errors }}
-          <label for="{{ form.your_name.id_for_label }}">Your Name</label>
-          {{ form.your_name }}
+          {{ name_form.your_name.errors }}
+          <label for="{{ name_form.your_name.id_for_label }}">Your Name</label>
+          {{ name_form.your_name }}
        </div>
        <p>DIY labels for the your_name field above?</p>
     </form>
@@ -137,26 +137,26 @@
        {% csrf_token %}
        <p>list of fields below:</p>
        <div class="fieldWrapper">
-        {{ form.your_name.errors }}
-        {{ form.your_name.label_tag }}
-        {{ form.your_name }}
+        {{ name_form.your_name.errors }}
+        {{ name_form.your_name.label_tag }}
+        {{ name_form.your_name }}
        </div>
        <p>list of fields above?</p>
     </form>
     <form action="quiz/name_form" method="POST">
       {% csrf_token %}
       <ul>
-         <li>form.as_ul below:</li>
-         {{ form.as_ul }}
-         <li>form.as_ul above?</li>
+         <li>name_form.as_ul below:</li>
+         {{ name_form.as_ul }}
+         <li>name_form.as_ul above?</li>
       </ul>
       <input type="submit" value="Submit" />
     </form>
     <form action="quiz/name_form" method="POST">
       {% csrf_token %}
-      <p>form.as_p below:</p>
-      {{ form.as_p }}
-      <p>form.as_p above?</p>
+      <p>name_form.as_p below:</p>
+      {{ name_form.as_p }}
+      <p>name_form.as_p above?</p>
       <input type="submit" value="Submit" />
     </form>
     <hr />
