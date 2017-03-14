@@ -17,6 +17,21 @@
       <input type="submit" value="Submit" />
     </form>
     <form action="quiz/contact_form" method="POST">
+      <form action="quiz/name_form" method="POST">
+         {% csrf_token %}
+         <p>fields found in for loop below:</p>
+         {% for field in form %}
+           <div class="fieldWrapper">
+             {{ field.errors }}
+             {{ field.label_tag }} {{ field }}
+             {% if field.help_text %}
+             <p class="help">{{ field.help_text|safe }}</p>
+             {% endif %}
+           </div>
+         {% endfor %}
+         <p>any fields found in for loop above?</p>
+         <input type="submit" value="Submit" />
+      </form>
       <p>DIY labels for each field below:</p>
        {{ form.non_field_errors }}
        <div class="fieldWrapper">
@@ -94,7 +109,23 @@
       <input type="submit" value="Submit" />
     </form>
     <form action="quiz/name_form" method="POST">
-       <p>DIY labels for each field below:</p>
+       {% csrf_token %}
+       <p>fields found in for loop below:</p>
+       {% for field in form %}
+         <div class="fieldWrapper">
+           {{ field.errors }}
+           {{ field.label_tag }} {{ field }}
+           {% if field.help_text %}
+           <p class="help">{{ field.help_text|safe }}</p>
+           {% endif %}
+         </div>
+       {% endfor %}
+       <p>any fields found in for loop above?</p>
+       <input type="submit" value="Submit" />
+    </form>
+    <form action="quiz/name_form" method="POST">
+       {% csrf_token %}
+       <p>DIY labels for  the your_name field below:</p>
        <div class="fieldWrapper">
           {{ form.your_name.errors }}
           <label for="{{ form.your_name.id_for_label }}">Your Name</label>
@@ -103,7 +134,7 @@
        <p>DIY labels for the your_name field above?</p>
     </form>
     <form action="quiz/name_form" method="POST">
-    {% csrf_token %}
+       {% csrf_token %}
        <p>list of fields below:</p>
        <div class="fieldWrapper">
         {{ form.your_name.errors }}
