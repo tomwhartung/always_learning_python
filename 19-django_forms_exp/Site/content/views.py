@@ -111,8 +111,14 @@ def quiz_contact_form( request ):
         form = ContactForm( request.POST )
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            your_name = form.cleaned_data['your_name']
-            print( 'Got your_name:', your_name )
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            sender = form.cleaned_data['sender']
+            cc_myself = form.cleaned_data['cc_myself']
+            print( 'Got subject:', subject )
+            print( 'Got message:', message )
+            print( 'Got sender:', sender )
+            print( 'Got cc_myself:', cc_myself )
             # redirect to a new URL:
             return HttpResponseRedirect('/quiz/')
     else:
