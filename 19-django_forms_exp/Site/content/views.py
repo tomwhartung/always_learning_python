@@ -89,39 +89,44 @@ def google_verification(request):
 #
 from .forms import NameForm
 def quiz_name_form( request ):
-    if request.method == 'POST':
-        name_form = NameForm( request.POST )
-        if name_form.is_valid():
-            # process the data in name_form.cleaned_data as required
-            your_name = name_form.cleaned_data['your_name']
-            print( 'Got your_name:', your_name )
-            # redirect to a new URL:
-            return HttpResponseRedirect('/quiz/')
-    else:
-        name_form = NameForm()
+   if request.method == 'POST':
+      name_form = NameForm( request.POST )
+      if name_form.is_valid():
+         # process the data in name_form.cleaned_data as required
+         your_name = name_form.cleaned_data['your_name']
+         print( 'Got your_name:', your_name )
+         # redirect to a new URL:
+         return HttpResponseRedirect('/quiz/')
+   else:
+      name_form = NameForm()
 
-    return render(request, 'quiz.html', {'name_form': name_form})
+   ## return render(request, 'quiz.html', {'name_form': name_form})
+   template = loader.get_template('content/quiz.html')
+   context = { 'name_form': name_form }
+   return HttpResponse(template.render(context, request))
 
 ##
-#  Experimenting with ContactForm, same reference as above
+#  Experimenting with ContactForm
+#  Reference (same as above):
+#     https://docs.djangoproject.com/en/1.10/topics/forms/
 #
 from .forms import ContactForm
 def quiz_contact_form( request ):
-    if request.method == 'POST':
-        contact_form = ContactForm( request.POST )
-        if contact_form.is_valid():
-            # process the data in contact_form.cleaned_data as required
-            subject = contact_form.cleaned_data['subject']
-            message = contact_form.cleaned_data['message']
-            sender = contact_form.cleaned_data['sender']
-            cc_myself = contact_form.cleaned_data['cc_myself']
-            print( 'Got subject:', subject )
-            print( 'Got message:', message )
-            print( 'Got sender:', sender )
-            print( 'Got cc_myself:', cc_myself )
-            # redirect to a new URL:
-            return HttpResponseRedirect('/quiz/')
-    else:
-        contact_form = ContactForm()
+   if request.method == 'POST':
+      contact_form = ContactForm( request.POST )
+      if contact_form.is_valid():
+         # process the data in contact_form.cleaned_data as required
+         subject = contact_form.cleaned_data['subject']
+         message = contact_form.cleaned_data['message']
+         sender = contact_form.cleaned_data['sender']
+         cc_myself = contact_form.cleaned_data['cc_myself']
+         print( 'Got subject:', subject )
+         print( 'Got message:', message )
+         print( 'Got sender:', sender )
+         print( 'Got cc_myself:', cc_myself )
+         # redirect to a new URL:
+         return HttpResponseRedirect('/quiz/')
+   else:
+      contact_form = ContactForm()
 
-    return render(request, 'quiz.html', {'contact_form': contact_form})
+   return render(request, 'content/quiz.html', {'contact_form': contact_form})

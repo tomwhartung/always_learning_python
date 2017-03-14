@@ -16,6 +16,6 @@ urlpatterns = [
     #
     # Urls for experimenting with forms
     #
-    url(r'^quiz/name_form$', views.quiz, name='quiz_name_form'),
-    url(r'^quiz/contact_form$', views.quiz, name='quiz_contact_form'),
+    url(r'^quiz/name_form$', views.quiz_name_form, name='quiz_name_form'),
+    url(r'^quiz/contact_form$', views.quiz_contact_form, name='quiz_contact_form'),
 ]
