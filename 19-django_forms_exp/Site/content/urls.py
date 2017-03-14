@@ -18,4 +18,5 @@ urlpatterns = [
     #
     url(r'^quiz/name_form$', views.quiz_name_form, name='quiz_name_form'),
     url(r'^quiz/contact_form$', views.quiz_contact_form, name='quiz_contact_form'),
+    url(r'^book/(?P<pk>[-\w]+)/renew/$', views.renew_book_librarian, name='renew-book-librarian'),
 ]
