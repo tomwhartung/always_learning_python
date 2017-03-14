@@ -17,6 +17,31 @@
       <input type="submit" value="Submit" />
     </form>
     <form action="quiz/contact_form" method="POST">
+      <p>DIY labels for each field below:</p>
+       {{ form.non_field_errors }}
+       <div class="fieldWrapper">
+           {{ form.subject.errors }}
+           <label for="{{ form.subject.id_for_label }}">Email subject:</label>
+           {{ form.subject }}
+       </div>
+       <div class="fieldWrapper">
+           {{ form.message.errors }}
+           <label for="{{ form.message.id_for_label }}">Your message:</label>
+           {{ form.message }}
+       </div>
+       <div class="fieldWrapper">
+           {{ form.sender.errors }}
+           <label for="{{ form.sender.id_for_label }}">Your email address:</label>
+           {{ form.sender }}
+       </div>
+       <div class="fieldWrapper">
+           {{ form.cc_myself.errors }}
+           <label for="{{ form.cc_myself.id_for_label }}">CC yourself?</label>
+           {{ form.cc_myself }}
+       </div>
+       <p>DIY labels for each field above?</p>
+    </form>
+    <form action="quiz/contact_form" method="POST">
       {% csrf_token %}
       <p>list of fields below:</p>
       <div class="fieldWrapper">
@@ -67,6 +92,15 @@
       {{ form }}
       <p>"form" fields above?</p>
       <input type="submit" value="Submit" />
+    </form>
+    <form action="quiz/name_form" method="POST">
+       <p>DIY labels for each field below:</p>
+       <div class="fieldWrapper">
+          {{ form.your_name.errors }}
+          <label for="{{ form.your_name.id_for_label }}">Your Name</label>
+          {{ form.your_name }}
+       </div>
+       <p>DIY labels for the your_name field above?</p>
     </form>
     <form action="quiz/name_form" method="POST">
     {% csrf_token %}
