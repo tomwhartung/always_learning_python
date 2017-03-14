@@ -90,17 +90,17 @@ def google_verification(request):
 from .forms import NameForm
 def quiz_name_form( request ):
     if request.method == 'POST':
-        form = NameForm( request.POST )
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            your_name = form.cleaned_data['your_name']
+        name_form = NameForm( request.POST )
+        if name_form.is_valid():
+            # process the data in name_form.cleaned_data as required
+            your_name = name_form.cleaned_data['your_name']
             print( 'Got your_name:', your_name )
             # redirect to a new URL:
             return HttpResponseRedirect('/quiz/')
     else:
-        form = NameForm()
+        name_form = NameForm()
 
-    return render(request, 'quiz.html', {'form': form})
+    return render(request, 'quiz.html', {'name_form': name_form})
 
 ##
 #  Experimenting with ContactForm, same reference as above
@@ -108,13 +108,13 @@ def quiz_name_form( request ):
 from .forms import ContactForm
 def quiz_contact_form( request ):
     if request.method == 'POST':
-        form = ContactForm( request.POST )
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
-            sender = form.cleaned_data['sender']
-            cc_myself = form.cleaned_data['cc_myself']
+        contact_form = ContactForm( request.POST )
+        if contact_form.is_valid():
+            # process the data in contact_form.cleaned_data as required
+            subject = contact_form.cleaned_data['subject']
+            message = contact_form.cleaned_data['message']
+            sender = contact_form.cleaned_data['sender']
+            cc_myself = contact_form.cleaned_data['cc_myself']
             print( 'Got subject:', subject )
             print( 'Got message:', message )
             print( 'Got sender:', sender )
@@ -122,6 +122,6 @@ def quiz_contact_form( request ):
             # redirect to a new URL:
             return HttpResponseRedirect('/quiz/')
     else:
-        form = ContactForm()
+        contact_form = ContactForm()
 
-    return render(request, 'quiz.html', {'form': form})
+    return render(request, 'quiz.html', {'contact_form': contact_form})
