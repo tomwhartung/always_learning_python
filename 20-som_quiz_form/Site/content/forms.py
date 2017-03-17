@@ -6,10 +6,15 @@
 from django import forms
 
 ##
-#  QuizForm: the next step
-#  Reference:
-#     https://docs.djangoproject.com/en/1.10/topics/forms/
+#  QuizForm: convert our json to a list of questions and multiple-choice answers
 #
 class QuizForm(forms.Form):
-    name = forms.CharField( max_length=50 )
-    email = forms.EmailField()
+   def get_choices( question_no ):
+      choices = [[ '1', 'First choice'], ['2', 'Second choice']]
+
+   name = forms.CharField( max_length=50 )
+   email = forms.EmailField()
+   ## choices_1 = get_choices(1)
+   ## choices_1 = ( ( '1', 'First choice', ), ('2', 'Second choice', ) )
+   choices_1 = [[ '1', 'First choice'], ['2', 'Second choice']]
+   question_1 = forms.ChoiceField( widget=forms.RadioSelect, choices=choices_1 )
