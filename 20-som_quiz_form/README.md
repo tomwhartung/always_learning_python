@@ -1,60 +1,39 @@
-# 19-django_forms_exp
+# 20-som_quiz_form
 
-Repo for experimenting with django forms.
+Repo for figuring out how to use django forms to implement the SeeOurMinds.com quiz.
 
 ## Installation
 
-Started with current version of code for seeourminds.com .
-
-Updated settings.py by changing the secret key etc.
-
-Installed django globally on bette:
-
-As root:
-
-```
-pip3 install django==1.10.2
-```
+Started with current version of code from ../19-django_forms_exp .
 
 ## References
 
-Form class:
+Form class: see ../19-django_forms_exp/README.md
+
+RadioSelect class:
 
 - https://docs.djangoproject.com/en/1.10/topics/forms/
-- https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms
 
-For now.
+## Goal
 
-ModelForm class:
+Use the questionnaire json to create a form allowing the user to fill out the questionnaire
 
-- https://tutorial.djangogirls.org/en/django_forms/
-- https://tutorial.djangogirls.org/en/django_models/
+The idea is that this repo will contain only the best of the best code and we will ultimately use it on the real site.
 
-For later.
-
-## Goals
-
-1. Use the questionnaire json to create a form allowing the user to fill out the questionnaire
-2. Play around with django form capability to discover the best way to do this
-
-The idea is to experiment a bit and actually port only the best of the best code into the real site,
-leaving any interesting experiments here for possible future reference.
+Any experimental code that we may want to reference later should be copied to
+the ../19-django_forms_exp project for possible future reference.
 
 ## Notes
 
-There are two base classes for creating forms:
+We should be able to just drop these files into the seeourminds.com site code:
 
-- Form - just the form
-- ModelForm - for storing the data in the database
+* content/forms.py
+* content/views.py
+* content/templates/content/quiz.html
 
-### Using the Form class
+We may need to merge these files into the seeourminds.com site code:
 
-We are focusing on a form for the questionnaire.
-The questions and answers are already in json, and at this time, I do not forsee wanting to change them very much.
-
-Also, for now anyway, we will **score the quiz in the browser.**
-
-In the future, we may want to store questionnaire results and scores in the database, but this is not desired in the near term.
+* TBD (hopefully none!)
 
 ## Work flow
 
