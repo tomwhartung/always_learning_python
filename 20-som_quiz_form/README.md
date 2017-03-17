@@ -16,7 +16,11 @@ RadioSelect class:
 
 ## Goal
 
-Use the questionnaire json to create a form allowing the user to fill out the questionnaire
+Use the questionnaire json to create a form allowing the user to fill out the questionnaire.
+
+* for now, just display the form
+* the plan is to use javascript to score it only in the browser - for now
+* that is the next step - don't worry about it yet!
 
 The idea is that this repo will contain only the best of the best code and we will ultimately use it on the real site.
 
@@ -31,9 +35,11 @@ We should be able to just drop these files into the seeourminds.com site code:
 * content/views.py
 * content/templates/content/quiz.html
 
-We may need to merge these files into the seeourminds.com site code:
+We **may** need to merge this file into the seeourminds.com site code:
 
-* TBD (hopefully none!)
+* content/urls.py
+
+**See the goals and note that we do NOT want to process the quiz on the server at this time.**
 
 ## Work flow
 
@@ -47,21 +53,17 @@ The flow is:
 
 ### forms.py
 
-Put **all** experimental forms in forms.py .
+Leave only the quiz form in forms.py .
 
 ### urls.py
 
-Don't be afraid to use longish, descriptive routes.
+Unsure whether we really need to add a route, considering that for now we just want to use javascript to score the quiz in the browser.
 
 ### views.py
 
-Feel free to add a view for each variation of each form.
 
-We will pick and choose the code we like from here when the time comes.
 
 ### Template: quiz.html
 
-Use quiz.html as the template for all forms.
-
-We will pick and choose the code we like from here when the time comes.
+Pick and choose the code we like from ../19-django_forms_exp and use it here, adding code from the references as appropriate.
 
