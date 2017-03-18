@@ -27,6 +27,13 @@ class QuizForm( forms.Form ):
       return( quiz_dictionary )
 
    ##
+   #  Get and return the question_text (aka. "label") for the given question
+   #
+   def get_label( question_no, quiz_question ):
+      label = str(question_no) + '. ' + quiz_question['question_text']
+      return label
+
+   ##
    #  Get and return the answers that are populated in the json for the given question
    #
    def get_choices( quiz_question ):
@@ -66,12 +73,15 @@ class QuizForm( forms.Form ):
    print( 'len(quiz_dictionary):', len(quiz_dictionary) )
    ## print( 'quiz_dictionary[0]:', quiz_dictionary[0] )
 
+   label_01 = get_label( 1, quiz_dictionary[0] )
    choices_01 = get_choices( quiz_dictionary[0] )
-   question_01 = forms.ChoiceField( widget=forms.RadioSelect, choices=choices_01 )
+   question_01 = forms.ChoiceField( widget=forms.RadioSelect, label=label_01, choices=choices_01 )
+   label_02 = get_label( 2, quiz_dictionary[1] )
    choices_02 = get_choices( quiz_dictionary[1] )
-   question_02 = forms.ChoiceField( widget=forms.RadioSelect, choices=choices_02 )
+   question_02 = forms.ChoiceField( widget=forms.RadioSelect, label=label_02, choices=choices_02 )
+   label_03 = get_label( 3, quiz_dictionary[2] )
    choices_03 = get_choices( quiz_dictionary[2] )
-   question_03 = forms.ChoiceField( widget=forms.RadioSelect, choices=choices_03 )
+   question_03 = forms.ChoiceField( widget=forms.RadioSelect, label=label_03, choices=choices_03 )
    choices_04 = get_choices( quiz_dictionary[3] )
    question_04 = forms.ChoiceField( widget=forms.RadioSelect, choices=choices_04 )
    choices_05 = get_choices( quiz_dictionary[4] )
