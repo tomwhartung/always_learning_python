@@ -30,6 +30,7 @@ class QuizForm( forms.Form ):
    #  Get and return the question_text (aka. "label") for the given question
    #
    def get_label( question_no, quiz_question ):
+      ## print( 'get_label - question_no:', question_no )
       label = str(question_no) + '. ' + quiz_question['question_text']
       return label
 
@@ -37,7 +38,7 @@ class QuizForm( forms.Form ):
    #  Get and return the answers that are populated in the json for the given question
    #
    def get_choices( quiz_question ):
-      print( 'get_choices - quiz_question:', quiz_question )
+      ## print( 'get_choices - quiz_question:', quiz_question )
       choices = []
 
       if len(quiz_question['answer_1_text']) > 0 and int(quiz_question['answer_1_weight']) > 0 :
@@ -357,7 +358,73 @@ class QuizForm( forms.Form ):
    choices_71 = get_choices( quiz_dictionary[70] )
    question_71 = forms.ChoiceField( widget=forms.RadioSelect, label=label_71, choices=choices_71 )
 
+   label_72 = get_label( 72, quiz_dictionary[71] )
+   choices_72 = get_choices( quiz_dictionary[71] )
+   question_72 = forms.ChoiceField( widget=forms.RadioSelect, label=label_72, choices=choices_72 )
 
+   label_73 = get_label( 73, quiz_dictionary[72] )
+   choices_73 = get_choices( quiz_dictionary[72] )
+   question_73 = forms.ChoiceField( widget=forms.RadioSelect, label=label_73, choices=choices_73 )
+
+   label_74 = get_label( 74, quiz_dictionary[73] )
+   choices_74 = get_choices( quiz_dictionary[73] )
+   question_74 = forms.ChoiceField( widget=forms.RadioSelect, label=label_74, choices=choices_74 )
+
+   label_75 = get_label( 75, quiz_dictionary[74] )
+   choices_75 = get_choices( quiz_dictionary[74] )
+   question_75 = forms.ChoiceField( widget=forms.RadioSelect, label=label_75, choices=choices_75 )
+
+   label_76 = get_label( 76, quiz_dictionary[75] )
+   choices_76 = get_choices( quiz_dictionary[75] )
+   question_76 = forms.ChoiceField( widget=forms.RadioSelect, label=label_76, choices=choices_76 )
+
+   label_77 = get_label( 77, quiz_dictionary[76] )
+   choices_77 = get_choices( quiz_dictionary[76] )
+   question_77 = forms.ChoiceField( widget=forms.RadioSelect, label=label_77, choices=choices_77 )
+
+   label_78 = get_label( 78, quiz_dictionary[77] )
+   choices_78 = get_choices( quiz_dictionary[77] )
+   question_78 = forms.ChoiceField( widget=forms.RadioSelect, label=label_78, choices=choices_78 )
+
+   label_79 = get_label( 79, quiz_dictionary[78] )
+   choices_79 = get_choices( quiz_dictionary[78] )
+   question_79 = forms.ChoiceField( widget=forms.RadioSelect, label=label_79, choices=choices_79 )
+
+   label_80 = get_label( 80, quiz_dictionary[79] )
+   choices_80 = get_choices( quiz_dictionary[79] )
+   question_80 = forms.ChoiceField( widget=forms.RadioSelect, label=label_80, choices=choices_80 )
+
+   label_81 = get_label( 81, quiz_dictionary[80] )
+   choices_81 = get_choices( quiz_dictionary[80] )
+   question_81 = forms.ChoiceField( widget=forms.RadioSelect, label=label_81, choices=choices_81 )
+
+   label_82 = get_label( 82, quiz_dictionary[81] )
+   choices_82 = get_choices( quiz_dictionary[81] )
+   question_82 = forms.ChoiceField( widget=forms.RadioSelect, label=label_82, choices=choices_82 )
+
+   label_83 = get_label( 83, quiz_dictionary[82] )
+   choices_83 = get_choices( quiz_dictionary[82] )
+   question_83 = forms.ChoiceField( widget=forms.RadioSelect, label=label_83, choices=choices_83 )
+
+   label_84 = get_label( 84, quiz_dictionary[83] )
+   choices_84 = get_choices( quiz_dictionary[83] )
+   question_84 = forms.ChoiceField( widget=forms.RadioSelect, label=label_84, choices=choices_84 )
+
+   label_85 = get_label( 85, quiz_dictionary[84] )
+   choices_85 = get_choices( quiz_dictionary[84] )
+   question_85 = forms.ChoiceField( widget=forms.RadioSelect, label=label_85, choices=choices_85 )
+
+   label_86 = get_label( 86, quiz_dictionary[85] )
+   choices_86 = get_choices( quiz_dictionary[85] )
+   question_86 = forms.ChoiceField( widget=forms.RadioSelect, label=label_86, choices=choices_86 )
+
+   label_87 = get_label( 87, quiz_dictionary[86] )
+   choices_87 = get_choices( quiz_dictionary[86] )
+   question_87 = forms.ChoiceField( widget=forms.RadioSelect, label=label_87, choices=choices_87 )
+
+   label_88 = get_label( 88, quiz_dictionary[87] )
+   choices_88 = get_choices( quiz_dictionary[87] )
+   question_88 = forms.ChoiceField( widget=forms.RadioSelect, label=label_88, choices=choices_88 )
 
 
 
