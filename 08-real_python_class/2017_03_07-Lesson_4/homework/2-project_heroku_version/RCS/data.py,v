@@ -1,0 +1,34 @@
+head	1.1;
+access;
+symbols;
+locks
+	tomh:1.1; strict;
+comment	@# @;
+
+
+1.1
+date	2017.03.08.02.26.45;	author tomh;	state Exp;
+branches;
+next	;
+
+
+desc
+@Gets a row of json ok.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@##
+#  data.py for Class project 1
+#
+import sqlite3
+import requests
+
+resp = requests.get( 'https://www.bitstamp.net/api/v2/ticker/btcusd')
+
+print( resp.json() )
+@
