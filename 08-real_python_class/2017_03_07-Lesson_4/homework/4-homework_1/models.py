@@ -1,8 +1,13 @@
+##
+#  Define the Currency model
+#
 from datetime import datetime
 
 from app import db
 
-
+##
+#  Define the columns in the Currency Model:
+#
 class Currency(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     exchange = db.Column(db.String())

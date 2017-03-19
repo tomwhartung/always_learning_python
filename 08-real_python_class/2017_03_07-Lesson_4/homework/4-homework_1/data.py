@@ -1,9 +1,14 @@
+##
+#  Database functions needed to work with the model
+#
 import requests
 
 from app import db
 from models import Currency
 
-
+##
+#  Use the requests library to GET the current currency values
+#
 def get_rates():
     results = {}
     try:
@@ -20,14 +25,17 @@ def get_rates():
     except:
         return False
 
-
+##
+#  Add the passed-in rows to the database
+#
 def add_data(bitDict):
     for key, value in bitDict.items():
         new_entry = Currency(key, value, None)
         db.session.add(new_entry)
         db.session.commit()
 
-
+##
+#  
 if __name__ == '__main__':
     data = get_rates()
     add_data(data)
