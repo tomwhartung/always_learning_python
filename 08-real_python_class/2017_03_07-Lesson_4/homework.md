@@ -67,6 +67,8 @@ pip3 install -r requirements.txt     ## NOTE: using pip3!!
 
 ## Step (1) Get the flask-bitcoin-example working locally
 
+Create a script, `run_locally.sh`, so we don't have to worry about which (if any) of all the different ways of running it actually work.
+
 ```
 cd /var/www/always_learning/github/customizations/always_learning_python/08-real_python_class/2017_03_07-Lesson_4/homework/4-homework_1
 vi run_locally.sh
@@ -78,12 +80,53 @@ cat run_locally.sh
 ./run_locally.sh
 ```
 
+### 1.1 Sanity check
+
 Access in browser:
 
 - http://127.0.0.1:5000/
 
-Seeing 'hello world.'
+Seeing 'Hello world.'
 
+### 1.2 `data` route
+
+Access in browser:
+
+- http://127.0.0.1:5000/data
+
+#### 1.2.1 First try:
+
+Getting internal server error (no such table).
+
+```
+python -m create_db
+```
+
+Created file `4-homework_1/test.db` .
+
+Try again.
+
+#### 1.2.2 Second try:
+
+Getting "[]" (empty list)
+
+Try again.
+
+#### 1.2.3 Third try:
+
+```
+python -m seed
+```
+
+Now I can see some data!
+
+#### 1.2.4 Play time:
+
+Experimented a bit and I am not understanding a few things:
+
+- Running `python3.6 -m data` does not seem to clear out the data in table
+- Not sure how running `python3.6 -m create_db` works:
+- Note sure I understand exactly what `from app import db` in create_db.py is doing
 
 ## Step (2) Migrate any changes I want to make to a new version
 
