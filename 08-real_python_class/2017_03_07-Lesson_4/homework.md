@@ -26,7 +26,7 @@ Link to the assignment:
 0. Create new virtual environment
 1. Get the flask-bitcoin-example working locally
 2. Migrate any changes I want to make to a new version
-3. Get my version working locally
+3. Ensure my version works locally
 4. Ensure I understand how to use sqlalchemy
 5. Add sqlalchemy as required
 6. Ensure my version still works locally
@@ -130,5 +130,60 @@ Experimented a bit and I am not understanding a few things:
 
 ## Step (2) Migrate any changes I want to make to a new version
 
-## Step (3) Get my version working locally
+Just keeping this to comments - specifically File and Function headers - for now.
 
+### 2.1 Ideas:
+
+If I had time, or was going to put this into production, I would definitely make these enhancements:
+
+- Move db to a different directory.
+- Ensure db is in the gitignore file.
+- Create string constants for DB name, etc.
+- Ensure variable names "make sense" (e.g., no single-letter variable names, etc.)
+
+### 2.2 Questions:
+
+Don't we need to set the Secret Key?  (Or is that a django thing?)
+
+## Step (3) Ensure my version works locally
+
+It turns out that it "works," but I am not totally understanding the SQLAlchemy part, because I have not yet studied it.
+
+## Step (4) Ensure I understand how to use sqlalchemy
+
+Reference:
+
+- https://github.com/realpython/web-dev-for-data-scientists/blob/master/lessons/bonus/sqlalchemy.md
+
+Looked up a few tutorials online, but they look like they are for fairly old versions
+
+- http://docs.sqlalchemy.org/en/latest/orm/tutorial.html (Version 1.2)
+- https://www.blog.pythonlibrary.org/2010/02/03/another-step-by-step-sqlalchemy-tutorial-part-1-of-2/ (over 7 years old!)
+- https://www.fullstackpython.com/sqlalchemy.html
+
+I suppose it is possible that the usage of it has not changed much over the years.
+We still may want to refer to these later.
+
+## Step (5) Add sqlalchemy as required
+
+Reference: (same as above)
+
+Reviewing the reference, there are several changes to make to the code.
+
+### 5.1 Updating
+
+
+### 5.1 Updating
+
+
+### 5.1 Updating
+
+
+### 5.1 Updating
+
+
+## Step (6) Ensure my version still works locally
+
+## Step (7) Get my version working on heroku
+
+## Step (8) Ensure my version meets all requirements, locally and on heroku
