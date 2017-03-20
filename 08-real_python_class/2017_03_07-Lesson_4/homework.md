@@ -140,6 +140,7 @@ If I had time, or was going to put this into production, I would definitely make
 - Ensure db is in the gitignore file.
 - Create string constants for DB name, etc.
 - Ensure variable names "make sense" (e.g., no single-letter variable names, etc.)
+- Update function `get_rates()` in data.py to try each service separately rather than fail for all if only one or two fail
 
 ### 2.2 Questions:
 
@@ -155,14 +156,14 @@ Reference:
 
 - https://github.com/realpython/web-dev-for-data-scientists/blob/master/lessons/bonus/sqlalchemy.md
 
-Looked up a few tutorials online, but they look like they are for fairly old versions
+Looked up a few SQLAlchemy tutorials online:
 
-- http://docs.sqlalchemy.org/en/latest/orm/tutorial.html (Version 1.2)
+- http://docs.sqlalchemy.org/en/latest/orm/tutorial.html (Version 1.2 - of SQLAlchemy - NOT the same as Flask-SQLAlchemy!)
 - https://www.blog.pythonlibrary.org/2010/02/03/another-step-by-step-sqlalchemy-tutorial-part-1-of-2/ (over 7 years old!)
 - https://www.fullstackpython.com/sqlalchemy.html
 
-I suppose it is possible that the usage of it has not changed much over the years.
-We still may want to refer to these later.
+**NOTE that the version of SQLAlchemy does NOT match the version of Flask-SQLAlchemy!!**
+We may want to refer to these later, but should probably look up tutorials Flask-SQLAlchemy instead (NOT the same thing).
 
 ## Step (5) Add sqlalchemy as required
 
@@ -170,17 +171,33 @@ Reference: (same as above)
 
 Reviewing the reference, there are several changes to make to the code.
 
-### 5.1 Updating
+### 5.1 Installing sqlalchemy
 
+Ensure we are in our environment and use **pip3** to install the package
 
-### 5.1 Updating
+```
+. env.sh
+pip3 install Flask-SQLAlchemy==2.2     ## NOTE: using pip3!!
+```
 
+Looking at `requirements.txt` it appears this should have been installed already.
 
-### 5.1 Updating
+### 5.2 Updating code
 
+Updating the following files:
 
-### 5.1 Updating
+- app.py - updated data() at first but it turns out there are no updates needed after all
+- models.py - no updates needed
+- create_db.py - no updates needed
+- data.py - no updates needed (current version contains a for loop not present in example presented on github)
 
+### 5.3 Adding more data
+
+At the end it says to add more data, re-run the server, and see it.
+
+```
+python -m seed
+```
 
 ## Step (6) Ensure my version still works locally
 
