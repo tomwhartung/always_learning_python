@@ -8,7 +8,8 @@ from flask_sqlalchemy import SQLAlchemy
 #
 #  Initialize the database:
 #  By default, we use sqlite to create it in ./test.db
-#
+#  When you set up a database on heroku, it sets the
+#     DATABASE_URL environment variable
 BASE = os.path.abspath(os.path.dirname(__file__))
 DATABASE_PATH = os.path.join(BASE, 'test.db')
 DATABSE_URI = os.getenv('DATABASE_URL', 'sqlite:///' + DATABASE_PATH)
