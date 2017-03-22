@@ -6,9 +6,70 @@ Reference:
 
 Notes:
 ------
+(Only 15 people here tonight.)
+They (Michael and Chris) will send a request for feedback.
+Git suggestion: gitflow, hubflow - plugin for github, helps keep everything sane.
+Will re-offer this class, probably in a more compact fashion (not so spread out).
+Considering another class on maybe JS or D3, possibly deep dives into (a) python package(s).
+
+SQLAlchemy
+----------
+ORM that abstracts out the peculiarities of individual databases (MySql, Postgres, etc.)
+Can be some irregularities and may need to fall back on python code.
+
+Scheduler
+---------
+Got it to run easily enough:
+
+python -m scheduler
 
 
 Environment
 -----------
+Reusing the one I created for the homework.
+Added bokeh
+
+Live coding
+-----------
+Copied my latest version of the homework for starting point
+
+Missed some edits to models.py ...
+
+Adding multiple lines to the chart:
+Abstracting out the capture of the data to a helper function in app.py
+named create_chart()
+
+Notes from "writing" the chart code (stealing Karl's code from slack):
+Adding in code written by Karl, copy and pasted from slack
+defaultdict -if item doesn't exist, will create it with the function that is there
+palettes.Category20 - up to 20 different color codes predefined in bokeh
+
+seed data: there are five rows with "bitrex" instead of "bittrex"
+
+Q & A
+-----
+Postgres on Heroku: when requested, it assigns a port and adds it to the URI
+
+Looking at a use case for jQuery's ajax - to get the data in real time
+
+DOM: Document Object Model - html that is in the browser
+
+Miguel Grinberg's youtube videos are all worth watching
+Has tooling for (flask) lambda something?
+
+Static files in flask: want to put them on S3 or digital ocean, etc.
+
+Off-topic chatting/discussions:
+US east?  Typo broke the S3 nodes?  Brought down the internet (esp. reddit),
+depending on their ISP.
+
+There are some good python-related podcasts
+
+Software Engineering Daily - good podcast
+
+Tips from Karl:
+Style convention: do not use spaces in function definitions and calls
+No one else does that.
+The first arg automatically passed in to any method is "self" ...
 
 
