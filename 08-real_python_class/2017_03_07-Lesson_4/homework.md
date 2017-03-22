@@ -201,6 +201,8 @@ python -m seed
 
 ## Step (6) Ensure my version still works locally
 
+Feeling comfortable with the code so far, except for the scheduler.  Hmmm.
+
 ## Step (7) Get my version working on heroku
 
 ## Step (8) Ensure my version meets all requirements, locally and on heroku
