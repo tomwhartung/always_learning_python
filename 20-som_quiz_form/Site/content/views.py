@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 import textwrap
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic.base import View
 from django.template import loader
 
@@ -83,12 +83,13 @@ def quiz(request):
       #  We are not yet doing anything with this data on the server
       #
       if quiz_form.is_valid():
-         name = quiz_form.cleaned_data['name']
-         email = quiz_form.cleaned_data['email']
-         print( 'form is valid, got name:', name )
-         print( 'form is valid, got email:', email )
+         # name = quiz_form.cleaned_data['name']
+         # email = quiz_form.cleaned_data['email']
+         # print( 'form is valid, got name:', name )
+         # print( 'form is valid, got email:', email )
+         print( 'quiz_form.cleaned_data:', quiz_form.cleaned_data )
          # redirect to a new URL:
-         return HttpResponseRedirect('/quiz/')
+         return HttpResponseRedirect('/quiz')
    else:
       quiz_form = QuizForm()
 
