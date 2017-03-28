@@ -35,6 +35,17 @@ class Quiz(models.Model):
         self.quiz_dictionary = json.loads(quiz_json_string)
         return(self.quiz_dictionary)
 
+    def get_quiz_question(self, question_no):
+
+        """ Return the entire quiz question (answers, weights, etc.)"""
+
+        quiz_question = self.quiz_dictionary[question_no]
+        print('get_question - question_no:', question_no)
+        print('get_label - quiz_question:', quiz_question)
+        return quiz_question
+
+    """ NOT YET BEING USED """
+
     def get_label(self, question_no, quiz_question):
 
         """ Get and return the question_text ("label") for the question """
