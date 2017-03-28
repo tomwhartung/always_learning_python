@@ -1,6 +1,7 @@
 #
 # Documentation is here: http://git-scm.com/docs/gitignore
 #
+gitignored/
 tmp/
 unpack/
 
