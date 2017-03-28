@@ -57,14 +57,11 @@ class Quiz(models.Model):
         print('get_label - label:', label)
         return label
 
+    def get_choices(self, question_no):
 
-    """ NOT YET BEING USED """
+        """ Return the answer choices for the given question """
 
-    def get_choices(quiz_question):
-
-        """ Get and return the answers from the json for the given question """
-
-        # print('get_choices - quiz_question:', quiz_question)
+        quiz_question = self.get_quiz_question(question_no)
         choices = []
 
         if len(quiz_question['answer_1_text']) > 0 and \
@@ -97,4 +94,6 @@ class Quiz(models.Model):
             choice_6 = ['6', quiz_question['answer_6_text']]
             choices.append(choice_6)
 
+        print('get_choices - question_no:', question_no)
+        print('get_choices - len(choices):', len(choices))
         return choices
