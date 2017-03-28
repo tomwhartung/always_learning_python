@@ -23,6 +23,7 @@ class Quiz(models.Model):
     def __init__(self):
         # print('Hi from the __init__() method in the Quiz!')
         self.quiz_dictionary = []
+        self.read_quiz_json()      # populates self.quiz_dictionary
 
     def read_quiz_json(self):
 
