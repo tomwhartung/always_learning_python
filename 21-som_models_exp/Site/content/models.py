@@ -12,6 +12,10 @@ import json
 import os
 from django.db import models
 
+site_content_dir = os.path.abspath(os.path.dirname(__file__))
+QUIZ_FILE_DIR = site_content_dir + '/static/content/json/quiz/'
+QUIZ_FILE_NAME = 'seeourminds_quiz.json'
+
 class Quiz(models.Model):
 
     """ Model all the questions in the entire quiz """
@@ -24,10 +28,7 @@ class Quiz(models.Model):
 
         """ Read the quiz questions and answers from the json file """
 
-        site_content_dir = os.path.abspath(os.path.dirname(__file__))
-        quiz_file_name = 'seeourminds_quiz.json'
-        quiz_file_dir = site_content_dir + '/static/content/json/quiz/'
-        quiz_file_path = quiz_file_dir + quiz_file_name
+        quiz_file_path = QUIZ_FILE_DIR + QUIZ_FILE_NAME
         quiz_json_file = open(quiz_file_path)
         quiz_json_string = quiz_json_file.read()
         quiz_json_file.close()
