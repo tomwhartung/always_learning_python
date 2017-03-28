@@ -9,8 +9,7 @@ Reference:
 """
 
 from django import forms
-import json
-import os
+from .models import Quiz
 
 
 class QuizForm(forms.Form):
@@ -19,26 +18,17 @@ class QuizForm(forms.Form):
 
     quiz_dictionary = []
 
-    def read_quiz_json():
 
-        """ Read the quiz questions and answers from the json file """
+    def __init__():
+        self.quiz_dictionary = []
 
-        site_content_dir = os.path.abspath(os.path.dirname(__file__))
-        quiz_file_name = 'seeourminds_quiz.json'
-        quiz_file_dir = site_content_dir + '/static/content/json/quiz/'
-        quiz_file_path = quiz_file_dir + quiz_file_name
-        quiz_json_file = open(quiz_file_path)
-        quiz_json_string = quiz_json_file.read()
-        quiz_json_file.close()
-        quiz_dictionary = json.loads(quiz_json_string)
-        return(quiz_dictionary)
 
     def get_label(question_no, quiz_question):
 
         """ Get and return the question_text ("label") for the question """
 
-        print('get_label - question_no:', question_no)
-        print('get_label - quiz_question:', quiz_question)
+        # print('get_label - question_no:', question_no)
+        # print('get_label - quiz_question:', quiz_question)
         label = str(question_no) + '. ' + quiz_question['question_text']
         return label
 
@@ -83,10 +73,13 @@ class QuizForm(forms.Form):
 
     # name = forms.CharField(max_length=50)
     # email = forms.EmailField()
-    quiz_dictionary = read_quiz_json()
-    # print('quiz_dictionary:', quiz_dictionary)
+
+    my_quiz = Quiz()
+    quiz_dictionary = my_quiz.read_quiz_json()
+
+    print('quiz_dictionary:', quiz_dictionary)
     print('len(quiz_dictionary):', len(quiz_dictionary))
-    print('quiz_dictionary[0]:', quiz_dictionary[0])
+    # print('quiz_dictionary[0]:', quiz_dictionary[0])
 
     radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
     label_01 = get_label(1, quiz_dictionary[0])
