@@ -68,11 +68,6 @@ class QuizForm(forms.Form):
     # email = forms.EmailField()
 
     my_quiz = Quiz()
-    quiz_dictionary = my_quiz.read_quiz_json()
-
-    # print('quiz_dictionary:', quiz_dictionary)
-    # print('len(quiz_dictionary):', len(quiz_dictionary))
-    # print('quiz_dictionary[0]:', quiz_dictionary[0])
     print('my_quiz.get_quiz_question(0):', my_quiz.get_quiz_question(0))
 
     radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
