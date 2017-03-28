@@ -77,7 +77,7 @@ class QuizForm(forms.Form):
 
     radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
     label_01 = my_quiz.get_label(0)
-    choices_01 = get_choices(quiz_dictionary[0])
+    choices_01 = my_quiz.get_choices(0)
     question_01 = forms.ChoiceField(
             widget=radio_widget, label=label_01, choices=choices_01
     )
