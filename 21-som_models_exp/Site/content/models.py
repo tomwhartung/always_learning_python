@@ -21,7 +21,7 @@ class Quiz(models.Model):
     """ Model all the questions in the entire quiz """
 
     def __init__(self):
-        print('Hi from the __init__() method in the Quiz!')
+        # print('Hi from the __init__() method in the Quiz!')
         self.quiz_dictionary = []
 
     def read_quiz_json(self):
@@ -35,16 +35,18 @@ class Quiz(models.Model):
         self.quiz_dictionary = json.loads(quiz_json_string)
         return(self.quiz_dictionary)
 
+    """ ************************************************************** """
     """ TODO: We want these question_no parms to be one-based and """
     """ access the question by its id (NOT by its position in the list) """
+    """ ************************************************************** """
 
     def get_quiz_question(self, question_no):
 
         """ Return the entire quiz question (answers, weights, etc.)"""
 
         quiz_question = self.quiz_dictionary[question_no]
-        print('get_question - question_no:', question_no)
-        print('get_label - quiz_question:', quiz_question)
+        print('Quiz.get_question - question_no:', question_no)
+        print('Quiz.get_label - quiz_question:', quiz_question)
         return quiz_question
 
     def get_label(self, question_no):
@@ -53,8 +55,8 @@ class Quiz(models.Model):
 
         quiz_question = self.get_quiz_question(question_no)
         label = str(question_no) + '. ' + quiz_question['question_text']
-        print('get_label - question_no:', question_no)
-        print('get_label - label:', label)
+        print('Quiz.get_label - question_no:', question_no)
+        print('Quiz.get_label - label:', label)
         return label
 
     def get_choices(self, question_no):
@@ -94,6 +96,6 @@ class Quiz(models.Model):
             choice_6 = ['6', quiz_question['answer_6_text']]
             choices.append(choice_6)
 
-        print('get_choices - question_no:', question_no)
-        print('get_choices - len(choices):', len(choices))
+        print('Quiz.get_choices - question_no:', question_no)
+        print('Quiz.get_choices - len(choices):', len(choices))
         return choices
