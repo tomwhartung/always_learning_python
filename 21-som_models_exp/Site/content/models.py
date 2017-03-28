@@ -35,6 +35,9 @@ class Quiz(models.Model):
         self.quiz_dictionary = json.loads(quiz_json_string)
         return(self.quiz_dictionary)
 
+    """ TODO: We want these question_no parms to be one-based and """
+    """ access the question by its id (NOT by its position in the list) """
+
     def get_quiz_question(self, question_no):
 
         """ Return the entire quiz question (answers, weights, etc.)"""
@@ -44,16 +47,18 @@ class Quiz(models.Model):
         print('get_label - quiz_question:', quiz_question)
         return quiz_question
 
-    """ NOT YET BEING USED """
-
-    def get_label(self, question_no, quiz_question):
+    def get_label(self, question_no):
 
         """ Get and return the question_text ("label") for the question """
 
-        print('get_label - question_no:', question_no)
-        print('get_label - quiz_question:', quiz_question)
+        quiz_question = self.get_quiz_question(question_no)
         label = str(question_no) + '. ' + quiz_question['question_text']
+        print('get_label - question_no:', question_no)
+        print('get_label - label:', label)
         return label
+
+
+    """ NOT YET BEING USED """
 
     def get_choices(quiz_question):
 
