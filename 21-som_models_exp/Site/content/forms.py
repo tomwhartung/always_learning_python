@@ -16,13 +16,6 @@ class QuizForm(forms.Form):
 
     """ Convert our json to a list of questions and multiple-choice answers """
 
-    quiz_dictionary = []
-
-
-    def __init__():
-        self.quiz_dictionary = []
-
-
     def get_label(question_no, quiz_question):
 
         """ Get and return the question_text ("label") for the question """
