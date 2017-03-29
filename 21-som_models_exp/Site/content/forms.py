@@ -20,17 +20,20 @@ class QuizForm(forms.Form):
     # email = forms.EmailField()
 
     my_quiz = Quiz()
+    radio_widgets = []
     question_inputs = []
 
-    for question_no in range(0,16):
-        radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
+    for question_no in range(0,6):
+        this_radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
+        radio_widgets.insert(question_no, this_radio_widget)
         label = my_quiz.get_label(question_no)
         choices = my_quiz.get_choices(question_no)
         this_question_input = forms.ChoiceField(
-                widget=radio_widget, label=label, choices=choices
+                widget=radio_widgets[question_no], label=label, choices=choices
         )
         question_inputs.insert(question_no, this_question_input)
         print('question_no:', question_no)
+        print('len(radio_widgets):', len(radio_widgets))
         print('len(question_inputs):', len(question_inputs))
 
 
