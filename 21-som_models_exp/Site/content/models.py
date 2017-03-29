@@ -46,8 +46,8 @@ class Quiz(models.Model):
         """ Return the entire quiz question (answers, weights, etc.)"""
 
         quiz_question = self.quiz_dictionary[question_no]
-        print('Quiz.get_question - question_no:', question_no)
-        print('Quiz.get_label - quiz_question:', quiz_question)
+        # print('Quiz.get_quiz_question - question_no:', question_no)
+        # print('Quiz.get_quiz_question - quiz_question:', quiz_question)
         return quiz_question
 
     def get_label(self, question_no):
@@ -56,7 +56,7 @@ class Quiz(models.Model):
 
         quiz_question = self.get_quiz_question(question_no)
         label = str(question_no) + '. ' + quiz_question['question_text']
-        print('Quiz.get_label - question_no:', question_no)
+        # print('Quiz.get_label - question_no:', question_no)
         print('Quiz.get_label - label:', label)
         return label
 
@@ -97,6 +97,6 @@ class Quiz(models.Model):
             choice_6 = ['6', quiz_question['answer_6_text']]
             choices.append(choice_6)
 
-        print('Quiz.get_choices - question_no:', question_no)
+        # print('Quiz.get_choices - question_no:', question_no)
         print('Quiz.get_choices - len(choices):', len(choices))
         return choices
