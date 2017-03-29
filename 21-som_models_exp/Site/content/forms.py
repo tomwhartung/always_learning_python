@@ -12,14 +12,12 @@ from django import forms
 from .models import Quiz
 
 
-class QuizForm(forms.Form):
+def try_using_a_loop():
 
-    """ The Quiz Form is a list of questions and multiple-choice answers """
+    """ Tried using a loop to populate the questions, but it didn't work  """
+    """ We always get only one question (the last one) """
+    """ Saving this code in case we want to try again ... """
 
-    # name = forms.CharField(max_length=50)
-    # email = forms.EmailField()
-
-    my_quiz = Quiz()
     radio_widgets = []
     question_inputs = []
 
@@ -37,37 +35,42 @@ class QuizForm(forms.Form):
         print('len(question_inputs):', len(question_inputs))
 
 
-    def questions_01_thru_04(self):
+class QuizForm(forms.Form):
 
-        """ Save this while we see whether a loop works """
+    """ The Quiz Form is a list of questions and multiple-choice answers """
 
-        radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
-        label = my_quiz.get_label(0)
-        choices = my_quiz.get_choices(0)
-        question_01 = forms.ChoiceField(
-                widget=radio_widget, label=label, choices=choices
-        )
+    # name = forms.CharField(max_length=50)
+    # email = forms.EmailField()
 
-        radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
-        label = my_quiz.get_label(1)
-        choices = my_quiz.get_choices(1)
-        question_02 = forms.ChoiceField(
-                widget=radio_widget, label=label, choices=choices
-        )
+    my_quiz = Quiz()
 
-        radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
-        label = my_quiz.get_label(2)
-        choices = my_quiz.get_choices(2)
-        question_03 = forms.ChoiceField(
-                widget=radio_widget, label=label, choices=choices
-        )
+    radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
+    label = my_quiz.get_label(0)
+    choices = my_quiz.get_choices(0)
+    question_01 = forms.ChoiceField(
+            widget=radio_widget, label=label, choices=choices
+    )
 
-        radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
-        label = my_quiz.get_label(3)
-        choices = my_quiz.get_choices(3)
-        question_04 = forms.ChoiceField(
-                widget=radio_widget, label=label, choices=choices
-        )
+    radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
+    label = my_quiz.get_label(1)
+    choices = my_quiz.get_choices(1)
+    question_02 = forms.ChoiceField(
+            widget=radio_widget, label=label, choices=choices
+    )
+
+    radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
+    label = my_quiz.get_label(2)
+    choices = my_quiz.get_choices(2)
+    question_03 = forms.ChoiceField(
+            widget=radio_widget, label=label, choices=choices
+    )
+
+    radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
+    label = my_quiz.get_label(3)
+    choices = my_quiz.get_choices(3)
+    question_04 = forms.ChoiceField(
+            widget=radio_widget, label=label, choices=choices
+    )
 
     def questions_05_thru_16():
 
