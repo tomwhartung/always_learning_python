@@ -24,91 +24,91 @@ class QuizForm(forms.Form):
 
     radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
     label = my_quiz.get_label(0)
-    choices_01 = my_quiz.get_choices(0)
+    choices = my_quiz.get_choices(0)
     question_01 = forms.ChoiceField(
-            widget=radio_widget, label=label, choices=choices_01
+            widget=radio_widget, label=label, choices=choices
     )
 
     radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
     label = my_quiz.get_label(1)
-    choices_02 = my_quiz.get_choices(1)
+    choices = my_quiz.get_choices(1)
     question_02 = forms.ChoiceField(
-            widget=radio_widget, label=label, choices=choices_02
+            widget=radio_widget, label=label, choices=choices
     )
 
     radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
     label = my_quiz.get_label(2)
-    choices_03 = my_quiz.get_choices(2)
+    choices = my_quiz.get_choices(2)
     question_03 = forms.ChoiceField(
-            widget=radio_widget, label=label, choices=choices_03
+            widget=radio_widget, label=label, choices=choices
     )
 
     radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
     label = my_quiz.get_label(3)
-    choices_04 = my_quiz.get_choices(3)
+    choices = my_quiz.get_choices(3)
     question_04 = forms.ChoiceField(
-            widget=radio_widget, label=label, choices=choices_04
+            widget=radio_widget, label=label, choices=choices
     )
 
     radio_widget = forms.RadioSelect(attrs={'class':'quiz_answer'})
     label = my_quiz.get_label(4)
-    choices_05 = my_quiz.get_choices(4)
-    question_05 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices_05 )
+    choices = my_quiz.get_choices(4)
+    question_05 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices )
 
     radio_widget = forms.RadioSelect(attrs={'class':'quiz_answer'})
     label = my_quiz.get_label(5)
-    choices_06 = my_quiz.get_choices(5)
-    question_06 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices_06 )
+    choices = my_quiz.get_choices(5)
+    question_06 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices )
 
     radio_widget = forms.RadioSelect(attrs={'class':'quiz_answer'})
     label = my_quiz.get_label(6)
-    choices_07 = my_quiz.get_choices(6)
-    question_07 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices_07 )
+    choices = my_quiz.get_choices(6)
+    question_07 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices )
 
     radio_widget = forms.RadioSelect(attrs={'class':'quiz_answer'})
     label = my_quiz.get_label(7)
-    choices_08 = my_quiz.get_choices(7)
-    question_08 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices_08 )
+    choices = my_quiz.get_choices(7)
+    question_08 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices )
 
     radio_widget = forms.RadioSelect(attrs={'class':'quiz_answer'})
     label = my_quiz.get_label(8)
-    choices_09 = my_quiz.get_choices(8)
-    question_09 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices_09 )
+    choices = my_quiz.get_choices(8)
+    question_09 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices )
 
     radio_widget = forms.RadioSelect(attrs={'class':'quiz_answer'})
     label = my_quiz.get_label(9)
-    choices_10 = my_quiz.get_choices(9)
-    question_10 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices_10 )
+    choices = my_quiz.get_choices(9)
+    question_10 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices )
 
     radio_widget = forms.RadioSelect(attrs={'class':'quiz_answer'})
     label = my_quiz.get_label(10)
-    choices_11 = my_quiz.get_choices(10)
-    question_11 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices_11 )
+    choices = my_quiz.get_choices(10)
+    question_11 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices )
 
     radio_widget = forms.RadioSelect(attrs={'class':'quiz_answer'})
     label = my_quiz.get_label(11)
-    choices_12 = my_quiz.get_choices(11)
-    question_12 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices_12 )
+    choices = my_quiz.get_choices(11)
+    question_12 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices )
 
     radio_widget = forms.RadioSelect(attrs={'class':'quiz_answer'})
     label = my_quiz.get_label(12)
-    choices_13 = my_quiz.get_choices(12)
-    question_13 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices_13 )
+    choices = my_quiz.get_choices(12)
+    question_13 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices )
 
     radio_widget = forms.RadioSelect(attrs={'class':'quiz_answer'})
     label = my_quiz.get_label(13)
-    choices_14 = my_quiz.get_choices(13)
-    question_14 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices_14 )
+    choices = my_quiz.get_choices(13)
+    question_14 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices )
 
     radio_widget = forms.RadioSelect(attrs={'class':'quiz_answer'})
     label = my_quiz.get_label(14)
-    choices_15 = my_quiz.get_choices(14)
-    question_15 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices_15 )
+    choices = my_quiz.get_choices(14)
+    question_15 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices )
 
     radio_widget = forms.RadioSelect(attrs={'class':'quiz_answer'})
     label = my_quiz.get_label(15)
-    choices_16 = my_quiz.get_choices(15)
-    question_16 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices_16 )
+    choices = my_quiz.get_choices(15)
+    question_16 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices )
 
 
     def code_for_later():
