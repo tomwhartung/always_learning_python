@@ -123,11 +123,21 @@ class Quiz(models.Model):
 
         print('Quiz.score_quiz - cleaned_data:', cleaned_data)
 
-        # for question_no, form_answer in cleaned_data:
-        # for question_no in cleaned_data:
-        # for (question_no, form_answer) in cleaned_data:
-        for question_no in cleaned_data:
-            print('question_no:',  question_no)
-            print('cleaned_data[question_no]:',
-                    cleaned_data[question_no])
+        for form_question_str in cleaned_data:
+            form_question_no = int(form_question_str.replace("question_", ""))
+            list_question_no = int(form_question_no) - 1
+            answer_selected = cleaned_data[form_question_str]
+            print('form_question_str:',  str(form_question_str))
+            print('form_question_no:',  str(form_question_no))
+            print('list_question_no:',  str(list_question_no))
+            print('answer_selected:',  answer_selected)
+
+
+
+
+
+
+
+
+
 
