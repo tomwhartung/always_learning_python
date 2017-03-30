@@ -14,6 +14,7 @@ from .models import Quiz
 
 def try_using_a_loop():
 
+    """ CRUFT ALERT: Saving this code for possible future reference """
     """ Tried using a loop to populate the questions, but it didn't work  """
     """ We always get only one question (the last one) """
     """ Saving this code in case we want to try again ... """
@@ -21,7 +22,7 @@ def try_using_a_loop():
     radio_widgets = []
     question_inputs = []
 
-    for question_no in range(0,6):
+    for question_no in range(0, 6):
         this_radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
         radio_widgets.insert(question_no, this_radio_widget)
         label = my_quiz.get_label(question_no)
@@ -37,12 +38,13 @@ def try_using_a_loop():
 
 def try_using_a_loop_in_init(self):
 
+    """ CRUFT ALERT: Saving this code for possible future reference """
     """ Tried using a loop to populate the questions, but it didn't work  """
 
     self.my_quiz = Quiz()
-    self.question_inputs = [0]* 88
+    self.question_inputs = [0] * 88
 
-    for question_no in range(0,6):
+    for question_no in range(0, 6):
         radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
         label = self.my_quiz.get_label(question_no)
         choices = self.my_quiz.get_choices(question_no)
@@ -56,12 +58,13 @@ def try_using_a_loop_in_init(self):
 
 def try_using_a_loop_closest_so_far():
 
+    """ CRUFT ALERT: Saving this code for possible future reference """
     """ Tried using a loop to populate the questions, but it didn't work  """
     """ This one runs without error but does not show any input fields """
 
-    question_inputs = [0]* 88
+    question_inputs = [0] * 88
 
-    for question_no in range(0,6):
+    for question_no in range(0, 6):
         radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
         label = my_quiz.get_label(question_no)
         choices = my_quiz.get_choices(question_no)
@@ -73,9 +76,18 @@ def try_using_a_loop_closest_so_far():
         print('len(question_inputs):', len(question_inputs))
 
 
+#
+# *****************************
+# *** REAL CODE STARTS HERE ***
+# *****************************
+#
+
+
 class QuizForm(forms.Form):
 
     """ The Quiz Form is a list of questions and multiple-choice answers """
+    """ We are using the Brute Force Approach: """
+    """ We tried several times to get this to work in a loop, to no avail """
 
     my_quiz = Quiz()
 
@@ -174,8 +186,7 @@ class QuizForm(forms.Form):
         choices = my_quiz.get_choices(15)
         question_16 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices )
 
-
-    def code_for_later():
+    def questioins_17_thru_88():
 
         """ SAVING THIS CODE FOR LATER """
 
