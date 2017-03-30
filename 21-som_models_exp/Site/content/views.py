@@ -102,7 +102,9 @@ def quiz(request):
             # print('form is valid, got name:', name)
             # print('form is valid, got email:', email)
             # redirect to a new URL:
-            print('quiz_form.cleaned_data:', quiz_form.cleaned_data)
+            # print('quiz_form.cleaned_data:', quiz_form.cleaned_data)
+            print('views.quiz() - len(quiz_form.cleaned_data):',
+                    len(quiz_form.cleaned_data))
             my_quiz = Quiz()
             my_quiz.score_quiz(quiz_form.cleaned_data)
             return HttpResponseRedirect('/quiz')
