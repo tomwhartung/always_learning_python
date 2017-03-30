@@ -52,8 +52,9 @@ class Quiz(models.Model):
 
         """ Get and return the question_text ("label") for the question """
 
+        # question_no is 0 based, we want the labels to be 1-based
         quiz_question = self.get_quiz_question(question_no)
-        label = str(question_no) + '. ' + quiz_question['question_text']
+        label = str(question_no+1) + '. ' + quiz_question['question_text']
         # print('Quiz.get_label - question_no:', question_no)
         # print('Quiz.get_label - label:', label)
         return label
