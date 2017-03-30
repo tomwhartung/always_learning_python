@@ -31,6 +31,11 @@ class Score(models.Model):
         self.j_score = 0
         self.p_score = 0
 
+    def tally_answer(self, answer_123_type, answer_selected, answer_weight):
+        print('Score.tally_answer - answer_123_type:', answer_123_type)
+        print('Score.tally_answer - answer_selected:', answer_selected)
+        print('Score.tally_answer - answer_weight:', answer_weight)
+
 
 class Quiz(models.Model):
 
@@ -41,7 +46,6 @@ class Quiz(models.Model):
         """ Populate the question_list with questions from the json file """
 
         self.question_list = self.read_quiz_json()
-        self.score = Score()
 
     def read_quiz_json(self):
 
@@ -148,6 +152,7 @@ class Quiz(models.Model):
         """ question_list is 0 based, the form questions are 1-based """
 
         print('Quiz.score_quiz - cleaned_data:', cleaned_data)
+        score = Score()
 
         for form_question_str in sorted(cleaned_data):
             form_question_no = int(form_question_str.replace("question_", ""))
@@ -157,13 +162,15 @@ class Quiz(models.Model):
             answer_text = self.get_answer_text(list_question_no, answer_selected)
             answer_weight = self.get_answer_weight(list_question_no, answer_selected)
 
-            print('form_question_str:',  str(form_question_str))
+            # print('form_question_str:',  str(form_question_str))
             print('form_question_no:',  str(form_question_no))
-            print('list_question_no:',  str(list_question_no))
+            # print('list_question_no:',  str(list_question_no))
             print('answer_123_type:',  answer_123_type)
             print('answer_selected:',  answer_selected)
             print('answer_text:',  answer_text)
             print('answer_weight:',  answer_weight)
+
+            score.tally_answer(answer_123_type, answer_selected, answer_weight)
 
 
 
