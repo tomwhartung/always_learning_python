@@ -116,6 +116,14 @@ class Quiz(models.Model):
         # print('Quiz.get_choices - len(choices):', len(choices))
         return choices
 
+    def get_answer_123_type(self, list_question_no):
+
+        """ Get and return the answer_123_type (e.g., "E") for the question """
+
+        quiz_question = self.get_quiz_question(list_question_no)
+        answer_123_type = quiz_question['answer_123_type']
+        return answer_123_type
+
     def score_quiz(self, cleaned_data):
 
         """ Process the data from the form and set the scores """
@@ -126,10 +134,12 @@ class Quiz(models.Model):
         for form_question_str in cleaned_data:
             form_question_no = int(form_question_str.replace("question_", ""))
             list_question_no = int(form_question_no) - 1
+            answer_123_type = self.get_answer_123_type(list_question_no)
             answer_selected = cleaned_data[form_question_str]
             print('form_question_str:',  str(form_question_str))
             print('form_question_no:',  str(form_question_no))
             print('list_question_no:',  str(list_question_no))
+            print('answer_123_type:',  answer_123_type)
             print('answer_selected:',  answer_selected)
 
 
