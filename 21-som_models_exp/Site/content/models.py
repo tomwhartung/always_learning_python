@@ -21,9 +21,11 @@ class Quiz(models.Model):
     """ Model all the questions in the entire quiz """
 
     def __init__(self):
-        # print('Hi from the __init__() method in the Quiz!')
-        self.quiz_dictionary = []
-        self.read_quiz_json()      # populates self.quiz_dictionary
+
+        """ Populate the question_list with questions from the json file """
+
+        self.question_list = self.read_quiz_json()
+
 
     def read_quiz_json(self):
 
@@ -33,20 +35,16 @@ class Quiz(models.Model):
         quiz_json_file = open(quiz_file_path)
         quiz_json_string = quiz_json_file.read()
         quiz_json_file.close()
-        self.quiz_dictionary = json.loads(quiz_json_string)
-        return(self.quiz_dictionary)
+        question_list = json.loads(quiz_json_string)
+        return(question_list)
 
-    """ ************************************************************** """
-    """ TODO: We want these question_no parms to be one-based and """
-    """ access the question by its id (NOT by its position in the list) """
-    """ ************************************************************** """
 
     def get_quiz_question(self, question_no):
 
         """ Return the entire quiz question (answers, weights, etc.)"""
 
-        quiz_question = self.quiz_dictionary[question_no]
-        # print('Quiz.get_quiz_question - question_no:', question_no)
+        quiz_question = self.question_list[question_no]
+        print('Quiz.get_quiz_question - question_no:', question_no)
         # print('Quiz.get_quiz_question - quiz_question:', quiz_question)
         return quiz_question
 
@@ -57,7 +55,7 @@ class Quiz(models.Model):
         quiz_question = self.get_quiz_question(question_no)
         label = str(question_no) + '. ' + quiz_question['question_text']
         # print('Quiz.get_label - question_no:', question_no)
-        print('Quiz.get_label - label:', label)
+        # print('Quiz.get_label - label:', label)
         return label
 
     def get_choices(self, question_no):
