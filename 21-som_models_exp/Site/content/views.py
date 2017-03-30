@@ -16,6 +16,7 @@ from django.views.generic.base import View
 from django.template import loader
 
 from .forms import QuizForm
+from .models import Quiz
 
 
 def home(request):
@@ -102,6 +103,8 @@ def quiz(request):
             # print('form is valid, got email:', email)
             # redirect to a new URL:
             print('quiz_form.cleaned_data:', quiz_form.cleaned_data)
+            my_quiz = Quiz()
+            my_quiz.score_quiz(quiz_form.cleaned_data)
             return HttpResponseRedirect('/quiz')
     else:
         quiz_form = QuizForm()
