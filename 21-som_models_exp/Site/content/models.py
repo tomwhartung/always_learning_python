@@ -124,6 +124,24 @@ class Quiz(models.Model):
         answer_123_type = quiz_question['answer_123_type']
         return answer_123_type
 
+    def get_answer_text(self, list_question_no, answer_selected):
+
+        """ Get and return the answer_X_text for the selected answer 'X' """
+
+        quiz_question = self.get_quiz_question(list_question_no)
+        answer_text_key = "answer_" + answer_selected + "_text"
+        answer_text = quiz_question[answer_text_key]
+        return answer_text
+
+    def get_answer_weight(self, list_question_no, answer_selected):
+
+        """ Get and return the answer_X_weight for the selected answer 'X' """
+
+        quiz_question = self.get_quiz_question(list_question_no)
+        answer_weight_key = "answer_" + answer_selected + "_weight"
+        answer_weight = quiz_question[answer_weight_key]
+        return answer_weight
+
     def score_quiz(self, cleaned_data):
 
         """ Process the data from the form and set the scores """
@@ -136,11 +154,16 @@ class Quiz(models.Model):
             list_question_no = int(form_question_no) - 1
             answer_123_type = self.get_answer_123_type(list_question_no)
             answer_selected = cleaned_data[form_question_str]
+            answer_text = self.get_answer_text(list_question_no, answer_selected)
+            answer_weight = self.get_answer_weight(list_question_no, answer_selected)
+
             print('form_question_str:',  str(form_question_str))
             print('form_question_no:',  str(form_question_no))
             print('list_question_no:',  str(list_question_no))
             print('answer_123_type:',  answer_123_type)
             print('answer_selected:',  answer_selected)
+            print('answer_text:',  answer_text)
+            print('answer_weight:',  answer_weight)
 
 
 
