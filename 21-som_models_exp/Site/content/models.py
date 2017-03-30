@@ -16,6 +16,7 @@ site_content_dir = os.path.abspath(os.path.dirname(__file__))
 QUIZ_FILE_DIR = site_content_dir + '/static/content/json/quiz/'
 QUIZ_FILE_NAME = 'seeourminds_quiz.json'
 
+
 class Quiz(models.Model):
 
     """ Model all the questions in the entire quiz """
@@ -25,7 +26,6 @@ class Quiz(models.Model):
         """ Populate the question_list with questions from the json file """
 
         self.question_list = self.read_quiz_json()
-
 
     def read_quiz_json(self):
 
@@ -38,7 +38,6 @@ class Quiz(models.Model):
         question_list = json.loads(quiz_json_string)
         return(question_list)
 
-
     def get_quiz_question(self, question_no):
 
         """ Return the entire quiz question (answers, weights, etc.)"""
@@ -47,7 +46,6 @@ class Quiz(models.Model):
         print('Quiz.get_quiz_question - question_no:', question_no)
         # print('Quiz.get_quiz_question - quiz_question:', quiz_question)
         return quiz_question
-
 
     def get_label(self, question_no):
 
@@ -59,7 +57,6 @@ class Quiz(models.Model):
         # print('Quiz.get_label - question_no:', question_no)
         # print('Quiz.get_label - label:', label)
         return label
-
 
     def get_choices(self, question_no):
 
@@ -101,7 +98,6 @@ class Quiz(models.Model):
         # print('Quiz.get_choices - question_no:', question_no)
         print('Quiz.get_choices - len(choices):', len(choices))
         return choices
-
 
     def score_quiz(self, cleaned_data):
 
