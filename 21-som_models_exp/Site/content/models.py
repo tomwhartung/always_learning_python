@@ -30,11 +30,30 @@ class Score(models.Model):
         self.t_score = 0
         self.j_score = 0
         self.p_score = 0
+        self.opposite_type = {
+                "E": "I",
+                "I": "E",
+                "N": "S",
+                "S": "N",
+                "F": "T",
+                "T": "F",
+                "J": "P",
+                "P": "J",
+        }
 
-    def tally_answer(self, answer_123_type, answer_selected, answer_weight):
+    def tally_answer(self, answer_123_type, answer_selected_no, answer_weight):
+
+        """ Add the answer_weight to the appropriate score data member """
+
+        if answer_selected_no <= 3:
+            type_for_answer = answer_123_type
+        else:
+            type_for_answer = self.opposite_type[answer_123_type]
+
         print('Score.tally_answer - answer_123_type:', answer_123_type)
-        print('Score.tally_answer - answer_selected:', answer_selected)
+        print('Score.tally_answer - answer_selected_no:', answer_selected_no)
         print('Score.tally_answer - answer_weight:', answer_weight)
+        print('Score.tally_answer - type_for_answer:', type_for_answer)
 
 
 class Quiz(models.Model):
@@ -128,21 +147,21 @@ class Quiz(models.Model):
         answer_123_type = quiz_question['answer_123_type']
         return answer_123_type
 
-    def get_answer_text(self, list_question_no, answer_selected):
+    def get_answer_text(self, list_question_no, answer_selected_str):
 
         """ Get and return the answer_X_text for the selected answer 'X' """
 
         quiz_question = self.get_quiz_question(list_question_no)
-        answer_text_key = "answer_" + answer_selected + "_text"
+        answer_text_key = "answer_" + answer_selected_str + "_text"
         answer_text = quiz_question[answer_text_key]
         return answer_text
 
-    def get_answer_weight(self, list_question_no, answer_selected):
+    def get_answer_weight(self, list_question_no, answer_selected_str):
 
         """ Get and return the answer_X_weight for the selected answer 'X' """
 
         quiz_question = self.get_quiz_question(list_question_no)
-        answer_weight_key = "answer_" + answer_selected + "_weight"
+        answer_weight_key = "answer_" + answer_selected_str + "_weight"
         answer_weight = quiz_question[answer_weight_key]
         return answer_weight
 
@@ -158,19 +177,23 @@ class Quiz(models.Model):
             form_question_no = int(form_question_str.replace("question_", ""))
             list_question_no = int(form_question_no) - 1
             answer_123_type = self.get_answer_123_type(list_question_no)
-            answer_selected = cleaned_data[form_question_str]
-            answer_text = self.get_answer_text(list_question_no, answer_selected)
-            answer_weight = self.get_answer_weight(list_question_no, answer_selected)
+            answer_selected_str = cleaned_data[form_question_str]
+            answer_selected_no = int(answer_selected_str)
+            answer_text = self.get_answer_text(list_question_no,
+                    answer_selected_str)
+            answer_weight = self.get_answer_weight(list_question_no,
+                    answer_selected_str)
 
             # print('form_question_str:',  str(form_question_str))
             print('form_question_no:',  str(form_question_no))
             # print('list_question_no:',  str(list_question_no))
             print('answer_123_type:',  answer_123_type)
-            print('answer_selected:',  answer_selected)
-            print('answer_text:',  answer_text)
+            # print('answer_selected_str:',  answer_selected_str)
+            print('answer_selected_no:',  answer_selected_no)
+            # print('answer_text:',  answer_text)
             print('answer_weight:',  answer_weight)
 
-            score.tally_answer(answer_123_type, answer_selected, answer_weight)
+            score.tally_answer(answer_123_type, answer_selected_no, answer_weight)
 
 
 
