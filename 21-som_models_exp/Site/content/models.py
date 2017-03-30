@@ -41,6 +41,7 @@ class Quiz(models.Model):
         """ Populate the question_list with questions from the json file """
 
         self.question_list = self.read_quiz_json()
+        self.score = Score()
 
     def read_quiz_json(self):
 
@@ -53,31 +54,32 @@ class Quiz(models.Model):
         question_list = json.loads(quiz_json_string)
         return(question_list)
 
-    def get_quiz_question(self, question_no):
+    def get_quiz_question(self, list_question_no):
 
         """ Return the entire quiz question (answers, weights, etc.)"""
 
-        quiz_question = self.question_list[question_no]
-        # print('Quiz.get_quiz_question - question_no:', question_no)
+        quiz_question = self.question_list[list_question_no]
+        # print('Quiz.get_quiz_question - list_question_no:', list_question_no)
         # print('Quiz.get_quiz_question - quiz_question:', quiz_question)
         return quiz_question
 
-    def get_label(self, question_no):
+    def get_label(self, list_question_no):
 
         """ Get and return the question_text ("label") for the question """
-        """ question_no is 0 based, the question ids and labels are 1-based """
+        """ list_question_no is 0 based, the question ids and labels are 1-based """
 
-        quiz_question = self.get_quiz_question(question_no)
-        label = str(question_no+1) + '. ' + quiz_question['question_text']
-        # print('Quiz.get_label - question_no:', question_no)
+        quiz_question = self.get_quiz_question(list_question_no)
+        form_question_no = list_question_no + 1
+        label = str(form_question_no) + '. ' + quiz_question['question_text']
+        # print('Quiz.get_label - list_question_no:', list_question_no)
         # print('Quiz.get_label - label:', label)
         return label
 
-    def get_choices(self, question_no):
+    def get_choices(self, list_question_no):
 
         """ Return the answer choices for the given question """
 
-        quiz_question = self.get_quiz_question(question_no)
+        quiz_question = self.get_quiz_question(list_question_no)
         choices = []
 
         if len(quiz_question['answer_1_text']) > 0 and \
@@ -110,7 +112,7 @@ class Quiz(models.Model):
             choice_6 = ['6', quiz_question['answer_6_text']]
             choices.append(choice_6)
 
-        # print('Quiz.get_choices - question_no:', question_no)
+        # print('Quiz.get_choices - list_question_no:', list_question_no)
         # print('Quiz.get_choices - len(choices):', len(choices))
         return choices
 
@@ -119,9 +121,13 @@ class Quiz(models.Model):
         """ Process the data from the form and set the scores """
         """ question_list is 0 based, the form questions are 1-based """
 
+        print('Quiz.score_quiz - cleaned_data:', cleaned_data)
+
         # for question_no, form_answer in cleaned_data:
         # for question_no in cleaned_data:
         # for (question_no, form_answer) in cleaned_data:
         for question_no in cleaned_data:
             print('question_no:',  question_no)
-            print('cleaned_data[question_no]:', cleaned_data[question_no])
+            print('cleaned_data[question_no]:',
+                    cleaned_data[question_no])
+
