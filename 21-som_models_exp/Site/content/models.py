@@ -48,6 +48,7 @@ class Quiz(models.Model):
         # print('Quiz.get_quiz_question - quiz_question:', quiz_question)
         return quiz_question
 
+
     def get_label(self, question_no):
 
         """ Get and return the question_text ("label") for the question """
@@ -58,6 +59,7 @@ class Quiz(models.Model):
         # print('Quiz.get_label - question_no:', question_no)
         # print('Quiz.get_label - label:', label)
         return label
+
 
     def get_choices(self, question_no):
 
@@ -99,3 +101,16 @@ class Quiz(models.Model):
         # print('Quiz.get_choices - question_no:', question_no)
         print('Quiz.get_choices - len(choices):', len(choices))
         return choices
+
+
+    def score_quiz(self, cleaned_data):
+
+        """ Process the data from the form and set the scores """
+        """ question_list is 0 based, the form questions are 1-based """
+
+        # for question_no, form_answer in cleaned_data:
+        # for question_no in cleaned_data:
+        # for (question_no, form_answer) in cleaned_data:
+        for question_no in cleaned_data:
+            print('question_no:',  question_no)
+            print('cleaned_data[question_no]:', cleaned_data[question_no])
