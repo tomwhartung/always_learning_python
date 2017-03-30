@@ -43,15 +43,15 @@ class Quiz(models.Model):
         """ Return the entire quiz question (answers, weights, etc.)"""
 
         quiz_question = self.question_list[question_no]
-        print('Quiz.get_quiz_question - question_no:', question_no)
+        # print('Quiz.get_quiz_question - question_no:', question_no)
         # print('Quiz.get_quiz_question - quiz_question:', quiz_question)
         return quiz_question
 
     def get_label(self, question_no):
 
         """ Get and return the question_text ("label") for the question """
+        """ question_no is 0 based, the question ids and labels are 1-based """
 
-        # question_no is 0 based, we want the labels to be 1-based
         quiz_question = self.get_quiz_question(question_no)
         label = str(question_no+1) + '. ' + quiz_question['question_text']
         # print('Quiz.get_label - question_no:', question_no)
@@ -96,7 +96,7 @@ class Quiz(models.Model):
             choices.append(choice_6)
 
         # print('Quiz.get_choices - question_no:', question_no)
-        print('Quiz.get_choices - len(choices):', len(choices))
+        # print('Quiz.get_choices - len(choices):', len(choices))
         return choices
 
     def score_quiz(self, cleaned_data):
