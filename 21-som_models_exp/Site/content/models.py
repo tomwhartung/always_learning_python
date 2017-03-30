@@ -131,7 +131,7 @@ class Quiz(models.Model):
 
         print('Quiz.score_quiz - cleaned_data:', cleaned_data)
 
-        for form_question_str in cleaned_data:
+        for form_question_str in sorted(cleaned_data):
             form_question_no = int(form_question_str.replace("question_", ""))
             list_question_no = int(form_question_no) - 1
             answer_123_type = self.get_answer_123_type(list_question_no)
