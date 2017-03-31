@@ -55,6 +55,18 @@ class Score(models.Model):
             self.e_score += answer_weight_int
         elif type_for_answer is "I":
             self.i_score += answer_weight_int
+        elif type_for_answer is "N":
+            self.n_score += answer_weight_int
+        elif type_for_answer is "S":
+            self.s_score += answer_weight_int
+        elif type_for_answer is "F":
+            self.f_score += answer_weight_int
+        elif type_for_answer is "T":
+            self.t_score += answer_weight_int
+        elif type_for_answer is "J":
+            self.j_score += answer_weight_int
+        elif type_for_answer is "P":
+            self.p_score += answer_weight_int
 
         print('Score.tally_answer - self.__str__():',  self.__str__())
 
