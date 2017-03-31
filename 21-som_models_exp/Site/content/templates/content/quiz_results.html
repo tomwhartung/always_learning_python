@@ -1,0 +1,18 @@
+{% extends 'content/base.html' %}
+
+{% block content %}
+  <article>
+    <header>
+      <h1>Thanks for taking the SeeOurMinds.com Quiz!</h1>
+      <p>
+         Your results are below.</p>
+    </header>
+      <p>
+		  {{ quiz_results }}</p>
+    <hr />
+  </article>
+{% endblock %}
+
+{% block aside %}
+  {{ block.super }}
+{% endblock %}
