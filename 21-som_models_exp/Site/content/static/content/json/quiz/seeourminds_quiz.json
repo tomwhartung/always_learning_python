@@ -50,8 +50,10 @@
         "answer_4_weight": "1",
         "answer_5_text": "I am mostly a very logical person, much like Mr. Spock.",
         "answer_5_weight": "3",
-        "answer_6_text": "I have never seen Star Trek and do not know who these characters are.",
+        "answer_6_text": "",
         "answer_6_weight": "0",
+        "answer_7_text": "Decline to answer.",
+        "answer_7_weight": "0",
         "ordering": "6"
     }, {
         "id": "4",
