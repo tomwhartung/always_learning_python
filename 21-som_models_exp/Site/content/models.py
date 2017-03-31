@@ -46,8 +46,8 @@ class Score(models.Model):
         else:
             type_for_answer = self.opposite_type[answer_123_type]
 
-        print('Score.tally_answer - answer_123_type:', answer_123_type)
-        print('Score.tally_answer - answer_selected_int:', answer_selected_int)
+        # print('Score.tally_answer - answer_123_type:', answer_123_type)
+        # print('Score.tally_answer - answer_selected_int:', answer_selected_int)
         print('Score.tally_answer - answer_weight_int:', answer_weight_int)
         print('Score.tally_answer - type_for_answer:', type_for_answer)
 
@@ -113,10 +113,11 @@ class Score(models.Model):
 
     def __str__(self):
         score_str = ''
-        list_of_lists = self.to_list_of_lists()
 
-        for x_list in list_of_lists:
-            score_str += x_list[0] + ': ' + str(x_list[1]) + '; '
+        score_str += 'E/I: ' + str(self.e_score) + '/' + str(self.i_score) + '; '
+        score_str += 'N/S: ' + str(self.n_score) + '/' + str(self.s_score) + '; '
+        score_str += 'F/T: ' + str(self.f_score) + '/' + str(self.t_score) + '; '
+        score_str += 'J/P: ' + str(self.j_score) + '/' + str(self.p_score)
 
         return score_str
 
@@ -142,32 +143,32 @@ class Quiz(models.Model):
         question_list = json.loads(quiz_json_string)
         return(question_list)
 
-    def get_quiz_question(self, list_question_no):
+    def get_quiz_question(self, list_question_int):
 
         """ Return the entire quiz question (answers, weights, etc.)"""
 
-        quiz_question = self.question_list[list_question_no]
-        # print('Quiz.get_quiz_question - list_question_no:', list_question_no)
+        quiz_question = self.question_list[list_question_int]
+        # print('Quiz.get_quiz_question - list_question_int:', list_question_int)
         # print('Quiz.get_quiz_question - quiz_question:', quiz_question)
         return quiz_question
 
-    def get_label(self, list_question_no):
+    def get_label(self, list_question_int):
 
         """ Get and return the question_text ("label") for the question """
-        """ list_question_no is 0 based, the question ids and labels are 1-based """
+        """ list_question_int is 0 based, the question ids and labels are 1-based """
 
-        quiz_question = self.get_quiz_question(list_question_no)
-        form_question_no = list_question_no + 1
-        label = str(form_question_no) + '. ' + quiz_question['question_text']
-        # print('Quiz.get_label - list_question_no:', list_question_no)
+        quiz_question = self.get_quiz_question(list_question_int)
+        form_question_int = list_question_int + 1
+        label = str(form_question_int) + '. ' + quiz_question['question_text']
+        # print('Quiz.get_label - list_question_int:', list_question_int)
         # print('Quiz.get_label - label:', label)
         return label
 
-    def get_choices(self, list_question_no):
+    def get_choices(self, list_question_int):
 
         """ Return the answer choices for the given question """
 
-        quiz_question = self.get_quiz_question(list_question_no)
+        quiz_question = self.get_quiz_question(list_question_int)
         choices = []
 
         if len(quiz_question['answer_1_text']) > 0 and \
@@ -207,32 +208,32 @@ class Quiz(models.Model):
             choice_7 = ['7', answer_7_text]
             choices.append(choice_7)
 
-        # print('Quiz.get_choices - list_question_no:', list_question_no)
+        # print('Quiz.get_choices - list_question_int:', list_question_int)
         # print('Quiz.get_choices - len(choices):', len(choices))
         return choices
 
-    def get_answer_123_type(self, list_question_no):
+    def get_answer_123_type(self, list_question_int):
 
         """ Get and return the answer_123_type (e.g., "E") for the question """
 
-        quiz_question = self.get_quiz_question(list_question_no)
+        quiz_question = self.get_quiz_question(list_question_int)
         answer_123_type = quiz_question['answer_123_type']
         return answer_123_type
 
-    def get_answer_text(self, list_question_no, answer_selected_str):
+    def get_answer_text(self, list_question_int, answer_selected_str):
 
         """ Get and return the answer_X_text for the selected answer 'X' """
 
-        quiz_question = self.get_quiz_question(list_question_no)
+        quiz_question = self.get_quiz_question(list_question_int)
         answer_text_key = "answer_" + answer_selected_str + "_text"
         answer_text = quiz_question[answer_text_key]
         return answer_text
 
-    def get_answer_weight(self, list_question_no, answer_selected_str):
+    def get_answer_weight(self, list_question_int, answer_selected_str):
 
         """ Get and return the answer_X_weight for the selected answer 'X' """
 
-        quiz_question = self.get_quiz_question(list_question_no)
+        quiz_question = self.get_quiz_question(list_question_int)
         answer_weight_key = "answer_" + answer_selected_str + "_weight"
         answer_weight = quiz_question[answer_weight_key]
         return answer_weight
@@ -246,18 +247,18 @@ class Quiz(models.Model):
         score = Score()
 
         for form_question_str in sorted(cleaned_data):
-            form_question_no = int(form_question_str.replace("question_", ""))
-            list_question_no = int(form_question_no) - 1
-            answer_123_type = self.get_answer_123_type(list_question_no)
+            form_question_int = int(form_question_str.replace("question_", ""))
+            list_question_int = int(form_question_int) - 1
+            answer_123_type = self.get_answer_123_type(list_question_int)
             answer_selected_str = cleaned_data[form_question_str]
             answer_selected_int = int(answer_selected_str)
-            answer_text = self.get_answer_text(list_question_no, answer_selected_str)
-            answer_weight_str = self.get_answer_weight(list_question_no, answer_selected_str)
+            answer_text = self.get_answer_text(list_question_int, answer_selected_str)
+            answer_weight_str = self.get_answer_weight(list_question_int, answer_selected_str)
             answer_weight_int = int(answer_weight_str)
 
             # print('Quiz.score_quiz - form_question_str:',  str(form_question_str))
-            # print('Quiz.score_quiz - form_question_no:',  str(form_question_no))
-            # print('Quiz.score_quiz - list_question_no:',  str(list_question_no))
+            # print('Quiz.score_quiz - form_question_int:', str(form_question_int))
+            # print('Quiz.score_quiz - list_question_int:', str(list_question_int))
             # print('Quiz.score_quiz - answer_123_type:',  answer_123_type)
             # print('Quiz.score_quiz - answer_selected_str:',  answer_selected_str)
             # print('Quiz.score_quiz - answer_selected_int:', answer_selected_int)
