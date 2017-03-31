@@ -52,11 +52,25 @@ class Score(models.Model):
         print('Score.tally_answer - type_for_answer:', type_for_answer)
 
     def __repl__(self):
+        # return str(sorted(self.to_kv_pairs()))
         return str(self.to_kv_pairs())
 
     def __str__(self):
-        # return str(sorted(self.to_kv_pairs()))
-        return str(self.to_kv_pairs())
+        # return str(self.to_kv_pairs())
+        return str(self.to_list_of_lists())
+
+    def to_list_of_lists(self):
+        score = [
+                ["E", self.e_score],
+                ["I", self.i_score],
+                ["N", self.n_score],
+                ["S", self.s_score],
+                ["F", self.f_score],
+                ["T", self.t_score],
+                ["J", self.j_score],
+                ["P", self.p_score],
+        ]
+        return score
 
     def to_kv_pairs(self):
         score = {
