@@ -107,7 +107,8 @@ def quiz(request):
                     len(quiz_form.cleaned_data))
             my_quiz = Quiz()
             my_quiz.score_quiz(quiz_form.cleaned_data)
-            return HttpResponseRedirect('/quiz')
+            # request.session['quiz_results'] = 'quiz results here'
+            return HttpResponseRedirect('/quiz/results')
     else:
         quiz_form = QuizForm()
         # quiz_form_str = quiz_form.__repl__()
@@ -115,6 +116,13 @@ def quiz(request):
         #         quiz_form_str.count("<tr><th>"))
 
     return render(request, 'content/quiz.html', {'quiz_form': quiz_form})
+
+
+def quiz_results(request):
+    """ Render the Quiz results template """
+    # quiz_results = request.session['quiz_results']
+    quiz_results = 'quiz results here'
+    return render(request, 'content/quiz_results.html', {'quiz_results': quiz_results})
 
 
 def google_verification(request):
