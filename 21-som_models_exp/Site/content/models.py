@@ -112,8 +112,13 @@ class Score(models.Model):
         return str(self.to_kv_pairs())
 
     def __str__(self):
-        # return str(self.to_kv_pairs())
-        return str(self.to_list_of_lists())
+        score_str = ''
+        list_of_lists = self.to_list_of_lists()
+
+        for x_list in list_of_lists:
+            score_str += x_list[0] + ': ' + str(x_list[1]) + '; '
+
+        return score_str
 
 
 class Quiz(models.Model):
