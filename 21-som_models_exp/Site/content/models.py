@@ -37,19 +37,24 @@ class Score(models.Model):
                 "J": "P", "P": "J",
         }
 
-    def tally_answer(self, answer_123_type, answer_selected_no, answer_weight):
+    def tally_answer(self, answer_123_type, answer_selected_int, answer_weight_int):
 
         """ Add the answer_weight to the appropriate score data member """
 
-        if answer_selected_no <= 3:
+        if answer_selected_int <= 3:
             type_for_answer = answer_123_type
         else:
             type_for_answer = self.opposite_type[answer_123_type]
 
         print('Score.tally_answer - answer_123_type:', answer_123_type)
-        print('Score.tally_answer - answer_selected_no:', answer_selected_no)
-        print('Score.tally_answer - answer_weight:', answer_weight)
+        print('Score.tally_answer - answer_selected_int:', answer_selected_int)
+        print('Score.tally_answer - answer_weight_int:', answer_weight_int)
         print('Score.tally_answer - type_for_answer:', type_for_answer)
+
+        if type_for_answer is "E":
+            self.e_score += answer_weight_int
+        elif type_for_answer is "I":
+            self.i_score += answer_weight_int
 
         print('Score.tally_answer - self.__str__():',  self.__str__())
 
@@ -221,23 +226,23 @@ class Quiz(models.Model):
             list_question_no = int(form_question_no) - 1
             answer_123_type = self.get_answer_123_type(list_question_no)
             answer_selected_str = cleaned_data[form_question_str]
-            answer_selected_no = int(answer_selected_str)
-            answer_text = self.get_answer_text(list_question_no,
-                    answer_selected_str)
-            answer_weight = self.get_answer_weight(list_question_no,
-                    answer_selected_str)
+            answer_selected_int = int(answer_selected_str)
+            answer_text = self.get_answer_text(list_question_no, answer_selected_str)
+            answer_weight_str = self.get_answer_weight(list_question_no, answer_selected_str)
+            answer_weight_int = int(answer_weight_str)
 
             # print('Quiz.score_quiz - form_question_str:',  str(form_question_str))
             # print('Quiz.score_quiz - form_question_no:',  str(form_question_no))
             # print('Quiz.score_quiz - list_question_no:',  str(list_question_no))
             # print('Quiz.score_quiz - answer_123_type:',  answer_123_type)
             # print('Quiz.score_quiz - answer_selected_str:',  answer_selected_str)
-            # print('Quiz.score_quiz - answer_selected_no:',  answer_selected_no)
+            # print('Quiz.score_quiz - answer_selected_int:', answer_selected_int)
             # print('Quiz.score_quiz - answer_text:',  answer_text)
-            # print('Quiz.score_quiz - answer_weight:',  answer_weight)
+            # print('Quiz.score_quiz - answer_weight_str:',  answer_weight_str)
+            # print('Quiz.score_quiz - answer_weight_int:',  answer_weight_int)
             # print('Quiz.score_quiz - score:',  score)
 
-            score.tally_answer(answer_123_type, answer_selected_no, answer_weight)
+            score.tally_answer(answer_123_type, answer_selected_int, answer_weight_int)
 
 
 
