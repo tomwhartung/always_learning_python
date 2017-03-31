@@ -200,6 +200,29 @@ class Quiz(models.Model):
             choice_6 = ['6', quiz_question['answer_6_text']]
             choices.append(choice_6)
 
+        print('Trying!')
+        try:
+            answer_7_text = quiz_question.get('answer_7_text')
+            print("answer_7_text:", answer_7_text)
+            if answer_7_text is not None:
+                choice_7 = ['7', quiz_question['answer_7_text']]
+                choices.append(choice_7)
+        except:
+            print("Exception processing quiz_question['answer_7_text'] ?!?")
+
+            # if len(quiz_question['answer_6_text']) is None:
+            #    int(quiz_question['answer_6_weight']) > 0:
+            #     choice_6 = ['6', quiz_question['answer_6_text']]
+            #     choices.append(choice_6)
+            # if quiz_question.get('answer_7_text') is None:
+            #     print("quiz_question['answer_7_text'] is None")
+            # else:
+            #     print("quiz_question['answer_7_text']:",
+            #             quiz_question['answer_7_text'] )
+            # answer_7_text = quiz_question.get('answer_7_text')
+            # print("answer_7_text:", answer_7_text)
+
+
         # print('Quiz.get_choices - list_question_no:', list_question_no)
         # print('Quiz.get_choices - len(choices):', len(choices))
         return choices
