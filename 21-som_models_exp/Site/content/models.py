@@ -51,15 +51,12 @@ class Score(models.Model):
         print('Score.tally_answer - answer_weight:', answer_weight)
         print('Score.tally_answer - type_for_answer:', type_for_answer)
 
-    def __repl__(self):
-        # return str(sorted(self.to_kv_pairs()))
-        return str(self.to_kv_pairs())
-
-    def __str__(self):
-        # return str(self.to_kv_pairs())
-        return str(self.to_list_of_lists())
+        print('Score.tally_answer - self.__str__():',  self.__str__())
 
     def to_list_of_lists(self):
+
+        """ Returns the current score as a list of lists """
+
         score = [
                 ["E", self.e_score],
                 ["I", self.i_score],
@@ -73,6 +70,9 @@ class Score(models.Model):
         return score
 
     def to_kv_pairs(self):
+
+        """ Returns the current score as a list of key-value pairs """
+
         score = {
                 "E": self.e_score,
                 "I": self.i_score,
@@ -84,6 +84,19 @@ class Score(models.Model):
                 "P": self.p_score,
         }
         return score
+
+    #
+    # Reference for purpose of __str__() and __repl__():
+    #   http://stackoverflow.com/questions/3691101/what-is-the-purpose-of-str-and-repr-in-python
+    #
+
+    def __repl__(self):
+        # return str(sorted(self.to_kv_pairs()))
+        return str(self.to_kv_pairs())
+
+    def __str__(self):
+        # return str(self.to_kv_pairs())
+        return str(self.to_list_of_lists())
 
 
 class Quiz(models.Model):
@@ -222,10 +235,9 @@ class Quiz(models.Model):
             # print('Quiz.score_quiz - answer_selected_no:',  answer_selected_no)
             # print('Quiz.score_quiz - answer_text:',  answer_text)
             # print('Quiz.score_quiz - answer_weight:',  answer_weight)
+            # print('Quiz.score_quiz - score:',  score)
 
             score.tally_answer(answer_123_type, answer_selected_no, answer_weight)
-
-            print('Quiz.score_quiz - score:',  score)
 
 
 
