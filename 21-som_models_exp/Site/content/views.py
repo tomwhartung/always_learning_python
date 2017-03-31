@@ -110,6 +110,9 @@ def quiz(request):
             return HttpResponseRedirect('/quiz')
     else:
         quiz_form = QuizForm()
+        # quiz_form_str = quiz_form.__repl__()
+        # print('views.quiz() - quiz_form_str.count("<tr><th>"):',
+        #         quiz_form_str.count("<tr><th>"))
 
     return render(request, 'content/quiz.html', {'quiz_form': quiz_form})
 
