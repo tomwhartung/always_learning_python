@@ -51,7 +51,14 @@ class Score(models.Model):
         print('Score.tally_answer - answer_weight:', answer_weight)
         print('Score.tally_answer - type_for_answer:', type_for_answer)
 
+    def __repl__(self):
+        return str(self.to_kv_pairs())
+
     def __str__(self):
+        # return str(sorted(self.to_kv_pairs()))
+        return str(self.to_kv_pairs())
+
+    def to_kv_pairs(self):
         score = {
                 "E": self.e_score,
                 "I": self.i_score,
@@ -62,7 +69,7 @@ class Score(models.Model):
                 "J": self.j_score,
                 "P": self.p_score,
         }
-        return str(score)
+        return score
 
 
 class Quiz(models.Model):
