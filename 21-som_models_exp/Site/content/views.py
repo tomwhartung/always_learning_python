@@ -106,10 +106,12 @@ def quiz(request):
             # print('quiz_form.cleaned_data:', quiz_form.cleaned_data)
             print('views.quiz() - len(quiz_form.cleaned_data):',
                     len(quiz_form.cleaned_data))
-            my_quiz = Quiz()
-            my_quiz.score_quiz(quiz_form.cleaned_data)
-            # request.session['quiz_results'] = 'quiz results here'
-            messages.add_message(request, messages.INFO, 'quiz results from view.')
+            quiz_model = Quiz()
+            score = quiz_model.score_quiz(quiz_form.cleaned_data)
+            quiz_results_counts = "Counts: " + score.__str__()
+            quiz_results_pcts = "Percentages: " + score.as_percentages()
+            messages.add_message(request, messages.INFO, quiz_results_counts)
+            messages.add_message(request, messages.INFO, quiz_results_pcts)
             return HttpResponseRedirect('/quiz/results')
     else:
         quiz_form = QuizForm()
