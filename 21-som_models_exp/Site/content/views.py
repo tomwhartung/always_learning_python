@@ -111,9 +111,11 @@ def quiz(request):
             four_letter_type = "Type: " + score.as_four_letter_type()
             quiz_results_counts = "Counts: " + score.__str__()
             quiz_results_pcts = "Percentages: " + score.as_percentages()
+            counts_and_pcts = "Score: " + score.as_counts_and_pcts()
             messages.add_message(request, messages.INFO, four_letter_type)
             messages.add_message(request, messages.INFO, quiz_results_counts)
             messages.add_message(request, messages.INFO, quiz_results_pcts)
+            messages.add_message(request, messages.INFO, counts_and_pcts)
             return HttpResponseRedirect('/quiz/results')
     else:
         quiz_form = QuizForm()
