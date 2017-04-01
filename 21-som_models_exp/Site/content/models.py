@@ -123,6 +123,40 @@ class Score(models.Model):
         self.j_pct = round(100 * self.j_score / (self.j_score + self.p_score))
         self.p_pct = round(100 * self.p_score / (self.j_score + self.p_score))
 
+    def as_list_of_pcts_and_counts(self):
+        """ Return a list containing both percentages and counts """
+        if self.e_pct is None:
+            self.calculate_percentages()
+
+        score_list = [
+            ['E: ' + str(self.e_pct) + '%&nbsp;(' + str(self.e_score) + ')',
+             'I: ' + str(self.i_pct) + '%&nbsp;(' + str(self.i_score) + ')'],
+            ['N: ' + str(self.n_pct) + '%&nbsp;(' + str(self.n_score) + ')',
+             'S: ' + str(self.s_pct) + '%&nbsp;(' + str(self.s_score) + ')'],
+            ['F: ' + str(self.f_pct) + '%&nbsp;(' + str(self.f_score) + ')',
+             'T: ' + str(self.t_pct) + '%&nbsp;(' + str(self.t_score) + ')'],
+            ['J: ' + str(self.j_pct) + '%&nbsp;(' + str(self.j_score) + ')',
+             'P: ' + str(self.p_pct) + '%&nbsp;(' + str(self.p_score) + ')']
+        ]
+        return score_list
+
+    def as_list_of_counts_and_pcts(self):
+        """ Return a list containing both counts and percentages """
+        if self.e_pct is None:
+            self.calculate_percentages()
+
+        score_list = [
+            ['E: ' + str(self.e_score) + '(' + str(self.e_pct) + '%)',
+             'I: ' + str(self.i_score) + '(' + str(self.i_pct) + '%)'],
+            ['N: ' + str(self.n_score) + '(' + str(self.n_pct) + '%)',
+             'S: ' + str(self.s_score) + '(' + str(self.s_pct) + '%)'],
+            ['F: ' + str(self.f_score) + '(' + str(self.f_pct) + '%)',
+             'T: ' + str(self.t_score) + '(' + str(self.t_pct) + '%)'],
+            ['J: ' + str(self.j_score) + '(' + str(self.j_pct) + '%)',
+             'P: ' + str(self.p_score) + '(' + str(self.p_pct) + '%)']
+        ]
+        return score_list
+
     def as_percentages(self):
         """ Return a string containing the percentages """
         if self.e_pct is None:
