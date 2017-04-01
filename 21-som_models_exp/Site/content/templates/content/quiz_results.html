@@ -5,22 +5,27 @@
     <header>
       <h1>Thanks for taking the SeeOurMinds.com Quiz!</h1>
       <p>
-         Your results are below.</p>
+        Note that this quiz is totally experimental,
+          so please do not take these results too seriously.</p>
     </header>
     <section>
+      <ul>
+        <li>At this time, we do not save results in a database.</li>
+      </ul>
       <p>
-		  {{ quiz_results }}</p>
-     </section>
-     <section>
-       {% if messages %}
-       <ul class="messages">
-         {% for message in messages %}
-           <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-             {{ message }}</li>
-         {% endfor %}
-       </ul>
-     </section>
-{% endif %}
+        Therefore, if you to save these results,
+         you will need to write them down!</p>
+    </section>
+    <section>
+      {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+               {{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </section>
     <hr />
   </article>
 {% endblock %}
