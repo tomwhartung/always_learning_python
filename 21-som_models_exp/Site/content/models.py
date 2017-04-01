@@ -78,7 +78,42 @@ class Score(models.Model):
 
         print('Score.tally_answer - self.__str__():',  self.__str__())
 
+    def as_four_letter_type(self):
+        """ Return a string containing the four letter type """
+        four_letter_type = ''
+
+        if self.i_score < self.e_score:
+            four_letter_type += 'E'
+        elif self.i_score == self.e_score:
+            four_letter_type += 'X'
+        else:
+            four_letter_type += 'I'
+
+        if self.s_score < self.n_score:
+            four_letter_type += 'N'
+        elif self.s_score == self.n_score:
+            four_letter_type += 'X'
+        else:
+            four_letter_type += 'S'
+
+        if self.t_score < self.f_score:
+            four_letter_type += 'F'
+        elif self.t_score == self.f_score:
+            four_letter_type += 'X'
+        else:
+            four_letter_type += 'T'
+
+        if self.p_score < self.j_score:
+            four_letter_type += 'J'
+        elif self.p_score == self.j_score:
+            four_letter_type += 'X'
+        else:
+            four_letter_type += 'P'
+
+        return four_letter_type
+
     def calculate_percentages(self):
+        """ Calculate the percentages """
         self.e_pct = round(100 * self.e_score / (self.e_score + self.i_score))
         self.i_pct = round(100 * self.i_score / (self.e_score + self.i_score))
         self.n_pct = round(100 * self.n_score / (self.n_score + self.s_score))
@@ -89,6 +124,7 @@ class Score(models.Model):
         self.p_pct = round(100 * self.p_score / (self.j_score + self.p_score))
 
     def as_percentages(self):
+        """ Return a string containing the percentages """
         if self.e_pct is None:
             self.calculate_percentages()
 
@@ -97,20 +133,6 @@ class Score(models.Model):
         score_str += 'F/T: ' + str(self.f_pct) + '%/' + str(self.t_pct) + '%; '
         score_str += 'J/P: ' + str(self.j_pct) + '%/' + str(self.p_pct) + '%'
         return score_str
-
-    def to_list_of_lists(self):
-        """ Returns the current score as a list of lists """
-        score = [
-                ["E", self.e_score],
-                ["I", self.i_score],
-                ["N", self.n_score],
-                ["S", self.s_score],
-                ["F", self.f_score],
-                ["T", self.t_score],
-                ["J", self.j_score],
-                ["P", self.p_score],
-        ]
-        return score
 
     def to_kv_pairs(self):
         """ Returns the current score as a list of key-value pairs """
@@ -140,6 +162,24 @@ class Score(models.Model):
         score_str += 'F/T: ' + str(self.f_score) + '/' + str(self.t_score) + '; '
         score_str += 'J/P: ' + str(self.j_score) + '/' + str(self.p_score)
         return score_str
+
+    #
+    # Crufty function(s) we wrote once but no longer use but may be useful
+    #
+
+    def to_list_of_lists(self):
+        """ Returns the current score as a list of lists """
+        score = [
+                ["E", self.e_score],
+                ["I", self.i_score],
+                ["N", self.n_score],
+                ["S", self.s_score],
+                ["F", self.f_score],
+                ["T", self.t_score],
+                ["J", self.j_score],
+                ["P", self.p_score],
+        ]
+        return score
 
 
 class Quiz(models.Model):
