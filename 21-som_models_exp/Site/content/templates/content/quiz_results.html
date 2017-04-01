@@ -7,8 +7,20 @@
       <p>
          Your results are below.</p>
     </header>
+    <section>
       <p>
 		  {{ quiz_results }}</p>
+     </section>
+     <section>
+       {% if messages %}
+       <ul class="messages">
+         {% for message in messages %}
+           <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+             {{ message }}</li>
+         {% endfor %}
+       </ul>
+     </section>
+{% endif %}
     <hr />
   </article>
 {% endblock %}
