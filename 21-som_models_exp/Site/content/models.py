@@ -134,6 +134,21 @@ class Score(models.Model):
         score_str += 'J/P: ' + str(self.j_pct) + '%/' + str(self.p_pct) + '%'
         return score_str
 
+    def as_counts_and_pcts(self):
+        """ Return a string containing both counts and percentages """
+        if self.e_pct is None:
+            self.calculate_percentages()
+
+        score_str  = 'E: ' + str(self.e_score) + '(' + str(self.e_pct) + '%)/'
+        score_str += 'I: ' + str(self.i_score) + '(' + str(self.i_pct) + '%) - '
+        score_str += 'N: ' + str(self.n_score) + '(' + str(self.n_pct) + '%)/'
+        score_str += 'S: ' + str(self.s_score) + '(' + str(self.s_pct) + '%) - '
+        score_str += 'F: ' + str(self.f_score) + '(' + str(self.f_pct) + '%)/'
+        score_str += 'T: ' + str(self.t_score) + '(' + str(self.t_pct) + '%) - '
+        score_str += 'J: ' + str(self.j_score) + '(' + str(self.j_pct) + '%)/'
+        score_str += 'P: ' + str(self.p_score) + '(' + str(self.p_pct) + '%)'
+        return score_str
+
     def to_kv_pairs(self):
         """ Returns the current score as a list of key-value pairs """
         score = {
