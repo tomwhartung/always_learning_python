@@ -11,9 +11,10 @@ Reference:
 from django.shortcuts import render
 import textwrap
 
+from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
-from django.views.generic.base import View
 from django.template import loader
+from django.views.generic.base import View
 
 from .forms import QuizForm
 from .models import Quiz
@@ -108,6 +109,7 @@ def quiz(request):
             my_quiz = Quiz()
             my_quiz.score_quiz(quiz_form.cleaned_data)
             # request.session['quiz_results'] = 'quiz results here'
+            messages.add_message(request, messages.INFO, 'quiz results from view.')
             return HttpResponseRedirect('/quiz/results')
     else:
         quiz_form = QuizForm()
