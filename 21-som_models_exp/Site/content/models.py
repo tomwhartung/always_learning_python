@@ -36,6 +36,14 @@ class Score(models.Model):
                 "F": "T", "T": "F",
                 "J": "P", "P": "J",
         }
+        self.e_pct = None
+        self.i_pct = None
+        self.n_pct = None
+        self.s_pct = None
+        self.f_pct = None
+        self.t_pct = None
+        self.j_pct = None
+        self.p_pct = None
 
     def tally_answer(self, answer_123_type, answer_selected_int, answer_weight_int):
 
@@ -70,10 +78,28 @@ class Score(models.Model):
 
         print('Score.tally_answer - self.__str__():',  self.__str__())
 
+    def calculate_percentages(self):
+        self.e_pct = round(100 * self.e_score / (self.e_score + self.i_score))
+        self.i_pct = round(100 * self.i_score / (self.e_score + self.i_score))
+        self.n_pct = round(100 * self.n_score / (self.n_score + self.s_score))
+        self.s_pct = round(100 * self.s_score / (self.n_score + self.s_score))
+        self.f_pct = round(100 * self.f_score / (self.f_score + self.t_score))
+        self.t_pct = round(100 * self.t_score / (self.f_score + self.t_score))
+        self.j_pct = round(100 * self.j_score / (self.j_score + self.p_score))
+        self.p_pct = round(100 * self.p_score / (self.j_score + self.p_score))
+
+    def as_percentages(self):
+        if self.e_pct is None:
+            self.calculate_percentages()
+
+        score_str  = 'E/I: ' + str(self.e_pct) + '%/' + str(self.i_pct) + '%; '
+        score_str += 'N/S: ' + str(self.n_pct) + '%/' + str(self.s_pct) + '%; '
+        score_str += 'F/T: ' + str(self.f_pct) + '%/' + str(self.t_pct) + '%; '
+        score_str += 'J/P: ' + str(self.j_pct) + '%/' + str(self.p_pct) + '%'
+        return score_str
+
     def to_list_of_lists(self):
-
         """ Returns the current score as a list of lists """
-
         score = [
                 ["E", self.e_score],
                 ["I", self.i_score],
@@ -87,9 +113,7 @@ class Score(models.Model):
         return score
 
     def to_kv_pairs(self):
-
         """ Returns the current score as a list of key-value pairs """
-
         score = {
                 "E": self.e_score,
                 "I": self.i_score,
@@ -108,17 +132,13 @@ class Score(models.Model):
     #
 
     def __repl__(self):
-        # return str(sorted(self.to_kv_pairs()))
         return str(self.to_kv_pairs())
 
     def __str__(self):
-        score_str = ''
-
-        score_str += 'E/I: ' + str(self.e_score) + '/' + str(self.i_score) + '; '
+        score_str  = 'E/I: ' + str(self.e_score) + '/' + str(self.i_score) + '; '
         score_str += 'N/S: ' + str(self.n_score) + '/' + str(self.s_score) + '; '
         score_str += 'F/T: ' + str(self.f_score) + '/' + str(self.t_score) + '; '
         score_str += 'J/P: ' + str(self.j_score) + '/' + str(self.p_score)
-
         return score_str
 
 
@@ -269,11 +289,4 @@ class Quiz(models.Model):
 
             score.tally_answer(answer_123_type, answer_selected_int, answer_weight_int)
 
-
-
-
-
-
-
-
-
+        return score
