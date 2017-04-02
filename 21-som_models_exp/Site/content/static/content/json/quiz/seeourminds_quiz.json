@@ -50,8 +50,10 @@
         "answer_4_weight": "1",
         "answer_5_text": "I am mostly a very logical person, much like Mr. Spock.",
         "answer_5_weight": "3",
-        "answer_6_text": "I have never seen Star Trek and do not know who these characters are.",
+        "answer_6_text": "",
         "answer_6_weight": "0",
+        "answer_7_text": "Decline to answer.",
+        "answer_7_weight": "0",
         "ordering": "6"
     }, {
         "id": "4",
@@ -396,24 +398,6 @@
         "answer_6_weight": "0",
         "ordering": "36"
     }, {
-        "id": "27",
-        "question_text": "Which best describes the foundation of your concept of right and wrong?",
-        "comment": "Inspired by Jung's GDotT, '2. The Extraverted Type, a) The General Attitude of Consciousness' (p. 183)",
-        "answer_123_type": "I",
-        "answer_1_text": "My morals are dependent solely on my inner convictions, and they never change.",
-        "answer_1_weight": "5",
-        "answer_2_text": "My morals are based mostly on my inner convictions, but as times change, sometimes I feel I must go with the flow.",
-        "answer_2_weight": "2",
-        "answer_3_text": "",
-        "answer_3_weight": "0",
-        "answer_4_text": "My morals are based mostly on norms of the society in which I live, and may change over time provided the changes do not conflict with my convictions.",
-        "answer_4_weight": "2",
-        "answer_5_text": "My morals are dependent on the norms of the society in which I live, and as that society changes, my sense of right and wrong changes accordingly.",
-        "answer_5_weight": "5",
-        "answer_6_text": "",
-        "answer_6_weight": "0",
-        "ordering": "76"
-    }, {
         "id": "23",
         "question_text": "When making personal decisions, which is more important?",
         "comment": "Virtually copied from Jung's GDotT, 'The Extraverted Thinking Type' (p. 198)",
@@ -486,23 +470,23 @@
         "answer_6_weight": "0",
         "ordering": "54"
     }, {
-        "id": "37",
-        "question_text": "Which word would your friends most likely use to describe you?",
-        "comment": "Standard F\/T question.",
-        "answer_123_type": "F",
-        "answer_1_text": "Warm.",
+        "id": "27",
+        "question_text": "Which best describes the foundation of your concept of right and wrong?",
+        "comment": "Inspired by Jung's GDotT, '2. The Extraverted Type, a) The General Attitude of Consciousness' (p. 183)",
+        "answer_123_type": "I",
+        "answer_1_text": "My morals are dependent solely on my inner convictions, and they never change.",
         "answer_1_weight": "5",
-        "answer_2_text": "Soft.",
-        "answer_2_weight": "5",
+        "answer_2_text": "My morals are based mostly on my inner convictions, but as times change, sometimes I feel I must go with the flow.",
+        "answer_2_weight": "2",
         "answer_3_text": "",
-        "answer_3_weight": "1",
-        "answer_4_text": "Cool.",
-        "answer_4_weight": "5",
-        "answer_5_text": "Hard.",
+        "answer_3_weight": "0",
+        "answer_4_text": "My morals are based mostly on norms of the society in which I live, and may change over time provided the changes do not conflict with my convictions.",
+        "answer_4_weight": "2",
+        "answer_5_text": "My morals are dependent on the norms of the society in which I live, and as that society changes, my sense of right and wrong changes accordingly.",
         "answer_5_weight": "5",
         "answer_6_text": "",
         "answer_6_weight": "0",
-        "ordering": "88"
+        "ordering": "76"
     }, {
         "id": "28",
         "question_text": "Which best describes your opinion of chance occurrences?",
@@ -554,27 +538,11 @@
         "answer_4_weight": "1",
         "answer_5_text": "George Harrison",
         "answer_5_weight": "1",
-        "answer_6_text": "I don't know the Beatles well enough to answer this question.",
-        "answer_6_weight": "0",
-        "ordering": "78"
-    }, {
-        "id": "40",
-        "question_text": "Which says more about a company?",
-        "comment": "Modified version of question #2 from old version of Groja Quiz.",
-        "answer_123_type": "N",
-        "answer_1_text": "Its mission statement.",
-        "answer_1_weight": "1",
-        "answer_2_text": "",
-        "answer_2_weight": "0",
-        "answer_3_text": "",
-        "answer_3_weight": "0",
-        "answer_4_text": "Its balance sheet.",
-        "answer_4_weight": "1",
-        "answer_5_text": "",
-        "answer_5_weight": "0",
         "answer_6_text": "",
         "answer_6_weight": "0",
-        "ordering": "70"
+        "answer_7_text": "Decline to answer this question.",
+        "answer_7_weight": "0",
+        "ordering": "78"
     }, {
         "id": "31",
         "question_text": "You are at work and have finished the tasks expected of you a few hours ahead of time. \u00a0You cannot leave early and your boss doesn't care what you do, as long as you 'look busy.' \u00a0What do you do?",
@@ -684,6 +652,24 @@
         "answer_6_weight": "0",
         "ordering": "94"
     }, {
+        "id": "37",
+        "question_text": "Which word would your friends most likely use to describe you?",
+        "comment": "Standard F\/T question.",
+        "answer_123_type": "F",
+        "answer_1_text": "Warm.",
+        "answer_1_weight": "5",
+        "answer_2_text": "Soft.",
+        "answer_2_weight": "5",
+        "answer_3_text": "",
+        "answer_3_weight": "1",
+        "answer_4_text": "Cool.",
+        "answer_4_weight": "5",
+        "answer_5_text": "Hard.",
+        "answer_5_weight": "5",
+        "answer_6_text": "",
+        "answer_6_weight": "0",
+        "ordering": "88"
+    }, {
         "id": "38",
         "question_text": "With which type of 'wild west' character can you most easily identify?",
         "comment": "Original question based on popular culture (it has a very low weight and includes an answer allowing user to opt-out)",
@@ -719,6 +705,24 @@
         "answer_6_text": "I don't have a 'resume' and don't know how to answer this question.",
         "answer_6_weight": "0",
         "ordering": "74"
+    }, {
+        "id": "40",
+        "question_text": "Which says more about a company?",
+        "comment": "Modified version of question #2 from old version of Groja Quiz.",
+        "answer_123_type": "N",
+        "answer_1_text": "Its mission statement.",
+        "answer_1_weight": "1",
+        "answer_2_text": "",
+        "answer_2_weight": "0",
+        "answer_3_text": "",
+        "answer_3_weight": "0",
+        "answer_4_text": "Its balance sheet.",
+        "answer_4_weight": "1",
+        "answer_5_text": "",
+        "answer_5_weight": "0",
+        "answer_6_text": "",
+        "answer_6_weight": "0",
+        "ordering": "70"
     }, {
         "id": "41",
         "question_text": "Which quality are you most proud of?",
@@ -864,24 +868,6 @@
         "answer_6_weight": "0",
         "ordering": "98"
     }, {
-        "id": "63",
-        "question_text": "Which is more likely to persuade you?",
-        "comment": "Terms similar to those used already and found via an online thesaurus.",
-        "answer_123_type": "T",
-        "answer_1_text": "Ideas that are sound and reasonable.",
-        "answer_1_weight": "3",
-        "answer_2_text": "",
-        "answer_2_weight": "0",
-        "answer_3_text": "",
-        "answer_3_weight": "0",
-        "answer_4_text": "Opinions that are heartfelt.",
-        "answer_4_weight": "3",
-        "answer_5_text": "",
-        "answer_5_weight": "0",
-        "answer_6_text": "",
-        "answer_6_weight": "0",
-        "ordering": "128"
-    }, {
         "id": "49",
         "question_text": "Which term resonates the most with you?",
         "comment": "Inspired by wikipedia.org page on Extraversion (same page as Introversion)",
@@ -1008,24 +994,6 @@
         "answer_6_weight": "0",
         "ordering": "112"
     }, {
-        "id": "72",
-        "question_text": "Which best describes you?",
-        "comment": "Terms similar to those used already and found via an online thesaurus.",
-        "answer_123_type": "P",
-        "answer_1_text": "Suggestible.",
-        "answer_1_weight": "4",
-        "answer_2_text": "",
-        "answer_2_weight": "0",
-        "answer_3_text": "",
-        "answer_3_weight": "0",
-        "answer_4_text": "Determined.",
-        "answer_4_weight": "4",
-        "answer_5_text": "",
-        "answer_5_weight": "0",
-        "answer_6_text": "",
-        "answer_6_weight": "0",
-        "ordering": "146"
-    }, {
         "id": "56",
         "question_text": "Which term would most of your friends say best describes you?",
         "comment": "A very sneaky original question inspired by wikipedia.org page on MBTI (Lifestyle: Judgment (J)\/Perception (P)): 1: SP, 2: NP, 4: TJ, 5: FJ",
@@ -1151,6 +1119,24 @@
         "answer_6_text": "",
         "answer_6_weight": "0",
         "ordering": "118"
+    }, {
+        "id": "63",
+        "question_text": "Which is more likely to persuade you?",
+        "comment": "Terms similar to those used already and found via an online thesaurus.",
+        "answer_123_type": "T",
+        "answer_1_text": "Ideas that are sound and reasonable.",
+        "answer_1_weight": "3",
+        "answer_2_text": "",
+        "answer_2_weight": "0",
+        "answer_3_text": "",
+        "answer_3_weight": "0",
+        "answer_4_text": "Opinions that are heartfelt.",
+        "answer_4_weight": "3",
+        "answer_5_text": "",
+        "answer_5_weight": "0",
+        "answer_6_text": "",
+        "answer_6_weight": "0",
+        "ordering": "128"
     }, {
         "id": "64",
         "question_text": "Which do you prefer?",
@@ -1296,6 +1282,24 @@
         "answer_6_weight": "0",
         "ordering": "144"
     }, {
+        "id": "72",
+        "question_text": "Which best describes you?",
+        "comment": "Terms similar to those used already and found via an online thesaurus.",
+        "answer_123_type": "P",
+        "answer_1_text": "Suggestible.",
+        "answer_1_weight": "4",
+        "answer_2_text": "",
+        "answer_2_weight": "0",
+        "answer_3_text": "",
+        "answer_3_weight": "0",
+        "answer_4_text": "Determined.",
+        "answer_4_weight": "4",
+        "answer_5_text": "",
+        "answer_5_weight": "0",
+        "answer_6_text": "",
+        "answer_6_weight": "0",
+        "ordering": "146"
+    }, {
         "id": "73",
         "question_text": "True or false: I relish my peace and quiet.",
         "comment": "Standard E\/I question.",
@@ -1386,24 +1390,6 @@
         "answer_6_weight": "0",
         "ordering": "200"
     }, {
-        "id": "79",
-        "question_text": "In general, I am an intelligent person.",
-        "comment": "Terms similar to those used already and found via an online thesaurus.",
-        "answer_123_type": "T",
-        "answer_1_text": "True.",
-        "answer_1_weight": "3",
-        "answer_2_text": "",
-        "answer_2_weight": "0",
-        "answer_3_text": "",
-        "answer_3_weight": "0",
-        "answer_4_text": "False.",
-        "answer_4_weight": "3",
-        "answer_5_text": "",
-        "answer_5_weight": "0",
-        "answer_6_text": "",
-        "answer_6_weight": "0",
-        "ordering": "212"
-    }, {
         "id": "78",
         "question_text": "True or false: I believe in prophecies, such as those in the Bible and of psychics like Nostradamus.",
         "comment": "Original question based on my understanding of the archetypes and my perceptions of others.",
@@ -1421,6 +1407,24 @@
         "answer_6_text": "",
         "answer_6_weight": "0",
         "ordering": "202"
+    }, {
+        "id": "79",
+        "question_text": "In general, I am an intelligent person.",
+        "comment": "Terms similar to those used already and found via an online thesaurus.",
+        "answer_123_type": "T",
+        "answer_1_text": "True.",
+        "answer_1_weight": "3",
+        "answer_2_text": "",
+        "answer_2_weight": "0",
+        "answer_3_text": "",
+        "answer_3_weight": "0",
+        "answer_4_text": "False.",
+        "answer_4_weight": "3",
+        "answer_5_text": "",
+        "answer_5_weight": "0",
+        "answer_6_text": "",
+        "answer_6_weight": "0",
+        "ordering": "212"
     }, {
         "id": "80",
         "question_text": "True or false: In general, I am very focused.",
