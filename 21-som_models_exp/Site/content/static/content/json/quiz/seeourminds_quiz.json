@@ -52,7 +52,7 @@
         "answer_5_weight": "3",
         "answer_6_text": "",
         "answer_6_weight": "0",
-        "answer_7_text": "Decline to answer.",
+        "answer_7_text": "Decline to answer this question.",
         "answer_7_weight": "0",
         "ordering": "6"
     }, {
@@ -635,23 +635,21 @@
         "ordering": "64"
     }, {
         "id": "36",
-        "question_text": "Which type of rock star is it easiest for you to relate to?",
+        "question_text": "Which type of celebrity is it easiest for you to relate to?",
         "comment": "Original question based on my understanding of the archetypes and my perceptions of others.",
         "answer_123_type": "S",
-        "answer_1_text": "A fun-loving partier who stays up late and has many partners.",
-        "answer_1_weight": "1",
-        "answer_2_text": "",
-        "answer_2_weight": "0",
+        "answer_1_text": "A practical person who excels at their craft.",
+        "answer_1_weight": "2",
+        "answer_2_text": "A fun-loving partier who stays up late and has many partners.",
+        "answer_2_weight": "2",
         "answer_3_text": "",
         "answer_3_weight": "0",
-        "answer_4_text": "An outspoken idealist who is concerned about politics and organizes benefit concerts.",
-        "answer_4_weight": "1",
-        "answer_5_text": "",
-        "answer_5_weight": "0",
+        "answer_5_text": "A compassionate person who cares about the under-privileged.",
+        "answer_4_weight": "2",
+        "answer_5_text": "An outspoken idealist who is concerned about politics and gives benefit performances.",
+        "answer_5_weight": "2",
         "answer_6_text": "",
         "answer_6_weight": "0",
-        "answer_7_text": "Decline to answer this question.",
-        "answer_7_weight": "0",
         "ordering": "94"
     }, {
         "id": "37",
