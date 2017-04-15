@@ -11,6 +11,7 @@ Reference:
 from django.conf.urls import *
 
 from . import views
+from . import admin
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
@@ -23,4 +24,5 @@ urlpatterns = [
     url(r'^quiz/results$', views.quiz_results, name='quiz_results'),
     url(r'^google428ef5aab2bc0870.html$',
         views.google_verification, name='google_verification'),
+    url(r'^admin/', admin.site.urls),
 ]
