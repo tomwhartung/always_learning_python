@@ -117,6 +117,30 @@ Running migrations:
   Applying sessions.0001_initial... OK
 ```
 
+### Step (6) Enable the admin interface:
+
+As tomh (in the `Site/content` directory):
+
+```
+python3 manage.py createsuperuser   # seeourminds/seeourmind$
+```
+
+Output:
+
+```
+Superuser created successfully.
+```
+
+So far, so good.
+
+### Step (7) Log in via browser
+
+Access the following url:
+
+* http://127.0.0.1:8000/admin
+
+And login using the above username and password.
+
 ### Notes:
 
 * We may need to update the ALLOWED_HOSTS setting in settings.py , but I am pretty sure it is ok.
