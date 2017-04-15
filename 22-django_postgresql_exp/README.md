@@ -89,8 +89,6 @@ Making additional modifications suggested by this tutorial:
 
 * https://tutorial.djangogirls.org/en/django_start_project/
 
-******  You are here ******
-
 ### Step (4) Make migrations:
 
 As tomh:
@@ -102,28 +100,30 @@ python3 manage.py makemigrations
 ```
 
 The output from this command is below.
-Note that this picked up the models for my score and quiz.
+Also, there is no "migrations" directory, as there is for the ../ project.
 
 ```
-Migrations for 'content':
-  content/migrations/0001_initial.py:
-    - Create model Quiz
-    - Create model Score
+No changes detected
 ```
 
-### Step (5) Review migrations:
+### Step (5) Run the server:
 
-As tomh (in the `Site/content` directory):
+As tomh (in the `Site` directory):
 
 ```
-cat content/migrations/0001_initial.py:
+python3 manage.py runserver
 ```
 
-The migrations create the Quiz and Score tables with only id columns - ok for now.
+Now we get this message:
+
+```
+You have 13 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+```
 
 ### Step (6) Run the migrations:
 
-As tomh (in the `Site/content` directory):
+As tomh (in the `Site/` directory):
 
 ```
 python3 manage.py migrate
@@ -134,7 +134,7 @@ Looks like all of the migrations ran ok.
 
 ```
 Operations to perform:
-  Apply all migrations: admin, auth, content, contenttypes, sessions
+  Apply all migrations: admin, auth, contenttypes, sessions
 Running migrations:
   Applying contenttypes.0001_initial... OK
   Applying auth.0001_initial... OK
@@ -148,9 +148,21 @@ Running migrations:
   Applying auth.0006_require_contenttypes_0002... OK
   Applying auth.0007_alter_validators_add_error_messages... OK
   Applying auth.0008_alter_user_username_max_length... OK
-  Applying content.0001_initial... OK
   Applying sessions.0001_initial... OK
 ```
+
+#### Re-run the server:
+
+```
+python3 manage.py runserver
+```
+
+Access in browser:
+
+* http://127.0.0.1:8000/
+
+
+******  You are here ******
 
 ### Step (6) Enable the admin interface:
 
@@ -195,7 +207,7 @@ TBD.
 
 Try and make it so we can just drop the final versions of the files we change back into the seeourminds.com site code.
 
-* content/???????.py
+* myproject/???????.py
 
 ## Observations
 
