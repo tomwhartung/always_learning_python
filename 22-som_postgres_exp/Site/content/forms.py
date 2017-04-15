@@ -52,8 +52,8 @@ class QuizForm(forms.Form):
             widget=radio_widget, label=label, choices=choices
     )
 
-    # def questions_05_thru_16():
-    #     """ SAVING THIS CODE FOR LATER """
+def questions_05_thru_16():
+    """ SAVING THIS CODE FOR LATER """
 
     radio_widget = forms.RadioSelect(attrs={'class':'quiz_answer'})
     label = my_quiz.get_label(4)
