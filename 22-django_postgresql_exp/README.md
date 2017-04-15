@@ -1,4 +1,4 @@
-# 22-django_postgres_exp
+# 22-django_postgresql_exp
 
 Repo for trying out using PostGres with a fresh django project.
 

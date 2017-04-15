@@ -1,4 +1,4 @@
-# 23-som_postgres_exp
+# 23-som_postgresql_exp
 
 Repo for trying out using PostGres to store the results of the SeeOurMinds.com quiz.
 
