@@ -2,6 +2,12 @@
 
 Repo for trying out using PostGres with a fresh django project.
 
+## References
+
+* https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-16-04
+* https://tutorial.djangogirls.org/en/django_start_project/
+* https://tutorial.djangogirls.org/en/django_admin/
+
 ## Installation
 
 Starting out with nothing, after running the following steps.
@@ -161,15 +167,12 @@ Access in browser:
 
 * http://127.0.0.1:8000/
 
-
-******  You are here ******
-
-### Step (6) Enable the admin interface:
+### Step (7) Enable the admin interface:
 
 As tomh (in the `Site/content` directory):
 
 ```
-python3 manage.py createsuperuser   # seeourminds/seeourmind$
+python3 manage.py createsuperuser   # django_fresh/django_fresh1
 ```
 
 Output:
@@ -180,7 +183,7 @@ Superuser created successfully.
 
 So far, so good.
 
-### Step (7) Log in via browser
+### Step (8) Log in via browser
 
 Access the following url:
 
@@ -188,33 +191,7 @@ Access the following url:
 
 And login using the above username and password.
 
-### Notes:
+Everything worked fine this time!
 
-* We may need to update the ALLOWED_HOSTS setting in settings.py , but I am pretty sure it is ok.
-* The output from running the server alerts us to the fact that there are migrations that need to be run.
-* We will want to keep the sensitive values we use on the production site in environment variables.
 * If there are issues, try using the 'django.db.backends.postgresql' ENGINE (instead of 'django.db.backends.postgresql_psycopg2') .
-
-## References
-
-TBD.
-
-## Goals
-
-1. Find the best way to use Postgres to store quiz results on the site
-
-## Notes
-
-Try and make it so we can just drop the final versions of the files we change back into the seeourminds.com site code.
-
-* myproject/???????.py
-
-## Observations
-
-I believe working with Postgres is going to be very similar to working with MySql.
-
-## Requirements
-
-TBD.
-
 
