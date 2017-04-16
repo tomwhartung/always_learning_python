@@ -17,7 +17,7 @@ DJANGO_DEBUG = os.environ.get('DJANGO_DEBUG')
 site_content_dir = os.path.abspath(os.path.dirname(__file__))
 QUIZ_FILE_DIR = site_content_dir + '/static/content/json/quiz/'
 QUIZ_FILE_NAME = 'seeourminds_quiz.json'
-
+QUIZ_VERSION = '1.0'
 
 class Score(models.Model):
 
@@ -244,13 +244,16 @@ class Quiz(models.Model):
         o Save the quiz in the database
     """
 
-    name = models.CharField(max_length=200)
-    email = models.CharField(max_length=200)
-    version = models.CharField(max_length=10)
+    name = models.CharField(
+            max_length=200, default='', blank=True)
+    email = models.CharField(
+            max_length=200, default='anonymous@example.com')
+    version = models.CharField(
+            max_length=10, default=QUIZ_VERSION)
     date_created = models.DateTimeField(
             default=timezone.now)
     date_updated = models.DateTimeField(
-            blank=True, null=True)
+            default=timezone.now)
 
     def __init__(self):
 
