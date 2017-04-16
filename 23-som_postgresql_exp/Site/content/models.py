@@ -11,6 +11,7 @@ Reference:
 import json
 import os
 from django.db import models
+from django.utils import timezone
 
 DJANGO_DEBUG = os.environ.get('DJANGO_DEBUG')
 site_content_dir = os.path.abspath(os.path.dirname(__file__))
@@ -237,7 +238,19 @@ class Score(models.Model):
 
 class Quiz(models.Model):
 
-    """ Model all the questions in the entire quiz """
+    """
+        Methods to:
+        o work with all the questions in the entire quiz
+        o Save the quiz in the database
+    """
+
+    name = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+    version = models.CharField(max_length=10)
+    date_created = models.DateTimeField(
+            default=timezone.now)
+    date_updated = models.DateTimeField(
+            blank=True, null=True)
 
     def __init__(self):
 
