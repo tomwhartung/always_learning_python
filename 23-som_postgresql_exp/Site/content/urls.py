@@ -9,9 +9,9 @@ Reference:
 """
 
 from django.conf.urls import *
+from django.contrib import admin
 
 from . import views
-from . import admin
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
