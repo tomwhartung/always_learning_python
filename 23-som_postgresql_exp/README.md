@@ -2,6 +2,26 @@
 
 Repo for trying out using PostGres to store the results of the SeeOurMinds.com quiz.
 
+## References
+
+Installation:
+
+* https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-16-04
+* https://tutorial.djangogirls.org/en/django_start_project/
+* https://tutorial.djangogirls.org/en/django_admin/
+
+Models, postgresql:
+
+* TBD.
+
+## Goal
+
+1. Find the best way to use Postgres to store quiz results on the site
+
+2. Try and make it so we can just drop the final versions of the files we change back into the seeourminds.com site code.
+
+* content/???????.py
+
 ## Installation
 
 Started with current version of code from seeourminds.com/Site .
@@ -62,7 +82,7 @@ As tomh:
 
 ```
 golpy
-cd 22-som_postgres_exp/Site
+cd 23-som_postgresql_exp/Site
 python3 manage.py makemigrations
 ```
 
@@ -78,7 +98,7 @@ Migrations for 'content':
 
 ### Step (4) Review migrations:
 
-As tomh (in the `Site/content` directory):
+As tomh (in the `Site/` directory):
 
 ```
 cat content/migrations/0001_initial.py:
@@ -88,7 +108,7 @@ The migrations create the Quiz and Score tables with only id columns - ok for no
 
 ### Step (5) Run the migrations:
 
-As tomh (in the `Site/content` directory):
+As tomh (in the `Site/` directory):
 
 ```
 python3 manage.py migrate
@@ -119,21 +139,33 @@ Running migrations:
 
 ### Step (6) Enable the admin interface:
 
-As tomh (in the `Site/content` directory):
+As tomh (in the `Site/` directory):
 
 ```
-python3 manage.py createsuperuser   # seeourminds/seeourmind$
+(1) python3 manage.py createsuperuser
+(2) python3 manage.py changepassword seeourminds   # seeourminds/djangofresh1
 ```
 
 Output:
 
 ```
-Superuser created successfully.
+(1) Superuser created successfully.
+(2) Password changed successfully for user 'seeourminds'
 ```
 
-So far, so good.
+### Step (7) Run the server
 
-### Step (7) Log in via browser
+As tomh (in the `Site/` directory):
+
+```
+python3 manage.py runserver
+```
+
+Access the following url:
+
+* http://127.0.0.1:8000/
+
+### Step (8) Log in via browser
 
 Access the following url:
 
@@ -148,25 +180,5 @@ And login using the above username and password.
 * We will want to keep the sensitive values we use on the production site in environment variables.
 * If there are issues, try using the 'django.db.backends.postgresql' ENGINE (instead of 'django.db.backends.postgresql_psycopg2') .
 
-## References
-
-TBD.
-
-## Goals
-
-1. Find the best way to use Postgres to store quiz results on the site
-
-## Notes
-
-Try and make it so we can just drop the final versions of the files we change back into the seeourminds.com site code.
-
-* content/???????.py
-
 ## Observations
-
-I believe working with Postgres is going to be very similar to working with MySql.
-
-## Requirements
-
-TBD.
 
