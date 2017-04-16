@@ -21,9 +21,11 @@ Models, postgresql:
 2. Try and make it so we can just drop the final versions of the files we change back into the seeourminds.com site code.
 
 * Site/urls.py
-* Site/???????.py
+* Site/?.py
+* content/forms.py
+* content/models.py
 * content/urls.py
-* content/???????.py
+* content/?.py
 * ../../gitignored/Site/Site/settings.py
 
 ## Installation
