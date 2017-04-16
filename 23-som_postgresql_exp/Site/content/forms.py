@@ -21,8 +21,8 @@ class QuizForm(forms.Form):
 
     my_quiz = Quiz()
 
-    # name = forms.CharField(max_length=50)
-    # email = forms.EmailField()
+    name = forms.CharField(max_length=50)
+    email = forms.EmailField()
 
     radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
     label = my_quiz.get_label(0)
