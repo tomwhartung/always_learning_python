@@ -9,7 +9,6 @@ Reference:
 """
 
 from django.conf.urls import *
-from django.contrib import admin
 
 from . import views
 
@@ -24,5 +23,4 @@ urlpatterns = [
     url(r'^quiz/results$', views.quiz_results, name='quiz_results'),
     url(r'^google428ef5aab2bc0870.html$',
         views.google_verification, name='google_verification'),
-    url(r'^admin/', admin.site.urls),
 ]
