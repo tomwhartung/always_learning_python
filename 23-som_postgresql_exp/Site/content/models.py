@@ -172,14 +172,38 @@ class Score:
 
     def calculate_percentages(self):
         """ Calculate the percentages """
-        self.e_pct = round(100 * self.e_score / (self.e_score + self.i_score))
-        self.i_pct = round(100 * self.i_score / (self.e_score + self.i_score))
-        self.n_pct = round(100 * self.n_score / (self.n_score + self.s_score))
-        self.s_pct = round(100 * self.s_score / (self.n_score + self.s_score))
-        self.f_pct = round(100 * self.f_score / (self.f_score + self.t_score))
-        self.t_pct = round(100 * self.t_score / (self.f_score + self.t_score))
-        self.j_pct = round(100 * self.j_score / (self.j_score + self.p_score))
-        self.p_pct = round(100 * self.p_score / (self.j_score + self.p_score))
+        total_ei_score = self.e_score + self.i_score
+        total_ns_score = self.n_score + self.s_score
+        total_ft_score = self.f_score + self.t_score
+        total_jp_score = self.j_score + self.p_score
+
+        if total_ei_score > 0:
+            self.e_pct = round(100 * self.e_score / total_ei_score)
+            self.i_pct = round(100 * self.i_score / total_ei_score)
+        else:
+            self.e_pct = 0
+            self.i_pct = 0
+
+        if total_ns_score > 0:
+            self.n_pct = round(100 * self.n_score / total_ns_score)
+            self.s_pct = round(100 * self.s_score / total_ns_score)
+        else:
+            self.n_pct = 0
+            self.s_pct = 0
+
+        if total_ft_score > 0:
+            self.f_pct = round(100 * self.f_score / total_ft_score)
+            self.t_pct = round(100 * self.t_score / total_ft_score)
+        else:
+            self.f_pct = 0
+            self.t_pct = 0
+
+        if total_jp_score > 0:
+            self.j_pct = round(100 * self.j_score / total_jp_score)
+            self.p_pct = round(100 * self.p_score / total_jp_score)
+        else:
+            self.j_pct = 0
+            self.p_pct = 0
 
     def as_list_of_pcts_and_counts(self):
         """ Return a list containing both percentages and counts """
