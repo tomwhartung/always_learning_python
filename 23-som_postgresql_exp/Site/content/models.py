@@ -19,6 +19,40 @@ QUIZ_FILE_DIR = site_content_dir + '/static/content/json/quiz/'
 QUIZ_FILE_NAME = 'seeourminds_quiz.json'
 QUIZ_VERSION = '1.0'
 
+
+class Quiz(models.Model):
+
+    """ Define columns and save a person's quiz answers in the database """
+
+    name = models.CharField(
+            max_length=200, default='', blank=True)
+    email = models.EmailField(
+            max_length=200, default='anonymous@example.com', unique=True)
+    version = models.CharField(
+            max_length=10, default=QUIZ_VERSION)
+    date_created = models.DateTimeField(
+            default=timezone.now)
+    date_updated = models.DateTimeField(
+            default=timezone.now)
+
+    def save_quiz(self, cleaned_data):
+        print('save_quiz - name:', cleaned_data['name'])
+        print('save_quiz - email:', cleaned_data['email'])
+        self.name = cleaned_data['name']
+        self.email = cleaned_data['email']
+        self.save()
+
+
+class Answer(models.Model):
+
+    """ Define a table in which to save each individual answer """
+
+    quiz_id = models.ForeignKey('content.Quiz')
+    question_id = models.IntegerField(default=0)
+    answer = models.IntegerField(default=0)
+
+
+
 class Score:
 
     """ Class to calculate, contain, and display the score for the quiz """
@@ -236,24 +270,9 @@ class Score:
         return score
 
 
-class Quiz(models.Model):
+class QuizJson:
 
-    """
-        Methods to:
-        o work with all the questions in the entire quiz
-        o Save the quiz in the database
-    """
-
-    name = models.CharField(
-            max_length=200, default='', blank=True)
-    email = models.EmailField(
-            max_length=200, default='anonymous@example.com', unique=True)
-    version = models.CharField(
-            max_length=10, default=QUIZ_VERSION)
-    date_created = models.DateTimeField(
-            default=timezone.now)
-    date_updated = models.DateTimeField(
-            default=timezone.now)
+    """ Read in and work with all the questions in the entire quiz """
 
     def __init__(self):
 
@@ -277,8 +296,8 @@ class Quiz(models.Model):
         """ Return the entire quiz question (answers, weights, etc.)"""
 
         quiz_question = self.question_list[list_question_int]
-        # print('Quiz.get_quiz_question - list_question_int:', list_question_int)
-        # print('Quiz.get_quiz_question - quiz_question:', quiz_question)
+        # print('QuizJson.get_quiz_question - list_question_int:', list_question_int)
+        # print('QuizJson.get_quiz_question - quiz_question:', quiz_question)
         return quiz_question
 
     def get_label(self, list_question_int):
@@ -289,8 +308,8 @@ class Quiz(models.Model):
         quiz_question = self.get_quiz_question(list_question_int)
         form_question_int = list_question_int + 1
         label = str(form_question_int) + '. ' + quiz_question['question_text']
-        # print('Quiz.get_label - list_question_int:', list_question_int)
-        # print('Quiz.get_label - label:', label)
+        # print('QuizJson.get_label - list_question_int:', list_question_int)
+        # print('QuizJson.get_label - label:', label)
         return label
 
     def get_choices(self, list_question_int):
@@ -337,8 +356,8 @@ class Quiz(models.Model):
             choice_7 = ['7', answer_7_text]
             choices.append(choice_7)
 
-        # print('Quiz.get_choices - list_question_int:', list_question_int)
-        # print('Quiz.get_choices - len(choices):', len(choices))
+        # print('QuizJson.get_choices - list_question_int:', list_question_int)
+        # print('QuizJson.get_choices - len(choices):', len(choices))
         return choices
 
     def get_answer_123_type(self, list_question_int):
@@ -369,7 +388,7 @@ class Quiz(models.Model):
 
     def print_cleaned_data(self, cleaned_data):
         """ print out the cleaned data, in order by question number """
-        print('Quiz.print_cleaned_data - cleaned_data:')
+        print('QuizJson.print_cleaned_data - cleaned_data:')
 
         for question_xx in sorted(cleaned_data):
             print('\tanswer for ' + question_xx + ': ' + cleaned_data[question_xx])
@@ -394,19 +413,19 @@ class Quiz(models.Model):
             answer_weight_str = self.get_answer_weight(list_question_int, answer_selected_str)
             answer_weight_int = int(answer_weight_str)
 
-            # print('Quiz.score_quiz - form_question_str:',  str(form_question_str))
-            # print('Quiz.score_quiz - form_question_int:', str(form_question_int))
-            # print('Quiz.score_quiz - list_question_int:', str(list_question_int))
-            # print('Quiz.score_quiz - answer_123_type:',  answer_123_type)
-            # print('Quiz.score_quiz - answer_selected_str:',  answer_selected_str)
-            # print('Quiz.score_quiz - answer_selected_int:', answer_selected_int)
-            # print('Quiz.score_quiz - answer_text:',  answer_text)
-            # print('Quiz.score_quiz - answer_weight_str:',  answer_weight_str)
-            # print('Quiz.score_quiz - answer_weight_int:',  answer_weight_int)
-            # print('Quiz.score_quiz - score:',  score)
+            # print('QuizJson.score_quiz - form_question_str:',  str(form_question_str))
+            # print('QuizJson.score_quiz - form_question_int:', str(form_question_int))
+            # print('QuizJson.score_quiz - list_question_int:', str(list_question_int))
+            # print('QuizJson.score_quiz - answer_123_type:',  answer_123_type)
+            # print('QuizJson.score_quiz - answer_selected_str:',  answer_selected_str)
+            # print('QuizJson.score_quiz - answer_selected_int:', answer_selected_int)
+            # print('QuizJson.score_quiz - answer_text:',  answer_text)
+            # print('QuizJson.score_quiz - answer_weight_str:',  answer_weight_str)
+            # print('QuizJson.score_quiz - answer_weight_int:',  answer_weight_int)
+            # print('QuizJson.score_quiz - score:',  score)
 
             if DJANGO_DEBUG:
-                print('Quiz.score_quiz -',
+                print('QuizJson.score_quiz -',
                         'question: ' + str(form_question_int) + ',',
                         'type: ' + answer_123_type + ', ',
                         'answer: ' + str(answer_selected_int))
@@ -414,19 +433,3 @@ class Quiz(models.Model):
             score.tally_answer(answer_123_type, answer_selected_int, answer_weight_int)
 
         return score
-
-    def save_quiz(self, cleaned_data):
-        print('save_quiz - name:', cleaned_data['name'])
-        print('save_quiz - email:', cleaned_data['email'])
-        self.name = cleaned_data['name']
-        self.email = cleaned_data['email']
-        self.save()
-
-
-class Answer(models.Model):
-
-    """ Define a table in which to save each individual answer """
-
-    quiz_id = models.ForeignKey('content.Quiz')
-    question_id = models.IntegerField(default=0)
-    answer = models.IntegerField(default=0)
