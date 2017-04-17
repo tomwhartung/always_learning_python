@@ -36,20 +36,38 @@ class Quiz(models.Model):
             default=timezone.now)
 
     def save_quiz(self, cleaned_data):
+        """ Save the quiz data, along with the answers """
         print('save_quiz - name:', cleaned_data['name'])
         print('save_quiz - email:', cleaned_data['email'])
         self.name = cleaned_data['name']
         self.email = cleaned_data['email']
         self.save()
+        answer_db = Answer()
+        answer_db.save_answers(cleaned_data)
 
 
 class Answer(models.Model):
 
     """ Define a table in which to save each individual answer """
 
-    quiz_id = models.ForeignKey('content.Quiz')
+    quiz = models.ForeignKey('content.Quiz')
     question_id = models.IntegerField(default=0)
     answer = models.IntegerField(default=0)
+
+    def save_answers(self, cleaned_data):
+        """ Save the quiz answers """
+        for form_question_str in sorted(cleaned_data):
+            if not form_question_str.startswith("question_"):
+                continue
+            form_question_int = int(form_question_str.replace("question_", ""))
+            list_question_int = int(form_question_int) - 1
+            answer_selected_str = cleaned_data[form_question_str]
+            answer_selected_int = int(answer_selected_str)
+            print('save_answers - list_question_int:', list_question_int)
+            print('save_answers - answer_selected_int:', answer_selected_int)
+            self.question_id = list_question_int
+            self.answer = answer_selected_int
+            self.save()
 
 
 
