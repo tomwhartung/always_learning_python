@@ -383,6 +383,8 @@ class Quiz(models.Model):
         score = Score()
 
         for form_question_str in sorted(cleaned_data):
+            if not form_question_str.startswith("question_"):
+                continue
             form_question_int = int(form_question_str.replace("question_", ""))
             list_question_int = int(form_question_int) - 1
             answer_123_type = self.get_answer_123_type(list_question_int)
@@ -412,6 +414,13 @@ class Quiz(models.Model):
             score.tally_answer(answer_123_type, answer_selected_int, answer_weight_int)
 
         return score
+
+    def save_quiz(self, cleaned_data):
+        print('save_quiz - name:', cleaned_data['name'])
+        print('save_quiz - email:', cleaned_data['email'])
+        self.name = cleaned_data['name']
+        self.email = cleaned_data['email']
+        self.save()
 
 
 class Answer(models.Model):
