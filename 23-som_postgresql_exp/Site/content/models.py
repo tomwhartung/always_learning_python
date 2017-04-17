@@ -19,9 +19,9 @@ QUIZ_FILE_DIR = site_content_dir + '/static/content/json/quiz/'
 QUIZ_FILE_NAME = 'seeourminds_quiz.json'
 QUIZ_VERSION = '1.0'
 
-class Score(models.Model):
+class Score:
 
-    """ Class to contain the score for the quiz """
+    """ Class to calculate, contain, and display the score for the quiz """
 
     def __init__(self):
         self.e_score = 0
