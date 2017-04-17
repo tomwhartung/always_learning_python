@@ -43,18 +43,18 @@ class Quiz(models.Model):
         self.email = cleaned_data['email']
         self.save()
         answer_db = Answer()
-        answer_db.save_answers(cleaned_data)
+        answer_db.save_answers(self.id, cleaned_data)
 
 
 class Answer(models.Model):
 
     """ Define a table in which to save each individual answer """
 
-    quiz = models.ForeignKey('content.Quiz')
+    quiz = models.ForeignKey('content.Quiz', on_delete=models.CASCADE)
     question_id = models.IntegerField(default=0)
     answer = models.IntegerField(default=0)
 
-    def save_answers(self, cleaned_data):
+    def save_answers(self, quiz_id, cleaned_data):
         """ Save the quiz answers """
         for form_question_str in sorted(cleaned_data):
             if not form_question_str.startswith("question_"):
@@ -65,6 +65,7 @@ class Answer(models.Model):
             answer_selected_int = int(answer_selected_str)
             print('save_answers - list_question_int:', list_question_int)
             print('save_answers - answer_selected_int:', answer_selected_int)
+            self.quiz_id = quiz_id
             self.question_id = list_question_int
             self.answer = answer_selected_int
             self.save()
