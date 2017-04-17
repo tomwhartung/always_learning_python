@@ -42,8 +42,14 @@ class Quiz(models.Model):
         self.name = cleaned_data['name']
         self.email = cleaned_data['email']
         self.save()
-        answer_db = Answer()
-        answer_db.save_answers(self.id, cleaned_data)
+        for form_question_str in sorted(cleaned_data):
+            if not form_question_str.startswith("question_"):
+                continue
+            form_question_int = int(form_question_str.replace("question_", ""))
+            answer_selected_str = cleaned_data[form_question_str]
+            answer_selected_int = int(answer_selected_str)
+            answer_db = Answer()
+            answer_db.save_answers(self.id, form_question_int, answer_selected_int)
 
 
 class Answer(models.Model):
@@ -54,22 +60,14 @@ class Answer(models.Model):
     question_id = models.IntegerField(default=0)
     answer = models.IntegerField(default=0)
 
-    def save_answers(self, quiz_id, cleaned_data):
+    def save_answers(self, quiz_id, question_id, answer):
         """ Save the quiz answers """
-        for form_question_str in sorted(cleaned_data):
-            if not form_question_str.startswith("question_"):
-                continue
-            form_question_int = int(form_question_str.replace("question_", ""))
-            list_question_int = int(form_question_int) - 1
-            answer_selected_str = cleaned_data[form_question_str]
-            answer_selected_int = int(answer_selected_str)
-            print('save_answers - list_question_int:', list_question_int)
-            print('save_answers - answer_selected_int:', answer_selected_int)
-            self.quiz_id = quiz_id
-            self.question_id = list_question_int
-            self.answer = answer_selected_int
-            self.save()
-
+        print('save_answers - question_id:', question_id)
+        print('save_answers - answer:', answer)
+        self.quiz_id = quiz_id
+        self.question_id = question_id
+        self.answer = answer
+        self.save()
 
 
 class Score:
