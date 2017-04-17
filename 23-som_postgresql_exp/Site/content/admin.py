@@ -10,8 +10,8 @@ Reference:
 
 from django.contrib import admin
 
+# from .models import Score
 from .models import Quiz
-from .models import Score
 
+# admin.site.register(Score)
 admin.site.register(Quiz)
-admin.site.register(Score)
