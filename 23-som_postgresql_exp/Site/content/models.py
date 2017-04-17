@@ -412,3 +412,12 @@ class Quiz(models.Model):
             score.tally_answer(answer_123_type, answer_selected_int, answer_weight_int)
 
         return score
+
+
+class Answer(models.Model):
+
+    """ Define a table in which to save each individual answer """
+
+    quiz_id = models.ForeignKey('content.Quiz')
+    question_id = models.IntegerField(default=0)
+    answer = models.IntegerField(default=0)
