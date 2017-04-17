@@ -246,8 +246,8 @@ class Quiz(models.Model):
 
     name = models.CharField(
             max_length=200, default='', blank=True)
-    email = models.CharField(
-            max_length=200, default='anonymous@example.com')
+    email = models.EmailField(
+            max_length=200, default='anonymous@example.com', unique=True)
     version = models.CharField(
             max_length=10, default=QUIZ_VERSION)
     date_created = models.DateTimeField(
