@@ -14,23 +14,20 @@ from django.db import models
 from django.utils import timezone
 
 DJANGO_DEBUG = os.environ.get('DJANGO_DEBUG')
-site_content_dir = os.path.abspath(os.path.dirname(__file__))
-QUIZ_FILE_DIR = site_content_dir + '/static/content/json/quiz/'
-QUIZ_FILE_NAME = 'seeourminds_quiz.json'
-QUIZ_VERSION = '1.0'
 
 
 class Quiz(models.Model):
 
     """
     Define columns and save a person's quiz answers in the database.
+    """
 
+    """
     There are 88 questions, and the ones I have the most confidence in are
     nearer the beginning, with the "fun," experimental ones at the end.
     It is desireable that the quiz size be divisible by 4 but not 8,
     so that there is an odd number of questions for each pair of opposites.
     """
-
     XX_SMALL = '2XS'       # 4 = 1*4 (for testing, keep off menu in production)
     EXTRA_SMALL = 'XS'     # 12 = 3 * 4
     SMALL = 'S'            # 28 = 7 * 4
@@ -48,6 +45,7 @@ class Quiz(models.Model):
         (XX_LARGE, '2X Large'),
     )
     DEFAULT_QUIZ_SIZE = MEDIUM
+    QUIZ_VERSION = '1.0'
 
     name = models.CharField(
             blank=True,
@@ -364,6 +362,7 @@ class QuizJson:
 
     """ Read in and work with all the questions in the entire quiz """
 
+
     def __init__(self):
 
         """ Populate the question_list with questions from the json file """
@@ -373,6 +372,10 @@ class QuizJson:
     def read_quiz_json(self):
 
         """ Read the quiz questions and answers from the json file """
+
+        site_content_dir = os.path.abspath(os.path.dirname(__file__))
+        QUIZ_FILE_DIR = site_content_dir + '/static/content/json/quiz/'
+        QUIZ_FILE_NAME = 'seeourminds_quiz.json'
 
         quiz_file_path = QUIZ_FILE_DIR + QUIZ_FILE_NAME
         quiz_json_file = open(quiz_file_path)
