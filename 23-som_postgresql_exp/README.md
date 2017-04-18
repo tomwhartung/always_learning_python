@@ -190,6 +190,10 @@ And login using the above username and password.
 
 ### To start from scratch with a new db
 
+#### Kill app
+
+If it's running, exit the app.
+
 #### Drop and recreate
 
 Drop the db and recreate it, using commands from Step (0):
@@ -204,12 +208,12 @@ psql        # prompt changes
 Use the postgres shell to drop and re-create the database:
 
 ```
-DROP DATABASE django_test;                                 ## DROP DATABASE
-CREATE DATABASE django_test owner seeourminds;             ## CREATE DATABASE
-ALTER ROLE seeourminds SET client_encoding TO 'utf8';      ## ALTER ROLE
+DROP DATABASE django_test;
+CREATE DATABASE django_test owner seeourminds;
+ALTER ROLE seeourminds SET client_encoding TO 'utf8';
 ALTER ROLE seeourminds SET default_transaction_isolation TO 'read committed';
-ALTER ROLE seeourminds SET timezone TO 'UTC';              ## ALTER ROLE
-\q      ## log out
+ALTER ROLE seeourminds SET timezone TO 'UTC';
+\q
 ```
 ```
 
