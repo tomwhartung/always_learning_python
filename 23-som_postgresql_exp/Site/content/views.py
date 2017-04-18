@@ -98,15 +98,18 @@ def quiz(request):
         #
         if quiz_form.is_valid():
             # name = quiz_form.cleaned_data['name']
-            # email = quiz_form.cleaned_data['email']
             # print('form is valid, got name:', name)
             # print('form is valid, got email:', email)
             # redirect to a new URL:
             # print('quiz_form.cleaned_data:', quiz_form.cleaned_data)
             print('views.quiz() - len(quiz_form.cleaned_data):',
                     len(quiz_form.cleaned_data))
-            quiz_db = Quiz()
-            quiz_db.save_quiz(quiz_form.cleaned_data)
+            email = quiz_form.cleaned_data['email']
+            if email == '':
+                print( 'views.quiz: No email, not saving quiz')
+            else:
+                quiz_db = Quiz()
+                quiz_db.save_quiz(quiz_form.cleaned_data)
             quiz_json = QuizJson()
             score = quiz_json.score_quiz(quiz_form.cleaned_data)
             four_letter_type = "Type: " + score.as_four_letter_type()
