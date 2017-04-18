@@ -24,6 +24,21 @@ class Quiz(models.Model):
 
     """ Define columns and save a person's quiz answers in the database """
 
+    EXTRA_SMALL = 'XS'
+    SMALL = 'S'
+    MEDIUM = 'M'
+    LARGE = 'L'
+    EXTRA_LARGE = 'XL'
+    XX_LARGE = '2X'
+    QUIZ_SIZE_CHOICES = (
+        (EXTRA_SMALL, 'Extra Small'),
+        (SMALL, 'Small'),
+        (MEDIUM, 'Medium'),
+        (LARGE, 'Large'),
+        (EXTRA_LARGE, 'Extra Large'),
+        (XX_LARGE, '2X Large'),
+    )
+
     name = models.CharField(
             blank=True,
             default='',
@@ -33,6 +48,10 @@ class Quiz(models.Model):
             db_index=True,
             max_length=200,
             unique=True)
+    size = models.CharField(
+            choices=QUIZ_SIZE_CHOICES,
+            default=LARGE,
+            max_length=2)
     version = models.CharField(
             default=QUIZ_VERSION,
             max_length=10)
@@ -41,9 +60,14 @@ class Quiz(models.Model):
     date_updated = models.DateTimeField(
             default=timezone.now)
 
-    def save_quiz(self, cleaned_data):
-        """ If we have an email, save the quiz data, along with the answers """
-        """ There is no sense saving it if we do not have an email address! """
+    def save_quiz(self, cleaned_data, quiz_size=LARGE):
+        """
+        If we have an email, save the quiz data, along with the answers
+        There is no sense saving it if we do not have an email address!
+        The check here may be redundant, but this is very important!
+        Note also: the validation criteria for the db is stronger than
+          it is for forms...!
+        """
         email = cleaned_data['email']
         if len(email) < 4:    # "blank=False" does not seem to work?!?
             print('Quiz.save_quiz - not saving! email:', '"' + email + '"')
@@ -52,6 +76,7 @@ class Quiz(models.Model):
             name = cleaned_data['name']
             self.name = name
             self.email = email
+            self.size = quiz_size
             self.save()
             print('save_quiz - saved name/email:', name + '/' + email)
             for form_question_str in sorted(cleaned_data):
