@@ -38,6 +38,7 @@ class Quiz(models.Model):
         (EXTRA_LARGE, 'Extra Large'),
         (XX_LARGE, '2X Large'),
     )
+    DEFAULT_QUIZ_SIZE = LARGE
 
     name = models.CharField(
             blank=True,
@@ -50,7 +51,7 @@ class Quiz(models.Model):
             unique=True)
     size = models.CharField(
             choices=QUIZ_SIZE_CHOICES,
-            default=LARGE,
+            default=DEFAULT_QUIZ_SIZE,
             max_length=2)
     version = models.CharField(
             default=QUIZ_VERSION,
@@ -60,7 +61,7 @@ class Quiz(models.Model):
     date_updated = models.DateTimeField(
             default=timezone.now)
 
-    def save_quiz(self, cleaned_data, quiz_size=LARGE):
+    def save_quiz(self, cleaned_data, quiz_size=DEFAULT_QUIZ_SIZE):
         """
         If we have an email, save the quiz data, along with the answers
         There is no sense saving it if we do not have an email address!
