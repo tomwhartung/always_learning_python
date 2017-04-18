@@ -25,31 +25,44 @@ class Quiz(models.Model):
     """ Define columns and save a person's quiz answers in the database """
 
     name = models.CharField(
-            max_length=200, default='', blank=True)
+            blank=True,
+            default='',
+            max_length=200)
     email = models.EmailField(
-            max_length=200, default='anonymous@example.com', unique=True)
+            blank=False,
+            db_index=True,
+            max_length=200,
+            unique=True)
     version = models.CharField(
-            max_length=10, default=QUIZ_VERSION)
+            default=QUIZ_VERSION,
+            max_length=10)
     date_created = models.DateTimeField(
             default=timezone.now)
     date_updated = models.DateTimeField(
             default=timezone.now)
 
     def save_quiz(self, cleaned_data):
-        """ Save the quiz data, along with the answers """
-        print('save_quiz - name:', cleaned_data['name'])
-        print('save_quiz - email:', cleaned_data['email'])
-        self.name = cleaned_data['name']
-        self.email = cleaned_data['email']
-        self.save()
-        for form_question_str in sorted(cleaned_data):
-            if not form_question_str.startswith("question_"):
-                continue
-            form_question_int = int(form_question_str.replace("question_", ""))
-            answer_selected_str = cleaned_data[form_question_str]
-            answer_selected_int = int(answer_selected_str)
-            answer_db = Answer()
-            answer_db.save_answers(self.id, form_question_int, answer_selected_int)
+        """ If we have an email, save the quiz data, along with the answers """
+        """ There is no sense saving it if we do not have an email address! """
+        email = cleaned_data['email']
+        if len(email) < 4:    # "blank=False" does not seem to work?!?
+            print('Quiz.save_quiz - not saving! email:', '"' + email + '"')
+            return False
+        else:
+            name = cleaned_data['name']
+            self.name = name
+            self.email = email
+            self.save()
+            print('save_quiz - saved name/email:', name + '/' + email)
+            for form_question_str in sorted(cleaned_data):
+                if not form_question_str.startswith("question_"):
+                    continue
+                form_question_int = int(form_question_str.replace("question_", ""))
+                answer_selected_str = cleaned_data[form_question_str]
+                answer_selected_int = int(answer_selected_str)
+                answer_db = Answer()
+                answer_db.save_answers(self.id, form_question_int, answer_selected_int)
+        return self
 
 
 class Answer(models.Model):
@@ -68,6 +81,7 @@ class Answer(models.Model):
         self.question_id = question_id
         self.answer = answer
         self.save()
+        return self
 
 
 class Score:
