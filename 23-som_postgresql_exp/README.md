@@ -188,3 +188,35 @@ And login using the above username and password.
 
 ## Observations
 
+### To start from scratch with a new db
+
+#### Drop and recreate
+
+Drop the db and recreate it, using commands from Step (0):
+
+As root:
+
+```
+su - postgres
+psql        # prompt changes
+```
+
+Use the postgres shell to drop and re-create the database:
+
+```
+DROP DATABASE django_test;                                 ## DROP DATABASE
+CREATE DATABASE django_test owner seeourminds;             ## CREATE DATABASE
+ALTER ROLE seeourminds SET client_encoding TO 'utf8';      ## ALTER ROLE
+ALTER ROLE seeourminds SET default_transaction_isolation TO 'read committed';
+ALTER ROLE seeourminds SET timezone TO 'UTC';              ## ALTER ROLE
+\q      ## log out
+```
+```
+
+#### Create superuser
+
+Create the superuser, using commands from Step (6):
+
+```
+python3 manage.py createsuperuser       # seeourminds/djangofresh1
+```
