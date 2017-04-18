@@ -22,15 +22,24 @@ QUIZ_VERSION = '1.0'
 
 class Quiz(models.Model):
 
-    """ Define columns and save a person's quiz answers in the database """
+    """
+    Define columns and save a person's quiz answers in the database.
 
-    EXTRA_SMALL = 'XS'
-    SMALL = 'S'
-    MEDIUM = 'M'
-    LARGE = 'L'
-    EXTRA_LARGE = 'XL'
-    XX_LARGE = '2X'
+    There are 88 questions, and the ones I have the most confidence in are
+    nearer the beginning, with the "fun," experimental ones at the end.
+    It is desireable that the quiz size be divisible by 4 but not 8,
+    so that there is an odd number of questions for each pair of opposites.
+    """
+
+    XX_SMALL = '2XS'       # 4 = 1*4 (for testing, keep off menu in production)
+    EXTRA_SMALL = 'XS'     # 12 = 3 * 4
+    SMALL = 'S'            # 28 = 7 * 4
+    MEDIUM = 'M'           # 44 = 11 * 4
+    LARGE = 'L'            # 60 = 15 * 4
+    EXTRA_LARGE = 'XL'     # 76 = 19 * 4
+    XX_LARGE = '2XL'       # 88 = 22 * 4
     QUIZ_SIZE_CHOICES = (
+        (XX_SMALL, '2X Small'),
         (EXTRA_SMALL, 'Extra Small'),
         (SMALL, 'Small'),
         (MEDIUM, 'Medium'),
@@ -38,7 +47,7 @@ class Quiz(models.Model):
         (EXTRA_LARGE, 'Extra Large'),
         (XX_LARGE, '2X Large'),
     )
-    DEFAULT_QUIZ_SIZE = LARGE
+    DEFAULT_QUIZ_SIZE = MEDIUM
 
     name = models.CharField(
             blank=True,
@@ -52,7 +61,7 @@ class Quiz(models.Model):
     size = models.CharField(
             choices=QUIZ_SIZE_CHOICES,
             default=DEFAULT_QUIZ_SIZE,
-            max_length=2)
+            max_length=3)
     version = models.CharField(
             default=QUIZ_VERSION,
             max_length=10)
