@@ -51,11 +51,11 @@ psql        # prompt changes
 Use the postgres shell to create the user and database:
 
 ```
-CREATE USER seeourminds WITH PASSWORD 'abc123';            ## CREATE ROLE
-CREATE DATABASE django_test owner seeourminds;             ## CREATE DATABASE
-ALTER ROLE seeourminds SET client_encoding TO 'utf8';      ## ALTER ROLE
+CREATE USER seeourminds WITH PASSWORD 'abc123';            ## "CREATE ROLE"
+CREATE DATABASE django_test owner seeourminds;             ## "CREATE DATABASE"
+ALTER ROLE seeourminds SET client_encoding TO 'utf8';      ## "ALTER ROLE"
 ALTER ROLE seeourminds SET default_transaction_isolation TO 'read committed';
-ALTER ROLE seeourminds SET timezone TO 'UTC';              ## ALTER ROLE
+ALTER ROLE seeourminds SET timezone TO 'MST';              ## "ALTER ROLE"
 \q      ## log out
 
 ### Step (1) Install python postgres "psycopg2" package globally:
@@ -88,8 +88,8 @@ As tomh:
 
 ```
 golpy
-cd 23-som_postgresql_exp/Site
-python3 manage.py makemigrations
+cd 23-som_postgresql_exp/Site/bin
+./makemigrations.sh
 ```
 
 The output from this command is below.
@@ -179,22 +179,21 @@ Access the following url:
 
 And login using the above username and password.
 
-### Notes:
+## Notes:
 
 * We may need to update the ALLOWED_HOSTS setting in settings.py , but I am pretty sure it is ok.
 * The output from running the server alerts us to the fact that there are migrations that need to be run.
 * We will want to keep the sensitive values we use on the production site in environment variables.
 * If there are issues, try using the 'django.db.backends.postgresql' ENGINE (instead of 'django.db.backends.postgresql_psycopg2') .
 
-## Observations
 
-### To start from scratch with a new db
+## To start from scratch with a new db
 
-#### Kill app
+### Kill app
 
 If it's running, exit the app.
 
-#### Drop and recreate
+### Drop and recreate
 
 Drop the db and recreate it, using commands from Step (0):
 
@@ -212,15 +211,44 @@ DROP DATABASE django_test;
 CREATE DATABASE django_test owner seeourminds;
 ALTER ROLE seeourminds SET client_encoding TO 'utf8';
 ALTER ROLE seeourminds SET default_transaction_isolation TO 'read committed';
-ALTER ROLE seeourminds SET timezone TO 'UTC';
+ALTER ROLE seeourminds SET timezone TO 'MST';
 \q
 ```
 ```
 
-#### Create superuser
+### Make and run the migrations
+
+#### Delete old files
+
+First delete the old migrations files, they are irrelevant because we are starting fresh!
+
+As tomh:
+
+```
+golpy
+cd 23-som_postgresql_exp/Site/content/migrations
+rm 000*
+```
+
+#### Create new file
+
+Make and run the migrations them, using commands from steps (3) and (5)
+
+As tomh:
+
+```
+golpy
+cd 23-som_postgresql_exp/Site/bin
+./makemigrations.sh
+./migrate.sh
+```
+
+### Create django superuser
 
 Create the superuser, using commands from Step (6):
 
+As tomh (in the `Site/bin/` directory):
+
 ```
-python3 manage.py createsuperuser       # seeourminds/djangofresh1
+createsuperuser.sh    # tomh/mark_as_spam@tomhartung.com/superuser1
 ```
