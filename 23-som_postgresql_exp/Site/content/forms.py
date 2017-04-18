@@ -21,8 +21,8 @@ class QuizForm(forms.Form):
 
     quiz_json = QuizJson()
 
-    name = forms.CharField(max_length=50)
-    email = forms.EmailField()
+    name = forms.CharField(max_length=50, required=False)
+    email = forms.EmailField(required=False)
 
     radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
     label = quiz_json.get_label(0)
@@ -52,9 +52,8 @@ class QuizForm(forms.Form):
             widget=radio_widget, label=label, choices=choices
     )
 
-def questions_05_thru_16():
-    """ SAVING THIS CODE FOR LATER """
-
+    # def questions_05_thru_08():
+    # """ SAVING THIS CODE FOR LATER """
     radio_widget = forms.RadioSelect(attrs={'class':'quiz_answer'})
     label = quiz_json.get_label(4)
     choices = quiz_json.get_choices(4)
@@ -74,6 +73,9 @@ def questions_05_thru_16():
     label = quiz_json.get_label(7)
     choices = quiz_json.get_choices(7)
     question_08 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices )
+
+    # def questions_09_thru_16():
+    # """ SAVING THIS CODE FOR LATER """
 
     radio_widget = forms.RadioSelect(attrs={'class':'quiz_answer'})
     label = quiz_json.get_label(8)
