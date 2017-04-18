@@ -109,7 +109,8 @@ def quiz(request):
                 print( 'views.quiz: No email, not saving quiz')
             else:
                 quiz_db = Quiz()
-                quiz_db.save_quiz(quiz_form.cleaned_data)
+                quiz_size = quiz_db.XX_LARGE
+                quiz_db.save_quiz(quiz_form.cleaned_data, quiz_size)
             quiz_json = QuizJson()
             score = quiz_json.score_quiz(quiz_form.cleaned_data)
             four_letter_type = "Type: " + score.as_four_letter_type()
