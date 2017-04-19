@@ -11,13 +11,19 @@ Reference:
 from django import forms
 from .models import QuizJson
 
-
 class QuizForm(forms.Form):
 
     """ The Quiz Form is a list of questions and multiple-choice answers """
     """ We are using the Brute Force Approach: """
     """ We tried several times to get this to work in a loop, to no avail """
     """ The failed attempts are labelled "Crufty" at the end of this file """
+
+    def __init__(self, question_count=2, *args, **kwargs):
+        super(QuizForm, self).__init__(*args, **kwargs)
+        self.question_count = question_count
+        print('QuizForm.__init__ - self.question_count:', self.question_count)
+        self.fields['test1'] = forms.CharField(max_length=10, required=False)
+
 
     quiz_json = QuizJson()
 
