@@ -141,7 +141,15 @@ def quiz(request, quiz_size=Quiz.DEFAULT_QUIZ_SIZE):
             messages.add_message(request, messages.INFO, pcts_and_counts_html)
             return HttpResponseRedirect('/quiz/results')
     else:
-        quiz_form = QuizForm(question_count=7)
+        # These are the values we will get from the route, if this idea works
+        # quiz_size = 'xx-small'
+        # quiz_size = 'extra-small'
+        # quiz_size = 'small'
+        # quiz_size = 'medium'
+        # quiz_size = 'large'
+        quiz_size = 'extra-large'
+        # quiz_size = 'xx-large'
+        quiz_form = QuizForm(quiz_size=quiz_size)
 
     context_quiz_selected = 'class="disabled"'    # see seeourminds.css
     template = loader.get_template('content/quiz.html')
