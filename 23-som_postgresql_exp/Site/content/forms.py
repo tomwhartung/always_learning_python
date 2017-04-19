@@ -11,6 +11,7 @@ Reference:
 from django import forms
 from .models import QuizJson
 
+
 class QuizForm(forms.Form):
 
     """ The Quiz Form is a list of questions and multiple-choice answers """
@@ -18,8 +19,20 @@ class QuizForm(forms.Form):
     """ We tried several times to get this to work in a loop, to no avail """
     """ The failed attempts are labelled "Crufty" at the end of this file """
 
-    def __init__(self, question_count=2, *args, **kwargs):
+    def __init__(self, quiz_size="large", *args, **kwargs):
         super(QuizForm, self).__init__(*args, **kwargs)
+
+        quiz_size_counts = {
+            "xx-small": 4,
+            "extra-small": 12,
+            "small": 28,
+            "medium": 44,
+            "large": 60,
+            "extra-large": 76,
+            "xx-large": 88,
+        }
+
+        question_count = quiz_size_counts[quiz_size]
         self.question_count = question_count
         print('QuizForm.__init__ - self.question_count:', self.question_count)
         self.fields['test1'] = forms.CharField(max_length=10, required=False)
