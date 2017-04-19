@@ -35,6 +35,15 @@ class Quiz(models.Model):
     LARGE = 'L'            # 60 = 15 * 4
     EXTRA_LARGE = 'XL'     # 76 = 19 * 4
     XX_LARGE = '2XL'       # 88 = 22 * 4
+    QUIZ_SIZE_COUNTS = (
+        (XX_SMALL, 4),
+        (EXTRA_SMALL, 12),
+        (SMALL, 28),
+        (MEDIUM, 44),
+        (LARGE, 60),
+        (EXTRA_LARGE, 76),
+        (XX_LARGE, 88),
+    )
     QUIZ_SIZE_CHOICES = (
         (XX_SMALL, '2X Small'),
         (EXTRA_SMALL, 'Extra Small'),
