@@ -31,18 +31,30 @@ class QuizForm(forms.Form):
             "extra-large": 76,
             "xx-large": 88,
         }
-
+        quiz_json = QuizJson()
         question_count = quiz_size_counts[quiz_size]
         self.question_count = question_count
         print('QuizForm.__init__ - self.question_count:', self.question_count)
+
         self.fields['test1'] = forms.CharField(max_length=10, required=False)
 
+        for question_no in range(0, question_count):
+            question_key = 'question_' + str(question_no)
+            print('question_no:', question_no)
+            print('question_key:', question_key)
+            radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
+            label = quiz_json.get_label(question_no)
+            choices = quiz_json.get_choices(question_no)
+            self.fields[question_key] = forms.ChoiceField(
+                widget=radio_widget, label=label, choices=choices
+            )
 
     quiz_json = QuizJson()
 
     name = forms.CharField(max_length=50, required=False)
     email = forms.EmailField(required=False)
 
+def brute_force_questions():
     radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
     label = quiz_json.get_label(0)
     choices = quiz_json.get_choices(0)
