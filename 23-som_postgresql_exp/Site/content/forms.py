@@ -14,10 +14,13 @@ from .models import QuizJson
 
 class QuizForm(forms.Form):
 
-    """ The Quiz Form is a list of questions and multiple-choice answers """
-    """ We are using the Brute Force Approach: """
-    """ We tried several times to get this to work in a loop, to no avail """
-    """ The failed attempts are labelled "Crufty" at the end of this file """
+    """
+    The Quiz Form is a list of questions and multiple-choice answers
+
+    It took awhile to figure out how to create a variable-length form!
+    Here is the key reference:
+        http://stackoverflow.com/questions/411761/variable-number-of-inputs-with-django-forms-possible
+    """
 
     def __init__(self, quiz_size="large", *args, **kwargs):
         super(QuizForm, self).__init__(*args, **kwargs)
@@ -36,8 +39,6 @@ class QuizForm(forms.Form):
         self.question_count = question_count
         print('QuizForm.__init__ - self.question_count:', self.question_count)
 
-        self.fields['test1'] = forms.CharField(max_length=10, required=False)
-
         for question_no in range(0, question_count):
             question_key = 'question_' + str(question_no)
             print('question_no:', question_no)
@@ -49,12 +50,12 @@ class QuizForm(forms.Form):
                 widget=radio_widget, label=label, choices=choices
             )
 
-    quiz_json = QuizJson()
-
     name = forms.CharField(max_length=50, required=False)
     email = forms.EmailField(required=False)
 
 def brute_force_questions():
+    quiz_json = QuizJson()
+
     radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
     label = quiz_json.get_label(0)
     choices = quiz_json.get_choices(0)
