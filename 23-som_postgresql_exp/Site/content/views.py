@@ -90,8 +90,16 @@ def quiz(request, quiz_size=Quiz.DEFAULT_QUIZ_SIZE):
 
     """ Load and render the Quiz page template """
 
+    # These are the values we will get from the route, if this idea works
+    quiz_size = 'xx-small'
+    # quiz_size = 'extra-small'
+    # quiz_size = 'small'
+    # quiz_size = 'medium'
+    # quiz_size = 'large'
+    # quiz_size = 'extra-large'
+    # quiz_size = 'xx-large'
     if request.method == 'POST':
-        quiz_form = QuizForm(request.POST)
+        quiz_form = QuizForm(quiz_size=quiz_size, data=request.POST)
         #
         #  Form processing is tbd...
         #  We are not yet doing anything with this data on the server
@@ -141,14 +149,6 @@ def quiz(request, quiz_size=Quiz.DEFAULT_QUIZ_SIZE):
             messages.add_message(request, messages.INFO, pcts_and_counts_html)
             return HttpResponseRedirect('/quiz/results')
     else:
-        # These are the values we will get from the route, if this idea works
-        # quiz_size = 'xx-small'
-        # quiz_size = 'extra-small'
-        # quiz_size = 'small'
-        # quiz_size = 'medium'
-        # quiz_size = 'large'
-        quiz_size = 'extra-large'
-        # quiz_size = 'xx-large'
         quiz_form = QuizForm(quiz_size=quiz_size)
 
     context_quiz_selected = 'class="disabled"'    # see seeourminds.css
