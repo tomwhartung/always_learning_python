@@ -86,7 +86,7 @@ def gallery(request, gallery_name='all'):
     return HttpResponse(template.render(context, request))
 
 
-def quiz(request):
+def quiz(request, quiz_size=Quiz.DEFAULT_QUIZ_SIZE):
 
     """ Load and render the Quiz page template """
 
@@ -106,7 +106,7 @@ def quiz(request):
                     len(quiz_form.cleaned_data))
             email = quiz_form.cleaned_data['email']
             if email == '':
-                print( 'views.quiz: No email, not saving quiz')
+                print( 'views.quiz: No email given, not saving quiz')
             else:
                 quiz_db = Quiz()
                 quiz_size = quiz_db.XX_LARGE
@@ -141,7 +141,7 @@ def quiz(request):
             messages.add_message(request, messages.INFO, pcts_and_counts_html)
             return HttpResponseRedirect('/quiz/results')
     else:
-        quiz_form = QuizForm()
+        quiz_form = QuizForm(question_count=7)
 
     context_quiz_selected = 'class="disabled"'    # see seeourminds.css
     template = loader.get_template('content/quiz.html')
