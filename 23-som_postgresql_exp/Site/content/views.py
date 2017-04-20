@@ -86,30 +86,26 @@ def gallery(request, gallery_name='all'):
     return HttpResponse(template.render(context, request))
 
 
-def quiz(request, quiz_size=Quiz.DEFAULT_QUIZ_SIZE):
+def quiz(request, quiz_size_slug=Quiz.DEFAULT_QUIZ_SIZE_SLUG):
 
     """ Load and render the Quiz page template """
 
     # These are the values we will get from the route, if this idea works
-    quiz_size = 'xx-small'
-    # quiz_size = 'extra-small'
-    # quiz_size = 'small'
-    # quiz_size = 'medium'
-    # quiz_size = 'large'
-    # quiz_size = 'extra-large'
-    # quiz_size = 'xx-large'
+    quiz_size_slug = 'xx-small'
+    # quiz_size_slug = 'extra-small'
+    # quiz_size_slug = 'small'
+    # quiz_size_slug = 'medium'
+    # quiz_size_slug = 'large'
+    # quiz_size_slug = 'extra-large'
+    # quiz_size_slug = 'xx-large'
     if request.method == 'POST':
-        quiz_form = QuizForm(quiz_size=quiz_size, data=request.POST)
-        #
-        #  Form processing is tbd...
-        #  We are not yet doing anything with this data on the server
-        #
+        quiz_form = QuizForm(quiz_size_slug=quiz_size_slug, data=request.POST)
         if quiz_form.is_valid():
             # name = quiz_form.cleaned_data['name']
             # print('form is valid, got name:', name)
             # print('form is valid, got email:', email)
             # redirect to a new URL:
-            # print('quiz_form.cleaned_data:', quiz_form.cleaned_data)
+            # print('views.quiz() - quiz_form.cleaned_data:', quiz_form.cleaned_data)
             print('views.quiz() - len(quiz_form.cleaned_data):',
                     len(quiz_form.cleaned_data))
             email = quiz_form.cleaned_data['email']
@@ -117,27 +113,12 @@ def quiz(request, quiz_size=Quiz.DEFAULT_QUIZ_SIZE):
                 print( 'views.quiz: No email given, not saving quiz')
             else:
                 quiz_db = Quiz()
-                quiz_size = quiz_db.XX_LARGE
-                quiz_db.save_quiz(quiz_form.cleaned_data, quiz_size)
+                # quiz_size = quiz_db.XX_LARGE
+                quiz_db.save_quiz(quiz_form.cleaned_data, quiz_size_slug)
             quiz_json = QuizJson()
             score = quiz_json.score_quiz(quiz_form.cleaned_data)
             four_letter_type = "Type: " + score.as_four_letter_type()
-            # quiz_results_counts = "Counts: " + score.__str__()
-            # quiz_results_pcts = "Percentages: " + score.as_percentages()
-            # counts_and_pcts = "Score: " + score.as_counts_and_pcts()
             messages.add_message(request, messages.INFO, four_letter_type)
-            # messages.add_message(request, messages.INFO, quiz_results_counts)
-            # messages.add_message(request, messages.INFO, quiz_results_pcts)
-            # messages.add_message(request, messages.INFO, counts_and_pcts)
-            # score_list = score.as_list_of_counts_and_pcts()
-            # counts_and_pcts_html = '<ul>'
-            # for score_pair in score_list:
-            #     counts_and_pcts_html += '<li>'
-            #     for single_score in score_pair:
-            #         counts_and_pcts_html += single_score + '&nbsp;'
-            #     counts_and_pcts_html += '</li>'
-            # counts_and_pcts_html += '</ul>'
-            # messages.add_message(request, messages.INFO, counts_and_pcts_html)
             score_list = score.as_list_of_pcts_and_counts()
             pcts_and_counts_html = '<ul>'
             for score_pair in score_list:
@@ -149,7 +130,7 @@ def quiz(request, quiz_size=Quiz.DEFAULT_QUIZ_SIZE):
             messages.add_message(request, messages.INFO, pcts_and_counts_html)
             return HttpResponseRedirect('/quiz/results')
     else:
-        quiz_form = QuizForm(quiz_size=quiz_size)
+        quiz_form = QuizForm(quiz_size_slug=quiz_size_slug)
 
     context_quiz_selected = 'class="disabled"'    # see seeourminds.css
     template = loader.get_template('content/quiz.html')
