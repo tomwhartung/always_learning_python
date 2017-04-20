@@ -15,6 +15,20 @@ from django.utils import timezone
 
 DJANGO_DEBUG = os.environ.get('DJANGO_DEBUG')
 
+"""
+There are 88 questions, and the ones I have the most confidence in are
+nearer the beginning, with the "fun," experimental ones at the end.
+It is desireable that the quiz size be divisible by 4 but not 8,
+so that there is an odd number of questions for each pair of opposites.
+"""
+XX_SMALL = '2XS'       # 4 = 1*4 (for testing, keep off menu in production)
+EXTRA_SMALL = 'XS'     # 12 = 3 * 4
+SMALL = 'S'            # 28 = 7 * 4
+MEDIUM = 'M'           # 44 = 11 * 4
+LARGE = 'L'            # 60 = 15 * 4
+EXTRA_LARGE = 'XL'     # 76 = 19 * 4
+XX_LARGE = '2XL'       # 88 = 22 * 4
+
 
 class Quiz(models.Model):
 
@@ -22,19 +36,6 @@ class Quiz(models.Model):
     Define columns and save a person's quiz answers in the database.
     """
 
-    """
-    There are 88 questions, and the ones I have the most confidence in are
-    nearer the beginning, with the "fun," experimental ones at the end.
-    It is desireable that the quiz size be divisible by 4 but not 8,
-    so that there is an odd number of questions for each pair of opposites.
-    """
-    XX_SMALL = '2XS'       # 4 = 1*4 (for testing, keep off menu in production)
-    EXTRA_SMALL = 'XS'     # 12 = 3 * 4
-    SMALL = 'S'            # 28 = 7 * 4
-    MEDIUM = 'M'           # 44 = 11 * 4
-    LARGE = 'L'            # 60 = 15 * 4
-    EXTRA_LARGE = 'XL'     # 76 = 19 * 4
-    XX_LARGE = '2XL'       # 88 = 22 * 4
     QUIZ_SIZE_CHOICES = (
         (XX_SMALL, '2X Small'),
         (EXTRA_SMALL, 'Extra Small'),
@@ -45,6 +46,7 @@ class Quiz(models.Model):
         (XX_LARGE, '2X Large'),
     )
     DEFAULT_QUIZ_SIZE = MEDIUM
+    DEFAULT_QUIZ_SIZE_SLUG = 'medium'
     QUIZ_VERSION = '1.0'
 
     name = models.CharField(
@@ -68,7 +70,7 @@ class Quiz(models.Model):
     date_updated = models.DateTimeField(
             default=timezone.now)
 
-    def save_quiz(self, cleaned_data, quiz_size=DEFAULT_QUIZ_SIZE):
+    def save_quiz(self, cleaned_data, quiz_size_slug=DEFAULT_QUIZ_SIZE_SLUG):
         """
         If we have an email, save the quiz data, along with the answers
         There is no sense saving it if we do not have an email address!
@@ -84,7 +86,7 @@ class Quiz(models.Model):
             name = cleaned_data['name']
             self.name = name
             self.email = email
-            self.size = quiz_size
+            self.size = self.get_quiz_size_constant_for_slug(quiz_size_slug)
             self.save()
             print('Quiz.save_quiz - saved name/email:', name + '/' + email)
             for form_question_str in sorted(cleaned_data):
@@ -96,6 +98,19 @@ class Quiz(models.Model):
                 answer_db = Answer()
                 answer_db.save_answer(self.id, question_int, answer_int)
         return self
+
+    def get_quiz_size_constant_for_slug(self, quiz_size_slug):
+        quiz_size_constant_for_slug = {
+            "xx-small": XX_SMALL,
+            "extra-small": EXTRA_SMALL,
+            "small": SMALL,
+            "medium": MEDIUM,
+            "large": LARGE,
+            "extra-large": EXTRA_LARGE,
+            "xx-large": XX_LARGE,
+        }
+        return quiz_size_constant_for_slug[quiz_size_slug]
+
 
 
 class Answer(models.Model):
@@ -433,7 +448,6 @@ class QuizJson:
             answer_int = int(answer_str)
             answer_weight_str = self.get_answer_weight(question_int, answer_str)
             answer_weight_int = int(answer_weight_str)
-
             if DJANGO_DEBUG:
                 answer_text = self.get_answer_text(question_int, answer_str)
                 question_text = self.get_question_text(question_int)
@@ -442,7 +456,6 @@ class QuizJson:
                     str(answer_int) + ' (' + answer_weight_str + ')',
                     question_text, '/',
                     answer_text)
-
             score.tally_answer(answer_123_type, answer_int, answer_weight_int)
 
         return score
