@@ -43,8 +43,10 @@ class QuizForm(forms.Form):
             question_no_str = str(question_no)
             question_no_2_chars = question_no_str.zfill(2)
             question_key = 'question_' + question_no_2_chars
+            form_question_no_str = str(question_no + 1)
+            question_text = quiz_json.get_question_text(question_no)
+            label = form_question_no_str + '. ' + question_text
             radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
-            label = quiz_json.get_label(question_no)
             choices = quiz_json.get_choices(question_no)
             self.fields[question_key] = forms.ChoiceField(
                 widget=radio_widget, label=label, choices=choices
