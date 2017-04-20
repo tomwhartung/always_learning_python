@@ -91,10 +91,10 @@ class Quiz(models.Model):
                 if not form_question_str.startswith("question_"):
                     continue
                 question_int = int(form_question_str.replace("question_", ""))
-                answer_selected_str = cleaned_data[form_question_str]
-                answer_selected_int = int(answer_selected_str)
+                answer_str = cleaned_data[form_question_str]
+                answer_int = int(answer_str)
                 answer_db = Answer()
-                answer_db.save_answer(self.id, question_int, answer_selected_int)
+                answer_db.save_answer(self.id, question_int, answer_int)
         return self
 
 
@@ -145,17 +145,17 @@ class Score:
         self.j_pct = None
         self.p_pct = None
 
-    def tally_answer(self, answer_123_type, answer_selected_int, answer_weight_int):
+    def tally_answer(self, answer_123_type, answer_int, answer_weight_int):
 
         """ Add the answer_weight to the appropriate score data member """
 
-        if answer_selected_int <= 3:
+        if answer_int <= 3:
             type_for_answer = answer_123_type
         else:
             type_for_answer = self.opposite_type[answer_123_type]
 
         # print('Score.tally_answer - answer_123_type:', answer_123_type)
-        # print('Score.tally_answer - answer_selected_int:', answer_selected_int)
+        # print('Score.tally_answer - answer_int:', answer_int)
         # print('Score.tally_answer - answer_weight_int:', answer_weight_int)
         # print('Score.tally_answer - type_for_answer:', type_for_answer)
 
@@ -461,21 +461,21 @@ class QuizJson:
         answer_123_type = quiz_question['answer_123_type']
         return answer_123_type
 
-    def get_answer_text(self, question_int, answer_selected_str):
+    def get_answer_text(self, question_int, answer_str):
 
         """ Get and return the answer_X_text for the selected answer 'X' """
 
         quiz_question = self.get_quiz_question(question_int)
-        answer_text_key = "answer_" + answer_selected_str + "_text"
+        answer_text_key = "answer_" + answer_str + "_text"
         answer_text = quiz_question[answer_text_key]
         return answer_text
 
-    def get_answer_weight(self, question_int, answer_selected_str):
+    def get_answer_weight(self, question_int, answer_str):
 
         """ Get and return the answer_X_weight for the selected answer 'X' """
 
         quiz_question = self.get_quiz_question(question_int)
-        answer_weight_key = "answer_" + answer_selected_str + "_weight"
+        answer_weight_key = "answer_" + answer_str + "_weight"
         answer_weight = quiz_question[answer_weight_key]
         return answer_weight
 
@@ -499,26 +499,26 @@ class QuizJson:
                 continue
             question_int = int(form_question_str.replace("question_", ""))
             answer_123_type = self.get_answer_123_type(question_int)
-            answer_selected_str = cleaned_data[form_question_str]
-            answer_selected_int = int(answer_selected_str)
-            answer_text = self.get_answer_text(question_int, answer_selected_str)
-            answer_weight_str = self.get_answer_weight(question_int, answer_selected_str)
+            answer_str = cleaned_data[form_question_str]
+            answer_int = int(answer_str)
+            answer_weight_str = self.get_answer_weight(question_int, answer_str)
             answer_weight_int = int(answer_weight_str)
 
             # print('QuizJson.score_quiz - form_question_str:',  str(form_question_str))
             # print('QuizJson.score_quiz - question_int:', str(question_int))
             # print('QuizJson.score_quiz - answer_123_type:',  answer_123_type)
-            # print('QuizJson.score_quiz - answer_selected_int:', answer_selected_int)
-            # print('QuizJson.score_quiz - answer_text:',  answer_text)
+            # print('QuizJson.score_quiz - answer_int:', answer_int)
             # print('QuizJson.score_quiz - answer_weight_int:',  answer_weight_int)
             # print('QuizJson.score_quiz - score:',  score)
 
             if DJANGO_DEBUG:
-                print('QuizJson.score_quiz -',
-                        'question: ' + str(question_int) + ',',
-                        'type: ' + answer_123_type + ', ',
-                        'answer: ' + str(answer_selected_int))
+                answer_text = self.get_answer_text(question_int, answer_str)
+                print('QuizJson.score_quiz - "' + answer_text + '"',
+                    'question (123_type):',
+                    str(question_int) + ' (' + answer_123_type + '), ',
+                    'answer (weight):',
+                    str(answer_int) + ' (' + answer_weight_str + ') ')
 
-            score.tally_answer(answer_123_type, answer_selected_int, answer_weight_int)
+            score.tally_answer(answer_123_type, answer_int, answer_weight_int)
 
         return score
