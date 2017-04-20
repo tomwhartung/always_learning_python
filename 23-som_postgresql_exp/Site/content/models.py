@@ -393,18 +393,6 @@ class QuizJson:
         # print('QuizJson.get_quiz_question - quiz_question:', quiz_question)
         return quiz_question
 
-    def get_label(self, list_question_int):
-
-        """ Get and return the question_text ("label") for the question """
-        """ list_question_int is 0-based, we want the labels to start at 1 """
-
-        quiz_question = self.get_quiz_question(list_question_int)
-        form_question_int = list_question_int + 1
-        label = str(form_question_int) + '. ' + quiz_question['question_text']
-        # print('QuizJson.get_label - list_question_int:', list_question_int)
-        # print('QuizJson.get_label - label:', label)
-        return label
-
     def get_question_text(self, question_int):
 
         """ Get and return the question_text for the question """
