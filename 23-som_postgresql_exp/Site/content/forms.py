@@ -9,6 +9,7 @@ Reference:
 """
 
 from django import forms
+from .models import Quiz
 from .models import QuizJson
 
 
@@ -16,15 +17,17 @@ class QuizForm(forms.Form):
 
     """ The Quiz Form is a list of questions and multiple-choice answers """
 
-    def __init__(self, quiz_size="large", *args, **kwargs):
+    def __init__(self,
+            quiz_size_slug=Quiz.DEFAULT_QUIZ_SIZE_SLUG,
+            *args, **kwargs):
         """
-        Create a form corresponding to the specified quiz_size
+        Create a form corresponding to the specified quiz_size_slug
         It took awhile to figure out how to create a variable-length form!
         Here is the key reference:
             http://stackoverflow.com/questions/411761/variable-number-of-inputs-with-django-forms-possible
         """
         super(QuizForm, self).__init__(*args, **kwargs)
-        quiz_size_counts = {
+        question_count_for_slug = {
             "xx-small": 4,
             "extra-small": 12,
             "small": 28,
@@ -34,7 +37,7 @@ class QuizForm(forms.Form):
             "xx-large": 88,
         }
         quiz_json = QuizJson()
-        question_count = quiz_size_counts[quiz_size]
+        question_count = question_count_for_slug[quiz_size_slug]
         self.question_count = question_count
 
         for question_no in range(0, question_count):
