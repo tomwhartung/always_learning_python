@@ -1,6 +1,6 @@
 """ Contains the models for our app.
 
-Purpose: just because we aren't using a db doesn't mean we can't have models
+Purpose: contains the models for data in json format and in database
 Author: Tom W. Hartung
 Date: Winter, 2017.
 Copyright: (c) 2017 Tom W. Hartung, Groja.com, and JooMoo Websites LLC.
@@ -177,9 +177,9 @@ class Score:
             self.p_score += answer_weight_int
 
         if DJANGO_DEBUG:
-            print('Score.tally_answer -',
-                    'adding', answer_weight_int, 'to', type_for_answer)
-            print('Score.tally_answer - self.__str__():',  self.__str__())
+            print('Score.tally_answer - added',
+                str(answer_weight_int) + ' to '+ type_for_answer + ': ',
+                self.__str__())
 
     def as_four_letter_type(self):
         """ Return a string containing the four letter type """
@@ -405,6 +405,14 @@ class QuizJson:
         # print('QuizJson.get_label - label:', label)
         return label
 
+    def get_question_text(self, question_int):
+
+        """ Get and return the question_text for the question """
+
+        quiz_question = self.get_quiz_question(question_int)
+        question_text = quiz_question['question_text']
+        return question_text
+
     def get_choices(self, question_int):
 
         """ Return the answer choices for the given question """
@@ -504,20 +512,14 @@ class QuizJson:
             answer_weight_str = self.get_answer_weight(question_int, answer_str)
             answer_weight_int = int(answer_weight_str)
 
-            # print('QuizJson.score_quiz - form_question_str:',  str(form_question_str))
-            # print('QuizJson.score_quiz - question_int:', str(question_int))
-            # print('QuizJson.score_quiz - answer_123_type:',  answer_123_type)
-            # print('QuizJson.score_quiz - answer_int:', answer_int)
-            # print('QuizJson.score_quiz - answer_weight_int:',  answer_weight_int)
-            # print('QuizJson.score_quiz - score:',  score)
-
             if DJANGO_DEBUG:
                 answer_text = self.get_answer_text(question_int, answer_str)
-                print('QuizJson.score_quiz - "' + answer_text + '"',
-                    'question (123_type):',
-                    str(question_int) + ' (' + answer_123_type + '), ',
-                    'answer (weight):',
-                    str(answer_int) + ' (' + answer_weight_str + ') ')
+                question_text = self.get_question_text(question_int)
+                print('QuizJson.score_quiz -',
+                    str(question_int) + ' (' + answer_123_type + ')', '/',
+                    str(answer_int) + ' (' + answer_weight_str + ')',
+                    question_text, '/',
+                    answer_text)
 
             score.tally_answer(answer_123_type, answer_int, answer_weight_int)
 
