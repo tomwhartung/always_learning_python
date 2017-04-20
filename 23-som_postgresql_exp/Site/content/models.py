@@ -86,7 +86,7 @@ class Quiz(models.Model):
             self.email = email
             self.size = quiz_size
             self.save()
-            print('save_quiz - saved name/email:', name + '/' + email)
+            print('Quiz.save_quiz - saved name/email:', name + '/' + email)
             for form_question_str in sorted(cleaned_data):
                 if not form_question_str.startswith("question_"):
                     continue
@@ -94,7 +94,7 @@ class Quiz(models.Model):
                 answer_selected_str = cleaned_data[form_question_str]
                 answer_selected_int = int(answer_selected_str)
                 answer_db = Answer()
-                answer_db.save_answers(self.id, question_int, answer_selected_int)
+                answer_db.save_answer(self.id, question_int, answer_selected_int)
         return self
 
 
@@ -106,10 +106,10 @@ class Answer(models.Model):
     question_id = models.IntegerField(default=0)
     answer = models.IntegerField(default=0)
 
-    def save_answers(self, quiz_id, question_id, answer):
+    def save_answer(self, quiz_id, question_id, answer):
         """ Save the quiz answers """
-        print('save_answers - question_id:', question_id)
-        print('save_answers - answer:', answer)
+        # print('Answer - save_answer - question_id:', question_id)
+        # print('Answer - save_answer - answer:', answer)
         self.quiz_id = quiz_id
         self.question_id = question_id
         self.answer = answer
@@ -505,12 +505,12 @@ class QuizJson:
             answer_weight_str = self.get_answer_weight(question_int, answer_selected_str)
             answer_weight_int = int(answer_weight_str)
 
-            print('QuizJson.score_quiz - form_question_str:',  str(form_question_str))
-            print('QuizJson.score_quiz - question_int:', str(question_int))
-            print('QuizJson.score_quiz - answer_123_type:',  answer_123_type)
-            print('QuizJson.score_quiz - answer_selected_int:', answer_selected_int)
-            print('QuizJson.score_quiz - answer_text:',  answer_text)
-            print('QuizJson.score_quiz - answer_weight_int:',  answer_weight_int)
+            # print('QuizJson.score_quiz - form_question_str:',  str(form_question_str))
+            # print('QuizJson.score_quiz - question_int:', str(question_int))
+            # print('QuizJson.score_quiz - answer_123_type:',  answer_123_type)
+            # print('QuizJson.score_quiz - answer_selected_int:', answer_selected_int)
+            # print('QuizJson.score_quiz - answer_text:',  answer_text)
+            # print('QuizJson.score_quiz - answer_weight_int:',  answer_weight_int)
             # print('QuizJson.score_quiz - score:',  score)
 
             if DJANGO_DEBUG:
