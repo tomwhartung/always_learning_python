@@ -37,14 +37,12 @@ class QuizForm(forms.Form):
         quiz_json = QuizJson()
         question_count = quiz_size_counts[quiz_size]
         self.question_count = question_count
-        print('QuizForm.__init__ - self.question_count:', self.question_count)
+        # print('QuizForm.__init__ - self.question_count:', self.question_count)
 
         for question_no in range(0, question_count):
             question_no_str = str(question_no)
             question_no_2_chars = question_no_str.zfill(2)
             question_key = 'question_' + question_no_2_chars
-            print('question_no:', question_no)
-            print('question_key:', question_key)
             radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
             label = quiz_json.get_label(question_no)
             choices = quiz_json.get_choices(question_no)
@@ -54,6 +52,14 @@ class QuizForm(forms.Form):
 
     name = forms.CharField(max_length=50, required=False)
     email = forms.EmailField(required=False)
+
+
+#
+# *******************************
+# *** CRUFTY CODE STARTS HERE ***
+# *******************************
+#
+
 
 def brute_force_questions():
     quiz_json = QuizJson()
@@ -513,74 +519,3 @@ def brute_force_questions():
     label = quiz_json.get_label(87)
     choices = quiz_json.get_choices(87)
     question_88 = forms.ChoiceField( widget=radio_widget, label=label, choices=choices )
-
-
-#
-# *******************************
-# *** CRUFTY CODE STARTS HERE ***
-# *******************************
-#
-
-
-def try_using_a_loop():
-
-    """ CRUFT ALERT: Saving this code for possible future reference """
-    """ Tried using a loop to populate the questions, but it didn't work  """
-    """ We always get only one question (the last one) """
-    """ Saving this code in case we want to try again ... """
-
-    radio_widgets = []
-    question_inputs = []
-
-    for question_no in range(0, 6):
-        this_radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
-        radio_widgets.insert(question_no, this_radio_widget)
-        label = quiz_json.get_label(question_no)
-        choices = quiz_json.get_choices(question_no)
-        this_question_input = forms.ChoiceField(
-                widget=radio_widgets[question_no], label=label, choices=choices
-        )
-        question_inputs.insert(question_no, this_question_input)
-        print('question_no:', question_no)
-        print('len(radio_widgets):', len(radio_widgets))
-        print('len(question_inputs):', len(question_inputs))
-
-
-def try_using_a_loop_in_init(self):
-
-    """ CRUFT ALERT: Saving this code for possible future reference """
-    """ Tried using a loop to populate the questions, but it didn't work  """
-
-    self.quiz_json = QuizJson()
-    self.question_inputs = [0] * 88
-
-    for question_no in range(0, 6):
-        radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
-        label = self.quiz_json.get_label(question_no)
-        choices = self.quiz_json.get_choices(question_no)
-        self.question_inputs[question_no] = forms.ChoiceField(
-                widget=radio_widget, label=label, choices=choices
-        )
-        print('question_no:', question_no)
-        # print('len(radio_widgets):', len(radio_widgets))
-        print('len(self.question_inputs):', len(self.question_inputs))
-
-
-def try_using_a_loop_closest_so_far():
-
-    """ CRUFT ALERT: Saving this code for possible future reference """
-    """ Tried using a loop to populate the questions, but it didn't work  """
-    """ This one runs without error but does not show any input fields """
-
-    question_inputs = [0] * 88
-
-    for question_no in range(0, 6):
-        radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
-        label = quiz_json.get_label(question_no)
-        choices = quiz_json.get_choices(question_no)
-        question_inputs[question_no] = forms.ChoiceField(
-                widget=radio_widget, label=label, choices=choices
-        )
-        print('question_no:', question_no)
-        # print('len(radio_widgets):', len(radio_widgets))
-        print('len(question_inputs):', len(question_inputs))
