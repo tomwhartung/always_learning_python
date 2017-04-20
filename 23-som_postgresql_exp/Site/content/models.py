@@ -154,11 +154,6 @@ class Score:
         else:
             type_for_answer = self.opposite_type[answer_123_type]
 
-        # print('Score.tally_answer - answer_123_type:', answer_123_type)
-        # print('Score.tally_answer - answer_int:', answer_int)
-        # print('Score.tally_answer - answer_weight_int:', answer_weight_int)
-        # print('Score.tally_answer - type_for_answer:', type_for_answer)
-
         if type_for_answer is "E":
             self.e_score += answer_weight_int
         elif type_for_answer is "I":
@@ -267,49 +262,6 @@ class Score:
         ]
         return score_list
 
-    def as_list_of_counts_and_pcts(self):
-        """ Return a list containing both counts and percentages """
-        if self.e_pct is None:
-            self.calculate_percentages()
-
-        score_list = [
-            ['E: ' + str(self.e_score) + '(' + str(self.e_pct) + '%)',
-             'I: ' + str(self.i_score) + '(' + str(self.i_pct) + '%)'],
-            ['N: ' + str(self.n_score) + '(' + str(self.n_pct) + '%)',
-             'S: ' + str(self.s_score) + '(' + str(self.s_pct) + '%)'],
-            ['F: ' + str(self.f_score) + '(' + str(self.f_pct) + '%)',
-             'T: ' + str(self.t_score) + '(' + str(self.t_pct) + '%)'],
-            ['J: ' + str(self.j_score) + '(' + str(self.j_pct) + '%)',
-             'P: ' + str(self.p_score) + '(' + str(self.p_pct) + '%)']
-        ]
-        return score_list
-
-    def as_percentages(self):
-        """ Return a string containing the percentages """
-        if self.e_pct is None:
-            self.calculate_percentages()
-
-        score_str  = 'E/I: ' + str(self.e_pct) + '%/' + str(self.i_pct) + '%; '
-        score_str += 'N/S: ' + str(self.n_pct) + '%/' + str(self.s_pct) + '%; '
-        score_str += 'F/T: ' + str(self.f_pct) + '%/' + str(self.t_pct) + '%; '
-        score_str += 'J/P: ' + str(self.j_pct) + '%/' + str(self.p_pct) + '%'
-        return score_str
-
-    def as_counts_and_pcts(self):
-        """ Return a string containing both counts and percentages """
-        if self.e_pct is None:
-            self.calculate_percentages()
-
-        score_str  = 'E: ' + str(self.e_score) + '(' + str(self.e_pct) + '%)/'
-        score_str += 'I: ' + str(self.i_score) + '(' + str(self.i_pct) + '%) - '
-        score_str += 'N: ' + str(self.n_score) + '(' + str(self.n_pct) + '%)/'
-        score_str += 'S: ' + str(self.s_score) + '(' + str(self.s_pct) + '%) - '
-        score_str += 'F: ' + str(self.f_score) + '(' + str(self.f_pct) + '%)/'
-        score_str += 'T: ' + str(self.t_score) + '(' + str(self.t_pct) + '%) - '
-        score_str += 'J: ' + str(self.j_score) + '(' + str(self.j_pct) + '%)/'
-        score_str += 'P: ' + str(self.p_score) + '(' + str(self.p_pct) + '%)'
-        return score_str
-
     def to_kv_pairs(self):
         """ Returns the current score as a list of key-value pairs """
         score = {
@@ -338,24 +290,6 @@ class Score:
         score_str += 'F/T: ' + str(self.f_score) + '/' + str(self.t_score) + '; '
         score_str += 'J/P: ' + str(self.j_score) + '/' + str(self.p_score)
         return score_str
-
-    #
-    # Crufty function(s) we wrote once but no longer use but may be useful
-    #
-
-    def to_list_of_lists(self):
-        """ Returns the current score as a list of lists """
-        score = [
-                ["E", self.e_score],
-                ["I", self.i_score],
-                ["N", self.n_score],
-                ["S", self.s_score],
-                ["F", self.f_score],
-                ["T", self.t_score],
-                ["J", self.j_score],
-                ["P", self.p_score],
-        ]
-        return score
 
 
 class QuizJson:
