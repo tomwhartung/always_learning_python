@@ -90,22 +90,9 @@ def quiz(request, quiz_size_slug=Quiz.DEFAULT_QUIZ_SIZE_SLUG):
 
     """ Load and render the Quiz page template """
 
-    # These are the values we will get from the route, if this idea works
-    quiz_size_slug = 'xx-small'
-    # quiz_size_slug = 'extra-small'
-    # quiz_size_slug = 'small'
-    # quiz_size_slug = 'medium'
-    # quiz_size_slug = 'large'
-    # quiz_size_slug = 'extra-large'
-    # quiz_size_slug = 'xx-large'
     if request.method == 'POST':
         quiz_form = QuizForm(quiz_size_slug=quiz_size_slug, data=request.POST)
         if quiz_form.is_valid():
-            # name = quiz_form.cleaned_data['name']
-            # print('form is valid, got name:', name)
-            # print('form is valid, got email:', email)
-            # redirect to a new URL:
-            # print('views.quiz() - quiz_form.cleaned_data:', quiz_form.cleaned_data)
             print('views.quiz() - len(quiz_form.cleaned_data):',
                     len(quiz_form.cleaned_data))
             email = quiz_form.cleaned_data['email']
@@ -113,7 +100,6 @@ def quiz(request, quiz_size_slug=Quiz.DEFAULT_QUIZ_SIZE_SLUG):
                 print( 'views.quiz: No email given, not saving quiz')
             else:
                 quiz_db = Quiz()
-                # quiz_size = quiz_db.XX_LARGE
                 quiz_db.save_quiz(quiz_form.cleaned_data, quiz_size_slug)
             quiz_json = QuizJson()
             score = quiz_json.score_quiz(quiz_form.cleaned_data)
