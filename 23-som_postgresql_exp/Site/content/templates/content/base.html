@@ -63,10 +63,24 @@
         <span class="tagline">'Visualizing the Invisible'&nbsp;&trade;</span>
       </div>
       <nav>
-        <ul>
-          <li {{ context_home_selected }}><a href="/home">Home</a></li>
-          <li {{ context_galleries_selected }}><a href="/galleries">Galleries</a></li>
-          <li {{ context_quiz_selected }}><a href="/quiz">Quiz</a></li>
+        <ul class="nav nav-pills">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/galleries">Galleries</a></li>
+          <li><a href="/quiz">Quiz</a>
+          <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+               role="button" aria-haspopup="true" aria-expanded="false">
+              Quizzes<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li ><a href="/quiz/xx-small">XX Small</a></li>
+              <li ><a href="/quiz/extra-small">Extra Small</a></li>
+              <li ><a href="/quiz/small">Small</a></li>
+              <li ><a href="/quiz/medium">Small</a></li>
+              <li ><a href="/quiz/large">Large</a></li>
+              <li ><a href="/quiz/extra-large">Extra Large</a></li>
+              <li ><a href="/quiz/xx-large">XX Large</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
     </header>
