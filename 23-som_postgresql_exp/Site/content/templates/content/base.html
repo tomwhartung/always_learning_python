@@ -63,22 +63,45 @@
         <span class="tagline">'Visualizing the Invisible'&nbsp;&trade;</span>
       </div>
       <nav>
-        <ul class="nav nav-pills">
-          <li><a href="/home">Home</a></li>
-          <li><a href="/galleries">Galleries</a></li>
-          <li><a href="/quiz">Quiz</a>
+        <ul>
+          <li role="presentation"><a href="/home">Home</a></li>
+          <li role="presentation"><a href="/galleries">Galleries</a></li>
+          <li role="presentation"><a href="/quiz">Quiz1</a>
+        </ul>
+        <ul class="nav nav-pills nav-stacked">
+          <li role="presentation"><a href="/home">Home</a></li>
+          <li role="presentation"><a href="/galleries">Galleries</a></li>
           <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            <a class="dropdown-toggle" data-toggle="dropdown" href="/quiz"
                role="button" aria-haspopup="true" aria-expanded="false">
-              Quizzes<span class="caret"></span></a>
+              Quiz2<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li ><a href="/quiz/xx-small">XX Small</a></li>
-              <li ><a href="/quiz/extra-small">Extra Small</a></li>
-              <li ><a href="/quiz/small">Small</a></li>
-              <li ><a href="/quiz/medium">Small</a></li>
-              <li ><a href="/quiz/large">Large</a></li>
-              <li ><a href="/quiz/extra-large">Extra Large</a></li>
-              <li ><a href="/quiz/xx-large">XX Large</a></li>
+              <li role="presentation"><a href="/quiz/xx-small">XX Small</a></li>
+              <li role="presentation"><a href="/quiz/extra-small">Extra Small</a></li>
+              <li role="presentation"><a href="/quiz/small">Small</a></li>
+              <li role="presentation"><a href="/quiz/medium">Medium</a></li>
+              <li role="presentation"><a href="/quiz/large">Large</a></li>
+              <li role="presentation"><a href="/quiz/extra-large">Extra Large</a></li>
+              <li role="presentation"><a href="/quiz/xx-large">XX Large</a></li>
+            </ul>
+          </li>
+        </ul>
+		  <ul>
+          <li role="presentation"><a href="/home">Home</a></li>
+          <li role="presentation"><a href="/galleries">Galleries</a></li>
+          <li>
+            <div class="dropdown">
+               <button id="dLabel" type="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+              Quiz3<span class="caret"></span></button>
+            <ul class="dropdown-menu" aria-labelledby="dLabel">
+              <li role="presentation"><a href="/quiz/xx-small">XX Small</a></li>
+              <li role="presentation"><a href="/quiz/extra-small">Extra Small</a></li>
+              <li role="presentation"><a href="/quiz/small">Small</a></li>
+              <li role="presentation"><a href="/quiz/medium">Medium</a></li>
+              <li role="presentation"><a href="/quiz/large">Large</a></li>
+              <li role="presentation"><a href="/quiz/extra-large">Extra Large</a></li>
+              <li role="presentation"><a href="/quiz/xx-large">XX Large</a></li>
             </ul>
           </li>
         </ul>
