@@ -27,17 +27,8 @@ class QuizForm(forms.Form):
             http://stackoverflow.com/questions/411761/variable-number-of-inputs-with-django-forms-possible
         """
         super(QuizForm, self).__init__(*args, **kwargs)
-        question_count_for_slug = {
-            "xx-small": 4,
-            "extra-small": 12,
-            "small": 28,
-            "medium": 44,
-            "large": 60,
-            "extra-large": 76,
-            "xx-large": 88,
-        }
         quiz_json = QuizJson()
-        question_count = question_count_for_slug[quiz_size_slug]
+        question_count = Quiz.get_question_count_for_slug(quiz_size_slug)
         self.question_count = question_count
 
         for question_no in range(0, question_count):
