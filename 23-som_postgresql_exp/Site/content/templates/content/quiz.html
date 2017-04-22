@@ -3,16 +3,19 @@
 {% block top_content_left %}
   <article>
     <header>
-      <h1>The SeeOurMinds.com Quiz</h1>
-      <p>
-         The <span class="air-quotes">{{ quiz_info.size_text }}</span>
+      <h1>The SeeOurMinds.com Quiz ({{ quiz_info.size_abbreviation }})</h1>
+      <ul>
+        <li>
+          The <span class="air-quotes">{{ quiz_info.size_text }}</span>
            version contains {{ quiz_info.question_count }} questions.
-         There are no right-or-wrong answers, just answer each one to the
-           best of your ability.</p>
-      <p>
+        </li>
+        <li>
+          There are no right-or-wrong answers, just answer each one to the
+           best of your ability.</li>
+        <li>
         This is an experimental quiz,
-         so please do not take the results too seriously.&sup1;
-      </p>
+         so please do not take the results too seriously.&sup1;</li>
+      </ul>
     </header>
     <hr />
     <p>
@@ -34,22 +37,25 @@
       <input type="submit" value="Submit" />
     </form>
     <hr />
-    <h1>Disclaimer</h1>
+    <h1>Disclaimer, Fun, Etc.</h1>
     <p>
       &sup1; We will come up with some sort of official disclaimer some day,
       for now, please just take things with a grain of salt.</p>
     <p>
       To be perfectly honest, the main reason this quiz is online at this time
         is so I can get some feedback on it.</p>
+    <h3>Disclaimer</h3>
     <p>
-      Most importantly, this quiz is a work in progress, and at this time
+      <span class="air-quotes">Most importantly, this quiz is a work in progress, and at this time
         I am not by any means ready to guarantee that it
-        will give you an accurate result.</p>
+        will give you an accurate result!</span></p>
+    <h3>
+      I've had a lot of fun writing this quiz!</h3>
     <p>
-      I've had a lot of fun writing this quiz!
       It's been a real challenge to come up with the questions
        without borrowing too heavily from Briggs-Meyers and Keirsey &mdash; and
-       I love a good challenge!
+       I love a good challenge!</p>
+    <p>
       And I've had even more fun with writing the code to support having a
        different type of quiz.
       Note that it allows for a varying number of options
@@ -58,6 +64,7 @@
        in longer versions.</p>
     <p>
       But it definitely needs more work!</p>
+   <h3>If accuracy is important to you...</h3>
     <p>
       If accuracy is important to you, please take other quizzes and
         get a variety of opinions.
