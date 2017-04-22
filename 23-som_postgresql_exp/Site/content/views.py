@@ -121,6 +121,7 @@ def quiz(request, quiz_size_slug=Quiz.DEFAULT_QUIZ_SIZE_SLUG):
     # context_quiz_selected = 'class="disabled"'  # see seeourminds.css
     # context_quiz_selected = 'class="active"'      # see http://getbootstrap.com/components/#navbar
     quiz_info = {}
+    quiz_info["size_abbreviation"] = Quiz.get_quiz_size_constant_for_slug(quiz_size_slug)
     quiz_info["size_text"] = quiz_size_slug
     quiz_info["question_count"] = Quiz.get_question_count_for_slug(quiz_size_slug)
     template = loader.get_template('content/quiz.html')
