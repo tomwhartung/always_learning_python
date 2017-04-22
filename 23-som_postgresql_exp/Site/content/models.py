@@ -100,6 +100,7 @@ class Quiz(models.Model):
         return self
 
     def get_quiz_size_constant_for_slug(self, quiz_size_slug):
+        """ Returns the corresponding constant for passed in quiz_size_slug """
         quiz_size_constant_for_slug = {
             "xx-small": XX_SMALL,
             "extra-small": EXTRA_SMALL,
@@ -110,6 +111,20 @@ class Quiz(models.Model):
             "xx-large": XX_LARGE,
         }
         return quiz_size_constant_for_slug[quiz_size_slug]
+
+    @classmethod
+    def get_question_count_for_slug(self, quiz_size_slug):
+        """ Returns the number of questions for passed in quiz_size_slug """
+        question_count_for_slug = {
+            "xx-small": 4,
+            "extra-small": 12,
+            "small": 28,
+            "medium": 44,
+            "large": 60,
+            "extra-large": 76,
+            "xx-large": 88,
+        }
+        return question_count_for_slug[quiz_size_slug]
 
 
 
