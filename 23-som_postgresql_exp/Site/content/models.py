@@ -86,7 +86,7 @@ class Quiz(models.Model):
             name = cleaned_data['name']
             self.name = name
             self.email = email
-            self.size = self.get_quiz_size_constant_for_slug(quiz_size_slug)
+            self.size = self.get_quiz_size_abbreviation_for_slug(quiz_size_slug)
             self.save()
             print('Quiz.save_quiz - saved name/email:', name + '/' + email)
             for form_question_str in sorted(cleaned_data):
@@ -99,7 +99,8 @@ class Quiz(models.Model):
                 answer_db.save_answer(self.id, question_int, answer_int)
         return self
 
-    def get_quiz_size_constant_for_slug(self, quiz_size_slug):
+    @classmethod
+    def get_quiz_size_abbreviation_for_slug(cls, quiz_size_slug):
         """ Returns the corresponding constant for passed in quiz_size_slug """
         quiz_size_constant_for_slug = {
             "xx-small": XX_SMALL,
@@ -113,7 +114,7 @@ class Quiz(models.Model):
         return quiz_size_constant_for_slug[quiz_size_slug]
 
     @classmethod
-    def get_question_count_for_slug(self, quiz_size_slug):
+    def get_question_count_for_slug(cls, quiz_size_slug):
         """ Returns the number of questions for passed in quiz_size_slug """
         question_count_for_slug = {
             "xx-small": 4,
