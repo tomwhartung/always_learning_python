@@ -86,7 +86,7 @@ def gallery(request, gallery_name='all'):
     return HttpResponse(template.render(context, request))
 
 
-def quiz(request, quiz_size_slug=Quiz.DEFAULT_QUIZ_SIZE_SLUG):
+def quiz(request, quiz_size_slug=None):
 
     """ Load and render the Quiz page template """
 
@@ -115,19 +115,23 @@ def quiz(request, quiz_size_slug=Quiz.DEFAULT_QUIZ_SIZE_SLUG):
             pcts_and_counts_html += '</ul>'
             messages.add_message(request, messages.INFO, pcts_and_counts_html)
             return HttpResponseRedirect('/quiz/results')
+
+    quiz_info = {}
+    quiz_info["quiz_size_slug"] = quiz_size_slug
+    quiz_info["size_text"] = quiz_size_slug   # for now...
+
+    if quiz_size_slug == None:
+        quiz_form = None
+        quiz_info["size_abbreviation"] = ''
+        quiz_info["question_count"] = 0
     else:
         quiz_form = QuizForm(quiz_size_slug=quiz_size_slug)
+        quiz_info["size_abbreviation"] = Quiz.get_quiz_size_abbreviation_for_slug(quiz_size_slug)
+        quiz_info["question_count"] = Quiz.get_question_count_for_slug(quiz_size_slug)
 
-    # context_quiz_selected = 'class="disabled"'  # see seeourminds.css
-    # context_quiz_selected = 'class="active"'      # see http://getbootstrap.com/components/#navbar
-    quiz_info = {}
-    quiz_info["size_abbreviation"] = Quiz.get_quiz_size_abbreviation_for_slug(quiz_size_slug)
-    quiz_info["size_text"] = quiz_size_slug
-    quiz_info["question_count"] = Quiz.get_question_count_for_slug(quiz_size_slug)
     template = loader.get_template('content/quiz.html')
     context = {
         'adsense_ads': adsense_ads,
-        # 'context_quiz_selected': context_quiz_selected,
         'quiz_info': quiz_info,
         'quiz_form': quiz_form
     }
