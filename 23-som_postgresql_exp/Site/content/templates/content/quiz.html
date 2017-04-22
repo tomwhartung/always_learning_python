@@ -3,41 +3,73 @@
 {% block top_content_left %}
   <article>
     <header>
-      <h1>The SeeOurMinds.com Quiz ({{ quiz_info.size_abbreviation }})</h1>
-      <ul>
-        <li>
-          The <span class="air-quotes">{{ quiz_info.size_text }}</span>
-           version contains {{ quiz_info.question_count }} questions.
-        </li>
-        <li>
-          There are no right-or-wrong answers, just answer each one to the
-           best of your ability.</li>
-        <li>
-          This is an experimental quiz, so please
-           <a href="#disclaimer">
-              <span class="air-quotes">do not take the results too seriously.</span>
-           </a></li>
-      </ul>
+      <h1>The SeeOurMinds.com Quiz
+        {% if quiz_info.size_abbreviation %}
+          ({{ quiz_info.size_abbreviation }})
+        {% endif %}
+      </h1>
+      {% if quiz_info.quiz_size_slug == None %}
+        <p>
+          Pick one of the following versions of the quiz:
+        </p>
+        <ul>
+          <li>
+            xxxx
+          </li>
+          <li>
+            yyyyy
+          </li>
+        </ul>
+      {% else %}
+        <ul>
+          <li>
+            The <span class="air-quotes">{{ quiz_info.size_text }}</span>
+             version contains {{ quiz_info.question_count }} questions.
+          </li>
+          <li>
+            There are no right-or-wrong answers, just answer each one to the
+             best of your ability.</li>
+          <li>
+            This is an experimental quiz, so please
+             <a href="#disclaimer">
+                <span class="air-quotes">do not take the results too seriously.</span>
+             </a></li>
+        </ul>
+      {% endif %}
     </header>
     <hr />
-    <p>
-      Enter your name so that we can get to know you better.</p>
-    <p>
-      Enter your email address to save new or retrieve existing answers.
-      (This will NOT subscribe you to our newsletter.)</p>
-    <form action="" method="POST">
-      {% csrf_token %}
-      {% for field in quiz_form %}
-        <div class="fieldWrapper">
-          {{ field.errors }}
-          {{ field.label_tag }} {{ field }}
-          {% if field.help_text %}
-          <p class="help">{{ field.help_text|safe }}</p>
-          {% endif %}
-        </div>
-      {% endfor %}
-      <input type="submit" value="Submit" />
-    </form>
+    {% if quiz_form == None %}
+	   <h1>Sharing Your Email Address</h1>
+      <p>
+        Sharing your email address on the quiz page
+          enables you to save and retrieve your answers.</p>
+      <p>
+        Stay tuned &mdash; and return in a week or two &mdash; we are actively
+          developing this functionality!</p>
+      <p>
+        Entering your email address on the quiz page
+          will NOT sign you up for our newsletter!
+		  To do that, use the form labeled for that purpose in the aside.</p>
+    {% else %}
+      <p>
+        Enter your name so that we can get to know you better.</p>
+      <p>
+        Enter your email address to save new or retrieve existing answers.
+        (This will NOT subscribe you to our newsletter.)</p>
+      <form action="" method="POST">
+        {% csrf_token %}
+        {% for field in quiz_form %}
+          <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+            {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+          </div>
+        {% endfor %}
+        <input type="submit" value="Submit" />
+      </form>
+    {% endif %}
     <hr />
     <a name="disclaimer"></a>
     <h1>Disclaimer, Accuracy, Etc.</h1>
