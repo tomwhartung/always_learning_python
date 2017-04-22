@@ -118,11 +118,16 @@ def quiz(request, quiz_size_slug=Quiz.DEFAULT_QUIZ_SIZE_SLUG):
     else:
         quiz_form = QuizForm(quiz_size_slug=quiz_size_slug)
 
-    context_quiz_selected = 'class="disabled"'    # see seeourminds.css
+    # context_quiz_selected = 'class="disabled"'  # see seeourminds.css
+    # context_quiz_selected = 'class="active"'      # see http://getbootstrap.com/components/#navbar
+    quiz_info = {}
+    quiz_info["size_text"] = quiz_size_slug
+    quiz_info["question_count"] = 44
     template = loader.get_template('content/quiz.html')
     context = {
         'adsense_ads': adsense_ads,
-        'context_quiz_selected': context_quiz_selected,
+        # 'context_quiz_selected': context_quiz_selected,
+        'quiz_info': quiz_info,
         'quiz_form': quiz_form
     }
     return HttpResponse(template.render(context, request))
