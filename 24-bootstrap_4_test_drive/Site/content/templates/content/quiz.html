@@ -1,0 +1,103 @@
+{% extends 'content/base.html' %}
+
+{% block top_content_left %}
+  <article>
+    <header>
+      <h1>The SeeOurMinds.com Quiz ({{ quiz_info.size_abbreviation }})</h1>
+      <ul>
+        <li>
+          The <span class="air-quotes">{{ quiz_info.size_text }}</span>
+           version contains {{ quiz_info.question_count }} questions.
+        </li>
+        <li>
+          There are no right-or-wrong answers, just answer each one to the
+           best of your ability.</li>
+        <li>
+          This is an experimental quiz, so please
+           <a href="#disclaimer">
+              <span class="air-quotes">do not take the results too seriously.</span>
+           </a></li>
+      </ul>
+    </header>
+    <hr />
+    <p>
+      Enter your name so that we can get to know you better.</p>
+    <p>
+      Enter your email address to save new or retrieve existing answers.
+      (This will NOT subscribe you to our newsletter.)</p>
+    <form action="" method="POST">
+      {% csrf_token %}
+      {% for field in quiz_form %}
+        <div class="fieldWrapper">
+          {{ field.errors }}
+          {{ field.label_tag }} {{ field }}
+          {% if field.help_text %}
+          <p class="help">{{ field.help_text|safe }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+      <input type="submit" value="Submit" />
+    </form>
+    <hr />
+    <h1>Disclaimer, Fun, Etc.</h1>
+    <p>
+      We will come up with some sort of official disclaimer some day,
+       for now, please just take things with a grain of salt.</p>
+    <p>
+      To be perfectly honest, the main reason this quiz is online at this time
+        is so I can get some feedback on it.</p>
+    <a name="disclaimer"></a>
+    <h3>Disclaimer</h3>
+    <p>
+      <span class="air-quotes">Most importantly, this quiz is a work in progress, and at this time
+        I am not by any means ready to guarantee that it
+        will give you an accurate result!</span></p>
+    <h3>
+      I've had a lot of fun writing this quiz!</h3>
+    <p>
+      It's been a real challenge to come up with the questions
+       without borrowing too heavily from Briggs-Meyers and Keirsey &mdash; and
+       I love a good challenge!</p>
+    <p>
+      And I've had even more fun with writing the code to support having a
+       different type of quiz.
+      Note that it allows for a varying number of options
+       (rather than just two either/or options) and even allowing visitors
+       to opt-out some of the more experimental questions that appear
+       in longer versions.</p>
+    <p>
+      But it definitely needs more work!</p>
+   <h3>If accuracy is important to you...</h3>
+    <p>
+      If accuracy is important to you, please take other quizzes and
+        get a variety of opinions.
+      And if you really want to learn exactly what your four letter type is,
+       by all means take the
+       <a href="http://www.myersbriggs.org/my-mbti-personality-type/take-the-mbti-instrument/"
+          target="_blank" title="Site where you can take the real MBTI">
+         real MBTI&reg; instrument</a>!</p>
+    <hr />
+  </article>
+{% endblock %}
+
+{% block top_aside %}
+   <div class="col-md-4">
+     {% block top_aside_top_ad %}{{ block.super }}{% endblock %}
+     {% block top_aside_top_responsive_ad %}{{ block.super }}{% endblock %}
+   </div><!-- .col-md-4 -->
+   {% block top_aside_email %}
+     {{ block.super }}
+   {% endblock %}
+   <div class="col-md-4">
+     {% block top_aside_bottom_ad %}{{ block.super }}{% endblock %}
+     {% block top_aside_bottom_responsive_ad %}{{ block.super }}{% endblock %}
+   </div><!-- .col-md-4 -->
+{% endblock %}
+
+{% block above_middle_row_ad %}{% endblock %}
+{% block middle_left_ad %}{% endblock %}
+{% block middle_right_ad %}{% endblock %}
+{% block below_middle_row_ad %}{% endblock %}
+{% block bottom_left_ad %}{% endblock %}
+{% block bottom_right_ad %}{% endblock %}
+{% block bottom_row_ad %}{% endblock %}
