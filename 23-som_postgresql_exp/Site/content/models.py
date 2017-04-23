@@ -100,6 +100,20 @@ class Quiz(models.Model):
         return self
 
     @classmethod
+    def get_quiz_size_slugs_list(cls):
+        """ Returns a list of the available quiz size choices """
+        quiz_size_slugs = [
+            'xx-small',
+            'extra-small',
+            'small',
+            'medium',
+            'large',
+            'extra-large',
+            'xx-large',
+        ]
+        return quiz_size_slugs
+
+    @classmethod
     def get_quiz_size_abbreviation_for_slug(cls, quiz_size_slug):
         """ Returns the corresponding constant for passed in quiz_size_slug """
         quiz_size_constant_for_slug = {
@@ -127,6 +141,19 @@ class Quiz(models.Model):
         }
         return question_count_for_slug[quiz_size_slug]
 
+    @classmethod
+    def get_quiz_size_text_for_slug(cls, quiz_size_slug):
+        """ Returns the quiz size_text for the passed in quiz_size_slug """
+        quiz_size_slugs_to_text = {
+            'xx-small': '2X Small',
+            'extra-small': 'Extra Small',
+            'small': 'Small',
+            'medium': 'Medium',
+            'large': 'Large',
+            'extra-large': 'Extra Large',
+            'xx-large': '2X Large',
+        }
+        return quiz_size_slugs_to_text[quiz_size_slug]
 
 
 class Answer(models.Model):
