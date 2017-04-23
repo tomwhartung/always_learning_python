@@ -13,33 +13,57 @@
           Pick one of the following versions of the quiz:
         </p>
         <ul>
-          <li>
-            xxxx
-          </li>
-          <li>
-            yyyyy
-          </li>
+          {% for quiz_size_slug, size_text, question_count in quiz_slug_text_counts %}
+            <li>
+              The
+                <a href="/quiz/{{ quiz_size_slug }}"
+                   title="Link to {{ size_text }} version">
+                  {{ size_text }}</a>
+              version has {{ question_count }} questions.
+            </li>
+          {% endfor %}
         </ul>
+        <p>
+          We should make bootstrap buttons for each of these,
+           maybe changing in color or increasing in size as apporpriate.
+        </p>
       {% else %}
         <ul>
           <li>
             The <span class="air-quotes">{{ quiz_info.size_text }}</span>
              version contains {{ quiz_info.question_count }} questions.
+            <ul>
+              <li>
+                {% if quiz_info.quiz_size_slug == 'xx-large' %}
+                  This is the longest version currently available.
+                {% else %}
+                  For more questions, pick a larger quiz.
+                {% endif %}
+              </li>
+              <li>
+                {% if quiz_info.quiz_size_slug == 'xx-small' %}
+                  This is the shortest version currently available.
+                {% else %}
+                  For fewer questions, pick a smaller quiz.
+                {% endif %}
+              </li>
+            </ul>
           </li>
           <li>
             There are no right-or-wrong answers, just answer each one to the
              best of your ability.</li>
           <li>
-            This is an experimental quiz, so please
-             <a href="#disclaimer">
-                <span class="air-quotes">do not take the results too seriously.</span>
-             </a></li>
+            This quiz is a
+              <a href="#disclaimer">
+               <span class="air-quotes">work in progress,</span></a>
+              so definitely do not take the results too seriously!
+             </li>
         </ul>
       {% endif %}
     </header>
     <hr />
     {% if quiz_form == None %}
-	   <h1>Sharing Your Email Address</h1>
+      <h1>Sharing Your Email Address</h1>
       <p>
         Sharing your email address on the quiz page
           enables you to save and retrieve your answers.</p>
@@ -47,9 +71,10 @@
         Stay tuned &mdash; and return in a week or two &mdash; we are actively
           developing this functionality!</p>
       <p>
-        Entering your email address on the quiz page
+        Note that entering your email address on the quiz page
           will NOT sign you up for our newsletter!
-		  To do that, use the form labeled for that purpose in the aside.</p>
+        To do that, use the form in the aside that is
+          labeled specifically for that purpose.</p>
     {% else %}
       <p>
         Enter your name so that we can get to know you better.</p>
@@ -74,11 +99,10 @@
     <a name="disclaimer"></a>
     <h1>Disclaimer, Accuracy, Etc.</h1>
     <p>
-      We will come up with some sort of official disclaimer some day,
-       for now, please just take things with a grain of salt.</p>
-    <p>
       To be perfectly honest, the main reason this quiz is online at this time
-        is so I can get some feedback on it.</p>
+        is so I can get some feedback on it.
+      I suppose we will come up with some sort of official disclaimer some day,
+       for now, please just take things with a grain of salt.</p>
     <h3>Disclaimer</h3>
     <p>
       <span class="air-quotes">Most importantly, this quiz is a work in progress, and at this time
@@ -101,13 +125,23 @@
        I love a good challenge!</p>
     <p>
       And I've had even more fun with writing the code to support having a
-       different type of quiz.
-      Note that it allows for a varying number of options
-       (rather than just two either/or options) and even allowing visitors
-       to opt-out some of the more experimental questions that appear
-       in longer versions.</p>
+       different type of quiz!
+      Note that it allows visitors to:</p>
+    <ul>
+      <li>
+        Answer a varying number of questions.</li>
+      <li>
+        Pick from a varying number of options
+        (rather than just two either/or options).
+      </li>
+      <li>
+        Opt-out of answering some of the more experimental (fun) questions that
+        appear towards the end, in the longer versions.
+      </li>
+    </ul>
     <p>
-      But it definitely needs more work!</p>
+      But I am definitely not willing to claim it is accurate,
+        at least, not yet!</p>
     <hr />
   </article>
 {% endblock %}
