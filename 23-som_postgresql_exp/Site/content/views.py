@@ -116,24 +116,35 @@ def quiz(request, quiz_size_slug=None):
             messages.add_message(request, messages.INFO, pcts_and_counts_html)
             return HttpResponseRedirect('/quiz/results')
 
+    quiz_size_slugs = Quiz.get_quiz_size_slugs_list()
     quiz_info = {}
     quiz_info["quiz_size_slug"] = quiz_size_slug
-    quiz_info["size_text"] = quiz_size_slug   # for now...
+    quiz_slug_text_counts = []
 
     if quiz_size_slug == None:
         quiz_form = None
         quiz_info["size_abbreviation"] = ''
         quiz_info["question_count"] = 0
+        quiz_info["size_text"] = ''
+        for quiz_size_slug in quiz_size_slugs:
+            size_text = Quiz.get_quiz_size_text_for_slug(quiz_size_slug)
+            question_count = Quiz.get_question_count_for_slug(quiz_size_slug)
+            print('view.quiz - quiz_size_slug/size_text/question_count:',
+                quiz_size_slug + '/' + size_text + '/' + str(question_count))
+            size_text_and_count = [quiz_size_slug, size_text, question_count]
+            quiz_slug_text_counts.append(size_text_and_count)
     else:
         quiz_form = QuizForm(quiz_size_slug=quiz_size_slug)
         quiz_info["size_abbreviation"] = Quiz.get_quiz_size_abbreviation_for_slug(quiz_size_slug)
         quiz_info["question_count"] = Quiz.get_question_count_for_slug(quiz_size_slug)
+        quiz_info["size_text"] = Quiz.get_quiz_size_text_for_slug(quiz_size_slug)
 
     template = loader.get_template('content/quiz.html')
     context = {
         'adsense_ads': adsense_ads,
+        'quiz_form': quiz_form,
         'quiz_info': quiz_info,
-        'quiz_form': quiz_form
+        'quiz_slug_text_counts': quiz_slug_text_counts,
     }
     return HttpResponse(template.render(context, request))
 
