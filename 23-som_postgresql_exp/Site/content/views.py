@@ -19,7 +19,7 @@ from django.views.generic.base import View
 from .adsense import adsense_ads
 from .database import Quiz
 from .forms import QuizForm
-from .models import QuizJson
+from .models import Questions
 
 
 def home(request):
@@ -101,8 +101,8 @@ def quiz(request, quiz_size_slug=None):
             else:
                 quiz_db = Quiz()
                 quiz_db.save_quiz(quiz_form.cleaned_data, quiz_size_slug)
-            quiz_json = QuizJson()
-            score = quiz_json.score_quiz(quiz_form.cleaned_data)
+            questions = Questions()
+            score = questions.score_quiz(quiz_form.cleaned_data)
             four_letter_type = "Type: " + score.as_four_letter_type()
             messages.add_message(request, messages.INFO, four_letter_type)
             score_list = score.as_list_of_pcts_and_counts()
