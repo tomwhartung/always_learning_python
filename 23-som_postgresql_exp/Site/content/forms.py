@@ -9,7 +9,7 @@ Reference:
 """
 
 from django import forms
-from .database import Quiz
+from .database import Questionnaire
 from .models import Questions
 
 
@@ -18,7 +18,7 @@ class QuizForm(forms.Form):
     """ The Quiz Form is a list of questions and multiple-choice answers """
 
     def __init__(self,
-            quiz_size_slug=Quiz.DEFAULT_QUIZ_SIZE_SLUG,
+            quiz_size_slug=Questionnaire.DEFAULT_QUIZ_SIZE_SLUG,
             *args, **kwargs):
         """
         Create a form corresponding to the specified quiz_size_slug
@@ -28,7 +28,7 @@ class QuizForm(forms.Form):
         """
         super(QuizForm, self).__init__(*args, **kwargs)
         questions = Questions()
-        question_count = Quiz.get_question_count_for_slug(quiz_size_slug)
+        question_count = Questionnaire.get_question_count_for_slug(quiz_size_slug)
         self.question_count = question_count
 
         for question_no in range(0, question_count):
