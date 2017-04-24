@@ -17,7 +17,7 @@ from django.template import loader
 from django.views.generic.base import View
 
 from .adsense import adsense_ads
-from .database import Quiz
+from .database import Questionnaire
 from .forms import QuizForm
 from .models import Questions
 
@@ -99,8 +99,8 @@ def quiz(request, quiz_size_slug=None):
             if email == '':
                 print( 'views.quiz: No email given, not saving quiz')
             else:
-                quiz_db = Quiz()
-                quiz_db.save_quiz(quiz_form.cleaned_data, quiz_size_slug)
+                quiz_db = Questionnaire()
+                quiz_db.save_questionnaire(quiz_form.cleaned_data, quiz_size_slug)
             questions = Questions()
             score = questions.score_quiz(quiz_form.cleaned_data)
             four_letter_type = "Type: " + score.as_four_letter_type()
@@ -116,7 +116,7 @@ def quiz(request, quiz_size_slug=None):
             messages.add_message(request, messages.INFO, pcts_and_counts_html)
             return HttpResponseRedirect('/quiz/results')
 
-    quiz_size_slugs = Quiz.get_quiz_size_slugs_list()
+    quiz_size_slugs = Questionnaire.get_quiz_size_slugs_list()
     quiz_info = {}
     quiz_info["quiz_size_slug"] = quiz_size_slug
     quiz_slug_text_counts = []
@@ -127,17 +127,17 @@ def quiz(request, quiz_size_slug=None):
         quiz_info["question_count"] = 0
         quiz_info["size_text"] = ''
         for quiz_size_slug in quiz_size_slugs:
-            size_text = Quiz.get_quiz_size_text_for_slug(quiz_size_slug)
-            question_count = Quiz.get_question_count_for_slug(quiz_size_slug)
+            size_text = Questionnaire.get_quiz_size_text_for_slug(quiz_size_slug)
+            question_count = Questionnaire.get_question_count_for_slug(quiz_size_slug)
             print('view.quiz - quiz_size_slug/size_text/question_count:',
                 quiz_size_slug + '/' + size_text + '/' + str(question_count))
             size_text_and_count = [quiz_size_slug, size_text, question_count]
             quiz_slug_text_counts.append(size_text_and_count)
     else:
         quiz_form = QuizForm(quiz_size_slug=quiz_size_slug)
-        quiz_info["size_abbreviation"] = Quiz.get_quiz_size_abbreviation_for_slug(quiz_size_slug)
-        quiz_info["question_count"] = Quiz.get_question_count_for_slug(quiz_size_slug)
-        quiz_info["size_text"] = Quiz.get_quiz_size_text_for_slug(quiz_size_slug)
+        quiz_info["size_abbreviation"] = Questionnaire.get_quiz_size_abbreviation_for_slug(quiz_size_slug)
+        quiz_info["question_count"] = Questionnaire.get_question_count_for_slug(quiz_size_slug)
+        quiz_info["size_text"] = Questionnaire.get_quiz_size_text_for_slug(quiz_size_slug)
 
     template = loader.get_template('content/quiz.html')
     context = {
