@@ -243,6 +243,7 @@ As tomh:
 golpy
 cd 23-som_postgresql_exp/Site/bin
 ./makemigrations.sh
+./catmigrations.sh
 ./migrate.sh
 ```
 
