@@ -17,7 +17,7 @@ DJANGO_DEBUG = os.environ.get('DJANGO_DEBUG')
 """
 There are 88 questions, and the ones I have the most confidence in are
 nearer the beginning, with the "fun," experimental ones at the end.
-It is desireable that the quiz size be divisible by 4 but not 8,
+It is desireable that the number of questions be divisible by 4 but not 8,
 so that there is an odd number of questions for each pair of opposites.
 """
 XX_SMALL = '2XS'       # 4 = 1*4 (for testing, keep off menu in production)
@@ -29,10 +29,10 @@ EXTRA_LARGE = 'XL'     # 76 = 19 * 4
 XX_LARGE = '2XL'       # 88 = 22 * 4
 
 
-class Quiz(models.Model):
+class Questionnaire(models.Model):
 
     """
-    Define columns and save a person's quiz answers in the database.
+    Define columns and save a person's questionnaire answers in the database.
     """
 
     QUIZ_SIZE_CHOICES = (
@@ -69,9 +69,9 @@ class Quiz(models.Model):
     date_updated = models.DateTimeField(
             default=timezone.now)
 
-    def save_quiz(self, cleaned_data, quiz_size_slug=DEFAULT_QUIZ_SIZE_SLUG):
+    def save_questionnaire(self, cleaned_data, quiz_size_slug=DEFAULT_QUIZ_SIZE_SLUG):
         """
-        If we have an email, save the quiz data, along with the answers
+        If we have an email, save the questionnaire data, along with the answers
         There is no sense saving it if we do not have an email address!
         The check here may be redundant, but this is very important!
         Note also: the validation criteria for the db is stronger than
@@ -79,7 +79,7 @@ class Quiz(models.Model):
         """
         email = cleaned_data['email']
         if len(email) < 4:    # "blank=False" does not seem to work?!?
-            print('Quiz.save_quiz - not saving! email:', '"' + email + '"')
+            print('Questionnaire.save_questionnaire - not saving! email:', '"' + email + '"')
             return False
         else:
             name = cleaned_data['name']
@@ -87,7 +87,7 @@ class Quiz(models.Model):
             self.email = email
             self.size = self.get_quiz_size_abbreviation_for_slug(quiz_size_slug)
             self.save()
-            print('Quiz.save_quiz - saved name/email:', name + '/' + email)
+            print('Questionnaire.save_questionnaire - saved name/email:', name + '/' + email)
             for form_question_str in sorted(cleaned_data):
                 if not form_question_str.startswith("question_"):
                     continue
@@ -159,15 +159,15 @@ class Answer(models.Model):
 
     """ Define a table in which to save each individual answer """
 
-    quiz = models.ForeignKey('content.Quiz', on_delete=models.CASCADE)
+    questionnaire = models.ForeignKey('content.Questionnaire', on_delete=models.CASCADE)
     question_id = models.IntegerField(default=0)
     answer = models.IntegerField(default=0)
 
-    def save_answer(self, quiz_id, question_id, answer):
-        """ Save the quiz answers """
+    def save_answer(self, questionnaire_id, question_id, answer):
+        """ Save the questionnaire answers """
         # print('Answer - save_answer - question_id:', question_id)
         # print('Answer - save_answer - answer:', answer)
-        self.quiz_id = quiz_id
+        self.questionnaire_id = questionnaire_id
         self.question_id = question_id
         self.answer = answer
         self.save()
