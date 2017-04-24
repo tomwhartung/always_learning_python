@@ -11,7 +11,7 @@ Reference:
 from django.contrib import admin
 
 from .database import Answer
-from .database import Quiz
+from .database import Questionnaire
 
 admin.site.register(Answer)
-admin.site.register(Quiz)
+admin.site.register(Questionnaire)
