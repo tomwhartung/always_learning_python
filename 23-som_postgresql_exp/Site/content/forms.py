@@ -10,7 +10,7 @@ Reference:
 
 from django import forms
 from .database import Quiz
-from .models import QuizJson
+from .models import Questions
 
 
 class QuizForm(forms.Form):
@@ -27,7 +27,7 @@ class QuizForm(forms.Form):
             http://stackoverflow.com/questions/411761/variable-number-of-inputs-with-django-forms-possible
         """
         super(QuizForm, self).__init__(*args, **kwargs)
-        quiz_json = QuizJson()
+        questions = Questions()
         question_count = Quiz.get_question_count_for_slug(quiz_size_slug)
         self.question_count = question_count
 
@@ -36,10 +36,10 @@ class QuizForm(forms.Form):
             question_no_2_chars = question_no_str.zfill(2)
             question_key = 'question_' + question_no_2_chars
             form_question_no_str = str(question_no + 1)
-            question_text = quiz_json.get_question_text(question_no)
+            question_text = questions.get_question_text(question_no)
             label = form_question_no_str + '. ' + question_text
             radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
-            choices = quiz_json.get_choices(question_no)
+            choices = questions.get_choices(question_no)
             self.fields[question_key] = forms.ChoiceField(
                 widget=radio_widget, label=label, choices=choices
             )
