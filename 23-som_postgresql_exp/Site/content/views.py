@@ -18,7 +18,7 @@ from django.views.generic.base import View
 
 from .adsense import adsense_ads
 from .database import Questionnaire
-from .forms import QuizForm
+from .forms import QuestionnaireForm
 from .models import Questions
 
 
@@ -91,7 +91,7 @@ def quiz(request, quiz_size_slug=None):
     """ Load and render the Quiz page template """
 
     if request.method == 'POST':
-        quiz_form = QuizForm(quiz_size_slug=quiz_size_slug, data=request.POST)
+        quiz_form = QuestionnaireForm(quiz_size_slug=quiz_size_slug, data=request.POST)
         if quiz_form.is_valid():
             print('views.quiz() - len(quiz_form.cleaned_data):',
                     len(quiz_form.cleaned_data))
@@ -134,7 +134,7 @@ def quiz(request, quiz_size_slug=None):
             size_text_and_count = [quiz_size_slug, size_text, question_count]
             quiz_slug_text_counts.append(size_text_and_count)
     else:
-        quiz_form = QuizForm(quiz_size_slug=quiz_size_slug)
+        quiz_form = QuestionnaireForm(quiz_size_slug=quiz_size_slug)
         quiz_info["size_abbreviation"] = Questionnaire.get_quiz_size_abbreviation_for_slug(quiz_size_slug)
         quiz_info["question_count"] = Questionnaire.get_question_count_for_slug(quiz_size_slug)
         quiz_info["size_text"] = Questionnaire.get_quiz_size_text_for_slug(quiz_size_slug)
