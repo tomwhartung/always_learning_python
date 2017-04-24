@@ -17,8 +17,8 @@ from django.template import loader
 from django.views.generic.base import View
 
 from .adsense import adsense_ads
+from .database import Quiz
 from .forms import QuizForm
-from .models import Quiz
 from .models import QuizJson
 
 
