@@ -22,12 +22,11 @@ Models, postgresql:
 
 * ../../gitignored/Site/Site/settings.py
 * Site/urls.py
-* Site/?.py
+* content/database.py     # NEW!
 * content/forms.py
 * content/models.py
 * content/urls.py
 * content/views.py
-* content/?.py
 * content/static/content/css/seeourminds.css
 * content/templates/content/quiz.html
 * content/templates/content/quiz_results.html
@@ -55,11 +54,11 @@ psql        # prompt changes
 Use the postgres shell to create the user and database:
 
 ```
-CREATE USER seeourminds WITH PASSWORD 'abc123';            ## "CREATE ROLE"
-CREATE DATABASE django_test owner seeourminds;             ## "CREATE DATABASE"
-ALTER ROLE seeourminds SET client_encoding TO 'utf8';      ## "ALTER ROLE"
-ALTER ROLE seeourminds SET default_transaction_isolation TO 'read committed';
-ALTER ROLE seeourminds SET timezone TO 'MST';              ## "ALTER ROLE"
+CREATE USER som_user WITH PASSWORD 'abc123';            ## "CREATE ROLE"
+CREATE DATABASE som_db owner som_user;             ## "CREATE DATABASE"
+ALTER ROLE som_user SET client_encoding TO 'utf8';      ## "ALTER ROLE"
+ALTER ROLE som_user SET default_transaction_isolation TO 'read committed';
+ALTER ROLE som_user SET timezone TO 'MST';              ## "ALTER ROLE"
 \q      ## log out
 
 ### Step (1) Install python postgres "psycopg2" package globally:
@@ -78,8 +77,8 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django_test',
-        'USER': 'seeourminds',
+        'NAME': 'som_db',
+        'USER': 'som_user',
         'PASSWORD': 'abc123',
         'HOST': 'localhost',
         'PORT': '',
@@ -153,14 +152,14 @@ As tomh (in the `Site/` directory):
 
 ```
 (1) python3 manage.py createsuperuser
-(2) python3 manage.py changepassword seeourminds   # seeourminds/djangofresh1
+(2) python3 manage.py changepassword tomh   # tomh/djangofresh1
 ```
 
 Output:
 
 ```
 (1) Superuser created successfully.
-(2) Password changed successfully for user 'seeourminds'
+(2) Password changed successfully for user 'tomh'
 ```
 
 ### Step (7) Run the server
@@ -211,11 +210,11 @@ psql        # prompt changes
 Use the postgres shell to drop and re-create the database:
 
 ```
-DROP DATABASE django_test;
-CREATE DATABASE django_test owner seeourminds;
-ALTER ROLE seeourminds SET client_encoding TO 'utf8';
-ALTER ROLE seeourminds SET default_transaction_isolation TO 'read committed';
-ALTER ROLE seeourminds SET timezone TO 'MST';
+DROP DATABASE som_db;
+CREATE DATABASE som_db owner som_user;
+ALTER ROLE som_user SET client_encoding TO 'utf8';
+ALTER ROLE som_user SET default_transaction_isolation TO 'read committed';
+ALTER ROLE som_user SET timezone TO 'MST';
 \q
 ```
 ```
