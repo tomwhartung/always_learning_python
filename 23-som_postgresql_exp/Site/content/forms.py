@@ -13,9 +13,9 @@ from .database import Questionnaire
 from .models import Questions
 
 
-class QuizForm(forms.Form):
+class QuestionnaireForm(forms.Form):
 
-    """ The Quiz Form is a list of questions and multiple-choice answers """
+    """ A few inputs and a list of questions and multiple-choice answers """
 
     def __init__(self,
             quiz_size_slug=Questionnaire.DEFAULT_QUIZ_SIZE_SLUG,
@@ -26,7 +26,7 @@ class QuizForm(forms.Form):
         Here is the key reference:
             http://stackoverflow.com/questions/411761/variable-number-of-inputs-with-django-forms-possible
         """
-        super(QuizForm, self).__init__(*args, **kwargs)
+        super(QuestionnaireForm, self).__init__(*args, **kwargs)
         questions = Questions()
         question_count = Questionnaire.get_question_count_for_slug(quiz_size_slug)
         self.question_count = question_count
@@ -46,3 +46,4 @@ class QuizForm(forms.Form):
 
     name = forms.CharField(max_length=50, required=False)
     email = forms.EmailField(required=False)
+
