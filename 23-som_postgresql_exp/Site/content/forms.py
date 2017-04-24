@@ -9,7 +9,7 @@ Reference:
 """
 
 from django import forms
-from .models import Quiz
+from .database import Quiz
 from .models import QuizJson
 
 
