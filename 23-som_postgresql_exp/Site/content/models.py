@@ -189,7 +189,7 @@ class Score:
         return score_str
 
 
-class QuizJson:
+class Questions:
 
     """ Read in and work with all the questions in the entire quiz """
 
@@ -220,8 +220,8 @@ class QuizJson:
         """ Return the entire quiz question (answers, weights, etc.)"""
 
         quiz_question = self.question_list[question_int]
-        # print('QuizJson.get_quiz_question - question_int:', question_int)
-        # print('QuizJson.get_quiz_question - quiz_question:', quiz_question)
+        # print('Questions.get_quiz_question - question_int:', question_int)
+        # print('Questions.get_quiz_question - quiz_question:', quiz_question)
         return quiz_question
 
     def get_question_text(self, question_int):
@@ -276,8 +276,8 @@ class QuizJson:
             choice_7 = ['7', answer_7_text]
             choices.append(choice_7)
 
-        # print('QuizJson.get_choices - question_int:', question_int)
-        # print('QuizJson.get_choices - len(choices):', len(choices))
+        # print('Questions.get_choices - question_int:', question_int)
+        # print('Questions.get_choices - len(choices):', len(choices))
         return choices
 
     def get_answer_123_type(self, question_int):
@@ -308,7 +308,7 @@ class QuizJson:
 
     def print_cleaned_data(self, cleaned_data):
         """ print out the cleaned data, in order by question number """
-        print('QuizJson.print_cleaned_data - cleaned_data:')
+        print('Questions.print_cleaned_data - cleaned_data:')
 
         for question_xx in sorted(cleaned_data):
             print('\tanswer for ' + question_xx + ': ' + cleaned_data[question_xx])
@@ -333,7 +333,7 @@ class QuizJson:
             if DJANGO_DEBUG:
                 answer_text = self.get_answer_text(question_int, answer_str)
                 question_text = self.get_question_text(question_int)
-                print('QuizJson.score_quiz -',
+                print('Questions.score_quiz -',
                     str(question_int) + ' (' + answer_123_type + ')', '/',
                     str(answer_int) + ' (' + answer_weight_str + ')',
                     question_text, '/',
