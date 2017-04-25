@@ -98,11 +98,7 @@ def quiz(request, quiz_size_slug=None):
         except:
             email = ''
             load_answers = ''
-        if len(email) > 4 and len(load_answers) > 0:
-            print('views.quiz() - loading the answers')
-            questionnaire = Questionnaire()
-            answers = questionnaire.load_answers(email)
-        else:
+        if load_answers == '':
             quiz_form = QuestionnaireForm(quiz_size_slug=quiz_size_slug, data=request.POST)
             if quiz_form.is_valid():
                 print('views.quiz() - len(quiz_form.cleaned_data):',
@@ -127,6 +123,13 @@ def quiz(request, quiz_size_slug=None):
                 pcts_and_counts_html += '</ul>'
                 messages.add_message(request, messages.INFO, pcts_and_counts_html)
                 return HttpResponseRedirect('/quiz/results')
+        else:
+            if len(email) > 4:
+                print('views.quiz() - loading the answers')
+                questionnaire = Questionnaire()
+                answers = questionnaire.load_answers(email)
+            else:
+                print('views.quiz() ERROR: Need email to load the answers')
 
     quiz_size_slugs = Questionnaire.get_quiz_size_slugs_list()
     quiz_info = {}
