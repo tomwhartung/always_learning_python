@@ -41,7 +41,7 @@ class QuestionnaireForm(forms.Form):
             radio_widget = forms.RadioSelect(attrs={'class': 'quiz_answer'})
             choices = questions.get_choices(question_no)
             self.fields[question_key] = forms.ChoiceField(
-                widget=radio_widget, label=label, choices=choices
+                widget=radio_widget, label=label, choices=choices, required=False
             )
 
     name = forms.CharField(
