@@ -91,30 +91,42 @@ def quiz(request, quiz_size_slug=None):
     """ Load and render the Quiz page template """
 
     if request.method == 'POST':
-        quiz_form = QuestionnaireForm(quiz_size_slug=quiz_size_slug, data=request.POST)
-        if quiz_form.is_valid():
-            print('views.quiz() - len(quiz_form.cleaned_data):',
-                    len(quiz_form.cleaned_data))
-            email = quiz_form.cleaned_data['email']
-            if email == '':
-                print( 'views.quiz: No email given, not saving quiz')
-            else:
-                quiz_db = Questionnaire()
-                quiz_db.save_questionnaire(quiz_form.cleaned_data, quiz_size_slug)
-            questions = Questions()
-            score = questions.score_quiz(quiz_form.cleaned_data)
-            four_letter_type = "Type: " + score.as_four_letter_type()
-            messages.add_message(request, messages.INFO, four_letter_type)
-            score_list = score.as_list_of_pcts_and_counts()
-            pcts_and_counts_html = '<ul>'
-            for score_pair in score_list:
-                pcts_and_counts_html += '<li>'
-                for single_score in score_pair:
-                    pcts_and_counts_html += single_score + '&nbsp;'
-                pcts_and_counts_html += '</li>'
-            pcts_and_counts_html += '</ul>'
-            messages.add_message(request, messages.INFO, pcts_and_counts_html)
-            return HttpResponseRedirect('/quiz/results')
+        print('views.quiz() - request.POST:', request.POST)
+        try:
+            email = request.POST["email"]
+            load_answers = request.POST["load-answers"]
+        except:
+            email = ''
+            load_answers = ''
+        if len(email) > 4 and len(load_answers) > 0:
+            print('views.quiz() - loading the answers')
+            questionnaire = Questionnaire()
+            answers = questionnaire.load_answers(email)
+        else:
+            quiz_form = QuestionnaireForm(quiz_size_slug=quiz_size_slug, data=request.POST)
+            if quiz_form.is_valid():
+                print('views.quiz() - len(quiz_form.cleaned_data):',
+                        len(quiz_form.cleaned_data))
+                email = quiz_form.cleaned_data['email']
+                if email == '':
+                    print( 'views.quiz: No email given, not saving quiz')
+                else:
+                    quiz_db = Questionnaire()
+                    quiz_db.save_questionnaire(quiz_form.cleaned_data, quiz_size_slug)
+                questions = Questions()
+                score = questions.score_quiz(quiz_form.cleaned_data)
+                four_letter_type = "Type: " + score.as_four_letter_type()
+                messages.add_message(request, messages.INFO, four_letter_type)
+                score_list = score.as_list_of_pcts_and_counts()
+                pcts_and_counts_html = '<ul>'
+                for score_pair in score_list:
+                    pcts_and_counts_html += '<li>'
+                    for single_score in score_pair:
+                        pcts_and_counts_html += single_score + '&nbsp;'
+                    pcts_and_counts_html += '</li>'
+                pcts_and_counts_html += '</ul>'
+                messages.add_message(request, messages.INFO, pcts_and_counts_html)
+                return HttpResponseRedirect('/quiz/results')
 
     quiz_size_slugs = Questionnaire.get_quiz_size_slugs_list()
     quiz_info = {}
