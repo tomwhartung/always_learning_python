@@ -280,6 +280,11 @@ figcaption {
  * Styles for the Quiz Page
  * ========================
  */
+.help-text {
+	margin-left: 2em;
+	font-size: .9em;
+	font-style: italic;
+}
 /*
  * We can only style the widget i.e., the input tag, hence the negative value
  */
