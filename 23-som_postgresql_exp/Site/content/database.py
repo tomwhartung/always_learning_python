@@ -98,6 +98,11 @@ class Questionnaire(models.Model):
                 answer_db.save_answer(self.id, question_int, answer_int)
         return self
 
+    def load_answers(self, email):
+        print('Questionnaire - load_answers(), email:', email)
+        answers = {}
+        return answers
+
     @classmethod
     def get_quiz_size_slugs_list(cls):
         """ Returns a list of the available quiz size choices """
