@@ -7,8 +7,15 @@
 # >>> from content.database import Questionnaire
 # >>> Answer.objects.all()
 # >>> Questionnaire.objects.all()
-# >>> quiz1 = Questionnaire.objects.get(pk=1)
+# >>> ans1 = Answer.objects.filter(id=1)
+# >>> ans1                  # <QuerySet [<Answer: 0/1>]>
 # >>> ans1 = Answer.objects.get(pk=1)
+# >>> ans1                  # <Answer: 0/1>
+# >>> quiz1 = Questionnaire.objects.filter(id=1)
+# >>> quiz1                 # <QuerySet [<Questionnaire: /john@beatles.net/2XS>]>
+# >>> quiz1 = Questionnaire.objects.get(pk=1)
+# >>> quiz1                 # <Questionnaire: /john@beatles.net/2XS>
+# >>>
 # >>>
 # >>>
 # >>>
