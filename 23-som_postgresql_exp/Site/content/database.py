@@ -154,6 +154,10 @@ class Questionnaire(models.Model):
         }
         return quiz_size_slugs_to_text[quiz_size_slug]
 
+    def __str__(self):
+        name_email_size = self.name + '/' + self.email + '/' + self.size
+        return name_email_size
+
 
 class Answer(models.Model):
 
@@ -173,3 +177,7 @@ class Answer(models.Model):
         self.save()
         return self
 
+    def __str__(self):
+        question_id_answer = str(self.question_id) + '/' + str(self.answer)
+        return question_id_answer
+        # return 'answer: ' + str(self.answer)
