@@ -44,6 +44,11 @@ class QuestionnaireForm(forms.Form):
                 widget=radio_widget, label=label, choices=choices
             )
 
-    name = forms.CharField(max_length=50, required=False)
-    email = forms.EmailField(required=False)
-
+    name = forms.CharField(
+        help_text='Sharing your name allows us to get to know you better.',
+        max_length=50,
+        required=False)
+    email = forms.EmailField(
+        help_text='Enter your email address to save new or retrieve existing ' +
+            'answers. (This will NOT subscribe you to our newsletter.)',
+        required=False)
