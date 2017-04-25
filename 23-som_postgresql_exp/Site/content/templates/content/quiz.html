@@ -82,6 +82,9 @@
           <div class="fieldWrapper">
             {{ field.errors }}
             {{ field.label_tag }} {{ field }}
+            {% if field.label == 'Email' %}
+              <input type="submit" name="load-answers" value="Load Saved Answers" />
+            {% endif %}
             {% if field.help_text %}
               <p class="help-text">{{ field.help_text|safe }}</p>
             {% endif %}
