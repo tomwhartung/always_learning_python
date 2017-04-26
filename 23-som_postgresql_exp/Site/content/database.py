@@ -9,6 +9,7 @@ Reference:
 """
 
 import os
+from django.contrib import messages
 from django.db import models
 from django.utils import timezone
 
@@ -98,14 +99,16 @@ class Questionnaire(models.Model):
                 answer_db.save_answer(self.id, question_int, answer_int)
         return self
 
-    def load_answers(self, email):
+    def load_answers(self, email, request):
         print('Questionnaire - load_answers(), email:', email)
         try:
             questionnaire = Questionnaire.objects.get(email__iexact=email)
             print('load_answers - got the questionnaire for', email)
             print('load_answers - questionnaire:', questionnaire)
         except:
-            print('load_answers: Unable to find questionnaire for', email)
+            not_found_msg = 'Unable to find questionnaire for ' + email
+            print('load_answers: ', not_found_msg)
+            messages.add_message(request, messages.ERROR, not_found_msg)
 
         answers = {}
         return answers
