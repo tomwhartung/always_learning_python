@@ -100,6 +100,13 @@ class Questionnaire(models.Model):
 
     def load_answers(self, email):
         print('Questionnaire - load_answers(), email:', email)
+        try:
+            questionnaire = Questionnaire.objects.get(email__iexact=email)
+            print('load_answers - got the questionnaire for', email)
+            print('load_answers - questionnaire:', questionnaire)
+        except:
+            print('load_answers: Unable to find questionnaire for', email)
+
         answers = {}
         return answers
 
