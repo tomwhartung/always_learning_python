@@ -10,6 +10,7 @@ Reference:
 
 import json
 import os
+from django.contrib import messages
 
 DJANGO_DEBUG = os.environ.get('DJANGO_DEBUG')
 
@@ -108,6 +109,13 @@ class Score:
             print('Score.tally_answer - added',
                 str(answer_weight_int) + ' to '+ type_for_answer + ': ',
                 self.__str__())
+
+    def set_quiz_results_messages(self, request):
+        """ Set the messages we display on the results page """
+        four_letter_type = "Type: " + self.as_four_letter_type()
+        pcts_and_counts_html = self.get_pcts_and_counts_html()
+        messages.add_message(request, messages.INFO, four_letter_type)
+        messages.add_message(request, messages.INFO, pcts_and_counts_html)
 
     def as_four_letter_type(self):
         """ Return a string containing the four letter type """
