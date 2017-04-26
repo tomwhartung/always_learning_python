@@ -11,7 +11,6 @@ Reference:
 from django.shortcuts import render
 import textwrap
 
-from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.views.generic.base import View
@@ -112,10 +111,7 @@ def quiz(request, quiz_size_slug=None):
                     quiz_db.save_questionnaire(quiz_form.cleaned_data, quiz_size_slug)
                 score = Score()
                 score.score_quiz(quiz_form.cleaned_data)
-                four_letter_type = "Type: " + score.as_four_letter_type()
-                messages.add_message(request, messages.INFO, four_letter_type)
-                pcts_and_counts_html = score.get_pcts_and_counts_html()
-                messages.add_message(request, messages.INFO, pcts_and_counts_html)
+                score.set_quiz_results_messages(request)
                 return HttpResponseRedirect('/quiz/results')
         else:
             if len(email) > 4:
