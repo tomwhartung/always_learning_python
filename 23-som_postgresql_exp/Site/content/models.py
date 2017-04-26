@@ -22,6 +22,7 @@ class Score:
     """ Class to calculate, contain, and display the score for the quiz """
 
     def __init__(self):
+        self.score_is_valid = False
         self.e_score = 0
         self.i_score = 0
         self.n_score = 0
@@ -45,13 +46,15 @@ class Score:
         self.j_pct = None
         self.p_pct = None
 
-    def score_quiz(self, cleaned_data):
+    def score_quiz(self, quiz_size_slug, cleaned_data):
 
         """ Process the data from the form and set the scores """
         """ question_list is 0 based, the form questions are 1-based """
 
         self.print_cleaned_data(cleaned_data)
         questions = Questions()
+        questions_in_form = Questionnaire.get_question_count_for_slug(quiz_size_slug)
+        questions_answered = 0
 
         for form_question_str in sorted(cleaned_data):
             if not form_question_str.startswith("question_"):
@@ -71,7 +74,11 @@ class Score:
                     question_text, '/',
                     answer_text)
             self.tally_answer(answer_123_type, answer_int, answer_weight_int)
+            questions_answered += 1
 
+        print('Score - score_quiz: questions_answered/questions_in_form',
+                str(questions_answered) + '/' + str(questions_in_form))
+        self.score_is_valid = True
         return self
 
     def save_questionnaire(self, cleaned_data, quiz_size_slug):
@@ -122,7 +129,7 @@ class Score:
                 self.__str__())
 
     def is_valid(self):
-        return True
+        return self.score_is_valid
 
     def set_quiz_results_messages(self, request):
         """ Set the messages we display on the results page """
