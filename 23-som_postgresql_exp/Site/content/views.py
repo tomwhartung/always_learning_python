@@ -89,6 +89,7 @@ def quiz(request, quiz_size_slug=None):
 
     """ Load and render the Quiz page template """
 
+    quiz_form = None
     if request.method == 'POST':
         print('views.quiz() - request.POST:', request.POST)
         try:
@@ -98,16 +99,20 @@ def quiz(request, quiz_size_slug=None):
             email = ''
             load_answers = ''
         if load_answers == '':
-            quiz_form = QuestionnaireForm(quiz_size_slug=quiz_size_slug, data=request.POST)
+            quiz_form = QuestionnaireForm(
+                    quiz_size_slug=quiz_size_slug, data=request.POST)
             if quiz_form.is_valid():
                 print('views.quiz() - quiz_form is_valid')
                 score = Score()
                 score.score_quiz(quiz_size_slug, quiz_form.cleaned_data)
-                if score.is_valid():
-                    print('views.quiz() - score is_valid')
+                if score.is_complete():
+                    print('views.quiz() - score is_complete')
                     score.save_questionnaire(quiz_form.cleaned_data, quiz_size_slug)
                     score.set_quiz_results_messages(request)
                     return HttpResponseRedirect('/quiz/results')
+                else:
+                    print('views.quiz() - score is NOT complete')
+                    score.set_incomplete_message(request)
         else:
             if email == '':
                 print('views.quiz() ERROR: Need email to load the answers')
@@ -120,7 +125,10 @@ def quiz(request, quiz_size_slug=None):
     quiz_info = {}
     quiz_info["quiz_size_slug"] = quiz_size_slug
     quiz_slug_text_counts = []
-
+    #
+    # If there's no quiz_size_slug, display the quiz landing page,
+    # I.e., list the sizes and allows the visitor to select the one they want
+    #
     if quiz_size_slug == None:
         quiz_form = None
         quiz_info["size_abbreviation"] = ''
@@ -134,10 +142,14 @@ def quiz(request, quiz_size_slug=None):
             size_text_and_count = [quiz_size_slug, size_text, question_count]
             quiz_slug_text_counts.append(size_text_and_count)
     else:
-        quiz_form = QuestionnaireForm(quiz_size_slug=quiz_size_slug)
-        quiz_info["size_abbreviation"] = Questionnaire.get_quiz_size_abbreviation_for_slug(quiz_size_slug)
-        quiz_info["question_count"] = Questionnaire.get_question_count_for_slug(quiz_size_slug)
-        quiz_info["size_text"] = Questionnaire.get_quiz_size_text_for_slug(quiz_size_slug)
+        if quiz_form == None:
+            quiz_form = QuestionnaireForm(quiz_size_slug=quiz_size_slug)
+        quiz_info["size_abbreviation"] = \
+            Questionnaire.get_quiz_size_abbreviation_for_slug(quiz_size_slug)
+        quiz_info["question_count"] = \
+            Questionnaire.get_question_count_for_slug(quiz_size_slug)
+        quiz_info["size_text"] = \
+            Questionnaire.get_quiz_size_text_for_slug(quiz_size_slug)
 
     template = loader.get_template('content/quiz.html')
     context = {
