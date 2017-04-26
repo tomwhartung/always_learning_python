@@ -12,6 +12,8 @@ import json
 import os
 from django.contrib import messages
 
+from .database import Questionnaire
+
 DJANGO_DEBUG = os.environ.get('DJANGO_DEBUG')
 
 
@@ -72,6 +74,15 @@ class Score:
 
         return self
 
+    def save_questionnaire(self, cleaned_data, quiz_size_slug):
+        email = cleaned_data["email"]
+        if email == '':
+            print( 'views.quiz: No email given, not saving quiz')
+        else:
+            print( 'views.quiz: saving quiz for "' + email + '"')
+            quiz_db = Questionnaire()
+            quiz_db.save_questionnaire(cleaned_data, quiz_size_slug)
+
     def print_cleaned_data(self, cleaned_data):
         """ print out the cleaned data, in order by question number """
         print('Score.print_cleaned_data - cleaned_data:')
@@ -109,6 +120,9 @@ class Score:
             print('Score.tally_answer - added',
                 str(answer_weight_int) + ' to '+ type_for_answer + ': ',
                 self.__str__())
+
+    def is_valid(self):
+        return True
 
     def set_quiz_results_messages(self, request):
         """ Set the messages we display on the results page """
