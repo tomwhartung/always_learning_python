@@ -42,6 +42,42 @@ class Score:
         self.j_pct = None
         self.p_pct = None
 
+    def score_quiz(self, cleaned_data):
+
+        """ Process the data from the form and set the scores """
+        """ question_list is 0 based, the form questions are 1-based """
+
+        self.print_cleaned_data(cleaned_data)
+        questions = Questions()
+
+        for form_question_str in sorted(cleaned_data):
+            if not form_question_str.startswith("question_"):
+                continue
+            question_int = int(form_question_str.replace("question_", ""))
+            answer_123_type = questions.get_answer_123_type(question_int)
+            answer_str = cleaned_data[form_question_str]
+            answer_int = int(answer_str)
+            answer_weight_str = questions.get_answer_weight(question_int, answer_str)
+            answer_weight_int = int(answer_weight_str)
+            if DJANGO_DEBUG:
+                answer_text = questions.get_answer_text(question_int, answer_str)
+                question_text = questions.get_question_text(question_int)
+                print('Score.score_quiz -',
+                    str(question_int) + ' (' + answer_123_type + ')', '/',
+                    str(answer_int) + ' (' + answer_weight_str + ')',
+                    question_text, '/',
+                    answer_text)
+            self.tally_answer(answer_123_type, answer_int, answer_weight_int)
+
+        return self
+
+    def print_cleaned_data(self, cleaned_data):
+        """ print out the cleaned data, in order by question number """
+        print('Score.print_cleaned_data - cleaned_data:')
+
+        for question_xx in sorted(cleaned_data):
+            print('\tanswer for ' + question_xx + ': ' + cleaned_data[question_xx])
+
     def tally_answer(self, answer_123_type, answer_int, answer_weight_int):
 
         """ Add the answer_weight to the appropriate score data member """
@@ -305,39 +341,3 @@ class Questions:
         answer_weight_key = "answer_" + answer_str + "_weight"
         answer_weight = quiz_question[answer_weight_key]
         return answer_weight
-
-    def print_cleaned_data(self, cleaned_data):
-        """ print out the cleaned data, in order by question number """
-        print('Questions.print_cleaned_data - cleaned_data:')
-
-        for question_xx in sorted(cleaned_data):
-            print('\tanswer for ' + question_xx + ': ' + cleaned_data[question_xx])
-
-    def score_quiz(self, cleaned_data):
-
-        """ Process the data from the form and set the scores """
-        """ question_list is 0 based, the form questions are 1-based """
-
-        # self.print_cleaned_data(cleaned_data)
-        score = Score()
-
-        for form_question_str in sorted(cleaned_data):
-            if not form_question_str.startswith("question_"):
-                continue
-            question_int = int(form_question_str.replace("question_", ""))
-            answer_123_type = self.get_answer_123_type(question_int)
-            answer_str = cleaned_data[form_question_str]
-            answer_int = int(answer_str)
-            answer_weight_str = self.get_answer_weight(question_int, answer_str)
-            answer_weight_int = int(answer_weight_str)
-            if DJANGO_DEBUG:
-                answer_text = self.get_answer_text(question_int, answer_str)
-                question_text = self.get_question_text(question_int)
-                print('Questions.score_quiz -',
-                    str(question_int) + ' (' + answer_123_type + ')', '/',
-                    str(answer_int) + ' (' + answer_weight_str + ')',
-                    question_text, '/',
-                    answer_text)
-            score.tally_answer(answer_123_type, answer_int, answer_weight_int)
-
-        return score
