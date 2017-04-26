@@ -143,6 +143,18 @@ class Score:
 
         return four_letter_type
 
+    def get_pcts_and_counts_html(self):
+        """ Return an html string containing the score's percents and counts """
+        score_list = self.as_list_of_pcts_and_counts()
+        pcts_and_counts_html = '<ul>'
+        for score_pair in score_list:
+            pcts_and_counts_html += '<li>'
+            for single_score in score_pair:
+                pcts_and_counts_html += single_score + '&nbsp;'
+            pcts_and_counts_html += '</li>'
+        pcts_and_counts_html += '</ul>'
+        return pcts_and_counts_html
+
     def calculate_percentages(self):
         """ Calculate the percentages """
         total_ei_score = self.e_score + self.i_score
