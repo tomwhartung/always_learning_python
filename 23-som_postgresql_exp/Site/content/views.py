@@ -11,6 +11,7 @@ Reference:
 from django.shortcuts import render
 import textwrap
 
+from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.views.generic.base import View
@@ -115,11 +116,15 @@ def quiz(request, quiz_size_slug=None):
                     score.set_incomplete_message(request)
         else:
             if email == '':
-                print('views.quiz() ERROR: Need email to load the answers')
+                need_email_msg = 'ERROR: email is required to load the answers'
+                print('views.quiz() -', need_email_msg)
+                messages.add_message(request, messages.ERROR, need_email_msg)
             else:
                 print('views.quiz() - loading the answers')
                 questionnaire = Questionnaire()
                 answers = questionnaire.load_answers(email, request)
+                quiz_form = QuestionnaireForm(
+                        quiz_size_slug=quiz_size_slug, data=request.POST)
 
     quiz_size_slugs = Questionnaire.get_quiz_size_slugs_list()
     quiz_info = {}
