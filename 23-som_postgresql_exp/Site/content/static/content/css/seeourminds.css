@@ -281,9 +281,15 @@ figcaption {
  * ========================
  */
 .help-text {
-	margin-left: 2em;
-	font-size: .9em;
-	font-style: italic;
+   margin-left: 2em;
+   font-size: .9em;
+   font-style: italic;
+}
+.quiz-error {
+   border: red solid 2px;
+   font-size: 1.25em;
+   list-style-type: none;
+   padding: 0.5em;
 }
 /*
  * We can only style the widget i.e., the input tag, hence the negative value
