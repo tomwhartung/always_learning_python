@@ -22,7 +22,8 @@ class Score:
     """ Class to calculate, contain, and display the score for the quiz """
 
     def __init__(self):
-        self.score_is_valid = False
+        self.score_is_complete = False
+        self.unanswered_question_count = -1
         self.e_score = 0
         self.i_score = 0
         self.n_score = 0
@@ -62,23 +63,26 @@ class Score:
             question_int = int(form_question_str.replace("question_", ""))
             answer_123_type = questions.get_answer_123_type(question_int)
             answer_str = cleaned_data[form_question_str]
-            answer_int = int(answer_str)
-            answer_weight_str = questions.get_answer_weight(question_int, answer_str)
-            answer_weight_int = int(answer_weight_str)
-            if DJANGO_DEBUG:
-                answer_text = questions.get_answer_text(question_int, answer_str)
-                question_text = questions.get_question_text(question_int)
-                print('Score.score_quiz -',
-                    str(question_int) + ' (' + answer_123_type + ')', '/',
-                    str(answer_int) + ' (' + answer_weight_str + ')',
-                    question_text, '/',
-                    answer_text)
-            self.tally_answer(answer_123_type, answer_int, answer_weight_int)
-            questions_answered += 1
+            if len(answer_str) > 0:
+                answer_int = int(answer_str)
+                answer_weight_str = questions.get_answer_weight(question_int, answer_str)
+                answer_weight_int = int(answer_weight_str)
+                self.tally_answer(answer_123_type, answer_int, answer_weight_int)
+                questions_answered += 1
+                if DJANGO_DEBUG:
+                    answer_text = questions.get_answer_text(question_int, answer_str)
+                    question_text = questions.get_question_text(question_int)
+                    print('Score.score_quiz -',
+                        str(question_int) + ' (' + answer_123_type + ')', '/',
+                        str(answer_int) + ' (' + answer_weight_str + ')',
+                        question_text, '/',
+                        answer_text)
 
         print('Score - score_quiz: questions_answered/questions_in_form',
                 str(questions_answered) + '/' + str(questions_in_form))
-        self.score_is_valid = True
+        self.unanswered_question_count = questions_in_form - questions_answered
+        if self.unanswered_question_count == 0:
+            self.score_is_complete = True
         return self
 
     def save_questionnaire(self, cleaned_data, quiz_size_slug):
@@ -127,9 +131,20 @@ class Score:
             print('Score.tally_answer - added',
                 str(answer_weight_int) + ' to '+ type_for_answer + ': ',
                 self.__str__())
+        return True
 
-    def is_valid(self):
-        return self.score_is_valid
+    def is_complete(self):
+        return self.score_is_complete
+
+    def set_incomplete_message(self, request):
+        if self.unanswered_question_count == 1:
+            incomplete_msg = 'There is just ' + \
+                str(self.unanswered_question_count) + ' unanswered question'
+        else:
+            incomplete_msg = 'There are ' + \
+                str(self.unanswered_question_count) + ' unanswered questions'
+        messages.add_message(request, messages.ERROR, incomplete_msg)
+        return True
 
     def set_quiz_results_messages(self, request):
         """ Set the messages we display on the results page """
@@ -137,6 +152,7 @@ class Score:
         pcts_and_counts_html = self.get_pcts_and_counts_html()
         messages.add_message(request, messages.INFO, four_letter_type)
         messages.add_message(request, messages.INFO, pcts_and_counts_html)
+        return True
 
     def as_four_letter_type(self):
         """ Return a string containing the four letter type """
