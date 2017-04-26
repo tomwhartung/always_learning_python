@@ -19,7 +19,7 @@ from django.views.generic.base import View
 from .adsense import adsense_ads
 from .database import Questionnaire
 from .forms import QuestionnaireForm
-from .models import Questions
+from .models import Score
 
 
 def home(request):
@@ -107,10 +107,11 @@ def quiz(request, quiz_size_slug=None):
                 if email == '':
                     print( 'views.quiz: No email given, not saving quiz')
                 else:
+                    print( 'views.quiz: saving quiz for "' + email + '"')
                     quiz_db = Questionnaire()
                     quiz_db.save_questionnaire(quiz_form.cleaned_data, quiz_size_slug)
-                questions = Questions()
-                score = questions.score_quiz(quiz_form.cleaned_data)
+                score = Score()
+                score.score_quiz(quiz_form.cleaned_data)
                 four_letter_type = "Type: " + score.as_four_letter_type()
                 messages.add_message(request, messages.INFO, four_letter_type)
                 score_list = score.as_list_of_pcts_and_counts()
