@@ -114,14 +114,7 @@ def quiz(request, quiz_size_slug=None):
                 score.score_quiz(quiz_form.cleaned_data)
                 four_letter_type = "Type: " + score.as_four_letter_type()
                 messages.add_message(request, messages.INFO, four_letter_type)
-                score_list = score.as_list_of_pcts_and_counts()
-                pcts_and_counts_html = '<ul>'
-                for score_pair in score_list:
-                    pcts_and_counts_html += '<li>'
-                    for single_score in score_pair:
-                        pcts_and_counts_html += single_score + '&nbsp;'
-                    pcts_and_counts_html += '</li>'
-                pcts_and_counts_html += '</ul>'
+                pcts_and_counts_html = score.get_pcts_and_counts_html()
                 messages.add_message(request, messages.INFO, pcts_and_counts_html)
                 return HttpResponseRedirect('/quiz/results')
         else:
