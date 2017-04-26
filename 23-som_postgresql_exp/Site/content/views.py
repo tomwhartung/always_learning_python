@@ -102,7 +102,7 @@ def quiz(request, quiz_size_slug=None):
             if quiz_form.is_valid():
                 print('views.quiz() - quiz_form is_valid')
                 score = Score()
-                score.score_quiz(quiz_form.cleaned_data)
+                score.score_quiz(quiz_size_slug, quiz_form.cleaned_data)
                 if score.is_valid():
                     print('views.quiz() - score is_valid')
                     score.save_questionnaire(quiz_form.cleaned_data, quiz_size_slug)
