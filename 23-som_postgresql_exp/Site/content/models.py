@@ -138,7 +138,7 @@ class Score:
 
     def set_incomplete_message(self, request):
         if self.unanswered_question_count == 1:
-            incomplete_msg = 'There is just ' + \
+            incomplete_msg = 'There is ' + \
                 str(self.unanswered_question_count) + ' unanswered question'
         else:
             incomplete_msg = 'There are ' + \
