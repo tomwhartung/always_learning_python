@@ -119,7 +119,7 @@ def quiz(request, quiz_size_slug=None):
             else:
                 print('views.quiz() - loading the answers')
                 questionnaire = Questionnaire()
-                answers = questionnaire.load_answers(email)
+                answers = questionnaire.load_answers(email, request)
 
     quiz_size_slugs = Questionnaire.get_quiz_size_slugs_list()
     quiz_info = {}
