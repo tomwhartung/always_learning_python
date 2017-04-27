@@ -111,17 +111,26 @@ class Questionnaire(models.Model):
             print('load_answers: ', not_found_msg)
             messages.add_message(request, messages.ERROR, not_found_msg)
 
-        answers = {}
+        answersDict = {}
         if questionnaire != None:
             try:
                 print('load_answers - getting answers for the questionnaire')
-                answers = Answer.objects.filter(questionnaire=questionnaire)
+                ansQuerySet = Answer.objects.filter(questionnaire=questionnaire)
                 print('load_answers - got answers ok!?!')
                 print('load_answers - answers:', answers)
             except:
                 print('load_answers - ERROR getting answers')
 
-        return answers
+        for ans in ansQuerySet:
+            question_no_str = str(ans.question_id)
+            question_no_2_chars = question_no_str.zfill(2)
+            question_key = 'question_' + question_no_2_chars
+            answer_list = [str(ans.answer)]
+            print('question_key-str(answer_list):',
+                question_key + '-' + str(answer_list))
+            answersDict[question_key] = answer_list
+
+        return answersDict
 
     @classmethod
     def get_quiz_size_slugs_list(cls):
