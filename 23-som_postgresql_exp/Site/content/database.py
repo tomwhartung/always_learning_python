@@ -106,11 +106,21 @@ class Questionnaire(models.Model):
             print('load_answers - got the questionnaire for', email)
             print('load_answers - questionnaire:', questionnaire)
         except:
+            questionnaire = None
             not_found_msg = 'Unable to find questionnaire for ' + email
             print('load_answers: ', not_found_msg)
             messages.add_message(request, messages.ERROR, not_found_msg)
 
         answers = {}
+        if questionnaire != None:
+            try:
+                print('load_answers - getting answers for the questionnaire')
+                answers = Answer.objects.filter(questionnaire=questionnaire)
+                print('load_answers - got answers ok!?!')
+                print('load_answers - answers:', answers)
+            except:
+                print('load_answers - ERROR getting answers')
+
         return answers
 
     @classmethod
