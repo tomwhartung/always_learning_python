@@ -111,7 +111,7 @@ class Questionnaire(models.Model):
             print('load_answers: ', not_found_msg)
             messages.add_message(request, messages.ERROR, not_found_msg)
 
-        answersDict = {}
+        answers_dict = {}
         if questionnaire != None:
             try:
                 print('load_answers - getting answers for the questionnaire')
@@ -125,12 +125,12 @@ class Questionnaire(models.Model):
             question_no_str = str(ans.question_id)
             question_no_2_chars = question_no_str.zfill(2)
             question_key = 'question_' + question_no_2_chars
-            answer_list = [str(ans.answer)]
+            answer_str = str(ans.answer)
             print('question_key-str(answer_list):',
-                question_key + '-' + str(answer_list))
-            answersDict[question_key] = answer_list
+                question_key + '-' + str(answer_str))
+            answers_dict[question_key] = answer_str
 
-        return answersDict
+        return answers_dict
 
     @classmethod
     def get_quiz_size_slugs_list(cls):
