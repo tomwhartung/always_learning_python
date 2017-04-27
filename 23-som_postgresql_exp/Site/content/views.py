@@ -120,11 +120,20 @@ def quiz(request, quiz_size_slug=None):
                 print('views.quiz() -', need_email_msg)
                 messages.add_message(request, messages.ERROR, need_email_msg)
             else:
-                print('views.quiz() - loading the answers')
+                print('views.quiz() - loading the answers...')
+                print('views.quiz() - request.POST:', request.POST)
                 questionnaire = Questionnaire()
-                answers = questionnaire.load_answers(email, request)
+                answers_dict = questionnaire.load_answers(email, request)
+                new_request_post = request.POST.copy()
+                for question_key in answers_dict:
+                    print('loop - question_key:' + question_key)
+                    print('loop - str(answers_dict[question_key]):' +
+                        str(answers_dict[question_key]))
+                    new_request_post[question_key] = answers_dict[question_key]
+                print('views.quiz() - answers_dict:', answers_dict)
+                print('views.quiz() - new_request_post:', new_request_post)
                 quiz_form = QuestionnaireForm(
-                        quiz_size_slug=quiz_size_slug, data=request.POST)
+                        quiz_size_slug=quiz_size_slug, data=new_request_post)
 
     quiz_size_slugs = Questionnaire.get_quiz_size_slugs_list()
     quiz_info = {}
