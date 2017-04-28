@@ -123,14 +123,7 @@ def quiz(request, quiz_size_slug=None):
                 print('views.quiz() - loading the answers...')
                 print('views.quiz() - request.POST:', request.POST)
                 questionnaire = Questionnaire()
-                answers_dict = questionnaire.load_answers(email, request)
-                new_request_post = request.POST.copy()
-                for question_key in answers_dict:
-                    print('loop - question_key:' + question_key)
-                    print('loop - str(answers_dict[question_key]):' +
-                        str(answers_dict[question_key]))
-                    new_request_post[question_key] = answers_dict[question_key]
-                print('views.quiz() - answers_dict:', answers_dict)
+                new_request_post = questionnaire.add_answers(email, request)
                 print('views.quiz() - new_request_post:', new_request_post)
                 quiz_form = QuestionnaireForm(
                         quiz_size_slug=quiz_size_slug, data=new_request_post)
