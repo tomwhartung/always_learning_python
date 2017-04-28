@@ -217,9 +217,14 @@ class Answer(models.Model):
 
     """ Define a table in which to save each individual answer """
 
-    questionnaire = models.ForeignKey('content.Questionnaire', on_delete=models.CASCADE)
-    question_id = models.IntegerField(default=0)
-    answer = models.IntegerField(default=0)
+    questionnaire = models.ForeignKey(
+        'content.Questionnaire',
+        on_delete=models.CASCADE)
+    question_id = models.IntegerField(
+        default=0,
+        db_index=True)
+    answer = models.IntegerField(
+        default=0)
 
     def save_answer(self, questionnaire_id, question_id, answer):
         """ Save the questionnaire answers """
