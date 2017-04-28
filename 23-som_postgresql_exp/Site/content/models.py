@@ -52,7 +52,7 @@ class Score:
         """ Process the data from the form and set the scores """
         """ question_list is 0 based, the form questions are 1-based """
 
-        self.print_cleaned_data(cleaned_data)
+        # self.print_cleaned_data(cleaned_data)
         questions = Questions()
         questions_in_form = Questionnaire.get_question_count_for_slug(quiz_size_slug)
         questions_answered = 0
