@@ -120,11 +120,9 @@ def quiz(request, quiz_size_slug=None):
                 print('views.quiz() -', need_email_msg)
                 messages.add_message(request, messages.ERROR, need_email_msg)
             else:
-                print('views.quiz() - loading the answers...')
-                print('views.quiz() - request.POST:', request.POST)
                 questionnaire = Questionnaire()
                 new_request_post = questionnaire.add_answers(email, request)
-                print('views.quiz() - new_request_post:', new_request_post)
+                # print('views.quiz() - new_request_post:', new_request_post)
                 quiz_form = QuestionnaireForm(
                         quiz_size_slug=quiz_size_slug, data=new_request_post)
 
