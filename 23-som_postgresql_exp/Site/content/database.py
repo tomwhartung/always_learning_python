@@ -83,12 +83,12 @@ class Questionnaire(models.Model):
             print('Questionnaire.save_questionnaire - not saving! email:', '"' + email + '"')
             return False
 
-        questionnaire = self.load_questionnaire(email)
+        existing_questionnaire = self.load_questionnaire(email)
 
-        if questionnaire == None:
+        if existing_questionnaire == None:
             self.id = 0
         else:
-            self.id = questionnaire.id
+            self.id = existing_questionnaire.id
 
         name = cleaned_data['name']
         self.name = name
@@ -236,6 +236,7 @@ class Answer(models.Model):
         existing_answer = self.load_answer(questionnaire_id, question_id)
 
         if existing_answer != None:
+            print('Answer - save_answer - existing_answer.id:', existing_answer.id)
             self.id = existing_answer.id
 
         self.questionnaire_id = questionnaire_id
