@@ -96,13 +96,13 @@ class Questionnaire(models.Model):
         self.size = self.get_quiz_size_abbreviation_for_slug(quiz_size_slug)
         self.save()
         print('Questionnaire.save_questionnaire - saved:', self.__str__())
-        answer_db = Answer()
 
         for form_field_name in sorted(cleaned_data):
             if form_field_name.startswith("question_"):
                 question_int = int(form_field_name.replace("question_", ""))
                 answer_str = cleaned_data[form_field_name]
                 answer_int = int(answer_str)
+                answer_db = Answer()
                 answer_db.save_answer(self.id, question_int, answer_int)
         return self
 
