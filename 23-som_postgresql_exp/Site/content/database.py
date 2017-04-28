@@ -106,6 +106,17 @@ class Questionnaire(models.Model):
                 answer_db.save_answer(self.id, question_int, answer_int)
         return self
 
+    def add_answers(self, email, request):
+        """ Load answers from db and add them to the request.POST """
+        answers_dict = self.load_answers(email, request)
+        new_request_post = request.POST.copy()
+        for question_key in answers_dict:
+            print('loop - question_key:' + question_key)
+            print('loop - str(answers_dict[question_key]):' +
+                str(answers_dict[question_key]))
+            new_request_post[question_key] = answers_dict[question_key]
+        return new_request_post
+
     def load_questionnaire(self, email):
         """ Load and return the questionnaire for the passed-in email """
         print('Questionnaire - load_questionnaire(), email:', email)
