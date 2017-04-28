@@ -111,9 +111,6 @@ class Questionnaire(models.Model):
         answers_dict = self.load_answers(email, request)
         new_request_post = request.POST.copy()
         for question_key in answers_dict:
-            print('loop - question_key:' + question_key)
-            print('loop - str(answers_dict[question_key]):' +
-                str(answers_dict[question_key]))
             new_request_post[question_key] = answers_dict[question_key]
         return new_request_post
 
@@ -122,14 +119,14 @@ class Questionnaire(models.Model):
         print('Questionnaire - load_questionnaire(), email:', email)
         try:
             questionnaire = Questionnaire.objects.get(email__iexact=email)
-            print('Questionnaire - load_questionnaire - questionnaire:', questionnaire)
+            print('load_questionnaire - questionnaire:', questionnaire)
         except:
             questionnaire = None
         return questionnaire
 
     def load_answers(self, email, request):
         """ Load and return the answers for the passed-in email """
-        print('Questionnaire - load_answers(), email:', email)
+        # print('Questionnaire - load_answers(), email:', email)
         questionnaire = self.load_questionnaire(email)
         ans_query_set = None
         answers_dict = {}
@@ -140,12 +137,10 @@ class Questionnaire(models.Model):
             messages.add_message(request, messages.ERROR, not_found_msg)
         else:
             try:
-                print('Questionnaire -load_answers - getting the ans_query_set for the questionnaire')
                 ans_query_set = Answer.objects.filter(questionnaire=questionnaire)
-                print('Questionnaire -load_answers - got ans_query_set ok!?!')
-                print('Questionnaire -load_answers - answers:', ans_query_set)
+                print('load_answers - ans_query_set:', ans_query_set)
             except:
-                print('Questionnaire -load_answers - ERROR getting ans_query_set')
+                print('load_answers - ERROR getting ans_query_set')
 
         if ans_query_set != None:
             for ans in ans_query_set:
@@ -230,13 +225,9 @@ class Answer(models.Model):
 
     def save_answer(self, questionnaire_id, question_id, answer):
         """ Save the questionnaire answers """
-        print('Answer - save_answer - questionnaire_id:', questionnaire_id)
-        print('Answer - save_answer - question_id:', question_id)
-        # print('Answer - save_answer - answer:', answer)
         existing_answer = self.load_answer(questionnaire_id, question_id)
 
         if existing_answer != None:
-            print('Answer - save_answer - existing_answer.id:', existing_answer.id)
             self.id = existing_answer.id
 
         self.questionnaire_id = questionnaire_id
@@ -247,12 +238,10 @@ class Answer(models.Model):
 
     def load_answer(self, questionnaire_id, question_id):
         """ Load and return the answer for the passed-in ids """
-        print('load_answer - questionnaire_id/question_id:',
-            str(questionnaire_id) + '/' + str(question_id))
         try:
             existing_answer = Answer.objects.get(
                 questionnaire_id=questionnaire_id, question_id=question_id)
-            print('load_answer - existing_answer:', existing_answer)
+            # print('load_answer - existing_answer:', existing_answer)
         except:
             existing_answer = None
         return existing_answer
@@ -260,4 +249,3 @@ class Answer(models.Model):
     def __str__(self):
         question_id_answer = str(self.question_id) + '/' + str(self.answer)
         return question_id_answer
-        # return 'answer: ' + str(self.answer)
