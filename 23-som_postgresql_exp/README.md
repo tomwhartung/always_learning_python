@@ -21,6 +21,7 @@ Models, postgresql:
 2. Try and make it so we can just drop the final versions of the files we change back into the seeourminds.com site code.
 
 * ../../gitignored/Site/Site/settings.py
+* Site/bin/*.sh           # not all have changed but many added, so grab 'em all
 * Site/urls.py
 * content/admin.py
 * content/database.py     # NEW!
@@ -29,6 +30,7 @@ Models, postgresql:
 * content/urls.py
 * content/views.py
 * content/static/content/css/seeourminds.css
+* content/templates/content/base.html
 * content/templates/content/quiz.html
 * content/templates/content/quiz_results.html
 
