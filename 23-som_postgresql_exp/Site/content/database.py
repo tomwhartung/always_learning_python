@@ -230,13 +230,31 @@ class Answer(models.Model):
 
     def save_answer(self, questionnaire_id, question_id, answer):
         """ Save the questionnaire answers """
-        # print('Answer - save_answer - question_id:', question_id)
+        print('Answer - save_answer - questionnaire_id:', questionnaire_id)
+        print('Answer - save_answer - question_id:', question_id)
         # print('Answer - save_answer - answer:', answer)
+        existing_answer = self.load_answer(questionnaire_id, question_id)
+
+        if existing_answer != None:
+            self.id = existing_answer.id
+
         self.questionnaire_id = questionnaire_id
         self.question_id = question_id
         self.answer = answer
         self.save()
         return self
+
+    def load_answer(self, questionnaire_id, question_id):
+        """ Load and return the answer for the passed-in ids """
+        print('load_answer - questionnaire_id/question_id:',
+            str(questionnaire_id) + '/' + str(question_id))
+        try:
+            existing_answer = Answer.objects.get(
+                questionnaire_id=questionnaire_id, question_id=question_id)
+            print('load_answer - existing_answer:', existing_answer)
+        except:
+            existing_answer = None
+        return existing_answer
 
     def __str__(self):
         question_id_answer = str(self.question_id) + '/' + str(self.answer)
