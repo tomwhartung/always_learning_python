@@ -85,7 +85,9 @@ class Questionnaire(models.Model):
 
         questionnaire = self.load_questionnaire(email)
 
-        if questionnaire != None:
+        if questionnaire == None:
+            self.id = 0
+        else:
             self.id = questionnaire.id
 
         name = cleaned_data['name']
@@ -93,15 +95,15 @@ class Questionnaire(models.Model):
         self.email = email
         self.size = self.get_quiz_size_abbreviation_for_slug(quiz_size_slug)
         self.save()
-        print('Questionnaire.save_questionnaire - saved name/email:', name + '/' + email)
-        for form_question_str in sorted(cleaned_data):
-            if not form_question_str.startswith("question_"):
-                continue
-            question_int = int(form_question_str.replace("question_", ""))
-            answer_str = cleaned_data[form_question_str]
-            answer_int = int(answer_str)
-            answer_db = Answer()
-            answer_db.save_answer(self.id, question_int, answer_int)
+        print('Questionnaire.save_questionnaire - saved:', self.__str__())
+        answer_db = Answer()
+
+        for form_field_name in sorted(cleaned_data):
+            if form_field_name.startswith("question_"):
+                question_int = int(form_field_name.replace("question_", ""))
+                answer_str = cleaned_data[form_field_name]
+                answer_int = int(answer_str)
+                answer_db.save_answer(self.id, question_int, answer_int)
         return self
 
     def load_questionnaire(self, email):
@@ -109,8 +111,7 @@ class Questionnaire(models.Model):
         print('Questionnaire - load_questionnaire(), email:', email)
         try:
             questionnaire = Questionnaire.objects.get(email__iexact=email)
-            print('load_questionnaire - got the questionnaire for', email)
-            print('load_questionnaire - questionnaire:', questionnaire)
+            print('Questionnaire - load_questionnaire - questionnaire:', questionnaire)
         except:
             questionnaire = None
         return questionnaire
@@ -120,6 +121,7 @@ class Questionnaire(models.Model):
         print('Questionnaire - load_answers(), email:', email)
         questionnaire = self.load_questionnaire(email)
         ans_query_set = None
+        answers_dict = {}
 
         if questionnaire == None:
             not_found_msg = 'Unable to find questionnaire for ' + email
@@ -134,9 +136,7 @@ class Questionnaire(models.Model):
             except:
                 print('Questionnaire -load_answers - ERROR getting ans_query_set')
 
-        if ans_query_set == None:
-            answers_dict = {}
-        else:
+        if ans_query_set != None:
             for ans in ans_query_set:
                 question_no_str = str(ans.question_id)
                 question_no_2_chars = question_no_str.zfill(2)
