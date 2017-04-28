@@ -22,6 +22,7 @@ Models, postgresql:
 
 * ../../gitignored/Site/Site/settings.py
 * Site/urls.py
+* content/admin.py
 * content/database.py     # NEW!
 * content/forms.py
 * content/models.py
