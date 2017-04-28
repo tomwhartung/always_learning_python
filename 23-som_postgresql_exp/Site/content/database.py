@@ -85,9 +85,7 @@ class Questionnaire(models.Model):
 
         existing_questionnaire = self.load_questionnaire(email)
 
-        if existing_questionnaire == None:
-            self.id = 0
-        else:
+        if existing_questionnaire != None:
             self.id = existing_questionnaire.id
 
         name = cleaned_data['name']
