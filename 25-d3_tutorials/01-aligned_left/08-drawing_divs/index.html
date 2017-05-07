@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>D3 Test</title>
+    <script type="text/javascript" src="d3/d3.v4.js"></script>
+<style>
+div.bar {
+   display: inline-block;
+   width: 20px;
+   height: 75px;   /* We'll override this later */
+   background-color: teal;
+}
+</style>
+  </head>
+  <body>
+    <p>div 1:</p>
+    <div style="display: inline-block; width: 20px; height: 75px; background-color: teal;"></div>
+    <p>div 2:</p>
+    <div class="bar"></div>
+    <script type="text/javascript">
+      //
+      // 08: Drawing divs:
+      //   http://alignedleft.com/tutorials/d3/drawing-divs
+      //
+      var dataset = [ 1, 2, 3, 4, 5, 10, 12, 15, 20, 26, 33, 42 ];
+      d3.select("body").selectAll("div")
+        .data(dataset)
+        .enter()
+        .append("div")
+        .attr("class", "bar")
+        .style("margin-right", "2px")
+        .style("height", function(d) {
+          var barHeight = d * 5;  //Scale up by factor of 5
+          return barHeight + "px";
+        });
+    </script>
+  </body>
+</html>
