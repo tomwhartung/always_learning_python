@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>D3 Test</title>
+    <script type="text/javascript" src="d3/d3.v4.js"></script>
+<style>
+div.bar {
+   display: inline-block;
+   width: 20px;
+   height: 75px;   /* We'll override this later */
+   background-color: teal;
+}
+</style>
+  </head>
+  <body>
+    <div class="bar"></div>
+    <script type="text/javascript">
+      //
+      // 11: Drawing SVGs
+      //   http://alignedleft.com/tutorials/d3/drawing-svgs
+      //
+      var dataset = [ 1, 2, 3, 5, 7, 10, 16, 24 ];
+      var width = 500;
+      var height = 50;
+      var svg = d3.select("body")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+      var circles = svg.selectAll("circle")
+        .data(dataset)
+        .enter()
+        .append("circle");
+      circles.attr("cx", function(data, counter) {
+          return (counter * 50) + 25;
+        })
+        .attr("cy", height/2)
+        .attr("r", function(data) {
+          return data;
+        })
+        .attr("fill", "yellow")
+        .attr("stroke", "red")
+        .attr("stroke-width", function(data) {
+		      return data/2;
+      });
+    </script>
+  </body>
+</html>
