@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>D3 Test</title>
+    <script type="text/javascript" src="d3/d3.v4.js"></script>
+<style>
+div.bar {
+   display: inline-block;
+   width: 20px;
+   height: 75px;   /* We'll override this later */
+   background-color: teal;
+}
+</style>
+  </head>
+  <body>
+    <p>div.bar:</p>
+    <div class="bar"></div>
+    <script type="text/javascript">
+      //
+      // 13: Making a bar chart
+      //   http://alignedleft.com/tutorials/d3/making-a-bar-chart
+      // Old version:
+      //
+      var dataset = [ 17, 26, 35, 45, 10, 62, 15, 22, 36, 13, 42 ];
+      // var dataset = [ 17, 26, 35, 10, 22, 13, 42 ];
+      d3.select("body").selectAll("div")
+        .data(dataset)
+        .enter()
+        .append("div")
+        .attr("class", "bar")
+        .style("margin-right", "2px")
+        .style("height", function(data) {
+          var barHeight = data * 5;  //Scale up by factor of 5
+          return barHeight + "px";
+        });
+    </script>
+  </body>
+</html>
