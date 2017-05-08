@@ -62,3 +62,50 @@ To access it:
 
 See the sequenced subdirectories for code developed while running through the steps.
 
+### 02-bullet_charts
+
+Reference:
+
+- https://bl.ocks.org/mbostock/4061961
+
+This is **not** a tutorial, but an example from the gallery:
+
+- https://github.com/d3/d3/wiki/Gallery
+
+#### Result:
+
+#### Process
+
+#### 2.1 Try to run the code, as-is
+
+```
+mkdir -p 02-bullet_charts/01-copy_and_pasted_code
+```
+
+Code does not work as-is!  Getting a 404 on bullet.js !
+
+#### 2.2 Try to fix the "as-is" code
+
+```
+cd 02-bullet_charts/
+mkdir 02-fix_errors
+cp 01-copy_and_pasted_code/* 02-fix_errors
+vi 02-fix_errors/index.html
+```
+
+Oops my bad: the file name needs to be `bullet.js` not `bullets.js` .
+
+#### 2.3 Get creative!
+
+See if we can get this idea, and the code that goes with it, to work for
+our seeourminds.com scores.
+
+```
+mkdir 03-get_creative
+cp 02-fix_errors/* 03-get_creative
+vi 03-get_creative/index.html   # etc....
+```
+
+
+
+
