@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>D3 Test</title>
+    <script type="text/javascript" src="d3/d3.v4.js"></script>
+<style>
+div.bar {
+   display: inline-block;
+   width: 20px;
+   height: 75px;   /* We'll override this later */
+   background-color: teal;
+}
+</style>
+  </head>
+  <body>
+    <p>div 1:</p>
+    <div style="display: inline-block; width: 20px; height: 75px; background-color: teal;"></div>
+    <p>div 2:</p>
+    <div class="bar"></div>
+    <script type="text/javascript">
+      //
+      // 09: Power of data:
+      //   http://alignedleft.com/tutorials/d3/the-power-of-data
+      //
+      // var dataset = [ 17, 26, 35, 45, 10, 62, 15, 22, 36, 13, 42 ];
+      var dataset = [];                                // Initialize empty array
+      for (var i = 0; i < 25; i++) {                   // Loop 25 times
+        // var newNumber = Math.random() * 30;         // New random number (0-30)
+        var newNumber = Math.round(Math.random()*30);  // New random number (0-30)
+        dataset.push(newNumber);                       // Add new number to array
+      }
+      d3.select("body").selectAll("div")
+        .data(dataset)
+        .enter()
+        .append("div")
+        .attr("class", "bar")
+        .style("margin-right", "2px")
+        .style("height", function(data) {
+          var barHeight = data * 5;  //Scale up by factor of 5
+          return barHeight + "px";
+        });
+    </script>
+  </body>
+</html>
