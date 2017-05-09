@@ -2,6 +2,36 @@
 
 Explore the possibility of using D3.js to draw the score scales on seeourminds.com .
 
+## Goal:
+
+This is the goal of this project:
+
+### Input data:
+
+See the values for the `score` in the json files in the `00-test_json` directory.
+
+### Output graph:
+
+We want a horizontal bar graph containing four bars that repreents the `score` as follows:
+
+* 1st bar: E/I
+  * Label: E or I, whichever score is higher
+  * Color: dark grey or black (depending on aesthetics)
+  * Length: matches score
+* 2nd bar: N/S
+  * Label: N or S, whichever score is higher
+  * Color: blue if N score is higher, else yellow
+  * Length: matches score
+* 3rd bar: F/T
+  * Label: F or T, whichever score is higher
+  * Color: red if F score is higher, else green
+  * Length: matches score
+* 4th bar: J/P
+  * Label: J or P, whichever score is higher
+  * Color, if J score is higher: red or green (depending on F and T scores)
+  * Color: else (if P score is higher): blue or yellow (depending on N and S scores)
+  * Length: matches score
+
 ## References:
 
 This looks like a good place to start:
