@@ -9,7 +9,6 @@ d3.bullet = function() {
       duration = 0,
       ranges = bulletRanges,
       markers = bulletMarkers,
-      measures = bulletMeasures,
       width = 380,
       height = 30,
       tickFormat = null;
@@ -19,12 +18,11 @@ d3.bullet = function() {
     g.each(function(data, i) {
       var rangez = ranges.call(this, data, i).slice().sort(d3.descending),
           markerz = markers.call(this, data, i).slice().sort(d3.descending),
-          measurez = measures.call(this, data, i).slice().sort(d3.descending),
           g = d3.select(this);
 
       // Compute the new x-scale.
       var x1 = d3.scale.linear()
-          .domain([0, Math.max(rangez[0], markerz[0], measurez[0])])
+          .domain([0, Math.max(rangez[0], markerz[0])])
           .range(reverse ? [width, 0] : [0, width]);
 
       // Retrieve the old x-scale, if this is an update.
@@ -58,28 +56,6 @@ d3.bullet = function() {
           .attr("x", reverse ? x1 : 0)
           .attr("width", w1)
           .attr("height", height);
-
-      // Update the measure rects.
-      var measure = g.selectAll("rect.measure")
-          .data(measurez);
-
-      measure.enter().append("rect")
-          .attr("class", function(data, i) { return "measure s" + i; })
-          .attr("width", w0)
-          .attr("height", height / 3)
-          .attr("x", reverse ? x0 : 0)
-          .attr("y", height / 3)
-        .transition()
-          .duration(duration)
-          .attr("width", w1)
-          .attr("x", reverse ? x1 : 0);
-
-      measure.transition()
-          .duration(duration)
-          .attr("width", w1)
-          .attr("height", height / 3)
-          .attr("x", reverse ? x1 : 0)
-          .attr("y", height / 3);
 
       // Update the marker lines.
       var marker = g.selectAll("line.marker")
@@ -179,13 +155,6 @@ d3.bullet = function() {
     return bullet;
   };
 
-  // measures (actual, forecast)
-  bullet.measures = function(x) {
-    if (!arguments.length) return measures;
-    measures = x;
-    return bullet;
-  };
-
   bullet.width = function(x) {
     if (!arguments.length) return width;
     width = x;
@@ -219,10 +188,6 @@ function bulletRanges(data) {
 
 function bulletMarkers(data) {
   return data.markers;
-}
-
-function bulletMeasures(data) {
-  return data.measures;
 }
 
 function bulletTranslate(x) {
