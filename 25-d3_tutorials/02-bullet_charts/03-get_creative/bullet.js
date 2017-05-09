@@ -16,10 +16,10 @@ d3.bullet = function() {
 
   // For each small multiple…
   function bullet(g) {
-    g.each(function(d, i) {
-      var rangez = ranges.call(this, d, i).slice().sort(d3.descending),
-          markerz = markers.call(this, d, i).slice().sort(d3.descending),
-          measurez = measures.call(this, d, i).slice().sort(d3.descending),
+    g.each(function(data, i) {
+      var rangez = ranges.call(this, data, i).slice().sort(d3.descending),
+          markerz = markers.call(this, data, i).slice().sort(d3.descending),
+          measurez = measures.call(this, data, i).slice().sort(d3.descending),
           g = d3.select(this);
 
       // Compute the new x-scale.
@@ -44,7 +44,7 @@ d3.bullet = function() {
           .data(rangez);
 
       range.enter().append("rect")
-          .attr("class", function(d, i) { return "range s" + i; })
+          .attr("class", function(data, i) { return "range s" + i; })
           .attr("width", w0)
           .attr("height", height)
           .attr("x", reverse ? x0 : 0)
@@ -64,7 +64,7 @@ d3.bullet = function() {
           .data(measurez);
 
       measure.enter().append("rect")
-          .attr("class", function(d, i) { return "measure s" + i; })
+          .attr("class", function(data, i) { return "measure s" + i; })
           .attr("width", w0)
           .attr("height", height / 3)
           .attr("x", reverse ? x0 : 0)
@@ -108,8 +108,8 @@ d3.bullet = function() {
 
       // Update the tick groups.
       var tick = g.selectAll("g.tick")
-          .data(x1.ticks(8), function(d) {
-            return this.textContent || format(d);
+          .data(x1.ticks(8), function(data) {
+            return this.textContent || format(data);
           });
 
       // Initialize the ticks with the old scale, x0.
@@ -213,28 +213,28 @@ d3.bullet = function() {
   return bullet;
 };
 
-function bulletRanges(d) {
-  return d.ranges;
+function bulletRanges(data) {
+  return data.ranges;
 }
 
-function bulletMarkers(d) {
-  return d.markers;
+function bulletMarkers(data) {
+  return data.markers;
 }
 
-function bulletMeasures(d) {
-  return d.measures;
+function bulletMeasures(data) {
+  return data.measures;
 }
 
 function bulletTranslate(x) {
-  return function(d) {
-    return "translate(" + x(d) + ",0)";
+  return function(data) {
+    return "translate(" + x(data) + ",0)";
   };
 }
 
 function bulletWidth(x) {
   var x0 = x(0);
-  return function(d) {
-    return Math.abs(x(d) - x0);
+  return function(data) {
+    return Math.abs(x(data) - x0);
   };
 }
 
