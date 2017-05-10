@@ -37,7 +37,7 @@
    .bullet .marker { stroke: #000; stroke-width: 2px; }
    .bullet .tick line { stroke: #666; stroke-width: .5px; }
    .bullet .title { font-size: 14px; font-weight: bold; }
-   .bullet .subtitle { fill: #770000; }
+   .bullet .subtitle { fill: #000077; }
   </style>
  </head>
  <body>
@@ -92,6 +92,19 @@
       .attr("transform", "translate(" + score_margin.left + "," + score_margin.top + ")")
       .call(ranges_bullet_chart);
 
+   var ranges_bullet_title = ranges_bullet_svg.append("g")
+       .style("text-anchor", "end")
+       .attr("transform", "translate(-6," + score_height / 2 + ")");
+
+   ranges_bullet_title.append("text")
+       .attr("class", "title")
+       .text(function(d) { return d.title; });
+
+   ranges_bullet_title.append("text")
+       .attr("class", "subtitle")
+       .attr("dy", "1em")
+       .text(function(d) { return d.subtitle; });
+
    //
    // Score Bullet Chart (no ranges)
    //
@@ -108,6 +121,19 @@
       .append("g")
       .attr("transform", "translate(" + score_margin.left + "," + score_margin.top + ")")
       .call(score_bullet_chart);
+
+   var score_bullet_title = score_bullet_svg.append("g")
+       .style("text-anchor", "end")
+       .attr("transform", "translate(-6," + score_height / 2 + ")");
+
+   score_bullet_title.append("text")
+       .attr("class", "title")
+       .text(function(d) { return d.title; });
+
+   score_bullet_title.append("text")
+       .attr("class", "subtitle")
+       .attr("dy", "1em")
+       .text(function(d) { return d.subtitle; });
 
    //
    // Code for the scatter plot:
