@@ -56,7 +56,7 @@ This is a great tutorial!
 It's a little friendly/chatty, but the organization, flow, and
 chunking of information into bite-sized pieces are all excellent.
 
-#### Process
+#### Process:
 
 ##### 1.1 d3 setup
 
@@ -104,7 +104,10 @@ This is **not** a tutorial, but an example from the gallery:
 
 #### Result:
 
-#### Process
+* Got rid of a lot of code we don't need.
+* Not sure how we might adapt what we have here to our purposes
+
+#### Process:
 
 #### 2.1 Try to run the code, as-is
 
@@ -125,16 +128,39 @@ vi 02-fix_errors/index.html
 
 Oops my bad: the file name needs to be `bullet.js` not `bullets.js` .
 
-#### 2.3 Get creative!
+#### 2.3 Delete as much code as we can
 
-See if we can get this idea, and the code that goes with it, to work for
-our seeourminds.com scores.
+Got rid of a lot of code we don't need:
 
 ```
-mkdir 03-get_creative
-cp 02-fix_errors/* 03-get_creative
-vi 03-get_creative/index.html   # etc....
+mkdir 03-before_removing_ranges
+cp 02-fix_errors/* 03-before_removing_ranges
+vi 03-before_removing_ranges/index.html   # etc....
+mkdir 04-removed_ranges
+cp 03-before_removing_ranges/* 04-removed_ranges
 ```
+
+### 03-bar_score
+
+#### Result:
+
+#### Process:
+
+1. Start with latest version of code from `01-aligned_left` (`16-axes`)
+2. Update to use score data somehow
+3. Add ideas and code from latest version of `02-bullet_charts` (`04-removed_ranges`)
+4. Update to display horizontal score bars somehow
+
+##### 3.1 Starting point
+
+```
+mkdir -p 03-bar_score/1st_try
+cp -r 01-aligned_left/16-axes/*  03-bar_score/1st_try/
+.......
+```
+
+
+##### 3.2 Updating the code
 
 
 
