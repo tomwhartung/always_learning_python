@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>score_bars</title>
   <script type="text/javascript" src="js/d3/d3.v3.js"></script>
+  <script type="text/javascript" src="js/ranges_bullet.js"></script>
   <script type="text/javascript" src="js/score_bars.js"></script>
   <script type="text/javascript" src="js/score_bullet.js"></script>
   <style>
@@ -24,6 +25,12 @@
      font-size: 11px;
    }
    /*
+    * From the 02-bullet_charts/03-before_removing_ranges example:
+    */
+   .bullet .range.s0 { fill: #eee; }
+   .bullet .range.s1 { fill: #ddd; }
+   .bullet .range.s2 { fill: #ccc; }
+   /*
     * From the 02-bullet_charts/04-removed_ranges example:
     */
    .bullet { font: 10px sans-serif; }
@@ -34,15 +41,26 @@
   </style>
  </head>
  <body>
+  <div id="ranges_bullet_div"></div><!-- #ranges_bullet_div -->
+  <div id="score_bullet_div"></div><!-- #score_bullet_div -->
+  <div id="splot_div"></div><!-- #splot_div -->
   <script>
    good_score = [
      { "e_score": "2", "i_score": "17" },
      { "n_score": "14", "s_score": "5" },
      { "f_score": "11", "t_score": "8" },
      { "j_score": "5", "p_score": "14" }
+  ];
+
+   ranges_bullet_data = [
+      {"title":"I","subtitle":"Introverted","ranges":[33,67,100],"markers":[89]},
+      {"title":"N","subtitle":"iNtuitive","ranges":[33,67,100],"markers":[74]},
+      {"title":"F","subtitle":"Feeling","ranges":[33,67,100],"markers":[58]},
+      {"title":"P","subtitle":"Perceiving","ranges":[33,67,100],"markers":[74]},
+      {"title":"xxx","subtitle":"delete_me","ranges":[1,2,4],"markers":[0.1]}
    ];
 
-   bullet_data = [
+   score_bullet_data = [
      {"title":"I","subtitle":"Introverted","markers":[89]},
      {"title":"N","subtitle":"iNtuitive","markers":[74]},
      {"title":"F","subtitle":"Feeling","markers":[58]},
@@ -57,12 +75,32 @@
    console.log( 'score_width: ' + score_width);
    console.log( 'score_height: ' + score_height);
 
+   //
+   // Ranges Bullet Chart
+   //
+   var ranges_bullet_chart = d3.ranges_bullet()
+            .width(score_width)
+            .height(score_height);
+
+   var ranges_bullet_svg = d3.select("#ranges_bullet_div").selectAll("svg")
+      .data(ranges_bullet_data)
+      .enter().append("svg")
+      .attr("class", "bullet")
+      .attr("width", score_width + score_margin.left + score_margin.right)
+      .attr("height", score_height + score_margin.top + score_margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + score_margin.left + "," + score_margin.top + ")")
+      .call(ranges_bullet_chart);
+
+   //
+   // Score Bullet Chart (no ranges)
+   //
    var score_bullet_chart = d3.score_bullet()
             .width(score_width)
             .height(score_height);
 
-   var score_bullet_svg = d3.select("body").selectAll("svg")
-      .data(bullet_data)
+   var score_bullet_svg = d3.select("#score_bullet_div").selectAll("svg")
+      .data(score_bullet_data)
       .enter().append("svg")
       .attr("class", "bullet")
       .attr("width", score_width + score_margin.left + score_margin.right)
@@ -106,7 +144,7 @@
    // xAxis.tickFormat(formatAsPercentage);
    // yAxis.tickFormat(formatAsPercentage);
 
-   var splot_svg = d3.select("body")
+   var splot_svg = d3.select("#splot_div")
      .append("svg")
      .attr("width", splot_width)
      .style("height", splot_height);
