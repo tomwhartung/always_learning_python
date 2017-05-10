@@ -1,6 +1,7 @@
 (function() {
-
+//
 // score_bullet.js: derived from bullet.js , found in the d3 gallery
+//   This one is based on 02-bullet_charts/04-removed_ranges/bullet.js
 // References:
 //   https://github.com/d3/d3/wiki/Gallery
 //   https://bl.ocks.org/mbostock/4061961
