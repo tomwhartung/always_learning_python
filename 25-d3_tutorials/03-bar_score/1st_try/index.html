@@ -57,11 +57,11 @@
    console.log( 'score_width: ' + score_width);
    console.log( 'score_height: ' + score_height);
 
-   var chart = d3.score_bullet()
+   var score_bullet_chart = d3.score_bullet()
             .width(score_width)
             .height(score_height);
 
-   var svg = d3.select("body").selectAll("svg")
+   var score_bullet_svg = d3.select("body").selectAll("svg")
       .data(bullet_data)
       .enter().append("svg")
       .attr("class", "bullet")
@@ -69,8 +69,9 @@
       .attr("height", score_height + score_margin.top + score_margin.bottom)
       .append("g")
       .attr("transform", "translate(" + score_margin.left + "," + score_margin.top + ")")
-      .call(chart);
+      .call(score_bullet_chart);
 
+   //
    // Code for the scatter plot:
    //
    var splot_width = 300;
@@ -105,12 +106,12 @@
    // xAxis.tickFormat(formatAsPercentage);
    // yAxis.tickFormat(formatAsPercentage);
 
-   var svg = d3.select("body")
+   var splot_svg = d3.select("body")
      .append("svg")
      .attr("width", splot_width)
      .style("height", splot_height);
 
-   svg.selectAll("circle")
+   splot_svg.selectAll("circle")
      .data(splot_dataset)
      .enter()
      .append("circle")
@@ -125,7 +126,7 @@
      })
      .attr("fill", "blue");
 
-   svg.selectAll("text")
+   splot_svg.selectAll("text")
      .data(splot_dataset)
      .enter()
      .append("text")
@@ -142,12 +143,12 @@
      .attr("font-size", "11px")
      .attr("fill", "red");
 
-   svg.append("g")
+   splot_svg.append("g")
      .attr("class", "axis")
      .attr("transform", "translate(0," + (splot_height - xPadding) + ")")
      .call(xAxis);
 
-   svg.append("g")
+   splot_svg.append("g")
      .attr("class", "axis")
      .attr("transform", "translate(" + yPadding + ",0)")
      .call(yAxis);
