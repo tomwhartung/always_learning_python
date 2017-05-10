@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>score_bars</title>
   <script type="text/javascript" src="js/d3/d3.v3.js"></script>
+  <script type="text/javascript" src="js/no_ranges_bullet.js"></script>
   <script type="text/javascript" src="js/ranges_bullet.js"></script>
   <script type="text/javascript" src="js/score_bars.js"></script>
   <script type="text/javascript" src="js/score_bullet.js"></script>
@@ -42,9 +43,10 @@
   </style>
  </head>
  <body>
-  <div class="score-svg" id="ranges_bullet_div"></div><!-- #ranges_bullet_div -->
-  <div class="score-svg" id="score_bullet_div"></div><!-- #score_bullet_div -->
-  <div class="score-svg" id="splot_div"></div><!-- #splot_div -->
+  <div class="score-svg" id="ranges-bullet-div"></div><!-- #ranges-bullet-div -->
+  <div class="score-svg" id="no-ranges-bullet-div"></div><!-- #no-ranges-bullet-div -->
+  <div class="score-svg" id="score-bullet-div"></div><!-- #score-bullet-div -->
+  <div class="score-svg" id="splot-div"></div><!-- #splot-div -->
   <script>
    good_score = [
      { "e_score": "2", "i_score": "17" },
@@ -59,6 +61,14 @@
       {"title":"F","subtitle":"Feeling","ranges":[33,67,100],"markers":[58]},
       {"title":"P","subtitle":"Perceiving","ranges":[33,67,100],"markers":[74]},
       {"title":"xxx","subtitle":"delete_me","ranges":[1,2,4],"markers":[0.1]}
+   ];
+
+   no_ranges_bullet_data = [
+     {"title":"I","subtitle":"Introverted","markers":[89]},
+     {"title":"N","subtitle":"iNtuitive","markers":[74]},
+     {"title":"F","subtitle":"Feeling","markers":[58]},
+     {"title":"P","subtitle":"Perceiving","markers":[74]},
+     {"title":"x","subtitle":"delete_me","markers":[0.1]}
    ];
 
    score_bullet_data = [
@@ -83,7 +93,7 @@
             .width(score_width)
             .height(score_height);
 
-   var ranges_bullet_svg = d3.select("#ranges_bullet_div").selectAll("svg")
+   var ranges_bullet_svg = d3.select("#ranges-bullet-div").selectAll("svg")
       .data(ranges_bullet_data)
       .enter().append("svg")
       .attr("class", "bullet")
@@ -107,34 +117,64 @@
        .text(function(d) { return d.subtitle; });
 
    //
-   // Score Bullet Chart (no ranges)
+   // No Ranges Bullet Chart
    //
-   var score_bullet_chart = d3.score_bullet()
+   var no_ranges_bullet_chart = d3.score_bullet()
             .width(score_width)
             .height(score_height);
 
-   var score_bullet_svg = d3.select("#score_bullet_div").selectAll("svg")
-      .data(score_bullet_data)
+   var no_ranges_bullet_svg = d3.select("#no-ranges-bullet-div").selectAll("svg")
+      .data(no_ranges_bullet_data)
       .enter().append("svg")
       .attr("class", "bullet")
       .attr("width", score_width + score_margin.left + score_margin.right)
       .attr("height", score_height + score_margin.top + score_margin.bottom)
       .append("g")
       .attr("transform", "translate(" + score_margin.left + "," + score_margin.top + ")")
-      .call(score_bullet_chart);
+      .call(no_ranges_bullet_chart);
 
-   var score_bullet_title = score_bullet_svg.append("g")
+   var no_ranges_bullet_title = no_ranges_bullet_svg.append("g")
        .style("text-anchor", "end")
        .attr("transform", "translate(-6," + score_height / 2 + ")");
 
-   score_bullet_title.append("text")
+   no_ranges_bullet_title.append("text")
        .attr("class", "title")
        .text(function(d) { return d.title; });
 
-   score_bullet_title.append("text")
+   no_ranges_bullet_title.append("text")
        .attr("class", "subtitle")
        .attr("dy", "1em")
        .text(function(d) { return d.subtitle; });
+
+   //
+   // Score Bullet Chart
+   //
+   var score_bullet_chart = d3.score_bullet()
+          .width(score_width)
+          .height(score_height);
+
+   var score_bullet_svg = d3.select("#score-bullet-div").selectAll("svg")
+    .data(score_bullet_data)
+    .enter().append("svg")
+    .attr("class", "bullet")
+    .attr("width", score_width + score_margin.left + score_margin.right)
+    .attr("height", score_height + score_margin.top + score_margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + score_margin.left + "," + score_margin.top + ")")
+    .call(score_bullet_chart);
+
+   var score_bullet_title = score_bullet_svg.append("g")
+     .style("text-anchor", "end")
+     .attr("transform", "translate(-6," + score_height / 2 + ")");
+
+   score_bullet_title.append("text")
+     .attr("class", "title")
+     .text(function(d) { return d.title; });
+
+   score_bullet_title.append("text")
+     .attr("class", "subtitle")
+     .attr("dy", "1em")
+     .text(function(d) { return d.subtitle; });
 
    //
    // Code for the scatter plot:
