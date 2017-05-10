@@ -5,7 +5,11 @@
   <title>score_bars</title>
   <script type="text/javascript" src="js/d3/d3.v3.js"></script>
   <script type="text/javascript" src="js/score_bars.js"></script>
+  <script type="text/javascript" src="js/score_bullet.js"></script>
   <style>
+   /*
+    * From the 01-aligned_left/16-axes example:
+    */
    .axis path,
    .axis line {
      fill: none;
@@ -19,13 +23,57 @@
      font-family: sans-serif;
      font-size: 11px;
    }
+   /*
+    * From the 02-bullet_charts/04-removed_ranges example:
+    */
+   .bullet { font: 10px sans-serif; }
+   .bullet .marker { stroke: #000; stroke-width: 2px; }
+   .bullet .tick line { stroke: #666; stroke-width: .5px; }
+   .bullet .title { font-size: 14px; font-weight: bold; }
+   .bullet .subtitle { fill: #770000; }
   </style>
  </head>
  <body>
   <script>
-   var margin = {top: 5, right: 40, bottom: 20, left: 120};
-   var width = 960 - margin.left - margin.right;
-   var height = 500 - margin.top - margin.bottom;
+   good_score = [
+     { "e_score": "2", "i_score": "17" },
+     { "n_score": "14", "s_score": "5" },
+     { "f_score": "11", "t_score": "8" },
+     { "j_score": "5", "p_score": "14" }
+   ];
+
+   data = [
+     {"title":"I","subtitle":"Introverted","markers":[89]},
+     {"title":"N","subtitle":"iNtuitive","markers":[74]},
+     {"title":"F","subtitle":"Feeling","markers":[58]},
+     {"title":"P","subtitle":"Perceiving","markers":[74]},
+     {"title":"x","subtitle":"delete_me","markers":[0.1]}
+   ];
+
+   var score_margin = {top: 5, right: 40, bottom: 20, left: 120};
+   var score_width = 960 - score_margin.left - score_margin.right;
+   var score_height = 50 - score_margin.top - score_margin.bottom;
+
+   console.log( 'score_width: ' + score_width);
+   console.log( 'score_height: ' + score_height);
+
+   var chart = d3.score_bullet()
+            .width(score_width)
+            .height(score_height);
+
+   var svg = d3.select("body").selectAll("svg")
+      .data(data)
+      .enter().append("svg")
+      .attr("class", "bullet")
+      .attr("width", score_width + score_margin.left + score_margin.right)
+      .attr("height", score_height + score_margin.top + score_margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + score_margin.left + "," + score_margin.top + ")")
+      .call(chart);
+
+
+   var width = 300;
+   var height = 300;
    var xPadding = 50;
    var yPadding = 50;
 
