@@ -6,22 +6,7 @@
  * Adding code and ideas from:
  *   02-bullet_charts/04-removed_ranges
  */
-var dataset = [];
-// var random_dataset = false;
-var random_dataset = true;
-
-if ( random_dataset ) {
-  var numDataPoints = 50;
-  var xRange = Math.random() * 1000;
-  var yRange = Math.random() * 1000;
-  for (var i = 0; i < numDataPoints; i++) {
-    var newNumber1 = Math.round(Math.random() * xRange);
-    var newNumber2 = Math.round(Math.random() * yRange);
-    dataset.push([newNumber1, newNumber2]);
-  }
-}
-else {
-  dataset = [
+var splot_dataset = [
     [ 5,     20 ],
     [ 460,  190 ],
     [ 250,  150 ],
@@ -32,6 +17,4 @@ else {
     [ 25,   467 ],
     [ 85,   121 ],
     [ 220,   88 ]
-  ];
-}
-
+];
