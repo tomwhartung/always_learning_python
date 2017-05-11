@@ -14,7 +14,7 @@ d3.score_bullet = function() {
   var orient = "left", // TODO top & bottom
       reverse = false,
       duration = 0,
-      x_percents = scoreBulletXPercents,
+      markers = scoreBulletMarkers,
       width = 380,
       height = 30,
       tickFormat = null;
@@ -22,7 +22,7 @@ d3.score_bullet = function() {
   // For each small multiple…
   function score_bullet(g) {
     g.each(function(data, i) {
-      var x_percentz = x_percents.call(this, data, i).slice().sort(d3.descending),
+      var markerz = markers.call(this, data, i).slice().sort(d3.descending),
           g = d3.select(this);
 
       // Compute the new x-scale.
@@ -42,12 +42,12 @@ d3.score_bullet = function() {
       var w0 = scoreBulletWidth(x0),
           w1 = scoreBulletWidth(x1);
 
-      // Update the x_percent lines.
-      var x_percent = g.selectAll("line.x_percent")
-          .data(x_percentz);
+      // Update the marker lines.
+      var marker = g.selectAll("line.marker")
+          .data(markerz);
 
-      x_percent.enter().append("line")
-          .attr("class", "x_percent")
+      marker.enter().append("line")
+          .attr("class", "marker")
           .attr("x1", x0)
           .attr("x2", x0)
           .attr("y1", height / 6)
@@ -57,7 +57,7 @@ d3.score_bullet = function() {
           .attr("x1", x1)
           .attr("x2", x1);
 
-      x_percent.transition()
+      marker.transition()
           .duration(duration)
           .attr("x1", x1)
           .attr("x2", x1)
@@ -106,10 +106,10 @@ d3.score_bullet = function() {
     return score_bullet;
   };
 
-  // x_percents
-  score_bullet.x_percents = function(x) {
-    if (!arguments.length) return x_percents;
-    x_percents = x;
+  // markers
+  score_bullet.markers = function(x) {
+    if (!arguments.length) return markers;
+    markers = x;
     return score_bullet;
   };
 
@@ -140,8 +140,8 @@ d3.score_bullet = function() {
   return score_bullet;
 };
 
-function scoreBulletXPercents(data) {
-  return data.x_percents;
+function scoreBulletMarkers(data) {
+  return data.markers;
 }
 
 function scoreBulletTranslate(x) {
