@@ -25,7 +25,7 @@ d3.score_bullet = function() {
       var marker_value = markers.call(this, data, i).slice().sort(d3.descending),
           g = d3.select(this);
 
-		console.log( 'marker_value: ' + marker_value );
+      console.log( 'mmma marker_value: ' + marker_value );
 
       // Compute the new x-scale.
       var x1 = d3.scale.linear()
@@ -50,14 +50,14 @@ d3.score_bullet = function() {
 
       marker.enter().append("line")
           .attr("class", "marker")
-          .attr("x1", x0)
-          .attr("x2", x0)
-          .attr("y1", height / 6)
-          .attr("y2", height * 5 / 6)
-        .transition()
-          .duration(duration)
           .attr("x1", x1)
-          .attr("x2", x1);
+          .attr("x2", x1)
+          .attr("y1", height / 6)
+          .attr("y2", height * 5 / 6);
+      // .transition()
+      //   .duration(duration)
+      //   .attr("x1", x1)
+      //   .attr("x2", x1);
 
       marker.transition()
           .duration(duration)
