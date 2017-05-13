@@ -25,7 +25,7 @@ d3.score_bullet = function() {
       var marker_value = markers.call(this, data, i).slice().sort(d3.descending);
       var g = d3.select(this);
 
-      console.log( 'mma mma mma marker_value: ' + marker_value );
+      console.log( 'mmamma mma mma mma marker_value: ' + marker_value );
 
       // Compute the new x-scale.
       var x1 = d3.scale.linear()
@@ -41,8 +41,8 @@ d3.score_bullet = function() {
       this.__chart__ = x1;
 
       // Derive width-scales from the x-scales.
-      var w0 = scoreBulletWidth(x0);
-      var w1 = scoreBulletWidth(x1);
+      // var w0 = scoreBulletWidth(x0);
+      // var w1 = scoreBulletWidth(x1);
 
       // Update the marker lines.
       var marker = g.selectAll("line.marker")
