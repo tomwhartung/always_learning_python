@@ -25,20 +25,22 @@ d3.score_bullet = function() {
       var marker_value = markers.call(this, data, i).slice().sort(d3.descending);
       var g = d3.select(this);
 
-      console.log( 'aaa aaa aaa mma mma mma marker_value: ' + marker_value );
+      console.log( 'marker_value: ' + marker_value );
 
       // Compute the new x-scale.
-      var x1 = d3.scale.linear()
+      var x_scale = d3.scale.linear()
           .domain([0, 100])
           .range(reverse ? [width, 0] : [0, width]);
 
+      console.log( 'x_scale: ' + x_scale );
+
       // Retrieve the old x-scale, if this is an update.
-      var x0 = this.__chart__ || d3.scale.linear()
-          .domain([0, Infinity])
-          .range(x1.range());
+      // var x0 = this.__chart__ || d3.scale.linear()
+      //     .domain([0, Infinity])
+      //     .range(x_scale.range());
 
       // Stash the new scale.
-      this.__chart__ = x1;
+      this.__chart__ = x_scale;
 
       // Update the marker lines.
       var marker = g.selectAll("line.marker")
@@ -46,31 +48,31 @@ d3.score_bullet = function() {
 
       marker.enter().append("line")
           .attr("class", "marker")
-          .attr("x1", x1)
-          .attr("x2", x1)
+          .attr("x1", x_scale)
+          .attr("x2", x_scale)
           .attr("y1", height / 6)
           .attr("y2", height * 5 / 6);
 
       marker.transition()
           .duration(duration)
-          .attr("x1", x1)
-          .attr("x2", x1)
+          .attr("x1", x_scale)
+          .attr("x2", x_scale)
           .attr("y1", height / 6)
           .attr("y2", height * 5 / 6);
 
       // Compute the tick format.
-      var format = tickFormat || x1.tickFormat(8);
+      var format = tickFormat || x_scale.tickFormat(8);
 
       // Update the tick groups.
       var tick = g.selectAll("g.tick")
-          .data(x1.ticks(8), function(data) {
+          .data(x_scale.ticks(8), function(data) {
             return this.textContent || format(data);
           });
 
-      // Initialize the ticks with the old scale, x0.
+      // Add the ticks
       var tickEnter = tick.enter().append("g")
           .attr("class", "tick")
-          .attr("transform", scoreBulletTranslate(x1))
+          .attr("transform", scoreBulletTranslate(x_scale))
           .style("opacity", 1);
 
       tickEnter.append("line")
@@ -84,10 +86,10 @@ d3.score_bullet = function() {
           .text(format);
 
 /* *******************************************
-      // Transition the entering ticks to the new scale, x1.
+      // Transition the entering ticks to the new scale, x_scale.
       tickEnter.transition()
           .duration(duration)
-          .attr("transform", scoreBulletTranslate(x1))
+          .attr("transform", scoreBulletTranslate(x_scale))
           .style("opacity", 1);
  ******************************************** */
     });
