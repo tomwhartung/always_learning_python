@@ -18,7 +18,9 @@
   </style>
  </head>
  <body>
-  <div class="score-svg" id="score-bars-div"></div><!-- #score-bars-div -->
+  <div class="score-svg" id="score-bars-1"></div><!-- #score-bars-1 -->
+  <div class="score-svg" id="score-bars-2"></div><!-- #score-bars-2 -->
+  <div class="score-svg" id="score-bars-3"></div><!-- #score-bars-3 -->
   <script>
    good_score = [
      { "e_score": "2", "i_score": "17" },
@@ -27,43 +29,43 @@
      { "j_score": "5", "p_score": "14" }
    ];
 
-   score_bars_data = [
+   score_bars_1_data = [
       {"function_letter":"I","function_name":"Introverted","score_pct":89},
       {"function_letter":"N","function_name":"iNtuitive","score_pct":74},
       {"function_letter":"F","function_name":"Feeling","score_pct":58},
       {"function_letter":"P","function_name":"Perceiving","score_pct":74},
    ];
 
-   var score_margin = {top: 5, right: 40, bottom: 20, left: 120};
-   var score_width = 960 - score_margin.left - score_margin.right;
-   var score_height = 50 - score_margin.top - score_margin.bottom;
+   var score_bars_1_margin = {top: 5, right: 40, bottom: 20, left: 120};
+   var score_bars_1_width = 960 - score_bars_1_margin.left - score_bars_1_margin.right;
+   var score_bars_1_height = 50 - score_bars_1_margin.top - score_bars_1_margin.bottom;
 
    //
-   // Score Bars Chart
+   // Score Bars Chart 1
    //
-   var score_bars_chart = d3.score_bars()
-          .width(score_width)
-          .height(score_height);
+   var score_bars_1_chart = d3.score_bars()
+      .width(score_bars_1_width)
+      .height(score_bars_1_height);
 
-   var score_bars_svg = d3.select("#score-bars-div").selectAll("svg")
-    .data(score_bars_data)
+   var score_bars_1_svg = d3.select("#score-bars-1").selectAll("svg")
+    .data(score_bars_1_data)
     .enter().append("svg")
     .attr("class", "bullet")
-    .attr("width", score_width + score_margin.left + score_margin.right)
-    .attr("height", score_height + score_margin.top + score_margin.bottom)
+    .attr("width", score_bars_1_width + score_bars_1_margin.left + score_bars_1_margin.right)
+    .attr("height", score_bars_1_height + score_bars_1_margin.top + score_bars_1_margin.bottom)
     .append("g")
-    .attr("transform", "translate(" + score_margin.left + "," + score_margin.top + ")")
-    .call(score_bars_chart);
+    .attr("transform", "translate(" + score_bars_1_margin.left + "," + score_bars_1_margin.top + ")")
+    .call(score_bars_1_chart);
 
-   var score_bars_function_letter = score_bars_svg.append("g")
+   var score_bars_1_function_letter = score_bars_1_svg.append("g")
      .style("text-anchor", "end")
-     .attr("transform", "translate(-6," + score_height / 2 + ")");
+     .attr("transform", "translate(-6," + score_bars_1_height / 2 + ")");
 
-   score_bars_function_letter.append("text")
+   score_bars_1_function_letter.append("text")
      .attr("class", "function-letter")
      .text(function(data) { return data.function_letter; });
 
-   score_bars_function_letter.append("text")
+   score_bars_1_function_letter.append("text")
      .attr("class", "function-name")
      .attr("dy", "1em")
      .text(function(data) { return data.function_name; });
@@ -74,6 +76,88 @@
    // var formatAsPercentage = d3.format(".1%");
    // xAxis.tickFormat(formatAsPercentage);
    // yAxis.tickFormat(formatAsPercentage);
+
+   //
+   // Score Bars Chart 2
+   // -> Use default width and height
+   //
+
+   score_bars_2_data = [
+      {"function_letter":"E","function_name":"Introverted","score_pct":89},
+      {"function_letter":"S","function_name":"iNtuitive","score_pct":74},
+      {"function_letter":"T","function_name":"Feeling","score_pct":58},
+      {"function_letter":"J","function_name":"Perceiving","score_pct":74},
+   ];
+
+   var score_bars_2_margin = {top: 5, right: 40, bottom: 20, left: 120};
+   var score_bars_2_width = 960 - score_bars_2_margin.left - score_bars_2_margin.right;
+   var score_bars_2_height = 50 - score_bars_2_margin.top - score_bars_2_margin.bottom;
+
+   var score_bars_2_chart = d3.score_bars();  // use default width and height
+
+   var score_bars_2_svg = d3.select("#score-bars-2").selectAll("svg")
+    .data(score_bars_2_data)
+    .enter().append("svg")
+    .attr("class", "bullet")
+    .attr("width", score_bars_2_width + score_bars_2_margin.left + score_bars_2_margin.right)
+    .attr("height", score_bars_2_height + score_bars_2_margin.top + score_bars_2_margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + score_bars_2_margin.left + "," + score_bars_2_margin.top + ")")
+    .call(score_bars_2_chart);
+
+   var score_bars_2_function_letter = score_bars_2_svg.append("g")
+     .style("text-anchor", "end")
+     .attr("transform", "translate(-6," + score_bars_2_height / 2 + ")");
+
+   score_bars_2_function_letter.append("text")
+     .attr("class", "function-letter")
+     .text(function(data) { return data.function_letter; });
+
+   score_bars_2_function_letter.append("text")
+     .attr("class", "function-name")
+     .attr("dy", "1em")
+     .text(function(data) { return data.function_name; });
+
+   //
+   // Score Bars Chart 3
+   //
+   score_bars_3_data = [
+      {"function_letter":"E","function_name":"Introverted","score_pct":60},
+      {"function_letter":"N","function_name":"iNtuitive","score_pct":70},
+      {"function_letter":"T","function_name":"Feeling","score_pct":80},
+      {"function_letter":"P","function_name":"Perceiving","score_pct":75},
+   ];
+
+   var score_bars_3_margin = {top: 5, right: 40, bottom: 20, left: 120};
+   var score_bars_3_width = 600 - score_bars_3_margin.left - score_bars_3_margin.right;
+   var score_bars_3_height = 40 - score_bars_3_margin.top - score_bars_3_margin.bottom;
+
+   var score_bars_3_chart = d3.score_bars()
+      .width(score_bars_3_width)
+      .height(score_bars_3_height);
+
+   var score_bars_3_svg = d3.select("#score-bars-3").selectAll("svg")
+    .data(score_bars_3_data)
+    .enter().append("svg")
+    .attr("class", "bullet")
+    .attr("width", score_bars_3_width + score_bars_3_margin.left + score_bars_3_margin.right)
+    .attr("height", score_bars_3_height + score_bars_3_margin.top + score_bars_3_margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + score_bars_3_margin.left + "," + score_bars_3_margin.top + ")")
+    .call(score_bars_3_chart);
+
+   var score_bars_3_function_letter = score_bars_3_svg.append("g")
+     .style("text-anchor", "end")
+     .attr("transform", "translate(-6," + score_bars_3_height / 2 + ")");
+
+   score_bars_3_function_letter.append("text")
+     .attr("class", "function-letter")
+     .text(function(data) { return data.function_letter; });
+
+   score_bars_3_function_letter.append("text")
+     .attr("class", "function-name")
+     .attr("dy", "1em")
+     .text(function(data) { return data.function_name; });
 
   </script>
  </body>
