@@ -14,7 +14,7 @@ d3.score_bullet = function() {
   var orient = "left";
   var reverse = false;
   var duration = 0;
-  var markers = scoreBulletMarkers;
+  var markers = get_score_pct;
   var width = 380;
   var height = 30;
   var tickFormat = null;
@@ -32,8 +32,8 @@ d3.score_bullet = function() {
           .domain([0, 100])
           .range(reverse ? [width, 0] : [0, width]);
 
-      // Stash the new scale.
-      this.__chart__ = x_scale;
+      // // Stash the new scale.
+      // this.__chart__ = x_scale;
 
       // Update the marker lines.
       var marker = g.selectAll("line.marker")
@@ -126,8 +126,9 @@ d3.score_bullet = function() {
   return score_bullet;
 };
 
-function scoreBulletMarkers(data) {
-  return data.markers;
+function get_score_pct(data) {
+  console.log('get_score_pct: data.score_pct: ' + data.score_pct);
+  return data.score_pct;
 }
 
 function scoreBulletTranslate(x) {
