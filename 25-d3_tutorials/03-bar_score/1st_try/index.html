@@ -40,6 +40,10 @@
    .bullet .title { font-size: 14px; font-weight: bold; }
    .bullet .subtitle { fill: #000077; }
    .score-svg { border: solid green 2px; margin: 1em; padding: 1em;}
+   /*
+    * Styles I am adding:
+    */
+   .bullet .score-pct { stroke: #000; stroke-width: 2px; }
   </style>
  </head>
  <body>
@@ -79,12 +83,34 @@
      {"title":"x","subtitle":"delete_me","score_pct":[0.1]}
    ];
 
+   score_bullet_data_multiples = [
+     {"title":"I","subtitle":"Introverted","score_pct":[89,80]},
+     {"title":"N","subtitle":"iNtuitive","score_pct":[74,70,80]},
+     {"title":"F","subtitle":"Feeling","score_pct":[58,66,80]},
+     {"title":"P","subtitle":"Perceiving","score_pct":[74,80,90]},
+     {"title":"x","subtitle":"delete_me","score_pct":[0.1,0.3,0.5]}
+   ];
+
+    new_score_bullet_data_bare = [
+      {"title":"I","subtitle":"Introverted","score_pct":89},
+      {"title":"N","subtitle":"iNtuitive","score_pct":74},
+      {"title":"F","subtitle":"Feeling","score_pct":58},
+      {"title":"P","subtitle":"Perceiving","score_pct":74},
+      {"title":"x","subtitle":"delete_me","score_pct":0.1}
+    ];
+
+    new_score_bullet_data_quoted = [
+      {"title":"I","subtitle":"Introverted","score_pct":"89"},
+      {"title":"N","subtitle":"iNtuitive","score_pct":"74"},
+      {"title":"F","subtitle":"Feeling","score_pct":"58"},
+      {"title":"P","subtitle":"Perceiving","score_pct":"74"},
+      {"title":"x","subtitle":"delete_me","score_pct":"0.1"}
+    ];
+
+
    var score_margin = {top: 5, right: 40, bottom: 20, left: 120};
    var score_width = 960 - score_margin.left - score_margin.right;
    var score_height = 50 - score_margin.top - score_margin.bottom;
-
-   console.log( 'score_width: ' + score_width);
-   console.log( 'score_height: ' + score_height);
 
    //
    // Ranges Bullet Chart
@@ -154,7 +180,10 @@
           .height(score_height);
 
    var score_bullet_svg = d3.select("#score-bullet-div").selectAll("svg")
-    .data(score_bullet_data)
+    // .data(score_bullet_data)
+    // .data(score_bullet_data_multiples)
+    .data(new_score_bullet_data_bare)
+    // .data(new_score_bullet_data_quoted)
     .enter().append("svg")
     .attr("class", "bullet")
     .attr("width", score_width + score_margin.left + score_margin.right)
