@@ -32,13 +32,6 @@ d3.score_bullet = function() {
           .domain([0, 100])
           .range(reverse ? [width, 0] : [0, width]);
 
-      console.log( 'x_scale: ' + x_scale );
-
-      // Retrieve the old x-scale, if this is an update.
-      // var x0 = this.__chart__ || d3.scale.linear()
-      //     .domain([0, Infinity])
-      //     .range(x_scale.range());
-
       // Stash the new scale.
       this.__chart__ = x_scale;
 
@@ -53,12 +46,14 @@ d3.score_bullet = function() {
           .attr("y1", height / 6)
           .attr("y2", height * 5 / 6);
 
+/* *******************************************
       marker.transition()
           .duration(duration)
           .attr("x1", x_scale)
           .attr("x2", x_scale)
           .attr("y1", height / 6)
           .attr("y2", height * 5 / 6);
+ ******************************************** */
 
       // Compute the tick format.
       var format = tickFormat || x_scale.tickFormat(8);
@@ -85,13 +80,6 @@ d3.score_bullet = function() {
           .attr("y", height * 7 / 6)
           .text(format);
 
-/* *******************************************
-      // Transition the entering ticks to the new scale, x_scale.
-      tickEnter.transition()
-          .duration(duration)
-          .attr("transform", scoreBulletTranslate(x_scale))
-          .style("opacity", 1);
- ******************************************** */
     });
     d3.timer.flush();
   }
