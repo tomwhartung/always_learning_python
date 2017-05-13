@@ -25,7 +25,7 @@ d3.score_bullet = function() {
       var score_value = get_score_fcn.call(this, data, i).slice().sort(d3.descending);
       var g = d3.select(this);
 
-      console.log( 'score_value: ' + score_value );
+      console.log( 'aaa bbb ccc score_value: ' + score_value );
 
       // Compute the new x-scale.
       var x_scale = d3.scale.linear()
@@ -45,15 +45,6 @@ d3.score_bullet = function() {
           .attr("x2", x_scale)
           .attr("y1", height / 6)
           .attr("y2", height * 5 / 6);
-
-/* *******************************************
-      marker.transition()
-          .duration(duration)
-          .attr("x1", x_scale)
-          .attr("x2", x_scale)
-          .attr("y1", height / 6)
-          .attr("y2", height * 5 / 6);
- ******************************************** */
 
       // Compute the tick format.
       var format = tickFormat || x_scale.tickFormat(8);
@@ -92,12 +83,8 @@ d3.score_bullet = function() {
     return score_bullet;
   };
 
-  // markers
-  score_bullet.markers = function(x) {
-    if (!arguments.length) return markers;
-    markers = x;
-    return score_bullet;
-  };
+/* ****************************************
+ * ****************************************/
 
   score_bullet.width = function(x) {
     if (!arguments.length) return width;
