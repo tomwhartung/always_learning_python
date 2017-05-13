@@ -32,15 +32,17 @@ d3.score_bars = function() {
   var tickFormat = null;
 
   // For each small multiple…
-  function score_bars(g) {
-    g.each(function(data, i) {
-      var score_value = get_score_pct_fcn.call(this, data, i);
-      var g = d3.select(this);
+  function score_bars(svgg_elt_list) {
+    console.log('score_bars - passed-in "svgg_elt_list" = ' + svgg_elt_list)
+    svgg_elt_list.each(function(data, index) {
+      var score_value = get_score_pct_fcn.call(this, data, index);
+      var this_svgg_elt = d3.select(this);
+      console.log('score_bars - var "this_svgg_elt" = ' + this_svgg_elt)
 		var score_value_arr = []
 		score_value_arr = []
 		score_value_arr.push(score_value);
 
-      console.log('check check check 123 123 aaa bbb ccc 123 456 score_value: ' + score_value);
+      console.log('check check check 123 123 123 bbb ccc 123 456 score_value: ' + score_value);
 
       // Compute the new x-scale.
       var x_scale = d3.scale.linear()
@@ -48,7 +50,7 @@ d3.score_bars = function() {
           .range(reverse ? [width, 0] : [0, width]);
 
       // Update the score-pct lines.
-      var score_pct_lines = g.selectAll("line.score-pct")
+      var score_pct_lines = this_svgg_elt.selectAll("line.score-pct")
           .data(score_value_arr);
 
       score_pct_lines.enter().append("line")
@@ -62,7 +64,7 @@ d3.score_bars = function() {
       var format = tickFormat || x_scale.tickFormat(8);
 
       // Update the tick groups.
-      var tick = g.selectAll("g.tick")
+      var tick = this_svgg_elt.selectAll("g.tick")
           .data(x_scale.ticks(8), function(data) {
             return this.textContent || format(data);
           });
@@ -95,9 +97,6 @@ d3.score_bars = function() {
     return score_bars;
   };
 
-/* ****************************************
- * ****************************************/
-
   score_bars.width = function(x) {
     if (!arguments.length) return width;
     width = x;
@@ -119,7 +118,7 @@ d3.score_bars = function() {
   return score_bars;
 };
 
-function get_score_pct(data) {
+function get_score_pct(data, index) {
   return data.score_pct;
 }
 
