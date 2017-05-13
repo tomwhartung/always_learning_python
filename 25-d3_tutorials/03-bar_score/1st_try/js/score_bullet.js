@@ -25,7 +25,7 @@ d3.score_bullet = function() {
       var marker_value = markers.call(this, data, i).slice().sort(d3.descending);
       var g = d3.select(this);
 
-      console.log( 'mmamma mma mma mma marker_value: ' + marker_value );
+      console.log( 'aaa aaa aaa mma mma mma marker_value: ' + marker_value );
 
       // Compute the new x-scale.
       var x1 = d3.scale.linear()
@@ -39,10 +39,6 @@ d3.score_bullet = function() {
 
       // Stash the new scale.
       this.__chart__ = x1;
-
-      // Derive width-scales from the x-scales.
-      // var w0 = scoreBulletWidth(x0);
-      // var w1 = scoreBulletWidth(x1);
 
       // Update the marker lines.
       var marker = g.selectAll("line.marker")
@@ -74,8 +70,8 @@ d3.score_bullet = function() {
       // Initialize the ticks with the old scale, x0.
       var tickEnter = tick.enter().append("g")
           .attr("class", "tick")
-          .attr("transform", scoreBulletTranslate(x0))
-          .style("opacity", 1e-6);
+          .attr("transform", scoreBulletTranslate(x1))
+          .style("opacity", 1);
 
       tickEnter.append("line")
           .attr("y1", height)
@@ -87,11 +83,13 @@ d3.score_bullet = function() {
           .attr("y", height * 7 / 6)
           .text(format);
 
+/* *******************************************
       // Transition the entering ticks to the new scale, x1.
       tickEnter.transition()
           .duration(duration)
           .attr("transform", scoreBulletTranslate(x1))
           .style("opacity", 1);
+ ******************************************** */
     });
     d3.timer.flush();
   }
