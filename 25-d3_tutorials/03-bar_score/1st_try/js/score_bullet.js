@@ -14,7 +14,7 @@ d3.score_bullet = function() {
   var orient = "left";
   var reverse = false;
   var duration = 0;
-  var get_score_fcn = get_score_pct;
+  var get_score_pct_fcn = get_score_pct;
   var width = 380;
   var height = 30;
   var tickFormat = null;
@@ -22,10 +22,10 @@ d3.score_bullet = function() {
   // For each small multiple…
   function score_bullet(g) {
     g.each(function(data, i) {
-      var score_value = get_score_fcn.call(this, data, i).slice().sort(d3.descending);
+      var score_value = get_score_pct_fcn.call(this, data, i).slice().sort(d3.descending);
       var g = d3.select(this);
 
-      console.log( 'aaa bbb ccc score_value: ' + score_value );
+      console.log( 'check 123 aaa bbb ccc 123 456 score_value: ' + score_value );
 
       // Compute the new x-scale.
       var x_scale = d3.scale.linear()
@@ -35,12 +35,12 @@ d3.score_bullet = function() {
       // // Stash the new scale.
       // this.__chart__ = x_scale;
 
-      // Update the marker lines.
-      var marker = g.selectAll("line.marker")
+      // Update the score-pct lines.
+      var score_pct_lines = g.selectAll("line.score-pct")
           .data(score_value);
 
-      marker.enter().append("line")
-          .attr("class", "marker")
+      score_pct_lines.enter().append("line")
+          .attr("class", "score-pct")
           .attr("x1", x_scale)
           .attr("x2", x_scale)
           .attr("y1", height / 6)
