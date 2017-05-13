@@ -13,7 +13,6 @@
 d3.score_bullet = function() {
   var orient = "left";
   var reverse = false;
-  var duration = 0;
   var get_score_pct_fcn = get_score_pct;
   var width = 380;
   var height = 30;
@@ -25,15 +24,12 @@ d3.score_bullet = function() {
       var score_value = get_score_pct_fcn.call(this, data, i).slice().sort(d3.descending);
       var g = d3.select(this);
 
-      console.log( 'check 123 aaa bbb ccc 123 456 score_value: ' + score_value );
+      console.log( 'check 123 bbb ccc 123 456 score_value: ' + score_value );
 
       // Compute the new x-scale.
       var x_scale = d3.scale.linear()
           .domain([0, 100])
           .range(reverse ? [width, 0] : [0, width]);
-
-      // // Stash the new scale.
-      // this.__chart__ = x_scale;
 
       // Update the score-pct lines.
       var score_pct_lines = g.selectAll("line.score-pct")
@@ -101,12 +97,6 @@ d3.score_bullet = function() {
   score_bullet.tickFormat = function(x) {
     if (!arguments.length) return tickFormat;
     tickFormat = x;
-    return score_bullet;
-  };
-
-  score_bullet.duration = function(x) {
-    if (!arguments.length) return duration;
-    duration = x;
     return score_bullet;
   };
 
