@@ -21,10 +21,16 @@ d3.score_bullet = function() {
   // For each small multiple…
   function score_bullet(g) {
     g.each(function(data, i) {
-      var score_value = get_score_pct_fcn.call(this, data, i).slice().sort(d3.descending);
+      // var score_value = get_score_pct_fcn.call(this, data, i).slice().sort(d3.descending);
+      // var score_value = get_score_pct_fcn.call(this, data, i).sort(d3.descending);
+      var score_value = get_score_pct_fcn.call(this, data, i);
       var g = d3.select(this);
+		var score_value_arr = []
+		score_value_arr = []
+		score_value_arr.push(score_value);
 
-      console.log( 'check 123 bbb ccc 123 456 score_value: ' + score_value );
+      console.log( 'check check 123 bbb ccc 123 456 score_value: ' + score_value );
+      console.log( 'check check 123 bbb ccc 123 456 score_value_arr: ' + score_value_arr );
 
       // Compute the new x-scale.
       var x_scale = d3.scale.linear()
@@ -33,7 +39,7 @@ d3.score_bullet = function() {
 
       // Update the score-pct lines.
       var score_pct_lines = g.selectAll("line.score-pct")
-          .data(score_value);
+          .data(score_value_arr);
 
       score_pct_lines.enter().append("line")
           .attr("class", "score-pct")
@@ -104,6 +110,7 @@ d3.score_bullet = function() {
 };
 
 function get_score_pct(data) {
+  console.log('get_score_pct: data: ' + data);
   console.log('get_score_pct: data.score_pct: ' + data.score_pct);
   return data.score_pct;
 }
