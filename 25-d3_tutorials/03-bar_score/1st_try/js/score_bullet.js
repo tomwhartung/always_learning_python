@@ -22,8 +22,10 @@ d3.score_bullet = function() {
   // For each small multiple…
   function score_bullet(g) {
     g.each(function(data, i) {
-      var markerz = markers.call(this, data, i).slice().sort(d3.descending),
+      var marker_value = markers.call(this, data, i).slice().sort(d3.descending),
           g = d3.select(this);
+
+		console.log( 'marker_value: ' + marker_value );
 
       // Compute the new x-scale.
       var x1 = d3.scale.linear()
@@ -44,7 +46,7 @@ d3.score_bullet = function() {
 
       // Update the marker lines.
       var marker = g.selectAll("line.marker")
-          .data(markerz);
+          .data(marker_value);
 
       marker.enter().append("line")
           .attr("class", "marker")
