@@ -14,7 +14,7 @@ d3.score_bullet = function() {
   var orient = "left";
   var reverse = false;
   var duration = 0;
-  var markers = get_score_pct;
+  var get_score_fcn = get_score_pct;
   var width = 380;
   var height = 30;
   var tickFormat = null;
@@ -22,10 +22,10 @@ d3.score_bullet = function() {
   // For each small multiple…
   function score_bullet(g) {
     g.each(function(data, i) {
-      var marker_value = markers.call(this, data, i).slice().sort(d3.descending);
+      var score_value = get_score_fcn.call(this, data, i).slice().sort(d3.descending);
       var g = d3.select(this);
 
-      console.log( 'marker_value: ' + marker_value );
+      console.log( 'score_value: ' + score_value );
 
       // Compute the new x-scale.
       var x_scale = d3.scale.linear()
@@ -37,7 +37,7 @@ d3.score_bullet = function() {
 
       // Update the marker lines.
       var marker = g.selectAll("line.marker")
-          .data(marker_value);
+          .data(score_value);
 
       marker.enter().append("line")
           .attr("class", "marker")
