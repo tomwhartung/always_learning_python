@@ -29,8 +29,7 @@ d3.score_bullet = function() {
 		score_value_arr = []
 		score_value_arr.push(score_value);
 
-      console.log( 'check check 123 bbb ccc 123 456 score_value: ' + score_value );
-      console.log( 'check check 123 bbb ccc 123 456 score_value_arr: ' + score_value_arr );
+      console.log( 'check check 123 123 aaa bbb ccc 123 456 score_value: ' + score_value );
 
       // Compute the new x-scale.
       var x_scale = d3.scale.linear()
@@ -110,8 +109,6 @@ d3.score_bullet = function() {
 };
 
 function get_score_pct(data) {
-  console.log('get_score_pct: data: ' + data);
-  console.log('get_score_pct: data.score_pct: ' + data.score_pct);
   return data.score_pct;
 }
 
