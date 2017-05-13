@@ -7,7 +7,6 @@
   <script type="text/javascript" src="js/no_ranges_bullet.js"></script>
   <script type="text/javascript" src="js/ranges_bullet.js"></script>
   <script type="text/javascript" src="js/score_bars.js"></script>
-  <script type="text/javascript" src="js/score_bullet.js"></script>
   <style>
    /*
     * From the 01-aligned_left/16-axes example:
@@ -44,14 +43,14 @@
     * Styles I am adding:
     */
    .bullet .score-pct { stroke: #000; stroke-width: 2px; }
-   .bullet .function-letter { fill: #770000; font-size: 14px; font-weight: bold; }
-   .bullet .function-name { fill: #007700; }
+   .bullet .function-letter { fill: #000077; font-size: 14px; font-weight: bold; }
+   .bullet .function-name { fill: #770000; }
   </style>
  </head>
  <body>
   <div class="score-svg" id="ranges-bullet-div"></div><!-- #ranges-bullet-div -->
   <div class="score-svg" id="no-ranges-bullet-div"></div><!-- #no-ranges-bullet-div -->
-  <div class="score-svg" id="score-bullet-div"></div><!-- #score-bullet-div -->
+  <div class="score-svg" id="score-bars-div"></div><!-- #score-bars-div -->
   <div class="score-svg" id="splot-div"></div><!-- #splot-div -->
   <script>
    ranges_bullet_data = [
@@ -77,7 +76,7 @@
      { "j_score": "5", "p_score": "14" }
    ];
 
-   score_bullet_data = [
+   score_bars_data = [
       {"function_letter":"I","function_name":"Introverted","score_pct":89},
       {"function_letter":"N","function_name":"iNtuitive","score_pct":74},
       {"function_letter":"F","function_name":"Feeling","score_pct":58},
@@ -89,6 +88,18 @@
    var score_width = 960 - score_margin.left - score_margin.right;
    var score_height = 50 - score_margin.top - score_margin.bottom;
 
+   var splot_dataset = [
+      [ 5,     20 ],
+      [ 460,  190 ],
+      [ 250,  150 ],
+      [ 100,  233 ],
+      [ 330,  495 ],
+      [ 410,  312 ],
+      [ 425,  244 ],
+      [ 25,   467 ],
+      [ 85,   121 ],
+      [ 220,   88 ]
+   ];
    //
    // Ranges Bullet Chart
    //
@@ -152,29 +163,29 @@
    //
    // Score Bullet Chart
    //
-   var score_bullet_chart = d3.score_bullet()
+   var score_bars_chart = d3.score_bars()
           .width(score_width)
           .height(score_height);
 
-   var score_bullet_svg = d3.select("#score-bullet-div").selectAll("svg")
-    .data(score_bullet_data)
+   var score_bars_svg = d3.select("#score-bars-div").selectAll("svg")
+    .data(score_bars_data)
     .enter().append("svg")
     .attr("class", "bullet")
     .attr("width", score_width + score_margin.left + score_margin.right)
     .attr("height", score_height + score_margin.top + score_margin.bottom)
     .append("g")
     .attr("transform", "translate(" + score_margin.left + "," + score_margin.top + ")")
-    .call(score_bullet_chart);
+    .call(score_bars_chart);
 
-   var score_bullet_function_letter = score_bullet_svg.append("g")
+   var score_bars_function_letter = score_bars_svg.append("g")
      .style("text-anchor", "end")
      .attr("transform", "translate(-6," + score_height / 2 + ")");
 
-   score_bullet_function_letter.append("text")
+   score_bars_function_letter.append("text")
      .attr("class", "function-letter")
      .text(function(data) { return data.function_letter; });
 
-   score_bullet_function_letter.append("text")
+   score_bars_function_letter.append("text")
      .attr("class", "function-name")
      .attr("dy", "1em")
      .text(function(data) { return data.function_name; });
