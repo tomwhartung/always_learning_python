@@ -44,6 +44,8 @@
     * Styles I am adding:
     */
    .bullet .score-pct { stroke: #000; stroke-width: 2px; }
+   .bullet .function-letter { fill: #770000; font-size: 14px; font-weight: bold; }
+   .bullet .function-name { fill: #007700; }
   </style>
  </head>
  <body>
@@ -76,11 +78,11 @@
    ];
 
    score_bullet_data = [
-      {"title":"I","subtitle":"Introverted","score_pct":89},
-      {"title":"N","subtitle":"iNtuitive","score_pct":74},
-      {"title":"F","subtitle":"Feeling","score_pct":58},
-      {"title":"P","subtitle":"Perceiving","score_pct":74},
-      {"title":"x","subtitle":"delete_me","score_pct":0.1}
+      {"function_letter":"I","function_name":"Introverted","score_pct":89},
+      {"function_letter":"N","function_name":"iNtuitive","score_pct":74},
+      {"function_letter":"F","function_name":"Feeling","score_pct":58},
+      {"function_letter":"P","function_name":"Perceiving","score_pct":74},
+      {"function_letter":"x","function_name":"delete_me","score_pct":0.1}
    ];
 
    var score_margin = {top: 5, right: 40, bottom: 20, left: 120};
@@ -164,18 +166,18 @@
     .attr("transform", "translate(" + score_margin.left + "," + score_margin.top + ")")
     .call(score_bullet_chart);
 
-   var score_bullet_title = score_bullet_svg.append("g")
+   var score_bullet_function_letter = score_bullet_svg.append("g")
      .style("text-anchor", "end")
      .attr("transform", "translate(-6," + score_height / 2 + ")");
 
-   score_bullet_title.append("text")
-     .attr("class", "title")
-     .text(function(d) { return d.title; });
+   score_bullet_function_letter.append("text")
+     .attr("class", "function-letter")
+     .text(function(data) { return data.function_letter; });
 
-   score_bullet_title.append("text")
-     .attr("class", "subtitle")
+   score_bullet_function_letter.append("text")
+     .attr("class", "function-name")
      .attr("dy", "1em")
-     .text(function(d) { return d.subtitle; });
+     .text(function(data) { return data.function_name; });
 
    //
    // Code for the scatter plot:
