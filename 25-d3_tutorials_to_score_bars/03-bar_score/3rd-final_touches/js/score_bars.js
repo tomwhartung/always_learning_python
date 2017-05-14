@@ -184,6 +184,38 @@
  * Keep our utility functions from interfering with other js code
  */
 var score_bars = {
+   create_chart_svg: function(selector, score, margin, dimension) {
+      console.log('Hi from create_chart_svg!');
+
+      score_bars_data = score_bars.score_to_bars_data(score);
+      var score_bars_chart = d3.score_bars()
+         .width(dimension.width)
+         .height(dimension.height);
+
+      var score_bars_svg = d3.select(selector).selectAll("svg")
+       .data(score_bars_data)
+       .enter().append("svg")
+       .attr("class", "bullet")
+       .attr("width", dimension.width + margin.left + margin.right)
+       .attr("height", dimension.height + margin.top + margin.bottom)
+       .append("g")
+       .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+       .call(score_bars_chart);
+
+      var function_letter_elt = score_bars_svg.append("g")
+        .style("text-anchor", "end")
+        .attr("transform", "translate(-6," + dimension.height / 2 + ")");
+
+      function_letter_elt.append("text")
+        .attr("class", "function-letter")
+        .text(function(data) { return data.function_letter; });
+
+      function_letter_elt.append("text")
+        .attr("class", "function-name")
+        .attr("dy", "1em")
+        .text(function(data) { return data.function_name; });
+
+   },
    score_to_bars_data: function (score) {
       //
       // Values stored in the passed-in score object:
@@ -231,8 +263,6 @@ var score_bars = {
          pair = score[index];
          for (var x_score_key in pair) {
             score_value = pair[x_score_key];
-            console.log('score_to_bars_data - x_score_key:score_value ' +
-               x_score_key + ':' + score_value);
             if (x_score_key == 'e_score') { e_score_value = parseInt(score_value); }
             else if (x_score_key == 'i_score') { i_score_value = parseInt(score_value); }
             else if (x_score_key == 'n_score') { n_score_value = parseInt(score_value); }
@@ -251,6 +281,11 @@ var score_bars = {
       n_s_total = n_score_value + s_score_value;
       f_t_total = f_score_value + t_score_value;
       j_p_total = j_score_value + p_score_value;
+
+		// console.log('e_i_total: ' + e_i_total);
+		// console.log('n_s_total: ' + n_s_total);
+		// console.log('f_t_total: ' + f_t_total);
+		// console.log('j_p_total: ' + j_p_total);
 
       if (e_score_value > i_score_value) {
          e_or_i_letter = 'E';
@@ -296,11 +331,6 @@ var score_bars = {
          j_or_p_score_pct = Math.round(100 * p_score_value / j_p_total);
       }
 
-		console.log('e_i_total: ' + e_i_total);
-		console.log('n_s_total: ' + n_s_total);
-		console.log('f_t_total: ' + f_t_total);
-		console.log('j_p_total: ' + j_p_total);
-
       //
       // Use these values to construct the score_bars_data array
       //
@@ -329,11 +359,6 @@ var score_bars = {
       score_bars_data.push(n_or_s_entry);
       score_bars_data.push(f_or_t_entry);
       score_bars_data.push(j_or_p_entry);
-
-      console.log('score_to_bars_data - e_or_i_entry: ' + e_or_i_entry);
-      console.log('score_to_bars_data - n_or_s_entry: ' + n_or_s_entry);
-      console.log('score_to_bars_data - f_or_t_entry: ' + f_or_t_entry);
-      console.log('score_to_bars_data - j_or_p_entry: ' + j_or_p_entry);
 
       return score_bars_data;
    }
