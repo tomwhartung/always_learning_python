@@ -24,11 +24,10 @@
 //
 (function() {
   d3.score_bars = function() {
-    var orient = "left";
     var reverse = false;
     var get_score_pct_fcn = get_score_pct;
     var width = 180;   // default value; to override, call width()
-    var height = 15;   // default value; to override, call height()
+    var height = 12;   // default value; to override, call height()
     var tick_format = null;
     /**
      * Function to process each of the SVGGElements in the list
@@ -41,7 +40,7 @@
         score_value_arr = []              // data() fcn expects an array
         score_value_arr.push(score_value);
 
-        console.log('check check check 123 123 123 ccc score_value: ' + score_value);
+        console.log('check check check 123 123 123 score_value: ' + score_value);
         console.log('score_bars - width x height: ' + width + ' x ' + height)
 
         var x_scale = d3.scale.linear()
@@ -86,14 +85,6 @@
       });
       d3.timer.flush();
     }
-
-    // left, right, top, bottom
-    score_bars.orient = function(x) {
-      if (!arguments.length) return orient;
-      orient = x;
-      reverse = orient == "right" || orient == "bottom";
-      return score_bars;
-    };
 
     /**
      * Set (override default) or get current width
