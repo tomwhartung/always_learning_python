@@ -1,4 +1,4 @@
-# 25-d3_tutorials
+# 25-d3_tutorials_to_score_bars
 
 Explore the possibility of using D3.js to draw the score scales on seeourminds.com .
 
@@ -154,14 +154,42 @@ cp 03-before_removing_ranges/* 04-removed_ranges
 ##### 3.1 Starting point
 
 ```
-mkdir -p 03-bar_score/1st_try
-cp -r 01-aligned_left/16-axes/*  03-bar_score/1st_try/
+mkdir -p 03-bar_score/1st-get_it_working
+cp -r 01-aligned_left/16-axes/*  03-bar_score/1st-get_it_working/
 .......
 ```
 
-
 ##### 3.2 Updating the code
 
+This proved to be very challenging.
+Someday I would like to offer the author of the code a critique, bwahaha.
 
+Finding a way to get the code to do what I want it to required taking baby steps.
+
+##### 3.3 Cleaning up the code
+
+After getting it to work, we need to delete everyt hing unrelated to our score_bars.
+No worries, we are leaving the final "big" versions in the `1st-get_it_working` sub-project.
+
+```
+cd 03-bar_score
+mkdir 2nd-clean_it_up
+cp -r 1st-get_it_working/* 2nd-clean_it_up
+.......
+```
+
+##### 3.4 Final touches
+
+We want to create one final sub-project that includes code to
+convert the score json to the array we need for the score_bars.
+There may be other last-minute changes (e.g., css and positioning) to
+make before porting this into the seeourminds.com code, we shall see.
+
+```
+cd 03-bar_score
+mkdir 3rd-final_touches
+cp -r 2nd-clean_it_up/* 3rd-final_touches
+.......
+```
 
 
