@@ -26,6 +26,7 @@
   d3.score_bars = function() {
     var reverse = false;
     var get_score_pct_fcn = get_score_pct;
+    var get_function_letter_fcn = get_function_letter;
     var css_class = "x-score";  // default value; to override, call css_class()
     var width = 180;            // default value; to override, call width()
     var height = 12;            // default value; to override, call height()
@@ -36,12 +37,13 @@
     function score_bars(svgg_elt_list) {
       svgg_elt_list.each(function(data, index) {
         var score_value = get_score_pct_fcn.call(this, data, index);
+        var function_letter = get_function_letter_fcn.call(this, data, index);
         var this_svgg_elt = d3.select(this);
         var score_value_arr = []
         score_value_arr = []              // data() fcn expects an array
         score_value_arr.push(score_value);
 
-        // console.log('check check 123 123 check 123 score_value: ' + score_value);
+        console.log('check check 123 123 function_letter: ' + function_letter);
         // console.log('score_bars - width x height: ' + width + ' x ' + height)
 
         var x_scale = d3.scale.linear()
@@ -59,7 +61,7 @@
             .attr("y2", height * 5 / 6);
 
         score_pct_lines.enter().append("rect")
-          .attr("class", css_class)
+          .attr("class", score_bars.set_css_class(function_letter))
           .attr("x", 0)
           .attr("y", height * 2 / 3)
           .attr("width", x_scale)
@@ -137,6 +139,10 @@
     return data.score_pct;
   }
 
+  function get_function_letter(data, index) {
+    return data.function_letter;
+  }
+
   function score_bullet_translate(x_scale) {
     return function(data) {
       return "translate(" + x_scale(data) + ",0)";
@@ -149,6 +155,26 @@
  * Keep our utility functions from interfering with other js code
  */
 var score_bars = {
+
+   set_css_class: function (function_letter) {
+      if (function_letter == 'N') {
+         css_class = "n-score";
+      }
+      else if (function_letter == 'S') {
+         css_class = "s-score";
+      }
+      else if (function_letter == 'F') {
+         css_class = "f-score";
+      }
+      else if (function_letter == 'T') {
+         css_class = "t-score";
+      }
+      else {
+         css_class = "x-score";
+      }
+      return css_class;
+   };
+
    score_to_bars_data: function (score) {
       for( index in score ) {
          pair = score[index];
