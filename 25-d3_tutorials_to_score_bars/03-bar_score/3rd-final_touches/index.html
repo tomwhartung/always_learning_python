@@ -55,36 +55,6 @@
       score_bars_1_margin,
       score_bars_1_dimension);
 
-/* *******************************************************
-   score_bars_1_data = score_bars.score_to_bars_data(score_bars_1_score);
-   var score_bars_1_chart = d3.score_bars()
-      .width(score_bars_1_width)
-      .height(score_bars_1_height);
-
-   var score_bars_1_svg = d3.select("#score-bars-1").selectAll("svg")
-    .data(score_bars_1_data)
-    .enter().append("svg")
-    .attr("class", "bullet")
-    .attr("width", score_bars_1_width + score_bars_1_margin.left + score_bars_1_margin.right)
-    .attr("height", score_bars_1_height + score_bars_1_margin.top + score_bars_1_margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + score_bars_1_margin.left + "," + score_bars_1_margin.top + ")")
-    .call(score_bars_1_chart);
-
-   var score_bars_1_function_letter = score_bars_1_svg.append("g")
-     .style("text-anchor", "end")
-     .attr("transform", "translate(-6," + score_bars_1_height / 2 + ")");
-
-   score_bars_1_function_letter.append("text")
-     .attr("class", "function-letter")
-     .text(function(data) { return data.function_letter; });
-
-   score_bars_1_function_letter.append("text")
-     .attr("class", "function-name")
-     .attr("dy", "1em")
-     .text(function(data) { return data.function_name; });
-******************************************************* */
-
    //
    // Not doing this right now, but we will want to...
    //
@@ -96,44 +66,35 @@
    // Score Bars Chart 2
    // -> Use default width and height
    //
-   score_bars_2_score = [
+   score_bars_2_score_1 = [
       { "e_score": "10", "i_score": "9" },
       { "n_score": "4", "s_score": "15" },
       { "f_score": "3", "t_score": "16" },
       { "j_score": "13", "p_score": "6" }
    ];
-   score_bars_2_data = score_bars.score_to_bars_data(score_bars_2_score);
+   score_bars_2_score_2 = [
+      { "e_score": "11", "i_score": "8" },
+      { "n_score": "4", "s_score": "15" },
+      { "f_score": "18", "t_score": "1" },
+      { "j_score": "9", "p_score": "10" }
+   ];
 
    var score_bars_2_margin = {top: 5, right: 40, bottom: 20, left: 120};
-   var score_bars_2_chart = d3.score_bars();  // use default width and height
 
+   var score_bars_2_chart = d3.score_bars();  // use default width and height
    var score_bars_2_width = score_bars_2_chart.width();
    var score_bars_2_height = score_bars_2_chart.height();
+   var score_bars_2_dimension = {width: score_bars_2_width, height: score_bars_2_height};
+   score_bars_2_chart = null;   // we don't need this anymore...
+
+   score_bars.create_chart_svg(
+      "#score-bars-2",
+      score_bars_2_score_2,
+      score_bars_2_margin,
+      score_bars_2_dimension);
+
    // console.log('index.html - score_bars_2_width: ' + score_bars_2_width)
    // console.log('index.html - score_bars_2_height: ' + score_bars_2_height)
-
-   var score_bars_2_svg = d3.select("#score-bars-2").selectAll("svg")
-    .data(score_bars_2_data)
-    .enter().append("svg")
-    .attr("class", "bullet")
-    .attr("width", score_bars_2_width + score_bars_2_margin.left + score_bars_2_margin.right)
-    .attr("height", score_bars_2_height + score_bars_2_margin.top + score_bars_2_margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + score_bars_2_margin.left + "," + score_bars_2_margin.top + ")")
-    .call(score_bars_2_chart);
-
-   var score_bars_2_function_letter = score_bars_2_svg.append("g")
-     .style("text-anchor", "end")
-     .attr("transform", "translate(-6," + score_bars_2_height / 2 + ")");
-
-   score_bars_2_function_letter.append("text")
-     .attr("class", "function-letter")
-     .text(function(data) { return data.function_letter; });
-
-   score_bars_2_function_letter.append("text")
-     .attr("class", "function-name")
-     .attr("dy", "1em")
-     .text(function(data) { return data.function_name; });
 
    //
    // Score Bars Chart 3
@@ -176,6 +137,9 @@
      .attr("class", "function-name")
      .attr("dy", "1em")
      .text(function(data) { return data.function_name; });
+
+/* *******************************************************
+   ******************************************************* */
 
   </script>
  </body>
