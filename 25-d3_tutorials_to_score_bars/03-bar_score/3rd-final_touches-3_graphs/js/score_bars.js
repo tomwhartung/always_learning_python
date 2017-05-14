@@ -100,7 +100,9 @@
      * Set (override default) or get current css_class
      */
     score_bars.css_class = function(new_class) {
-      if (!arguments.length) return css_class;
+      if (!arguments.length) {
+         return css_class;
+      }
       css_class = new_class;
       return score_bars;
     };
@@ -109,7 +111,9 @@
      * Set (override default) or get current width
      */
     score_bars.width = function(new_width) {
-      if (!arguments.length) return width;
+      if (!arguments.length) {
+         return width;
+      }
       width = new_width;
       return score_bars;
     };
@@ -118,7 +122,9 @@
      * Set (override default) or get current height
      */
     score_bars.height = function(new_height) {
-      if (!arguments.length) return height;
+      if (!arguments.length) {
+         return height;
+      }
       height = new_height;
       return score_bars;
     };
@@ -127,29 +133,49 @@
      * Set (override default) or get current tick format
      */
     score_bars.tick_format = function(new_tick_format) {
-      if (!arguments.length) return tick_format;
+      if (!arguments.length) {
+         return tick_format;
+      }
       tick_format = new_tick_format;
       return score_bars;
     };
 
     return score_bars;
   };
-
+  /*
+   * Returns the value for score_pct from the data
+   */
   function get_score_pct(data, index) {
     return data.score_pct;
   }
-
+  /*
+   * Returns the value for the function_letter from the data
+   */
   function get_function_letter(data, index) {
     return data.function_letter;
   }
-
+  /*
+   * ______________________________________________________
+   */
   function score_bullet_translate(x_scale) {
     return function(data) {
       return "translate(" + x_scale(data) + ",0)";
     };
   }
-
+  /**
+   * Use the function_letter to set the css class (blue for "N" , etc.)
+   */
   function set_css_class (function_letter) {
+    /*
+     * I am undecided about whether the J & P bars should be grey or should
+     * reflect the color of the dominant function (e.g., red for Judging-Feeling)
+     * I think the grey bars look better but having the colored bars conveys more information.
+     * -> Use this variable to easily toggle whether the bar on the bottom is
+     * grey or the same color as the dominant function.
+     */
+    // var grey_j_p_bars = true;
+    var grey_j_p_bars = false;
+
     if (function_letter == 'N') {
       this.__perceiving_css_class__ = 'n-score'
       css_class = "n-score";
@@ -167,10 +193,20 @@
       css_class = "t-score";
     }
     else if (function_letter == 'P') {
-      css_class = this.__perceiving_css_class__;
+      if (grey_j_p_bars) {
+        css_class = "x-score";
+      }
+      else {
+        css_class = this.__perceiving_css_class__;
+      }
     }
     else if (function_letter == 'J') {
-      css_class = this.__judging_css_class__;
+      if (grey_j_p_bars) {
+        css_class = "x-score";
+      }
+      else {
+        css_class = this.__judging_css_class__;
+      }
     }
     else {
       css_class = "x-score";
@@ -184,6 +220,11 @@
  * Keep our utility functions from interfering with other js code
  */
 var score_bars = {
+   /**
+    * Use the data in "score" to create the SVG score bars chart in the
+    * location specified by the "selector" , giving it the specified
+    * "margin" and "dimension"s.
+    */
    create_chart_svg: function(selector, score, margin, dimension) {
       console.log('create_chart_svg - selector: ' + selector);
 
@@ -216,6 +257,12 @@ var score_bars = {
         .text(function(data) { return data.function_name; });
 
    },
+   /**
+    * Translate the "score" object found in the json file to the
+    * format we need to draw the score_bars chart.
+    * This function uses a fairly brute-force approach, so the code should be
+    * easy to understand.
+    */
    score_to_bars_data: function (score) {
       //
       // Values stored in the passed-in score object:
