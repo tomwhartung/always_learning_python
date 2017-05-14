@@ -61,7 +61,7 @@
             .attr("y2", height * 5 / 6);
 
         score_pct_lines.enter().append("rect")
-          .attr("class", score_bars.set_css_class(function_letter))
+          .attr("class", set_css_class(function_letter))
           .attr("x", 0)
           .attr("y", height * 2 / 3)
           .attr("width", x_scale)
@@ -148,6 +148,24 @@
       return "translate(" + x_scale(data) + ",0)";
     };
   }
+  function set_css_class (function_letter) {
+    if (function_letter == 'N') {
+      css_class = "n-score";
+    }
+    else if (function_letter == 'S') {
+      css_class = "s-score";
+    }
+    else if (function_letter == 'F') {
+      css_class = "f-score";
+    }
+    else if (function_letter == 'T') {
+      css_class = "t-score";
+    }
+    else {
+      css_class = "x-score";
+    }
+    return css_class;
+  }
 })();
 /**
  * score_bars namespace:
@@ -155,26 +173,6 @@
  * Keep our utility functions from interfering with other js code
  */
 var score_bars = {
-
-   set_css_class: function (function_letter) {
-      if (function_letter == 'N') {
-         css_class = "n-score";
-      }
-      else if (function_letter == 'S') {
-         css_class = "s-score";
-      }
-      else if (function_letter == 'F') {
-         css_class = "f-score";
-      }
-      else if (function_letter == 'T') {
-         css_class = "t-score";
-      }
-      else {
-         css_class = "x-score";
-      }
-      return css_class;
-   };
-
    score_to_bars_data: function (score) {
       for( index in score ) {
          pair = score[index];
