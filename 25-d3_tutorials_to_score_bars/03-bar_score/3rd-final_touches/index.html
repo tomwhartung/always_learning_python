@@ -15,6 +15,11 @@
    .bullet .function-name { fill: #770000; }
    .bullet .score-pct { stroke: #000; stroke-width: 2px; }
    .bullet .tick line { stroke: #111111; stroke-width: .5px; }
+   .n-score { fill: #0000FF; }
+   .s-score { fill: #FFFF00; }
+   .f-score { fill: #FF0000; }
+   .t-score { fill: #00FF00; }
+   .x-score { fill: #777777; }
   </style>
  </head>
  <body>
@@ -35,6 +40,8 @@
       {"function_letter":"F","function_name":"Feeling","score_pct":58},
       {"function_letter":"P","function_name":"Perceiving","score_pct":74},
    ];
+
+   score_bars_score_data = score_bars.score_to_bars_data(good_score);
 
    var score_bars_1_margin = {top: 5, right: 40, bottom: 20, left: 120};
    var score_bars_1_width = 960 - score_bars_1_margin.left - score_bars_1_margin.right;
@@ -89,14 +96,12 @@
    ];
 
    var score_bars_2_margin = {top: 5, right: 40, bottom: 20, left: 120};
-   // var score_bars_2_width = 960 - score_bars_2_margin.left - score_bars_2_margin.right;
-   // var score_bars_2_height = 50 - score_bars_2_margin.top - score_bars_2_margin.bottom;
    var score_bars_2_chart = d3.score_bars();  // use default width and height
 
    var score_bars_2_width = score_bars_2_chart.width();
    var score_bars_2_height = score_bars_2_chart.height();
-   console.log('index.html - score_bars_2_width: ' + score_bars_2_width)
-   console.log('index.html - score_bars_2_height: ' + score_bars_2_height)
+   // console.log('index.html - score_bars_2_width: ' + score_bars_2_width)
+   // console.log('index.html - score_bars_2_height: ' + score_bars_2_height)
 
    var score_bars_2_svg = d3.select("#score-bars-2").selectAll("svg")
     .data(score_bars_2_data)
