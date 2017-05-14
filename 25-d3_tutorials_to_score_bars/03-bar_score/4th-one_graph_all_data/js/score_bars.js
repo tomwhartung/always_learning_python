@@ -100,7 +100,9 @@
      * Set (override default) or get current css_class
      */
     score_bars.css_class = function(new_class) {
-      if (!arguments.length) return css_class;
+      if (!arguments.length) {
+         return css_class;
+      }
       css_class = new_class;
       return score_bars;
     };
@@ -109,7 +111,9 @@
      * Set (override default) or get current width
      */
     score_bars.width = function(new_width) {
-      if (!arguments.length) return width;
+      if (!arguments.length) {
+         return width;
+      }
       width = new_width;
       return score_bars;
     };
@@ -118,7 +122,9 @@
      * Set (override default) or get current height
      */
     score_bars.height = function(new_height) {
-      if (!arguments.length) return height;
+      if (!arguments.length) {
+         return height;
+      }
       height = new_height;
       return score_bars;
     };
@@ -127,28 +133,39 @@
      * Set (override default) or get current tick format
      */
     score_bars.tick_format = function(new_tick_format) {
-      if (!arguments.length) return tick_format;
+      if (!arguments.length) {
+         return tick_format;
+      }
       tick_format = new_tick_format;
       return score_bars;
     };
 
     return score_bars;
   };
-
+  /*
+   * Returns the value for score_pct from the data
+   */
   function get_score_pct(data, index) {
     return data.score_pct;
   }
-
+  /*
+   * Returns the value for the function_letter from the data
+   */
   function get_function_letter(data, index) {
     return data.function_letter;
   }
-
+  /*
+   * Sets the transform for the x axis scale so that all the values
+   *   do NOT get squished on the left side of the chart.
+   */
   function score_bullet_translate(x_scale) {
     return function(data) {
       return "translate(" + x_scale(data) + ",0)";
     };
   }
-
+  /**
+   * Use the function_letter to set the css class (blue for "N" , etc.)
+   */
   function set_css_class (function_letter) {
     if (function_letter == 'N') {
       this.__perceiving_css_class__ = 'n-score'
@@ -184,6 +201,11 @@
  * Keep our utility functions from interfering with other js code
  */
 var score_bars = {
+   /**
+    * Use the data in "score" to create the SVG score bars chart in the
+    * location specified by the "selector" , giving it the specified
+    * "margin" and "dimension"s.
+    */
    create_chart_svg: function(selector, score, margin, dimension) {
       console.log('create_chart_svg - selector: ' + selector);
 
@@ -216,6 +238,12 @@ var score_bars = {
         .text(function(data) { return data.function_name; });
 
    },
+   /**
+    * Translate the "score" object found in the json file to the
+    * format we need to draw the score_bars chart.
+    * This function uses a fairly brute-force approach, so the code should be
+    * easy to understand.
+    */
    score_to_bars_data: function (score) {
       //
       // Values stored in the passed-in score object:
