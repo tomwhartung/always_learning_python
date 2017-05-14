@@ -27,21 +27,36 @@
   <div class="score-svg" id="score-bars-2"></div><!-- #score-bars-2 -->
   <div class="score-svg" id="score-bars-3"></div><!-- #score-bars-3 -->
   <script>
-   score_bars_1_score = [
+   //
+   // Score Bars Chart 1 - the big one
+   //
+   score_bars_1_selector = '#score-bars-1';
+   score_bars_1_score_1 = [
      { "e_score": "2", "i_score": "17" },
      { "n_score": "14", "s_score": "5" },
      { "f_score": "11", "t_score": "8" },
      { "j_score": "5", "p_score": "14" }
    ];
-   score_bars_1_data = score_bars.score_to_bars_data(score_bars_1_score);
+   score_bars_1_score_2 = [
+      { "e_score": "9", "i_score": "10" },
+      { "n_score": "4", "s_score": "15" },
+      { "f_score": "2", "t_score": "17" },
+      { "j_score": "17", "p_score": "2" }
+   ];
 
    var score_bars_1_margin = {top: 5, right: 40, bottom: 20, left: 120};
    var score_bars_1_width = 960 - score_bars_1_margin.left - score_bars_1_margin.right;
    var score_bars_1_height = 50 - score_bars_1_margin.top - score_bars_1_margin.bottom;
+   var score_bars_1_dimension = {width: score_bars_1_width, height: score_bars_1_height};
 
-   //
-   // Score Bars Chart 1
-   //
+   score_bars.create_chart_svg(
+      score_bars_1_selector,
+      score_bars_1_score_1,
+      score_bars_1_margin,
+      score_bars_1_dimension);
+
+/* *******************************************************
+   score_bars_1_data = score_bars.score_to_bars_data(score_bars_1_score);
    var score_bars_1_chart = d3.score_bars()
       .width(score_bars_1_width)
       .height(score_bars_1_height);
@@ -68,6 +83,7 @@
      .attr("class", "function-name")
      .attr("dy", "1em")
      .text(function(data) { return data.function_name; });
+******************************************************* */
 
    //
    // Not doing this right now, but we will want to...
