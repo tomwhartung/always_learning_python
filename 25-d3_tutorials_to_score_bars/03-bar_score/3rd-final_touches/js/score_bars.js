@@ -26,8 +26,9 @@
   d3.score_bars = function() {
     var reverse = false;
     var get_score_pct_fcn = get_score_pct;
-    var width = 180;   // default value; to override, call width()
-    var height = 12;   // default value; to override, call height()
+    var css_class = "x-score";  // default value; to override, call css_class()
+    var width = 180;            // default value; to override, call width()
+    var height = 12;            // default value; to override, call height()
     var tick_format = null;
     /**
      * Function to process each of the SVGGElements in the list
@@ -40,8 +41,8 @@
         score_value_arr = []              // data() fcn expects an array
         score_value_arr.push(score_value);
 
-        console.log('check check 123 123 check 123 score_value: ' + score_value);
-        console.log('score_bars - width x height: ' + width + ' x ' + height)
+        // console.log('check check 123 123 check 123 score_value: ' + score_value);
+        // console.log('score_bars - width x height: ' + width + ' x ' + height)
 
         var x_scale = d3.scale.linear()
             .domain([0, 100])
@@ -56,6 +57,13 @@
             .attr("x2", x_scale)
             .attr("y1", height / 6)
             .attr("y2", height * 5 / 6);
+
+        score_pct_lines.enter().append("rect")
+          .attr("class", css_class)
+          .attr("x", 0)
+          .attr("y", height * 2 / 3)
+          .attr("width", x_scale)
+          .attr("height", height / 3);
 
         // Compute the tick format.
         var format = tick_format || x_scale.tickFormat(8);
@@ -85,6 +93,15 @@
       });
       d3.timer.flush();
     }
+
+    /**
+     * Set (override default) or get current css_class
+     */
+    score_bars.css_class = function(new_class) {
+      if (!arguments.length) return css_class;
+      css_class = new_class;
+      return score_bars;
+    };
 
     /**
      * Set (override default) or get current width
@@ -126,3 +143,19 @@
     };
   }
 })();
+/**
+ * score_bars namespace:
+ * ---------------------
+ * Keep our utility functions from interfering with other js code
+ */
+var score_bars = {
+   score_to_bars_data: function (score) {
+      for( index in score ) {
+         pair = score[index];
+         for(x_score in pair) {
+            x_pct = pair[x_score];
+            console.log('score_to_bars_data - x_score:x_pct ' + x_score + ':' + x_pct);
+         }
+      }
+   }
+}
