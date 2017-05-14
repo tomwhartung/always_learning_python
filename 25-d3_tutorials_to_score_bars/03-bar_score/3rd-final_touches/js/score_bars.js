@@ -151,38 +151,28 @@
 
   function set_css_class (function_letter) {
     if (function_letter == 'N') {
-      this.__perceiving_function__ = 'N'
+      this.__perceiving_css_class__ = 'n-score'
       css_class = "n-score";
     }
     else if (function_letter == 'S') {
-      this.__perceiving_function__ = 'S'
+      this.__perceiving_css_class__ = 's-score'
       css_class = "s-score";
     }
     else if (function_letter == 'F') {
-      this.__judging_function__ = 'F'
+      this.__judging_css_class__ = 'f-score'
       css_class = "f-score";
     }
     else if (function_letter == 'T') {
-      this.__judging_function__ = 'T'
+      this.__judging_css_class__ = 't-score'
       css_class = "t-score";
     }
     else if (function_letter == 'P') {
-      if (this.__perceiving_function__ == 'N') {
-        css_class = "n-score";
-      }
-      else {
-         css_class = "s-score";
-      }
-   }
-   else if (function_letter == 'J') {
-      if (this.__judging_function__ == 'F') {
-        css_class = "f-score";
-      }
-      else {
-         css_class = "t-score";
-      }
-   }
-   else {
+      css_class = this.__perceiving_css_class__;
+    }
+    else if (function_letter == 'J') {
+      css_class = this.__judging_css_class__;
+    }
+    else {
       css_class = "x-score";
     }
     return css_class;
