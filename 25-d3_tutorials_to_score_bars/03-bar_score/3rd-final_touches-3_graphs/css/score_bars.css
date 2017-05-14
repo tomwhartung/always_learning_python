@@ -1,0 +1,36 @@
+/*
+ * Styles for the score bars:
+ */
+.score-svg {
+   border: solid #787878 3px; margin: 1em; padding: 1em;
+}
+.bullet {
+   font: 10px sans-serif;
+}
+.bullet .function-letter {
+   fill: #000077; font-size: 14px; font-weight: bold;
+}
+.bullet .function-name {
+   fill: #770000;
+}
+.bullet .score-pct {
+   stroke: #000; stroke-width: 2px;
+}
+.bullet .tick line {
+   stroke: #111111; stroke-width: .5px;
+}
+.n-score {
+   fill: #0000FF;
+}
+.s-score {
+   fill: #FFFF00;
+}
+.f-score {
+   fill: #FF0000;
+}
+.t-score {
+   fill: #00FF00;
+}
+.x-score {
+   fill: #777777;
+}
