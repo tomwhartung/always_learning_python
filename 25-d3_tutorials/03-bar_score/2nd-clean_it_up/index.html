@@ -81,19 +81,22 @@
    // Score Bars Chart 2
    // -> Use default width and height
    //
-
    score_bars_2_data = [
-      {"function_letter":"E","function_name":"Introverted","score_pct":89},
-      {"function_letter":"S","function_name":"iNtuitive","score_pct":74},
-      {"function_letter":"T","function_name":"Feeling","score_pct":58},
-      {"function_letter":"J","function_name":"Perceiving","score_pct":74},
+      {"function_letter":"E","function_name":"Extraverted","score_pct":89},
+      {"function_letter":"S","function_name":"Sensing","score_pct":74},
+      {"function_letter":"T","function_name":"Thinking","score_pct":58},
+      {"function_letter":"J","function_name":"Judging","score_pct":74},
    ];
 
    var score_bars_2_margin = {top: 5, right: 40, bottom: 20, left: 120};
-   var score_bars_2_width = 960 - score_bars_2_margin.left - score_bars_2_margin.right;
-   var score_bars_2_height = 50 - score_bars_2_margin.top - score_bars_2_margin.bottom;
-
+   // var score_bars_2_width = 960 - score_bars_2_margin.left - score_bars_2_margin.right;
+   // var score_bars_2_height = 50 - score_bars_2_margin.top - score_bars_2_margin.bottom;
    var score_bars_2_chart = d3.score_bars();  // use default width and height
+
+   var score_bars_2_width = score_bars_2_chart.width();
+   var score_bars_2_height = score_bars_2_chart.height();
+   console.log('index.html - score_bars_2_width: ' + score_bars_2_width)
+   console.log('index.html - score_bars_2_height: ' + score_bars_2_height)
 
    var score_bars_2_svg = d3.select("#score-bars-2").selectAll("svg")
     .data(score_bars_2_data)
@@ -122,9 +125,9 @@
    // Score Bars Chart 3
    //
    score_bars_3_data = [
-      {"function_letter":"E","function_name":"Introverted","score_pct":60},
+      {"function_letter":"E","function_name":"Extraverted","score_pct":60},
       {"function_letter":"N","function_name":"iNtuitive","score_pct":70},
-      {"function_letter":"T","function_name":"Feeling","score_pct":80},
+      {"function_letter":"T","function_name":"Thinking","score_pct":80},
       {"function_letter":"P","function_name":"Perceiving","score_pct":75},
    ];
 
