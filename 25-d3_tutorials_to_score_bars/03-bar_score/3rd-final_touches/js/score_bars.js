@@ -185,7 +185,7 @@
  */
 var score_bars = {
    create_chart_svg: function(selector, score, margin, dimension) {
-      console.log('Hi from create_chart_svg!');
+      console.log('create_chart_svg - selector: ' + selector);
 
       score_bars_data = score_bars.score_to_bars_data(score);
       var score_bars_chart = d3.score_bars()
@@ -273,7 +273,35 @@ var score_bars = {
             else if (x_score_key == 'p_score') { p_score_value = parseInt(score_value); }
          }
       }
+      //
+      // All values are required!
+      // If any of them are missing, return an array containing a 0 score
+      //
+      if ( isNaN(e_score_value) || isNaN(i_score_value) ||
+           isNaN(n_score_value) || isNaN(s_score_value) ||
+           isNaN(f_score_value) || isNaN(t_score_value) ||
+           isNaN(j_score_value) || isNaN(p_score_value)   ) {
+         var letter_x = "X";
+         var incomplete = "(Score Incomplete)";
+         e_or_i_entry = {
+             "function_letter": letter_x,"function_name": incomplete, "score_pct": 0
+         };
+         n_or_s_entry = {
+             "function_letter": letter_x, "function_name": incomplete, "score_pct": 0
+         };
+         f_or_t_entry = {
+             "function_letter": letter_x, "function_name": incomplete, "score_pct": 0
+         };
+         j_or_p_entry = {
+             "function_letter": letter_x, "function_name": incomplete, "score_pct": 0
+         };
 
+         score_bars_data.push(e_or_i_entry);
+         score_bars_data.push(n_or_s_entry);
+         score_bars_data.push(f_or_t_entry);
+         score_bars_data.push(j_or_p_entry);
+         return score_bars_data;
+      }
       //
       // Determine the letters and names, and calculate the percents needed
       //
@@ -281,11 +309,6 @@ var score_bars = {
       n_s_total = n_score_value + s_score_value;
       f_t_total = f_score_value + t_score_value;
       j_p_total = j_score_value + p_score_value;
-
-		// console.log('e_i_total: ' + e_i_total);
-		// console.log('n_s_total: ' + n_s_total);
-		// console.log('f_t_total: ' + f_t_total);
-		// console.log('j_p_total: ' + j_p_total);
 
       if (e_score_value > i_score_value) {
          e_or_i_letter = 'E';
