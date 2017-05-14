@@ -34,7 +34,6 @@
      * Function to process each of the SVGGElements in the list
      */
     function score_bars(svgg_elt_list) {
-      console.log('score_bars - passed-in "svgg_elt_list" = ' + svgg_elt_list)
       svgg_elt_list.each(function(data, index) {
         var score_value = get_score_pct_fcn.call(this, data, index);
         var this_svgg_elt = d3.select(this);
@@ -42,7 +41,7 @@
         score_value_arr = []              // data() fcn expects an array
         score_value_arr.push(score_value);
 
-        console.log('check check check 123 123 123 ccc 123 456 score_value: ' + score_value);
+        console.log('check check check 123 123 123 ccc score_value: ' + score_value);
         console.log('score_bars - width x height: ' + width + ' x ' + height)
 
         var x_scale = d3.scale.linear()
@@ -97,26 +96,29 @@
     };
 
     /**
-     * Override default width
+     * Set (override default) or get current width
      */
-    score_bars.width = function(x) {
+    score_bars.width = function(new_width) {
       if (!arguments.length) return width;
-      width = x;
+      width = new_width;
       return score_bars;
     };
 
     /**
-     * Override default height
+     * Set (override default) or get current height
      */
-    score_bars.height = function(x) {
+    score_bars.height = function(new_height) {
       if (!arguments.length) return height;
-      height = x;
+      height = new_height;
       return score_bars;
     };
 
-    score_bars.tick_format = function(x) {
+    /**
+     * Set (override default) or get current tick format
+     */
+    score_bars.tick_format = function(new_tick_format) {
       if (!arguments.length) return tick_format;
-      tick_format = x;
+      tick_format = new_tick_format;
       return score_bars;
     };
 
@@ -127,9 +129,9 @@
     return data.score_pct;
   }
 
-  function score_bullet_translate(x) {
+  function score_bullet_translate(x_scale) {
     return function(data) {
-      return "translate(" + x(data) + ",0)";
+      return "translate(" + x_scale(data) + ",0)";
     };
   }
 })();
