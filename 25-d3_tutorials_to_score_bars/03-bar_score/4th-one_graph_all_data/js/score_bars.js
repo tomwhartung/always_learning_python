@@ -155,8 +155,7 @@
     return data.function_letter;
   }
   /*
-   * Sets the transform for the x axis scale so that all the values
-   *   do NOT get squished on the left side of the chart.
+   * ______________________________________________________
    */
   function score_bullet_translate(x_scale) {
     return function(data) {
@@ -167,6 +166,14 @@
    * Use the function_letter to set the css class (blue for "N" , etc.)
    */
   function set_css_class (function_letter) {
+    /*
+     * I am undecided about whether the J & P bars should be grey or should
+     * reflect the color of the dominant function (e.g., red for Judging-Feeling)
+     * I think the grey bars look better but having the colored bars conveys more information.
+     * -> Use this variable to easily toggle whether the bar on the bottom is
+     * grey or the same color as the dominant function.
+     */
+    var grey_j_p_bars = false;
     if (function_letter == 'N') {
       this.__perceiving_css_class__ = 'n-score'
       css_class = "n-score";
@@ -184,10 +191,20 @@
       css_class = "t-score";
     }
     else if (function_letter == 'P') {
-      css_class = this.__perceiving_css_class__;
+      if (grey_j_p_bars) {
+        css_class = "x-score";
+      }
+      else {
+        css_class = this.__perceiving_css_class__;
+      }
     }
     else if (function_letter == 'J') {
-      css_class = this.__judging_css_class__;
+      if (grey_j_p_bars) {
+        css_class = "x-score";
+      }
+      else {
+        css_class = this.__judging_css_class__;
+      }
     }
     else {
       css_class = "x-score";
