@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <title>score_bars</title>
+  <script type="text/javascript" src="js/d3/d3.v3.js"></script>
+  <script type="text/javascript" src="js/score_bars.js"></script>
+  <style>
+   /*
+    * Styles that are needed for the bars:
+    */
+   .score-svg { border: solid #787878 3px; margin: 1em; padding: 1em;}
+   .bullet { font: 10px sans-serif; }
+   .bullet .function-letter { fill: #000077; font-size: 14px; font-weight: bold; }
+   .bullet .function-name { fill: #770000; }
+   .bullet .score-pct { stroke: #000; stroke-width: 2px; }
+   .bullet .tick line { stroke: #111111; stroke-width: .5px; }
+  </style>
+ </head>
+ <body>
+  <div class="score-svg" id="score-bars-1"></div><!-- #score-bars-1 -->
+  <div class="score-svg" id="score-bars-2"></div><!-- #score-bars-2 -->
+  <div class="score-svg" id="score-bars-3"></div><!-- #score-bars-3 -->
+  <script>
+   good_score = [
+     { "e_score": "2", "i_score": "17" },
+     { "n_score": "14", "s_score": "5" },
+     { "f_score": "11", "t_score": "8" },
+     { "j_score": "5", "p_score": "14" }
+   ];
+
+   score_bars_1_data = [
+      {"function_letter":"I","function_name":"Introverted","score_pct":89},
+      {"function_letter":"N","function_name":"iNtuitive","score_pct":74},
+      {"function_letter":"F","function_name":"Feeling","score_pct":58},
+      {"function_letter":"P","function_name":"Perceiving","score_pct":74},
+   ];
+
+   var score_bars_1_margin = {top: 5, right: 40, bottom: 20, left: 120};
+   var score_bars_1_width = 960 - score_bars_1_margin.left - score_bars_1_margin.right;
+   var score_bars_1_height = 50 - score_bars_1_margin.top - score_bars_1_margin.bottom;
+
+   //
+   // Score Bars Chart 1
+   //
+   var score_bars_1_chart = d3.score_bars()
+      .width(score_bars_1_width)
+      .height(score_bars_1_height);
+
+   var score_bars_1_svg = d3.select("#score-bars-1").selectAll("svg")
+    .data(score_bars_1_data)
+    .enter().append("svg")
+    .attr("class", "bullet")
+    .attr("width", score_bars_1_width + score_bars_1_margin.left + score_bars_1_margin.right)
+    .attr("height", score_bars_1_height + score_bars_1_margin.top + score_bars_1_margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + score_bars_1_margin.left + "," + score_bars_1_margin.top + ")")
+    .call(score_bars_1_chart);
+
+   var score_bars_1_function_letter = score_bars_1_svg.append("g")
+     .style("text-anchor", "end")
+     .attr("transform", "translate(-6," + score_bars_1_height / 2 + ")");
+
+   score_bars_1_function_letter.append("text")
+     .attr("class", "function-letter")
+     .text(function(data) { return data.function_letter; });
+
+   score_bars_1_function_letter.append("text")
+     .attr("class", "function-name")
+     .attr("dy", "1em")
+     .text(function(data) { return data.function_name; });
+
+   //
+   // Not doing this right now, but we will want to...
+   //
+   // var formatAsPercentage = d3.format(".1%");
+   // xAxis.tickFormat(formatAsPercentage);
+   // yAxis.tickFormat(formatAsPercentage);
+
+   //
+   // Score Bars Chart 2
+   // -> Use default width and height
+   //
+   score_bars_2_data = [
+      {"function_letter":"E","function_name":"Extraverted","score_pct":89},
+      {"function_letter":"S","function_name":"Sensing","score_pct":74},
+      {"function_letter":"T","function_name":"Thinking","score_pct":58},
+      {"function_letter":"J","function_name":"Judging","score_pct":74},
+   ];
+
+   var score_bars_2_margin = {top: 5, right: 40, bottom: 20, left: 120};
+   // var score_bars_2_width = 960 - score_bars_2_margin.left - score_bars_2_margin.right;
+   // var score_bars_2_height = 50 - score_bars_2_margin.top - score_bars_2_margin.bottom;
+   var score_bars_2_chart = d3.score_bars();  // use default width and height
+
+   var score_bars_2_width = score_bars_2_chart.width();
+   var score_bars_2_height = score_bars_2_chart.height();
+   console.log('index.html - score_bars_2_width: ' + score_bars_2_width)
+   console.log('index.html - score_bars_2_height: ' + score_bars_2_height)
+
+   var score_bars_2_svg = d3.select("#score-bars-2").selectAll("svg")
+    .data(score_bars_2_data)
+    .enter().append("svg")
+    .attr("class", "bullet")
+    .attr("width", score_bars_2_width + score_bars_2_margin.left + score_bars_2_margin.right)
+    .attr("height", score_bars_2_height + score_bars_2_margin.top + score_bars_2_margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + score_bars_2_margin.left + "," + score_bars_2_margin.top + ")")
+    .call(score_bars_2_chart);
+
+   var score_bars_2_function_letter = score_bars_2_svg.append("g")
+     .style("text-anchor", "end")
+     .attr("transform", "translate(-6," + score_bars_2_height / 2 + ")");
+
+   score_bars_2_function_letter.append("text")
+     .attr("class", "function-letter")
+     .text(function(data) { return data.function_letter; });
+
+   score_bars_2_function_letter.append("text")
+     .attr("class", "function-name")
+     .attr("dy", "1em")
+     .text(function(data) { return data.function_name; });
+
+   //
+   // Score Bars Chart 3
+   //
+   score_bars_3_data = [
+      {"function_letter":"E","function_name":"Extraverted","score_pct":60},
+      {"function_letter":"N","function_name":"iNtuitive","score_pct":70},
+      {"function_letter":"T","function_name":"Thinking","score_pct":80},
+      {"function_letter":"P","function_name":"Perceiving","score_pct":75},
+   ];
+
+   var score_bars_3_margin = {top: 5, right: 40, bottom: 20, left: 120};
+   var score_bars_3_width = 600 - score_bars_3_margin.left - score_bars_3_margin.right;
+   var score_bars_3_height = 40 - score_bars_3_margin.top - score_bars_3_margin.bottom;
+
+   var score_bars_3_chart = d3.score_bars()
+      .width(score_bars_3_width)
+      .height(score_bars_3_height);
+
+   var score_bars_3_svg = d3.select("#score-bars-3").selectAll("svg")
+    .data(score_bars_3_data)
+    .enter().append("svg")
+    .attr("class", "bullet")
+    .attr("width", score_bars_3_width + score_bars_3_margin.left + score_bars_3_margin.right)
+    .attr("height", score_bars_3_height + score_bars_3_margin.top + score_bars_3_margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + score_bars_3_margin.left + "," + score_bars_3_margin.top + ")")
+    .call(score_bars_3_chart);
+
+   var score_bars_3_function_letter = score_bars_3_svg.append("g")
+     .style("text-anchor", "end")
+     .attr("transform", "translate(-6," + score_bars_3_height / 2 + ")");
+
+   score_bars_3_function_letter.append("text")
+     .attr("class", "function-letter")
+     .text(function(data) { return data.function_letter; });
+
+   score_bars_3_function_letter.append("text")
+     .attr("class", "function-name")
+     .attr("dy", "1em")
+     .text(function(data) { return data.function_name; });
+
+  </script>
+ </body>
+</html>
