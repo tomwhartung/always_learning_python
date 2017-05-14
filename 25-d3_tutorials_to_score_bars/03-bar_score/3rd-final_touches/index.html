@@ -109,6 +109,16 @@
       { "e_score": "", "i_score": "" }, { "n_score": "", "s_score": "" },
       { "f_score": "", "t_score": "" }, { "j_score": "", "p_score": "" }
    ];
+   score_bars_3_score_3 = [
+      { "e_score": "a", "i_score": "b" }, { "n_score": "c", "s_score": "d" },
+      { "f_score": "w", "t_score": "x" }, { "j_score": "y", "p_score": "z" }
+   ];
+   score_bars_3_score_4 = [
+      { "e_score": "8", "i_score": "11" },
+      { "n_score": "11", "s_score": "8" },
+      { "f_score": "8", "t_score": "11" },
+      { "j_score": "8", "p_score": "11" }
+   ];
 
    var score_bars_3_margin = {top: 5, right: 40, bottom: 20, left: 120};
    var score_bars_3_width = 600 - score_bars_3_margin.left - score_bars_3_margin.right;
@@ -117,38 +127,9 @@
 
    score_bars.create_chart_svg(
       "#score-bars-3",
-      score_bars_3_score_1,
+      score_bars_3_score_4,
       score_bars_3_margin,
       score_bars_3_dimension);
-
-/* *******************************************************
-   var score_bars_3_chart = d3.score_bars()
-      .width(score_bars_3_width)
-      .height(score_bars_3_height);
-
-   var score_bars_3_svg = d3.select("#score-bars-3").selectAll("svg")
-    .data(score_bars_3_data)
-    .enter().append("svg")
-    .attr("class", "bullet")
-    .attr("width", score_bars_3_width + score_bars_3_margin.left + score_bars_3_margin.right)
-    .attr("height", score_bars_3_height + score_bars_3_margin.top + score_bars_3_margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + score_bars_3_margin.left + "," + score_bars_3_margin.top + ")")
-    .call(score_bars_3_chart);
-
-   var score_bars_3_function_letter = score_bars_3_svg.append("g")
-     .style("text-anchor", "end")
-     .attr("transform", "translate(-6," + score_bars_3_height / 2 + ")");
-
-   score_bars_3_function_letter.append("text")
-     .attr("class", "function-letter")
-     .text(function(data) { return data.function_letter; });
-
-   score_bars_3_function_letter.append("text")
-     .attr("class", "function-name")
-     .attr("dy", "1em")
-     .text(function(data) { return data.function_name; });
-   ******************************************************* */
 
   </script>
  </body>
