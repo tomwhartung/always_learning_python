@@ -43,7 +43,7 @@
         score_value_arr = []              // data() fcn expects an array
         score_value_arr.push(score_value);
 
-        console.log('check check 123 123 function_letter: ' + function_letter);
+        // console.log('check check 123 123');
         // console.log('score_bars - width x height: ' + width + ' x ' + height)
 
         var x_scale = d3.scale.linear()
@@ -148,20 +148,41 @@
       return "translate(" + x_scale(data) + ",0)";
     };
   }
+
   function set_css_class (function_letter) {
     if (function_letter == 'N') {
+      this.__perceiving_function__ = 'N'
       css_class = "n-score";
     }
     else if (function_letter == 'S') {
+      this.__perceiving_function__ = 'S'
       css_class = "s-score";
     }
     else if (function_letter == 'F') {
+      this.__judging_function__ = 'F'
       css_class = "f-score";
     }
     else if (function_letter == 'T') {
+      this.__judging_function__ = 'T'
       css_class = "t-score";
     }
-    else {
+    else if (function_letter == 'P') {
+      if (this.__perceiving_function__ == 'N') {
+        css_class = "n-score";
+      }
+      else {
+         css_class = "s-score";
+      }
+   }
+   else if (function_letter == 'J') {
+      if (this.__judging_function__ == 'F') {
+        css_class = "f-score";
+      }
+      else {
+         css_class = "t-score";
+      }
+   }
+   else {
       css_class = "x-score";
     }
     return css_class;
