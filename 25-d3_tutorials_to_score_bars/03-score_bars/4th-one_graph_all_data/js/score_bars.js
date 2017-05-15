@@ -155,7 +155,8 @@
     return data.function_letter;
   }
   /*
-   * ______________________________________________________
+   * Return a function that returns a translate string so that the
+   * numbers on the axis are not all squished together on the left.
    */
   function score_bullet_translate(x_scale) {
     return function(data) {
@@ -173,8 +174,8 @@
      * -> Use this variable to easily toggle whether the bar on the bottom is
      * grey or the same color as the dominant function.
      */
-    var grey_j_p_bars = false;
-    // var grey_j_p_bars = true;
+    // var grey_j_p_bars = false;
+    var grey_j_p_bars = true;
 
     if (function_letter == 'N') {
       this.__perceiving_css_class__ = 'n-score'

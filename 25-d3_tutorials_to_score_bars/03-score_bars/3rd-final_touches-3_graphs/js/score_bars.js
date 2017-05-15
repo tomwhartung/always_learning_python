@@ -155,7 +155,8 @@
     return data.function_letter;
   }
   /*
-   * ______________________________________________________
+   * Return a function that returns a translate string so that the
+   * numbers on the axis are not all squished together on the left.
    */
   function score_bullet_translate(x_scale) {
     return function(data) {
