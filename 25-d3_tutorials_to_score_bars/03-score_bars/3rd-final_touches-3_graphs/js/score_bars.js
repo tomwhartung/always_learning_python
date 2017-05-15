@@ -79,7 +79,7 @@
         // Add the ticks
         var tick_enter = tick.enter().append("g")
             .attr("class", "tick")
-            .attr("transform", score_bullet_translate(x_scale))
+            .attr("transform", score_bar_translate(x_scale))
             .style("opacity", 1);
 
         tick_enter.append("line")
@@ -158,7 +158,7 @@
    * Return a function that returns a translate string so that the
    * numbers on the axis are not all squished together on the left.
    */
-  function score_bullet_translate(x_scale) {
+  function score_bar_translate(x_scale) {
     return function(data) {
       return "translate(" + x_scale(data) + ",0)";
     };
@@ -237,7 +237,7 @@ var score_bars = {
       var score_bars_svg = d3.select(selector).selectAll("svg")
        .data(score_bars_data)
        .enter().append("svg")
-       .attr("class", "bullet")
+       .attr("class", "score-bar")
        .attr("width", dimension.width + margin.left + margin.right)
        .attr("height", dimension.height + margin.top + margin.bottom)
        .append("g")

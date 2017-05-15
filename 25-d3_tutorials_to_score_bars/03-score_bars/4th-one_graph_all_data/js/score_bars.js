@@ -1,27 +1,15 @@
 /**
  * score_bars.js: using score json to create horizontal d3 bars
  * ------------------------------------------------------------
- * Derived from bullet.js , found in the d3 gallery
- * Overview:
- * Starting with code from:
- *   01-aligned_left/16-axes (16: Axes)
- * Adding code and ideas from:
- *   02-bullet_charts/04-removed_ranges
- *   This file is derived from 02-bullet_charts/04-removed_ranges/bullet.js
- *
- * This version is a work in progress!
- * -----------------------------------
- * For more information, see the Goal section of the README.md
+ * Derived with much effort (this is my first experience with svg and d3)
+ *   from bullet.js , found in the d3 gallery.
+ * For a bunch more information, see the 25-d3_tutorials_to_score_bars
+ *   project in my always_learning_python repo (first link in References).
  * References:
+ *   https://github.com/tomwhartung/always_learning_python
  *   https://github.com/d3/d3/wiki/Gallery
  *   https://bl.ocks.org/mbostock/4061961
  */
-//
-// (Following are the original comments from bullet.js in the d3 gallery:)
-//   Chart design based on the recommendations of Stephen Few. Implementation
-//   based on the work of Clint Ivy, Jamie Love, and Jason Davies.
-//     http://projects.instantcognition.com/protovis/bulletchart/
-//
 (function() {
   d3.score_bars = function() {
     var reverse = false;
@@ -81,7 +69,7 @@
         //
         var tick_enter = tick.enter().append("g")
             .attr("class", "tick")
-            .attr("transform", score_bullet_translate(x_scale))
+            .attr("transform", score_bar_translate(x_scale))
             .style("opacity", 1);
         //
         // Add the actual tick marks
@@ -165,7 +153,7 @@
    * Return a function that returns a translate string so that the
    * numbers on the axis are not all squished together on the left.
    */
-  function score_bullet_translate(x_scale) {
+  function score_bar_translate(x_scale) {
     return function(data) {
       return "translate(" + x_scale(data) + ",0)";
     };
@@ -245,7 +233,7 @@ var score_bars = {
       var score_bars_svg = d3.select(selector).selectAll("svg")
        .data(score_bars_data)
        .enter().append("svg")
-       .attr("class", "bullet")
+       .attr("class", "score-bar")
        .attr("width", dimension.width + margin.left + margin.right)
        .attr("height", dimension.height + margin.top + margin.bottom)
        .append("g")
