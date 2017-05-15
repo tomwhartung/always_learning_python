@@ -70,35 +70,47 @@
       { "f_score": "w", "t_score": "x" }, { "j_score": "y", "p_score": "z" }
    ];
 
-   var score_bars_margin_big = {top: 5, right: 40, bottom: 20, left: 120};
-   var score_bars_width_big = 960 - score_bars_margin_big.left - score_bars_margin_big.right;
-   var score_bars_height_big = 50 - score_bars_margin_big.top - score_bars_margin_big.bottom;
-   var score_bars_dimension_big = {width: score_bars_width_big, height: score_bars_height_big};
+   var score_bars_margin_orig = {top: 5, right: 40, bottom: 20, left: 120};
+   var score_bars_width_orig = 960 - score_bars_margin_orig.left - score_bars_margin_orig.right;
+   var score_bars_height_orig = 50 - score_bars_margin_orig.top - score_bars_margin_orig.bottom;
+   var score_bars_dimension_orig = {width: score_bars_width_orig, height: score_bars_height_orig};
 
    var score_bars_margin_too_short = {top: 5, right: 40, bottom: 20, left: 120};
    var score_bars_width_too_short = 600 - score_bars_margin_too_short.left - score_bars_margin_too_short.right;
    var score_bars_height_too_short = 30 - score_bars_margin_too_short.top - score_bars_margin_too_short.bottom;
    var score_bars_dimension_too_short = {width: score_bars_width_too_short, height: score_bars_height_too_short};
 
+   var score_bar_total_width = 600;
+   var score_bar_total_height = 35;
+
    var score_bars_margin_too_wide = {top: 8, right: 40, bottom: 20, left: 100};
-   var score_bars_width_too_wide = 600 - score_bars_margin_too_wide.left - score_bars_margin_too_wide.right;
-   var score_bars_height_too_wide = 35 - score_bars_margin_too_wide.top - score_bars_margin_too_wide.bottom;
+   var score_bars_width_too_wide = score_bar_total_width - score_bars_margin_too_wide.left - score_bars_margin_too_wide.right;
+   var score_bars_height_too_wide = score_bar_total_height - score_bars_margin_too_wide.top - score_bars_margin_too_wide.bottom;
    var score_bars_dimension_too_wide = {width: score_bars_width_too_wide, height: score_bars_height_too_wide};
+   //
+   // Extensive testing has determined that these margin values are about as
+   // low as they can be without causing the chart to be clipped.
+   //
+   var score_bars_margin_get_closer = {top: 8, right: 21, bottom: 15, left: 62};
+   var score_bars_width_get_closer = score_bar_total_width - score_bars_margin_get_closer.left - score_bars_margin_get_closer.right;
+   var score_bars_height_get_closer = score_bar_total_height - score_bars_margin_get_closer.top - score_bars_margin_get_closer.bottom;
+   var score_bars_dimension_get_closer = {width: score_bars_width_get_closer, height: score_bars_height_get_closer};
 
    score_bars.create_chart_svg(
       score_bars_selector,
       // score_bars_score_infp_1,
       // score_bars_score_estj_1,
-      // score_bars_score_esfp_1,
-      score_bars_score_istj_1,
+      score_bars_score_esfp_1,
+      // score_bars_score_istj_1,
       // score_bars_score_intp_generic,
       // score_bars_score_enfj_generic,
       // score_bars_score_blanks,
       // score_bars_score_null_string,
       // score_bars_score_non_numeric,
-      // score_bars_margin_big, score_bars_dimension_big
+      // score_bars_margin_orig, score_bars_dimension_orig
       // score_bars_margin_too_short, score_bars_dimension_too_short
-      score_bars_margin_too_wide, score_bars_dimension_too_wide
+      // score_bars_margin_too_wide, score_bars_dimension_too_wide
+      score_bars_margin_get_closer, score_bars_dimension_get_closer
    );
 
   </script>
