@@ -76,18 +76,25 @@
               return this.textContent || format(data);
             });
 
-        // Add the ticks
+        //
+        // Add the tick marks and the text that appears beneath them
+        //
         var tick_enter = tick.enter().append("g")
             .attr("class", "tick")
             .attr("transform", score_bullet_translate(x_scale))
             .style("opacity", 1);
-
+        //
+        // Add the actual tick marks
+        //
         tick_enter.append("line")
-            .attr("y1", height)
-            .attr("y2", height * 7 / 6);
-
+            .attr("y1", height * 1 / 3)
+            .attr("y2", height * 4 / 3);
+        //
+        // Add the label that appears under each tick mark
+        //
         tick_enter.append("text")
-            .attr("text-anchor", "middle")
+            .attr("text-anchor", "right")  // anchor it on the right, then
+            .attr("dx", "-.5em")           // move it a little to the left
             .attr("dy", "1em")
             .attr("y", height * 7 / 6)
             .text(format);
