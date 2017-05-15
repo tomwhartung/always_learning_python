@@ -2,7 +2,7 @@
  * Styles for the score bars:
  */
 .score-svg {
-   border: solid black 3px;
+   border: solid blue 3px;
    margin: 1em;
    padding: 0;
 }
@@ -18,8 +18,8 @@
    fill: #770000;
 }
 .score-bar .score-pct {
-   stroke: #000;
-   stroke-width: 2px;
+   stroke: #777777;
+   stroke-width: 1px;
 }
 .score-bar .tick line {
    stroke: #111111;
