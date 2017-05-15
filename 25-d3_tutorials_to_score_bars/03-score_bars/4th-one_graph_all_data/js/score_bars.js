@@ -40,25 +40,35 @@
 
         var score_pct_lines = this_svgg_elt.selectAll("line.score-pct")
             .data(score_value_arr);
-
+        //
+        // Add the narrow base line for each bar
+        //
         score_pct_lines.enter().append("line")
             .attr("class", "score-pct")
-            .attr("x1", x_scale)
-            .attr("x2", x_scale)
-            .attr("y1", height / 6)
-            .attr("y2", height * 5 / 6);
-
+            .attr("x1", 0)
+            .attr("x2", width)
+            .attr("y1", height)
+            .attr("y2", height);
+        //
+        // Add the rectangle representing the score for this personality function
+        //
         score_pct_lines.enter().append("rect")
           .attr("class", set_css_class(function_letter))
           .attr("x", 0)
-          .attr("y", height * 2 / 3)
+          .attr("y", height / 3)
           .attr("width", x_scale)
-          .attr("height", height / 3);
-
-        // Compute the tick format.
+          .attr("height", height * 2 / 3);
+        //
+        // Use the desired tick format or the default.  I am not sure what the
+        //   "8" is for! It was in the original code so I am respecting that.
+        // Changing the value doesn't do much unless it gets over like 1000.
+        // Reference - about 2/3 the way down on this page:
+        //   https://github.com/d3/d3-3.x-api-reference/blob/master/SVG-Axes.md
+        //
         var format = tick_format || x_scale.tickFormat(8);
-
+        //
         // Update the tick groups.
+        //
         var tick = this_svgg_elt.selectAll("g.tick")
             .data(x_scale.ticks(8), function(data) {
               return this.textContent || format(data);
