@@ -174,6 +174,8 @@
      * grey or the same color as the dominant function.
      */
     var grey_j_p_bars = false;
+    // var grey_j_p_bars = true;
+
     if (function_letter == 'N') {
       this.__perceiving_css_class__ = 'n-score'
       css_class = "n-score";
@@ -228,6 +230,7 @@ var score_bars = {
 
       score_bars_data = score_bars.score_to_bars_data(score);
       var score_bars_chart = d3.score_bars()
+         .tick_format(function(tick_data) {return tick_data + "%";})
          .width(dimension.width)
          .height(dimension.height);
 
