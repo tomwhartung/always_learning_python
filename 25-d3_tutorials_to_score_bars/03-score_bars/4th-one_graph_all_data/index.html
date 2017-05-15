@@ -9,112 +9,85 @@
  </head>
  <body>
   <div class="score-svg" id="score-bars-1"></div><!-- #score-bars-1 -->
-  <div class="score-svg" id="score-bars-2"></div><!-- #score-bars-2 -->
-  <div class="score-svg" id="score-bars-3"></div><!-- #score-bars-3 -->
   <script>
    //
-   // Score Bars Chart 1 - the big one
+   // Score Bars Chart Test Data (these come from quiz results or the json file)
    //
-   score_bars_1_selector = '#score-bars-1';
-   score_bars_1_score_1 = [
+   score_bars_selector = '#score-bars-1';
+   score_bars_score_infp_1 = [
      { "e_score": "2", "i_score": "17" },
      { "n_score": "14", "s_score": "5" },
      { "f_score": "11", "t_score": "8" },
      { "j_score": "5", "p_score": "14" }
    ];
-   score_bars_1_score_2 = [
-      { "e_score": "9", "i_score": "10" },
-      { "n_score": "4", "s_score": "15" },
-      { "f_score": "2", "t_score": "17" },
-      { "j_score": "17", "p_score": "2" }
-   ];
-
-   var score_bars_1_margin = {top: 5, right: 40, bottom: 20, left: 120};
-   var score_bars_1_width = 960 - score_bars_1_margin.left - score_bars_1_margin.right;
-   var score_bars_1_height = 50 - score_bars_1_margin.top - score_bars_1_margin.bottom;
-   var score_bars_1_dimension = {width: score_bars_1_width, height: score_bars_1_height};
-
-   score_bars.create_chart_svg(
-      score_bars_1_selector,
-      score_bars_1_score_2,
-      score_bars_1_margin,
-      score_bars_1_dimension);
-
-   //
-   // Not doing this right now, but we will want to...
-   //
-   // var formatAsPercentage = d3.format(".1%");
-   // xAxis.tickFormat(formatAsPercentage);
-   // yAxis.tickFormat(formatAsPercentage);
-
-   //
-   // Score Bars Chart 2
-   // -> Use default width and height
-   //
-   score_bars_2_score_1 = [
+   score_bars_score_estj_1 = [
       { "e_score": "10", "i_score": "9" },
       { "n_score": "4", "s_score": "15" },
       { "f_score": "3", "t_score": "16" },
       { "j_score": "13", "p_score": "6" }
    ];
-   score_bars_2_score_2 = [
+   score_bars_score_esfp_1 = [
       { "e_score": "11", "i_score": "8" },
       { "n_score": "4", "s_score": "15" },
       { "f_score": "18", "t_score": "1" },
       { "j_score": "9", "p_score": "10" }
    ];
-
-   var score_bars_2_margin = {top: 5, right: 40, bottom: 20, left: 120};
-
-   var score_bars_2_chart = d3.score_bars();  // use default width and height
-   var score_bars_2_width = score_bars_2_chart.width();
-   var score_bars_2_height = score_bars_2_chart.height();
-   var score_bars_2_dimension = {width: score_bars_2_width, height: score_bars_2_height};
-   score_bars_2_chart = null;   // we don't need this anymore...
-
-   score_bars.create_chart_svg(
-      "#score-bars-2",
-      score_bars_2_score_1,
-      score_bars_2_margin,
-      score_bars_2_dimension);
-
-   // console.log('index.html - score_bars_2_width: ' + score_bars_2_width)
-   // console.log('index.html - score_bars_2_height: ' + score_bars_2_height)
-
+   score_bars_score_istj_1 = [
+      { "e_score": "9", "i_score": "10" },
+      { "n_score": "4", "s_score": "15" },
+      { "f_score": "2", "t_score": "17" },
+      { "j_score": "17", "p_score": "2" }
+   ];
    //
-   // Score Bars Chart 3
+   // Generic scores
    //
-   score_bars_3_score_1 = [
+   score_bars_score_intp_generic = [
       { "e_score": "8", "i_score": "11" },
       { "n_score": "11", "s_score": "8" },
       { "f_score": "8", "t_score": "11" },
       { "j_score": "8", "p_score": "11" }
    ];
-   score_bars_3_score_2 = [
-      { "e_score": "", "i_score": "" }, { "n_score": "", "s_score": "" },
-      { "f_score": "", "t_score": "" }, { "j_score": "", "p_score": "" }
-   ];
-   score_bars_3_score_3 = [
-      { "e_score": "a", "i_score": "b" }, { "n_score": "c", "s_score": "d" },
-      { "f_score": "w", "t_score": "x" }, { "j_score": "y", "p_score": "z" }
-   ];
-   score_bars_3_score_4 = [
+   score_bars_score_enfj_generic = [
       { "e_score": "11", "i_score": "8" },
       { "n_score": "11", "s_score": "8" },
       { "f_score": "11", "t_score": "8" },
       { "j_score": "11", "p_score": "8" }
    ];
+   //
+   // Invalid scores
+   // These should show up as all "X"s and zeroes with "Score Incomplete"
+   //
+   score_bars_score_blanks = [
+      { "e_score": " ", "i_score": " " }, { "n_score": " ", "s_score": " " },
+      { "f_score": " ", "t_score": " " }, { "j_score": " ", "p_score": " " }
+   ];
+   score_bars_score_null_string = [
+      { "e_score": "", "i_score": "" }, { "n_score": "", "s_score": "" },
+      { "f_score": "", "t_score": "" }, { "j_score": "", "p_score": "" }
+   ];
+   score_bars_score_non_numeric = [
+      { "e_score": "a", "i_score": "b" }, { "n_score": "c", "s_score": "d" },
+      { "f_score": "w", "t_score": "x" }, { "j_score": "y", "p_score": "z" }
+   ];
 
-   var score_bars_3_margin = {top: 5, right: 40, bottom: 20, left: 120};
-   var score_bars_3_width = 600 - score_bars_3_margin.left - score_bars_3_margin.right;
-   var score_bars_3_height = 40 - score_bars_3_margin.top - score_bars_3_margin.bottom;
-   var score_bars_3_dimension = {width: score_bars_3_width, height: score_bars_3_height};
+   var score_bars_margin_1 = {top: 5, right: 40, bottom: 20, left: 120};
+   var score_bars_width_1 = 960 - score_bars_margin_1.left - score_bars_margin_1.right;
+   var score_bars_height_1 = 50 - score_bars_margin_1.top - score_bars_margin_1.bottom;
+   var score_bars_dimension_1 = {width: score_bars_width_1, height: score_bars_height_1};
 
    score_bars.create_chart_svg(
-      "#score-bars-3",
-      score_bars_3_score_4,
-      score_bars_3_margin,
-      score_bars_3_dimension);
+      score_bars_selector,
+      score_bars_score_infp_1,
+      // score_bars_score_estj_1,
+      // score_bars_score_esfp_1,
+      // score_bars_score_istj_1,
+      // score_bars_score_intp_generic,
+      // score_bars_score_enfj_generic,
+      // score_bars_score_blanks,
+      // score_bars_score_null_string,
+      // score_bars_score_non_numeric,
+      score_bars_margin_1,
+      score_bars_dimension_1);
 
   </script>
  </body>
