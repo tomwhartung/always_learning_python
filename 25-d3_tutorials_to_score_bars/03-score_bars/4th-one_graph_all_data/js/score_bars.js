@@ -243,9 +243,9 @@ var score_bars = {
       var bar_width = total_width - margin_left - margin_right;
       var bar_height = total_height - margin_top - margin_bottom;
 
-      console.log('create_chart_svg - selector: ' + selector);
-      console.log('create_chart_svg - bar_width x bar_height: ' +
-         bar_width + ' x ' + bar_height);
+      // console.log('create_chart_svg - selector: ' + selector);
+      // console.log('create_chart_svg - total_width x total_height: ' + total_width + ' x ' + total_height);
+      // console.log('create_chart_svg - bar_width x bar_height: ' + bar_width + ' x ' + bar_height);
 
       score_bars_data = score_bars.score_to_bars_data(score);
       var score_bars_chart = d3.score_bars()
