@@ -9,7 +9,8 @@
  </head>
  <body>
   <div class="score-svg" id="score-bars-1"></div><!-- #score-bars-1 -->
-  <div class="score-svg" id="score-bars-2"></div><!-- #score-bars-2 -->
+  <div class="score-svg" id="score-bars-2" width="300" height="200">
+  </div><!-- #score-bars-2 (setting width and height doesn't work as hoped) -->
   <div class="score-svg" id="score-bars-3"></div><!-- #score-bars-3 -->
   <script>
    //
@@ -29,23 +30,19 @@
       { "j_score": "17", "p_score": "2" }
    ];
 
-   var score_bars_1_margin = {top: 5, right: 40, bottom: 20, left: 120};
-   var score_bars_1_width = 960 - score_bars_1_margin.left - score_bars_1_margin.right;
-   var score_bars_1_height = 50 - score_bars_1_margin.top - score_bars_1_margin.bottom;
-   var score_bars_1_dimension = {width: score_bars_1_width, height: score_bars_1_height};
+   var positioning_params_1 = {
+      selector: '#score-bars-1',
+      total_width: 960,
+      total_height: 50,
+      margin_top: 5,
+      margin_right: 40,
+      margin_bottom: 20,
+      margin_left: 120,
+   };
 
    score_bars.create_chart_svg(
-      score_bars_1_selector,
-      score_bars_1_score_1,
-      score_bars_1_margin,
-      score_bars_1_dimension);
-
-   //
-   // Not doing this right now, but we will want to...
-   //
-   // var formatAsPercentage = d3.format(".1%");
-   // xAxis.tickFormat(formatAsPercentage);
-   // yAxis.tickFormat(formatAsPercentage);
+      positioning_params_1,
+      score_bars_1_score_1);
 
    //
    // Score Bars Chart 2
@@ -64,22 +61,27 @@
       { "j_score": "9", "p_score": "10" }
    ];
 
-   var score_bars_2_margin = {top: 5, right: 40, bottom: 20, left: 120};
-
    var score_bars_2_chart = d3.score_bars();  // use default width and height
    var score_bars_2_width = score_bars_2_chart.width();
    var score_bars_2_height = score_bars_2_chart.height();
-   var score_bars_2_dimension = {width: score_bars_2_width, height: score_bars_2_height};
    score_bars_2_chart = null;   // we don't need this anymore...
-
-   score_bars.create_chart_svg(
-      "#score-bars-2",
-      score_bars_2_score_2,
-      score_bars_2_margin,
-      score_bars_2_dimension);
 
    // console.log('index.html - score_bars_2_width: ' + score_bars_2_width)
    // console.log('index.html - score_bars_2_height: ' + score_bars_2_height)
+
+   var positioning_params_2 = {
+      selector: '#score-bars-2',
+      total_width: score_bars_2_width,
+      total_height: score_bars_2_height,
+      margin_top: 5,
+      margin_right: 40,
+      margin_bottom: 20,
+      margin_left: 120,
+   };
+
+   score_bars.create_chart_svg(
+      positioning_params_2,
+      score_bars_2_score_2);
 
    //
    // Score Bars Chart 3
@@ -105,16 +107,19 @@
       { "j_score": "8", "p_score": "11" }
    ];
 
-   var score_bars_3_margin = {top: 5, right: 40, bottom: 20, left: 120};
-   var score_bars_3_width = 600 - score_bars_3_margin.left - score_bars_3_margin.right;
-   var score_bars_3_height = 40 - score_bars_3_margin.top - score_bars_3_margin.bottom;
-   var score_bars_3_dimension = {width: score_bars_3_width, height: score_bars_3_height};
+   var positioning_params_3 = {
+      selector: '#score-bars-3',
+      total_width: 600,
+      total_height: 40,
+      margin_top: 5,
+      margin_right: 40,
+      margin_bottom: 20,
+      margin_left: 120,
+   };
 
    score_bars.create_chart_svg(
-      "#score-bars-3",
-      score_bars_3_score_4,
-      score_bars_3_margin,
-      score_bars_3_dimension);
+      positioning_params_3,
+      score_bars_3_score_4);
 
   </script>
  </body>
