@@ -16,8 +16,8 @@
     var get_score_pct_fcn = get_score_pct;
     var get_function_letter_fcn = get_function_letter;
     var css_class = "x-score";  // default value; to override, call css_class()
-    var width = 180;            // default value; to override, call width()
-    var height = 12;            // default value; to override, call height()
+    var width = 300;            // default value; to override, call width()
+    var height = 40;            // default value; to override, call height()
     var tick_format = null;
     /**
      * Function to process each of the SVGGElements in the list
@@ -230,7 +230,6 @@ var score_bars = {
     * Use the data in "score" to create the SVG score bars chart in the
     * location specified by the parameters in "positioning" .
     */
-// create_chart_svg: function(selector, score, margin, dimension) {
    create_chart_svg: function(positioning, score) {
       var selector = positioning.selector;
       var total_width = positioning.total_width;
@@ -242,39 +241,69 @@ var score_bars = {
 
       var bar_width = total_width - margin_left - margin_right;
       var bar_height = total_height - margin_top - margin_bottom;
+      var tick_format_fcn = null;
 
-      // console.log('create_chart_svg - selector: ' + selector);
-      // console.log('create_chart_svg - total_width x total_height: ' + total_width + ' x ' + total_height);
-      // console.log('create_chart_svg - bar_width x bar_height: ' + bar_width + ' x ' + bar_height);
+      if (bar_width < 0) {
+         console.log('score_bars.create_chart_svg: invalid bar_width (' +
+            bar_width +'), setting it to 0 to prevent an error');
+         bar_width = 0;
+      }
+      if (bar_height < 0) {
+         console.log('score_bars.create_chart_svg: invalid bar_height (' +
+            bar_height +'), setting it to 0 to prevent an error');
+         bar_height = 0;
+      }
 
-      score_bars_data = score_bars.score_to_bars_data(score);
+      if (total_width < 275) {
+         tick_format_fcn = function(tick_data) {return "";}
+      }
+      else if (total_width < 360) {
+         tick_format_fcn = function(tick_data) {return tick_data;}
+      }
+      else {
+         tick_format_fcn = function(tick_data) {return tick_data + "%";}
+      }
+
+      console.log('create_chart_svg - selector: ' + selector);
+      console.log('create_chart_svg - total_width x total_height: ' + total_width + ' x ' + total_height);
+      console.log('create_chart_svg - bar_width x bar_height: ' + bar_width + ' x ' + bar_height);
+      //
+      // Convert the score to the data we need for the chart
+      // Create the chart
+      //
+      var score_bars_data = score_bars.score_to_bars_data(score);
       var score_bars_chart = d3.score_bars()
-         .tick_format(function(tick_data) {return tick_data + "%";})
+         .tick_format(tick_format_fcn)
          .width(bar_width)
          .height(bar_height);
-
+      //
+      // Create the svg chart elements, setting attributes as appropriate
+      //
       var score_bars_svg = d3.select(selector).selectAll("svg")
-       .data(score_bars_data)
-       .enter().append("svg")
-       .attr("class", "score-bar")
-       .attr("width", bar_width + margin_left + margin_right)
-       .attr("height", bar_height + margin_top + margin_bottom)
-       .append("g")
-       .attr("transform", "translate(" + margin_left + "," + margin_top + ")")
-       .call(score_bars_chart);
-
+         .data(score_bars_data)
+         .enter().append("svg")
+         .attr("class", "score-bar")
+         .attr("width", bar_width + margin_left + margin_right)
+         .attr("height", bar_height + margin_top + margin_bottom)
+         .append("g")
+         .attr("transform", "translate(" + margin_left + "," + margin_top + ")")
+         .call(score_bars_chart);
+      //
+      // Add the "g" elements for the score bar labels
+      // Add the personality function letter and name to the chart
+      //
       var function_letter_elt = score_bars_svg.append("g")
-        .style("text-anchor", "end")
-        .attr("transform", "translate(-6," + bar_height / 2 + ")");
+         .style("text-anchor", "end")
+         .attr("transform", "translate(-6," + bar_height / 2 + ")");
 
       function_letter_elt.append("text")
-        .attr("class", "function-letter")
-        .text(function(data) { return data.function_letter; });
+         .attr("class", "function-letter")
+         .text(function(data) { return data.function_letter; });
 
       function_letter_elt.append("text")
-        .attr("class", "function-name")
-        .attr("dy", "1em")
-        .text(function(data) { return data.function_name; });
+         .attr("class", "function-name")
+         .attr("dy", "1em")
+         .text(function(data) { return data.function_name; });
 
    },
    /**
