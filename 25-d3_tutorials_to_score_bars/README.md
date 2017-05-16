@@ -4,7 +4,7 @@ Explore the possibility of using D3.js to draw the score scales on seeourminds.c
 
 ## Goal:
 
-This is the goal of this project:
+This section describes the goal of this project.
 
 ### Input data:
 
@@ -218,6 +218,7 @@ such as on the gallery landing page and in the gallery pages.
 cd 03-score_bars
 mkdir 5th-small_graph_exp
 cp -r 3rd-final_touches-3_graphs/* 5th-small_graph_exp
+cp 4th-one_graph_all_data/js/score_bars.js  5th-small_graph_exp/js
 .......
 ```
 
