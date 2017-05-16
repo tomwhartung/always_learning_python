@@ -28,8 +28,8 @@
     var get_score_pct_fcn = get_score_pct;
     var get_function_letter_fcn = get_function_letter;
     var css_class = "x-score";  // default value; to override, call css_class()
-    var width = 180;            // default value; to override, call width()
-    var height = 12;            // default value; to override, call height()
+    var width = 300;            // default value; to override, call width()
+    var height = 40;            // default value; to override, call height()
     var tick_format = null;
     /**
      * Function to process each of the SVGGElements in the list
@@ -52,42 +52,59 @@
 
         var score_pct_lines = this_svgg_elt.selectAll("line.score-pct")
             .data(score_value_arr);
-
+        //
+        // Add the narrow base line for each bar
+        //
         score_pct_lines.enter().append("line")
             .attr("class", "score-pct")
-            .attr("x1", x_scale)
-            .attr("x2", x_scale)
-            .attr("y1", height / 6)
-            .attr("y2", height * 5 / 6);
-
+            .attr("x1", 0)
+            .attr("x2", width)
+            .attr("y1", height)
+            .attr("y2", height);
+        //
+        // Add the rectangle representing the score for this personality function
+        //
         score_pct_lines.enter().append("rect")
           .attr("class", set_css_class(function_letter))
           .attr("x", 0)
-          .attr("y", height * 2 / 3)
+          .attr("y", height / 3)
           .attr("width", x_scale)
-          .attr("height", height / 3);
-
-        // Compute the tick format.
+          .attr("height", height * 2 / 3);
+        //
+        // Use the desired tick format or the default.  I am not sure what the
+        //   "8" is for! It was in the original code so I am respecting that.
+        // Changing the value doesn't do much unless it gets over like 1000.
+        // Reference - about 2/3 the way down on this page:
+        //   https://github.com/d3/d3-3.x-api-reference/blob/master/SVG-Axes.md
+        //
         var format = tick_format || x_scale.tickFormat(8);
-
+        //
         // Update the tick groups.
+        //
         var tick = this_svgg_elt.selectAll("g.tick")
             .data(x_scale.ticks(8), function(data) {
               return this.textContent || format(data);
             });
 
-        // Add the ticks
+        //
+        // Add the tick marks and the text that appears beneath them
+        //
         var tick_enter = tick.enter().append("g")
             .attr("class", "tick")
             .attr("transform", score_bar_translate(x_scale))
             .style("opacity", 1);
-
+        //
+        // Add the actual tick marks
+        //
         tick_enter.append("line")
-            .attr("y1", height)
-            .attr("y2", height * 7 / 6);
-
+            .attr("y1", height * 1 / 3)
+            .attr("y2", height * 4 / 3);
+        //
+        // Add the label that appears under each tick mark
+        //
         tick_enter.append("text")
-            .attr("text-anchor", "middle")
+            .attr("text-anchor", "right")  // anchor it on the right, then
+            .attr("dx", "-.5em")           // move it a little to the left
             .attr("dy", "1em")
             .attr("y", height * 7 / 6)
             .text(format);
@@ -174,8 +191,8 @@
      * -> Use this variable to easily toggle whether the bar on the bottom is
      * grey or the same color as the dominant function.
      */
-    // var grey_j_p_bars = true;
-    var grey_j_p_bars = false;
+    // var grey_j_p_bars = false;
+    var grey_j_p_bars = true;
 
     if (function_letter == 'N') {
       this.__perceiving_css_class__ = 'n-score'
@@ -223,39 +240,79 @@
 var score_bars = {
    /**
     * Use the data in "score" to create the SVG score bars chart in the
-    * location specified by the "selector" , giving it the specified
-    * "margin" and "dimension"s.
+    * location specified by the parameters in "positioning" .
     */
-   create_chart_svg: function(selector, score, margin, dimension) {
+   create_chart_svg: function(positioning, score) {
+      var selector = positioning.selector;
+      var total_width = positioning.total_width;
+      var total_height = positioning.total_height;
+      var margin_top = positioning.margin_top;
+      var margin_right = positioning.margin_right;
+      var margin_bottom = positioning.margin_bottom;
+      var margin_left = positioning.margin_left;
+
+      var bar_width = total_width - margin_left - margin_right;
+      var bar_height = total_height - margin_top - margin_bottom;
+      var tick_format_fcn = null;
+
+      if (bar_width < 0) {
+         console.log('score_bars.create_chart_svg: invalid bar_width (' +
+            bar_width +'), setting it to 0 to prevent an error');
+         bar_width = 0;
+      }
+      if (bar_height < 0) {
+         console.log('score_bars.create_chart_svg: invalid bar_height (' +
+            bar_height +'), setting it to 0 to prevent an error');
+         bar_height = 0;
+      }
+
+      if (bar_width < 400) {
+         tick_format_fcn = function(tick_data) {return tick_data;}
+      }
+      else {
+         tick_format_fcn = function(tick_data) {return tick_data + "%";}
+      }
+
       console.log('create_chart_svg - selector: ' + selector);
-
-      score_bars_data = score_bars.score_to_bars_data(score);
+      console.log('create_chart_svg - total_width x total_height: ' + total_width + ' x ' + total_height);
+      console.log('create_chart_svg - bar_width x bar_height: ' + bar_width + ' x ' + bar_height);
+      //
+      // Convert the score to the data we need for the chart
+      // Create the chart
+      //
+      var score_bars_data = score_bars.score_to_bars_data(score);
       var score_bars_chart = d3.score_bars()
-         .width(dimension.width)
-         .height(dimension.height);
-
+         .tick_format(tick_format_fcn)
+         .width(bar_width)
+         .height(bar_height);
+      //
+      // Create the svg chart elements, setting attributes as appropriate
+      //
       var score_bars_svg = d3.select(selector).selectAll("svg")
-       .data(score_bars_data)
-       .enter().append("svg")
-       .attr("class", "score-bar")
-       .attr("width", dimension.width + margin.left + margin.right)
-       .attr("height", dimension.height + margin.top + margin.bottom)
-       .append("g")
-       .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-       .call(score_bars_chart);
-
+         .data(score_bars_data)
+         .enter().append("svg")
+         .attr("class", "score-bar")
+         .attr("width", bar_width + margin_left + margin_right)
+         .attr("height", bar_height + margin_top + margin_bottom)
+         .append("g")
+         .attr("transform", "translate(" + margin_left + "," + margin_top + ")")
+         .call(score_bars_chart);
+      //
+      // Add the "g" elements for the score bar labels
+      // Add the personality function letter and name to the chart
+      //
       var function_letter_elt = score_bars_svg.append("g")
-        .style("text-anchor", "end")
-        .attr("transform", "translate(-6," + dimension.height / 2 + ")");
+         .style("text-anchor", "end")
+         .attr("transform", "translate(-6," + bar_height / 2 + ")");
 
       function_letter_elt.append("text")
-        .attr("class", "function-letter")
-        .text(function(data) { return data.function_letter; });
+         .attr("class", "function-letter")
+         .text(function(data) { return data.function_letter; });
 
       function_letter_elt.append("text")
-        .attr("class", "function-name")
-        .attr("dy", "1em")
-        .text(function(data) { return data.function_name; });
+         .attr("class", "function-name")
+         .attr("dy", "1em")
+         .text(function(data) { return data.function_name; });
 
    },
    /**
