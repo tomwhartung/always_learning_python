@@ -13,26 +13,25 @@
    //
    // Score Bars Chart Test Data (these come from quiz results or the json file)
    //
-   score_bars_selector = '#score-bars-1';
-   score_bars_score_infp_1 = [
+   var score_bars_score_infp_1 = [
      { "e_score": "2", "i_score": "17" },
      { "n_score": "14", "s_score": "5" },
      { "f_score": "11", "t_score": "8" },
      { "j_score": "5", "p_score": "14" }
    ];
-   score_bars_score_estj_1 = [
+   var score_bars_score_estj_1 = [
       { "e_score": "10", "i_score": "9" },
       { "n_score": "4", "s_score": "15" },
       { "f_score": "3", "t_score": "16" },
       { "j_score": "13", "p_score": "6" }
    ];
-   score_bars_score_esfp_1 = [
+   var score_bars_score_esfp_1 = [
       { "e_score": "11", "i_score": "8" },
       { "n_score": "4", "s_score": "15" },
       { "f_score": "18", "t_score": "1" },
       { "j_score": "9", "p_score": "10" }
    ];
-   score_bars_score_istj_1 = [
+   var score_bars_score_istj_1 = [
       { "e_score": "9", "i_score": "10" },
       { "n_score": "4", "s_score": "15" },
       { "f_score": "2", "t_score": "17" },
@@ -41,13 +40,13 @@
    //
    // Generic scores
    //
-   score_bars_score_intp_generic = [
+   var score_bars_score_intp_generic = [
       { "e_score": "8", "i_score": "11" },
       { "n_score": "11", "s_score": "8" },
       { "f_score": "8", "t_score": "11" },
       { "j_score": "8", "p_score": "11" }
    ];
-   score_bars_score_enfj_generic = [
+   var score_bars_score_enfj_generic = [
       { "e_score": "11", "i_score": "8" },
       { "n_score": "11", "s_score": "8" },
       { "f_score": "11", "t_score": "8" },
@@ -57,63 +56,18 @@
    // Invalid scores
    // These should show up as all "X"s and zeroes with "Score Incomplete"
    //
-   score_bars_score_blanks = [
+   var score_bars_score_blanks = [
       { "e_score": " ", "i_score": " " }, { "n_score": " ", "s_score": " " },
       { "f_score": " ", "t_score": " " }, { "j_score": " ", "p_score": " " }
    ];
-   score_bars_score_null_string = [
+   var score_bars_score_null_string = [
       { "e_score": "", "i_score": "" }, { "n_score": "", "s_score": "" },
       { "f_score": "", "t_score": "" }, { "j_score": "", "p_score": "" }
    ];
-   score_bars_score_non_numeric = [
+   var score_bars_score_non_numeric = [
       { "e_score": "a", "i_score": "b" }, { "n_score": "c", "s_score": "d" },
       { "f_score": "w", "t_score": "x" }, { "j_score": "y", "p_score": "z" }
    ];
-
-   var score_bars_margin_orig = {top: 5, right: 40, bottom: 20, left: 120};
-   var score_bars_width_orig = 960 - score_bars_margin_orig.left - score_bars_margin_orig.right;
-   var score_bars_height_orig = 50 - score_bars_margin_orig.top - score_bars_margin_orig.bottom;
-   var score_bars_dimension_orig = {width: score_bars_width_orig, height: score_bars_height_orig};
-
-   var score_bars_margin_too_short = {top: 5, right: 40, bottom: 20, left: 120};
-   var score_bars_width_too_short = 600 - score_bars_margin_too_short.left - score_bars_margin_too_short.right;
-   var score_bars_height_too_short = 30 - score_bars_margin_too_short.top - score_bars_margin_too_short.bottom;
-   var score_bars_dimension_too_short = {width: score_bars_width_too_short, height: score_bars_height_too_short};
-
-   var score_bar_total_width = 600;
-   var score_bar_total_height = 35;
-
-   var score_bars_margin_too_wide = {top: 8, right: 40, bottom: 20, left: 100};
-   var score_bars_width_too_wide = score_bar_total_width - score_bars_margin_too_wide.left - score_bars_margin_too_wide.right;
-   var score_bars_height_too_wide = score_bar_total_height - score_bars_margin_too_wide.top - score_bars_margin_too_wide.bottom;
-   var score_bars_dimension_too_wide = {width: score_bars_width_too_wide, height: score_bars_height_too_wide};
-   //
-   // Extensive testing has determined that these margin values are about as
-   // low as they can be without causing the chart to be clipped.
-   //
-   var score_bars_margin_get_closer = {top: 8, right: 21, bottom: 15, left: 62};
-   var score_bars_width_get_closer = score_bar_total_width - score_bars_margin_get_closer.left - score_bars_margin_get_closer.right;
-   var score_bars_height_get_closer = score_bar_total_height - score_bars_margin_get_closer.top - score_bars_margin_get_closer.bottom;
-   var score_bars_dimension_get_closer = {width: score_bars_width_get_closer, height: score_bars_height_get_closer};
-   //
-   // Old style call:
-   //
-   // score_bars.create_chart_svg(
-   //    score_bars_selector,
-   //    // score_bars_score_infp_1,
-   //    // score_bars_score_estj_1,
-   //    score_bars_score_esfp_1,
-   //    // score_bars_score_istj_1,
-   //    // score_bars_score_intp_generic,
-   //    // score_bars_score_enfj_generic,
-   //    // score_bars_score_blanks,
-   //    // score_bars_score_null_string,
-   //    // score_bars_score_non_numeric,
-   //    // score_bars_margin_orig, score_bars_dimension_orig
-   //    // score_bars_margin_too_short, score_bars_dimension_too_short
-   //    // score_bars_margin_too_wide, score_bars_dimension_too_wide
-   //    score_bars_margin_get_closer, score_bars_dimension_get_closer
-   // );
 
    //
    // Time to bundle all positioning parameters into a single object
@@ -130,10 +84,10 @@
 
    score_bars.create_chart_svg(
       positioning_parms,
-      // score_bars_score_infp_1,
+      score_bars_score_infp_1,
       // score_bars_score_estj_1,
       // score_bars_score_esfp_1,
-      score_bars_score_istj_1,
+      // score_bars_score_istj_1,
       // score_bars_score_intp_generic,
       // score_bars_score_enfj_generic,
       // score_bars_score_blanks,
