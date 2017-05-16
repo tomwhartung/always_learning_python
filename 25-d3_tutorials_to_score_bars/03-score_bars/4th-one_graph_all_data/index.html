@@ -95,22 +95,50 @@
    var score_bars_width_get_closer = score_bar_total_width - score_bars_margin_get_closer.left - score_bars_margin_get_closer.right;
    var score_bars_height_get_closer = score_bar_total_height - score_bars_margin_get_closer.top - score_bars_margin_get_closer.bottom;
    var score_bars_dimension_get_closer = {width: score_bars_width_get_closer, height: score_bars_height_get_closer};
+   //
+   // Old style call:
+   //
+   // score_bars.create_chart_svg(
+   //    score_bars_selector,
+   //    // score_bars_score_infp_1,
+   //    // score_bars_score_estj_1,
+   //    score_bars_score_esfp_1,
+   //    // score_bars_score_istj_1,
+   //    // score_bars_score_intp_generic,
+   //    // score_bars_score_enfj_generic,
+   //    // score_bars_score_blanks,
+   //    // score_bars_score_null_string,
+   //    // score_bars_score_non_numeric,
+   //    // score_bars_margin_orig, score_bars_dimension_orig
+   //    // score_bars_margin_too_short, score_bars_dimension_too_short
+   //    // score_bars_margin_too_wide, score_bars_dimension_too_wide
+   //    score_bars_margin_get_closer, score_bars_dimension_get_closer
+   // );
+
+   //
+   // Time to bundle all positioning parameters into a single object
+   //
+   var positioning_parms = {
+      selector: '#score-bars-1',
+      total_width: 600,
+      total_height: 35,
+      margin_top: 8,
+      margin_right: 21,
+      margin_bottom: 15,
+      margin_left: 62,
+   };
 
    score_bars.create_chart_svg(
-      score_bars_selector,
+      positioning_parms,
       // score_bars_score_infp_1,
       // score_bars_score_estj_1,
-      score_bars_score_esfp_1,
-      // score_bars_score_istj_1,
+      // score_bars_score_esfp_1,
+      score_bars_score_istj_1,
       // score_bars_score_intp_generic,
       // score_bars_score_enfj_generic,
       // score_bars_score_blanks,
       // score_bars_score_null_string,
       // score_bars_score_non_numeric,
-      // score_bars_margin_orig, score_bars_dimension_orig
-      // score_bars_margin_too_short, score_bars_dimension_too_short
-      // score_bars_margin_too_wide, score_bars_dimension_too_wide
-      score_bars_margin_get_closer, score_bars_dimension_get_closer
    );
 
   </script>
