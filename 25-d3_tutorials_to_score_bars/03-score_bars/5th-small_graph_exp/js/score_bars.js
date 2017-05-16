@@ -254,11 +254,10 @@ var score_bars = {
          bar_height = 0;
       }
 
-      if (bar_width < 280) {
-         // tick_format_fcn = function(tick_data) {return ""; }
-         tick_format_fcn = null;
+      if (total_width < 275) {
+         tick_format_fcn = function(tick_data) {return "";}
       }
-      else if (bar_width < 400) {
+      else if (total_width < 360) {
          tick_format_fcn = function(tick_data) {return tick_data;}
       }
       else {
