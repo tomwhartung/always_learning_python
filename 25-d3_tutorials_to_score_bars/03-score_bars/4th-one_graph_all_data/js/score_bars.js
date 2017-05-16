@@ -228,31 +228,44 @@
 var score_bars = {
    /**
     * Use the data in "score" to create the SVG score bars chart in the
-    * location specified by the "selector" , giving it the specified
-    * "margin" and "dimension"s.
+    * location specified by the parameters in "positioning" .
     */
-   create_chart_svg: function(selector, score, margin, dimension) {
+// create_chart_svg: function(selector, score, margin, dimension) {
+   create_chart_svg: function(positioning, score) {
+      var selector = positioning.selector;
+      var total_width = positioning.total_width;
+      var total_height = positioning.total_height;
+      var margin_top = positioning.margin_top;
+      var margin_right = positioning.margin_right;
+      var margin_bottom = positioning.margin_bottom;
+      var margin_left = positioning.margin_left;
+
+      var bar_width = total_width - margin_left - margin_right;
+      var bar_height = total_height - margin_top - margin_bottom;
+
       console.log('create_chart_svg - selector: ' + selector);
+      console.log('create_chart_svg - bar_width x bar_height: ' +
+         bar_width + ' x ' + bar_height);
 
       score_bars_data = score_bars.score_to_bars_data(score);
       var score_bars_chart = d3.score_bars()
          .tick_format(function(tick_data) {return tick_data + "%";})
-         .width(dimension.width)
-         .height(dimension.height);
+         .width(bar_width)
+         .height(bar_height);
 
       var score_bars_svg = d3.select(selector).selectAll("svg")
        .data(score_bars_data)
        .enter().append("svg")
        .attr("class", "score-bar")
-       .attr("width", dimension.width + margin.left + margin.right)
-       .attr("height", dimension.height + margin.top + margin.bottom)
+       .attr("width", bar_width + margin_left + margin_right)
+       .attr("height", bar_height + margin_top + margin_bottom)
        .append("g")
-       .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+       .attr("transform", "translate(" + margin_left + "," + margin_top + ")")
        .call(score_bars_chart);
 
       var function_letter_elt = score_bars_svg.append("g")
         .style("text-anchor", "end")
-        .attr("transform", "translate(-6," + dimension.height / 2 + ")");
+        .attr("transform", "translate(-6," + bar_height / 2 + ")");
 
       function_letter_elt.append("text")
         .attr("class", "function-letter")
