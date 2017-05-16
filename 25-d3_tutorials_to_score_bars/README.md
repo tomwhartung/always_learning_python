@@ -226,3 +226,21 @@ cp 4th-one_graph_all_data/js/score_bars.js  5th-small_graph_exp/js
 display this small graph when someone clicks on it.**
 
 
+##### 3.7 Final combination
+
+combine the last three sub-projects into a single new sub-project and
+
+* Ensure all work with the same version of score_bars.js and score_bars.css
+* See if they will work with version 4 of d3
+* Ultimately drop this code into the site (seeourminds.com)
+
+```
+cd 03-score_bars
+mkdir 6th-final_combination
+cp -r 3rd-final_touches-3_graphs/* 6th-final_combination
+cp 4th-one_graph_all_data/index.html 6th-final_combination/index-4th-big.html
+cp 4th-one_graph_all_data/js/score_bars.js 6th-final_combination/js
+cp 5th-small_graph_exp/index.html 6th-final_combination/index-5th-small.html
+.......
+```
+
