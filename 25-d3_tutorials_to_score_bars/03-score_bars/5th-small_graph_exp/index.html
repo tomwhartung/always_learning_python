@@ -14,7 +14,7 @@
   <div class="score-svg" id="score-bars-3"></div><!-- #score-bars-3 -->
   <script>
    //
-   // Score Bars Chart 1 - the big one
+   // Score Bars Chart 1 - the smaller one
    //
    score_bars_1_selector = '#score-bars-1';
    score_bars_1_score_1 = [
@@ -32,7 +32,7 @@
 
    var positioning_params_1 = {
       selector: '#score-bars-1',
-      total_width: 270,
+      total_width: 274,
       total_height: 35,
       margin_top: 5,
       margin_right: 40,
@@ -71,8 +71,8 @@
 
    var positioning_params_2 = {
       selector: '#score-bars-2',
-      total_width: score_bars_2_width,
-      total_height: score_bars_2_height,
+      total_width: score_bars_2_width,     // 300
+      total_height: score_bars_2_height,   // 40
       margin_top: 5,
       margin_right: 40,
       margin_bottom: 20,
@@ -84,7 +84,7 @@
       score_bars_2_score_2);
 
    //
-   // Score Bars Chart 3
+   // Score Bars Chart 3 - the bigger one
    //
    score_bars_3_score_1 = [
       { "e_score": "8", "i_score": "11" },
@@ -109,7 +109,7 @@
 
    var positioning_params_3 = {
       selector: '#score-bars-3',
-      total_width: 350,
+      total_width: 360,
       total_height: 36,
       margin_top: 5,
       margin_right: 40,
