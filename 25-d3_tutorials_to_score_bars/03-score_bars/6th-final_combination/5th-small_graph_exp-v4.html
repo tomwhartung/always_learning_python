@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <title>score_bars</title>
+  <script type="text/javascript" src="js/d3/d3.v4.js"></script>
+  <script type="text/javascript" src="js/score_bars.js"></script>
+  <link rel="stylesheet" href="css/sanity.css">
+  <link rel="stylesheet" href="css/score_bars.css">
+ </head>
+ <body>
+  <h1>D3 SVG Experimentation and Development<h1>
+  <h2>Final Small Graphs</h2>
+  <p>
+   One of these <span class="air-quotes">Final Small Graphs,</span>
+    or a variation on one of them, might be suitable for the gallery pages.
+   We will just have to try them and see!</p>
+  <h2><a href="index.html" title="Back">Back</a></h2>
+  <div class="score-svg" id="score-bars-1"></div><!-- #score-bars-1 -->
+  <div class="score-svg" id="score-bars-2" width="300" height="200">
+  </div><!-- #score-bars-2 (setting width and height doesn't work as hoped) -->
+  <div class="score-svg" id="score-bars-3"></div><!-- #score-bars-3 -->
+  <h2><a href="index.html" title="Back">Back</a></h2>
+  <script>
+   //
+   // Score Bars Chart 1 - the smaller one
+   //
+   score_bars_1_selector = '#score-bars-1';
+   score_bars_1_score_1 = [
+     { "e_score": "2", "i_score": "17" },
+     { "n_score": "14", "s_score": "5" },
+     { "f_score": "11", "t_score": "8" },
+     { "j_score": "5", "p_score": "14" }
+   ];
+   score_bars_1_score_2 = [
+      { "e_score": "9", "i_score": "10" },
+      { "n_score": "4", "s_score": "15" },
+      { "f_score": "2", "t_score": "17" },
+      { "j_score": "17", "p_score": "2" }
+   ];
+
+   var positioning_params_1 = {
+      selector: '#score-bars-1',
+      total_width: 274,
+      total_height: 35,
+      margin_top: 5,
+      margin_right: 40,
+      margin_bottom: 20,
+      margin_left: 120,
+   };
+
+   score_bars.create_chart_svg(
+      positioning_params_1,
+      score_bars_1_score_1);
+
+   //
+   // Score Bars Chart 2
+   // -> Use default width and height
+   //
+   score_bars_2_score_1 = [
+      { "e_score": "10", "i_score": "9" },
+      { "n_score": "4", "s_score": "15" },
+      { "f_score": "3", "t_score": "16" },
+      { "j_score": "13", "p_score": "6" }
+   ];
+   score_bars_2_score_2 = [
+      { "e_score": "11", "i_score": "8" },
+      { "n_score": "4", "s_score": "15" },
+      { "f_score": "18", "t_score": "1" },
+      { "j_score": "9", "p_score": "10" }
+   ];
+
+   var score_bars_2_chart = d3.score_bars();  // use default width and height
+   var score_bars_2_width = score_bars_2_chart.width();
+   var score_bars_2_height = score_bars_2_chart.height();
+   score_bars_2_chart = null;   // we don't need this anymore...
+
+   console.log('index.html - score_bars_2_width: ' + score_bars_2_width)
+   console.log('index.html - score_bars_2_height: ' + score_bars_2_height)
+
+   var positioning_params_2 = {
+      selector: '#score-bars-2',
+      total_width: score_bars_2_width,     // 300
+      total_height: score_bars_2_height,   // 40
+      margin_top: 5,
+      margin_right: 40,
+      margin_bottom: 20,
+      margin_left: 120,
+   };
+
+   score_bars.create_chart_svg(
+      positioning_params_2,
+      score_bars_2_score_2);
+
+   //
+   // Score Bars Chart 3 - the bigger one
+   //
+   score_bars_3_score_1 = [
+      { "e_score": "8", "i_score": "11" },
+      { "n_score": "11", "s_score": "8" },
+      { "f_score": "8", "t_score": "11" },
+      { "j_score": "8", "p_score": "11" }
+   ];
+   score_bars_3_score_2 = [
+      { "e_score": "", "i_score": "" }, { "n_score": "", "s_score": "" },
+      { "f_score": "", "t_score": "" }, { "j_score": "", "p_score": "" }
+   ];
+   score_bars_3_score_3 = [
+      { "e_score": "a", "i_score": "b" }, { "n_score": "c", "s_score": "d" },
+      { "f_score": "w", "t_score": "x" }, { "j_score": "y", "p_score": "z" }
+   ];
+   score_bars_3_score_4 = [
+      { "e_score": "8", "i_score": "11" },
+      { "n_score": "11", "s_score": "8" },
+      { "f_score": "8", "t_score": "11" },
+      { "j_score": "8", "p_score": "11" }
+   ];
+
+   var positioning_params_3 = {
+      selector: '#score-bars-3',
+      total_width: 360,
+      total_height: 36,
+      margin_top: 5,
+      margin_right: 40,
+      margin_bottom: 20,
+      margin_left: 120,
+   };
+
+   score_bars.create_chart_svg(
+      positioning_params_3,
+      score_bars_3_score_4);
+
+  </script>
+ </body>
+</html>
