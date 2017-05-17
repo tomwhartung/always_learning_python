@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <title>score_bars</title>
+  <script type="text/javascript" src="js/d3/d3.v4.js"></script>
+  <script type="text/javascript" src="js/score_bars.js"></script>
+  <link rel="stylesheet" href="css/sanity.css">
+  <link rel="stylesheet" href="css/score_bars.css">
+ </head>
+ <body>
+  <h1>D3 SVG Experimentation and Development<h1>
+  <h2>Final Big Graph</h2>
+  <p>
+   This <span class="air-quotes">Final Big Graph</span>
+    should be suitable for the:</p>
+  <ul>
+   <li>
+    Single-image page</li>
+   <li>
+    Quiz results page</li>
+  </ul>
+  <p>
+   Hopefully it will need at most a very few very minor mods, we will see!</p>
+  <div class="score-svg" id="score-bars-1"></div><!-- #score-bars-1 -->
+  <h2><a href="index.html" title="Back">Back</a></h2>
+  <script>
+   //
+   // Score Bars Chart Test Data (these come from quiz results or the json file)
+   //
+   var score_bars_score_infp_1 = [
+     { "e_score": "2", "i_score": "17" },
+     { "n_score": "14", "s_score": "5" },
+     { "f_score": "11", "t_score": "8" },
+     { "j_score": "5", "p_score": "14" }
+   ];
+   var score_bars_score_estj_1 = [
+      { "e_score": "10", "i_score": "9" },
+      { "n_score": "4", "s_score": "15" },
+      { "f_score": "3", "t_score": "16" },
+      { "j_score": "13", "p_score": "6" }
+   ];
+   var score_bars_score_esfp_1 = [
+      { "e_score": "11", "i_score": "8" },
+      { "n_score": "4", "s_score": "15" },
+      { "f_score": "18", "t_score": "1" },
+      { "j_score": "9", "p_score": "10" }
+   ];
+   var score_bars_score_istj_1 = [
+      { "e_score": "9", "i_score": "10" },
+      { "n_score": "4", "s_score": "15" },
+      { "f_score": "2", "t_score": "17" },
+      { "j_score": "17", "p_score": "2" }
+   ];
+   //
+   // Generic scores
+   //
+   var score_bars_score_intp_generic = [
+      { "e_score": "8", "i_score": "11" },
+      { "n_score": "11", "s_score": "8" },
+      { "f_score": "8", "t_score": "11" },
+      { "j_score": "8", "p_score": "11" }
+   ];
+   var score_bars_score_enfj_generic = [
+      { "e_score": "11", "i_score": "8" },
+      { "n_score": "11", "s_score": "8" },
+      { "f_score": "11", "t_score": "8" },
+      { "j_score": "11", "p_score": "8" }
+   ];
+   //
+   // Invalid scores
+   // These should show up as all "X"s and zeroes with "Score Incomplete"
+   //
+   var score_bars_score_blanks = [
+      { "e_score": " ", "i_score": " " }, { "n_score": " ", "s_score": " " },
+      { "f_score": " ", "t_score": " " }, { "j_score": " ", "p_score": " " }
+   ];
+   var score_bars_score_null_string = [
+      { "e_score": "", "i_score": "" }, { "n_score": "", "s_score": "" },
+      { "f_score": "", "t_score": "" }, { "j_score": "", "p_score": "" }
+   ];
+   var score_bars_score_non_numeric = [
+      { "e_score": "a", "i_score": "b" }, { "n_score": "c", "s_score": "d" },
+      { "f_score": "w", "t_score": "x" }, { "j_score": "y", "p_score": "z" }
+   ];
+
+   //
+   // Time to bundle all positioning parameters into a single object
+   //
+   var positioning_params = {
+      selector: '#score-bars-1',
+      total_width: 600,
+      total_height: 35,
+      margin_top: 8,
+      margin_right: 21,
+      margin_bottom: 15,
+      margin_left: 62,
+   };
+
+   score_bars.create_chart_svg(
+      positioning_params,
+      score_bars_score_infp_1,
+      // score_bars_score_estj_1,
+      // score_bars_score_esfp_1,
+      // score_bars_score_istj_1,
+      // score_bars_score_intp_generic,
+      // score_bars_score_enfj_generic,
+      // score_bars_score_blanks,
+      // score_bars_score_null_string,
+      // score_bars_score_non_numeric,
+   );
+
+  </script>
+ </body>
+</html>
