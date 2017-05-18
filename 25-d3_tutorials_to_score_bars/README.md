@@ -142,8 +142,6 @@ cp 03-before_removing_ranges/* 04-removed_ranges
 
 ### 03-score_bars
 
-#### Result:
-
 #### Process:
 
 1. Start with latest version of code from `01-aligned_left` (`16-axes`)
@@ -225,10 +223,9 @@ cp 4th-one_graph_all_data/js/score_bars.js  5th-small_graph_exp/js
 **Consider making the four-letter-type on these images a link that will
 display this small graph when someone clicks on it.**
 
-
 ##### 3.7 Final combination
 
-combine the last three sub-projects into a single new sub-project and
+Combine the last three sub-projects into a single new sub-project and
 
 * Ensure all work with the same version of score_bars.js and score_bars.css
 * See if they will work with version 4 of d3
@@ -243,4 +240,67 @@ cp 4th-one_graph_all_data/js/score_bars.js 6th-final_combination/js
 cp 5th-small_graph_exp/index.html 6th-final_combination/index-5th-small.html
 .......
 ```
+
+#### D3 Version 4 Testing
+
+Using the `6th-final_combination` files, see if we can use Version 4 of D3.
+
+##### First: Prevent Confusion!
+
+Copy and rename files as appropriate, so that we can test Version 4 of D3
+without getting confused!
+
+```
+cd 03-score_bars
+cd 6th-final_combination
+cp ...
+mv ...
+cd js
+cp score_bars.js score_bars-v4.js
+```
+
+Results:
+
+```
+ls -1
+3rd-final_touches-3_graphs-v3.html
+3rd-final_touches-3_graphs-v4.html
+4th-one_graph_all_data-v3.html
+4th-one_graph_all_data-v4.html
+5th-small_graph_exp-v3.html
+5th-small_graph_exp-v4.html
+vi 3rd-final_touches-3_graphs-v3.html   # update headings to prevent confusion!
+vi 3rd-final_touches-3_graphs-v4.html   # update to use js/score_bars-v4.js
+vi 4th-one_graph_all_data-v3.html       # update headings to prevent confusion!
+vi 4th-one_graph_all_data-v4.html       # update to use js/score_bars-v4.js
+vi 5th-small_graph_exp-v3.html          # update headings to prevent confusion!
+vi 5th-small_graph_exp-v4.html          # update to use js/score_bars-v4.js
+```
+
+And in the javascript directory:
+
+```
+ls -1 js/*
+js/score_bars.js
+js/score_bars-v4.js
+
+js/d3:
+d3-3.5.17.js
+d3.v3.js
+d3.v4.js
+d3.v4.min.js
+```
+
+##### Second: Test Using Version 4 of D3
+
+Test in browser and update `score_bars-v4.js` as needed.
+
+```
+cd 03-score_bars
+cd 6th-final_combination
+cd js
+vi score_bars-v4.js
+```
+
+Whoo-hoo - it turns out we need only a couple of minor modifications!  Yay!!
 
