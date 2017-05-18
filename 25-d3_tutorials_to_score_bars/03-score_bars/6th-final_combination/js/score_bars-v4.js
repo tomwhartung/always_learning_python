@@ -34,7 +34,7 @@
         // console.log('check check 123 123');
         // console.log('score_bars - width x height: ' + width + ' x ' + height)
 
-        var x_scale = d3.scale.linear()
+        var x_scale = d3.scaleLinear()
             .domain([0, 100])
             .range(reverse ? [width, 0] : [0, width]);
 
@@ -98,7 +98,7 @@
             .text(format);
 
       });
-      d3.timer.flush();
+      // d3.timer.flush();
     }
 
     /**
