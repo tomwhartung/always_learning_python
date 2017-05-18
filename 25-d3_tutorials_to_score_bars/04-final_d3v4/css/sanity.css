@@ -1,0 +1,19 @@
+/*
+ * Try adding just a few styles for "sanity."
+ * These are NOT needed in the real site.
+ */
+
+body {
+    font-family: Sans-serif;
+	 margin: 1em;
+	 padding: 1em;
+}
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+.air-quotes::before { content: '"'; }
+.air-quotes {
+    font-style: italic;
+}
+.air-quotes::after { content: '"'; }
+
