@@ -32,6 +32,10 @@ We want a horizontal bar graph containing four bars that repreents the `score` a
   * Color: else (if P score is higher): blue or yellow (depending on N and S scores)
   * Length: matches score
 
+## Results
+
+See the final section named **Conclusion** at the very end of this file.
+
 ## References:
 
 This looks like a good place to start:
@@ -303,4 +307,38 @@ vi score_bars-v4.js
 ```
 
 Whoo-hoo - it turns out we need only a couple of minor modifications!  Yay!!
+
+### 04-final_d3v4
+
+Grab only essential code needed to draw the bars using Version 4 of D3.
+
+```
+mkdir 04-final_d3v4
+cp 03-score_bars/6th-final_combination/index.html  04-final_d3v4
+cp 03-score_bars/6th-final_combination/4th-one_graph_all_data-v4.html  04-final_d3v4
+cp 03-score_bars/6th-final_combination/5th-small_graph_exp-v4.html  04-final_d3v4
+cp 03-score_bars/6th-final_combination/run.sh 04-final_d3v4
+mkdir 04-final_d3v4/css
+cp 03-score_bars/6th-final_combination/css/sanity.css 04-final_d3v4/css/        # one little bit of cruft for sanity's sake!
+cp 03-score_bars/6th-final_combination/css/score_bars.css 04-final_d3v4/css/
+mkdir 04-final_d3v4/js
+cp 03-score_bars/6th-final_combination/js/score_bars-v4.js 04-final_d3v4/js/
+cd  04-final_d3v4/js/
+mv score_bars-v4.js score_bars.js
+cd -
+mkdir 04-final_d3v4/js/d3
+cp 03-score_bars/6th-final_combination/js/d3/d3.v4.* 04-final_d3v4/js/d3
+lf
+vi index.html
+vi 4th-one_graph_all_data-v4.html
+vi 5th-small_graph_exp-v4.html
+```
+
+And I think we are finally ready to drop this in to the site code!!
+
+## Conclusion
+
+* Use the code from `04-final_d3v4` on the site (**except** `css/sanity.css`).
+* If there are ever any issues, try falling back on version 3 of D3.
+* That code is in the `*-v3.*` files in `03-score_bars/6th-final_combination`.
 
